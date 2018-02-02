@@ -30,7 +30,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # ------------------------------------
 if [ "$(uname)" = 'Darwin' ]; then
     # alias
-    alias ls='ls -G'
+    alias ls='ls --color=always'
 
     LDFLAGS="-L/usr/local/opt/llvm/lib/clang"
     CPPFLAGS="-I/usr/local/opt/llvm/include"
