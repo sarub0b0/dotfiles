@@ -1,0 +1,134 @@
+" indent
+set autoindent
+
+" タブ設定
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set list listchars=tab:\-\-
+
+" encording utf-8
+set enc=utf-8
+setl fenc=utf-8
+set fencs=utf-8,iso2022-jp,euc-jp,sjis
+" 編集中のファイルが変更されたら自動でロード
+set autoread
+
+" 現在の行を強調
+"set cursorline
+"set cursorcolumn
+" 改行時,同じインデントで始める
+" set smartindent
+set visualbell
+
+set hidden
+
+" 検索系
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+
+set wildmode=list:longest
+
+syntax on
+
+set nu
+
+set scrolloff=5
+
+set ttyfast
+set t_Co=256
+
+augroup DeleteSpace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//ge
+augroup END
+
+augroup QuickFixCmd
+    autocmd!
+    autocmd QuickFixCmdPost *grep* :rightbelow cwindow 7
+augroup END
+
+let mapleader = "\<Space>"
+
+set pumheight=20
+
+let s:config_dir = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
+let s:home_dir = expand($HOME)
+
+
+
+execute 'source' . s:home_dir . '/.vim/copy_indent.vim'
+execute 'source' . s:home_dir . '/.vim/word_count.vim'
+execute 'source' . s:home_dir . '/.vim/status_line.vim'
+
+"-----------------------------------------
+" code config
+"-----------------------------------------
+execute 'source' . s:home_dir . '/.vim/code.vim'
+
+"-----------------------------------------
+" keymap config
+"-----------------------------------------
+execute 'source' . s:home_dir . '/.vim/keymap.vim'
+
+"-----------------------------------------
+" plugins config
+"-----------------------------------------
+if executable('gtags')
+    execute 'source' . s:home_dir . '/.vim/plugin/gtags.vim'
+endif
+
+if has('nvim')
+    let g:vim_home = expand('~/dotfiles/nvim')
+    let g:rc_dir = expand('~/dotfiles/nvim/rc')
+else
+    let g:vim_home = expand('~/dotfiles/vim')
+    let g:rc_dir = expand('~/dotfiles/vim/rc')
+    "execute 'source' . s:config_dir . '/nvim/neovim/neovim.vim'
+endif
+
+" rcファイル読み込み関数
+function! s:source_rc(rc_file_name)
+    let rc_file = expand(g:rc_dir . '/' . a:rc_file_name)
+    if filereadable(rc_file)
+        execute 'source' rc_file
+    endif
+endfunction
+
+" 基本設定
+call s:source_rc('init.rc.vim')
+
+" エディタの設定
+"call s:source_rc('editor.rc.vim')
+
+" Dein.vim
+call s:source_rc('dein.rc.vim')
+
+" カラースキーマ
+call s:source_rc('color.rc.vim')
+
+" ターミナル設定（今の所NeoVimの :terminal の設定）
+"call s:source_rc('terminal.rc.vim')
+
+"" neocomplete
+"call s:source_rc('neocomplete.rc.vim')
+
+"" unite
+"call s:source_rc('unite.rc.vim')
+
+"" caw.vim
+"call s:source_rc('caw.rc.vim')
+
+"" NERDTree
+"call s:source_rc('nerdtree.rc.vim')
+
+"" lightline.vim
+"call s:source_rc('lightline.rc.vim')

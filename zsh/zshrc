@@ -1,0 +1,220 @@
+alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
+alias sudo='sudo -E'
+alias c='clear'
+alias sl='ls'
+alias ll='ls -lh'
+alias la='ls -lah'
+alias ..='cd ..'
+alias py='python'
+alias rb='ruby'
+alias rbe='rbenv'
+alias fgrep='grep --with-filename --line-number --color=always'
+alias grep='grep --color=always'
+alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+alias gtags_remove='rm GPATH GRTAGS GTAGS'
+alias gobuild='go build'
+alias cc='cc -Wall'
+alias gcc='gcc -Wall'
+alias clang='clang -Wall'
+alias clang++='clang++ -Wall'
+alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
+
+export EDITOR="vim"
+export PATH="${HOME}/bin:${PATH}"
+export TERM=xterm-256color
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+
+# ------------------------------------
+# Mac OS
+# ------------------------------------
+if [ "$(uname)" = 'Darwin' ]; then
+    # alias
+    alias ls='ls -G'
+
+    LDFLAGS="-L/usr/local/opt/llvm/lib/clang"
+    CPPFLAGS="-I/usr/local/opt/llvm/include"
+    #alias cc="cc ${LDFLAGS} ${CPPFLAGS}"
+    #alias gcc="gcc ${LDFLAGS} ${CPPFLAGS}"
+    #alias clang="/usr/local/opt/llvm/bin/clang ${LDFLAGS} ${CPPFLAGS}"
+
+    export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:${PATH}"
+    export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:${MANPATH}"
+
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+    # ADD bin directory
+    export PATH="/usr/local/sbin:${PATH}"
+
+    # llvm
+    #export PATH="/usr/local/opt/llvm/bin:${PATH}"
+
+    # Android device monitor
+    export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
+    export PATH="${HOME}/Library/Android/sdk/tools:${PATH}"
+
+    # completions
+    fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
+    #fpath=(~/dotfiles/docker-zsh-completions(N-/) $fpath)
+
+    # ------------------------------------
+    # Linux
+    # ------------------------------------
+else
+    alias ls='ls --color=auto'
+
+    if cat /proc/self/cgroup | grep 'docker' > /dev/null; then
+        export SHELL=/bin/zsh
+        pids=$(pidof /usr/bin/Xvfb)
+        if [ -n "$pids" ]; then
+            processes="$(ps --format command --no-headers -ww --pid $pids)"
+            display=":${processes##*:}"
+            display="${display%% *}"
+            export DISPLAY=$display
+        else
+            unset DISPLAY
+        fi
+    fi
+
+    #if [ "$(hostname)" != "crab" ]; then
+    #    if builtin command -v screenfetch > /dev/null; then
+    #        screenfetch
+    #    fi
+    #fi
+fi
+
+if [ -d "$HOME/.anyenv" ]; then
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init - zsh)"
+
+    if [ "$(uname)" = "Darwin" ]; then
+        alias brew="env PATH=${PATH/\/Users\/kosay\/\.anyenv\/envs\/*env\/shims:/} brew"
+    fi
+    # tmux対応
+    for D in `\ls $HOME/.anyenv/envs`
+    do
+        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+    done
+fi
+
+## rbenv
+#export RBENV_ROOT="${HOME}/.rbenv"
+#export PATH="${RBENV_ROOT}/bin:${PATH}"
+#if builtin command -v rbenv > /dev/null; then
+#    eval "$(rbenv init -)"
+#fi
+#
+## jenv
+#if builtin command -v jenv > /dev/null; then
+#    export PATH="${HOME}/.jenv/bin:${PATH}"
+#    eval "$(jenv init -)"
+#fi
+#
+### go
+##if builtin command -v go > /dev/null; then
+##    export GOPATH="${HOME}/go"
+##fi
+#
+## goenv
+#if builtin command -v goenv > /dev/null; then
+#    export PATH="$HOME/.goenv/bin:$PATH"
+#    eval "$(goenv init -)"
+#fi
+#
+# direnv
+if builtin command -v direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+# less color
+if builtin command -v nvim > /dev/null; then
+    alias vim='nvim'
+
+    export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+    if [ "$(uname)" = "Darwin" ]; then
+        ls_result=`ls -t /usr/local/Cellar/neovim`
+        latest_version=${(z)ls_result}
+
+        alias less='/usr/local/Cellar/neovim/${latest_version[1]}/share/nvim/runtime/macros/less.sh'
+    else
+        alias less='/usr/share/nvim/runtime/macros/less.sh'
+    fi
+else
+    ls_result=`ls -t /usr/share/vim | grep --color=never -e '[0-9][0-9]'`
+    latest_version=${(z)ls_result}
+
+    alias less='/usr/share/vim/${ls_result}/macros/less.sh'
+fi
+LESS='-M'
+
+autoload colors
+colors
+
+# PROMPT
+if [ "$(uname)" = "Darwin" ]; then
+    PROMPT="%{$fg[green]%}%n %{$reset_color%}%(!.#.$) "
+else
+    PROMPT="%{$fg[green]%}%n@%m %{$reset_color%}%(!.#.$) "
+fi
+RPROMPT="[%~]"
+
+
+
+# -------------------------------------
+# 補完機能
+# -------------------------------------
+
+# 補完機能の強化
+autoload -Uz compinit && compinit -i
+#compinit
+
+# #補完に関するオプション
+#setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt mark_dirs             # ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
+setopt list_types            # 補完候補一覧でファイルの種別を識別マーク表示 (訳注:ls -F の記号)
+#setopt auto_menu             # 補完キー連打で順に補完候補を自動で補完
+setopt auto_param_keys       # カッコの対応などを自動的に補完
+setopt interactive_comments  # コマンドラインでも # 以降をコメントと見なす
+setopt magic_equal_subst     # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+
+setopt complete_in_word      # 語の途中でもカーソル位置で補完
+setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
+
+setopt print_eight_bit       # 日本語ファイル名等8ビットを通す
+setopt extended_glob         # 拡張グロブで補完(~とか^とか。例えばless *.txt~memo.txt ならmemo.txt 以外の *.txt にマッチ)
+#setopt globdots              # 明確なドットの指定なしで.から始まるファイルをマッチ
+
+setopt list_packed           # リストを詰めて表示
+
+bindkey "^I" menu-complete   # 展開する前に補完候補を出させる(Ctrl-iで補完するようにする)
+
+# 補完候補を ←↓↑→ でも選択出来るようにする
+zstyle ':completion:*:default' menu select=2
+
+# 補完関数の表示を過剰にする編
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
+zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
+zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+
+bindkey -e
+
+# グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
+# したがって，すべての マッチ種別を別々に表示させたいなら以下のようにする
+zstyle ':completion:*' group-name ''
+
+#LS_COLORSを設定しておく
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+#ファイル補完候補に色を付ける
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# ssh の設定読み込み
+function _ssh {
+    compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d ${HOME}/.ssh/config | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
+}
+

@@ -1,0 +1,126 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+
+#[[plugins]]
+#repo = 'lifepillar/vim-solarized8'
+
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+
+# [[plugins]]
+# repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'tyrannicaltoucan/vim-deep-space'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo ='nanotech/jellybeans.vim'
+
+[[plugins]]
+repo ='romainl/Apprentice'
+
+[[plugins]]
+repo = 'ajh17/Spacegray.vim'
+
+# [[plugins]]
+# repo = 'vim-airline/vim-airline'
+# hook_add = '''
+#     let g:airline_theme = 'base16_oceanicnext'
+#     let g:airline_powerline_fonts = 1
+#     let g:airline#extensions#wordcount#enabled = 1
+#     let g:airline#extensions#ale#enabled = 1
+# '''
+
+# [[plugins]]
+# repo = 'vim-airline/vim-airline-themes'
+# depends = ['vim-airline']
+
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    " エラー行に表示するマーク
+    let g:ale_sign_error = '⨉'
+    let g:ale_sign_warning = '⚠'
+
+    " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+    " エラー表示の列を常時表示
+    let g:ale_sign_column_always = 1
+
+    " メッセージフォーマット
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+
+    " ファイルを開いたときにlint実行
+    let g:ale_lint_on_enter = 0
+
+    " ファイルを保存したときにlint実行
+    let g:ale_lint_on_save = 1
+
+    " 編集中のlintはしない
+    let g:ale_lint_on_text_changed = 0
+
+    let g:ale_lint_on_insert_leave = 0
+
+    " lint結果をロケーションリストとQuickFixには表示しない
+    " 出てると結構うざいしQuickFixを書き換えられるのは困る
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 0
+
+ '''
+
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = {
+    \   'active': {
+    \       'left': [
+    \           ['mode', 'paste'],
+    \           ['readonly', 'filename', 'modified'],
+    \           [ 'linter_errors', 'linter_warnings', 'linter_ok' ]
+    \       ]
+    \   },
+    \   'colorscheme': 'oceanicnext',
+    \   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+    \   'component_expand': {
+    \       'linter_warnings': 'lightline#ale#warnings',
+    \       'linter_errors': 'lightline#ale#errors',
+    \       'linter_ok': 'lightline#ale#ok',
+    \   },
+    \   'component_type': {
+    \       'linter_warnings': 'warning',
+    \       'linter_errors': 'error',
+    \       'linter_ok': 'left',
+    \   }
+    \}
+
+    let g:lightline#ale#indicator_warnings = "⚠"
+    let g:lightline#ale#indicator_errors = "⨉"
+    let g:lightline#ale#indicator_ok = "⬥"
+'''
+depends = ['lightline-ale']
+
+
+[[plugins]]
+repo = 'maximbaz/lightline-ale'

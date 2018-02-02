@@ -1,0 +1,277 @@
+#[[plugins]]
+#repo = 'jiangmiao/auto-pairs'
+
+#[[plugins]]
+#repo = 'Shougo/neoyank.vim'
+#on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+# hook_add = '''
+#     let g:neoinclude#paths = {
+#     \   'c': '/usr/local/opt/allegro/include',
+#     \   'cpp': '/usr/local/opt/allegro/include',
+#     \}
+# '''
+on_i = 4
+on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'thinca/vim-ft-help_fold'
+on_i = 4
+on_ft = ['help']
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_add = '''
+    " Plugin key-mappings.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+    " SuperTab like snippets' behavior.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    " imap <expr><TAB>
+    "  \ pumvisible() ? "\<C-n>" :
+    "  \ neosnippet#expandable_or_jumpable() ?
+    "  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    "  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    " For conceal markers.
+    if has('conceal')
+      set conceallevel=2 concealcursor=niv
+    endif
+
+    " Enable snipMate compatibility feature.
+    " let g:neosnippet#enable_snipmate_compatibility = 1
+
+    " Expand the completed snippet trigger by <CR>.
+    "imap <expr><CR>
+    "\ (pumvisible() && neosnippet#expandable()) ?
+    "\ "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+    '''
+depends = ['neosnippet-snippets']
+on_ft = 'snippet'
+on_i = 3
+
+#[[plugins]]
+#repo = 'Shougo/neocomplete'
+#if = 'has("lua")'
+
+#[[plugins]]
+#repo = 'Shougo/denite.vim'
+
+#[[plugins]]
+#repo = 'Shougo/unite.vim'
+#depends = 'neomru.vim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = 'go'
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'othree/html5.vim'
+on_ft = 'html'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = 'md'
+hook_source = '''
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_math = 1
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_i = 2
+
+
+[[plugins]]
+repo = 'google/vim-maktaba'
+
+[[plugins]]
+repo = 'google/vim-codefmt'
+
+[[plugins]]
+repo = 'google/vim-glaive'
+
+[[plugins]]
+repo = 'vim-scripts/sudo.vim'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_source = '''
+    let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+    let g:quickrun_config['_'] = {
+                \   'runner': 'vimproc',
+                \   'runner/vimproc/updatetime': 60,
+                \   'outputter': 'error',
+                \   'outputter/error/success': 'buffer',
+                \   'outputter/error/error': 'quickfix',
+                \   'outputter/buffer/close_on_empty': 1,
+                \   'outputter/buffer/split': 'botright 7',
+                \   'outputter/quickfix/open_cmd': 'copen 7',
+                \   'outputter/loclist/open_cmd': 'botright lopen 7',
+                \}
+
+    let g:quickrun_config['allegro'] = {
+                \   'command': 'clang',
+                \   'cmdopt': '-g `pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 allegro_color-5 allegro_dialog-5 allegro_font-5 allegro_image-5 allegro_main-5 allegro_memfile-5 allegro_physfs-5 allegro_primitives-5 allegro_ttf-5`',
+                \   'exec': '%c %o %s:p -o %s:p:r',
+                \}
+    let g:quickrun_config['allegro/cpp'] = {
+                \   'command': 'clang++',
+                \   'cmdopt': '-g `pkg-config --cflags --libs allegro-5 allegro_acodec-5 allegro_audio-5 allegro_color-5 allegro_dialog-5 allegro_font-5 allegro_image-5 allegro_main-5 allegro_memfile-5 allegro_physfs-5 allegro_primitives-5 allegro_ttf-5`',
+                \   'exec': '%c %o %s:p -o %s:p:r',
+                \}
+
+    let g:quickrun_no_default_key_mappings = 1
+'''
+hook_add = '''
+    nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+    nmap <Space>r :cclose<CR>:write<CR>:QuickRun<Space>
+    xmap <Space>r :<C-U>cclose<CR>:<C-U>write<CR>gv:QuickRun<Space>
+'''
+on_i = 2
+depends = ['vimproc.vim']
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+hook_source = '''
+    if has('mac')
+        let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+        let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/lib/clang'
+    else
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'
+        let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+    endif
+'''
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_i = 2
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'vim-latex/vim-latex'
+hook_source = '''
+    set shellslash
+    set grepprg=grep\ -nH\ $*
+    let g:tex_flavor='latex'
+    let g:Imap_UsePlaceHolders = 1
+    let g:Imap_DeleteEmptyPlaceHolders = 1
+    let g:Imap_StickyPlaceHolders = 0
+    let g:Tex_DefaultTargetFormat = 'dvi'
+    let g:Tex_MultipleCompileFormats='dvi,pdf'
+    let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+    let g:Tex_CompileRule_dvi = 'platex -synctex=1 -interaction=nonstopmode -file-line-error $*'
+    let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
+    let g:Tex_BibtexFlavor = 'upbibtex'
+    let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
+    let g:Tex_UseEditorSettingInDVIViewer = 1
+    let g:Tex_ViewRule_dvi = 'open -a /Applications/Skim.app'
+    let g:Tex_ViewRule_pdf = 'open -a /Applications/Preview.app'
+'''
+on_ft = 'tex'
+on_i = 2
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+hook_source = '''
+    let g:tagbar_width = 30
+    let g:tagbar_autoshowtag = 1
+    " let g:tagbar_autofocus = 1
+    let g:tagbar_show_linenumbers = 1
+'''
+hook_add = '''
+    nmap <Space>t :TagbarToggle<CR>
+'''
+
+[[plugins]]
+repo = 'zebult/auto-gtags.vim'
+hook_add = '''
+    let g:auto_gtags = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'kana/vim-fakeclip'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_source = '''
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#auto_complete_start_length = 2
+    let g:deoplete#enable_camel_case = 0
+    let g:deoplete#enable_refresh_always = 0
+    let g:deoplete#file#enable_buffer_path = 1
+    let g:deoplete#max_list = 10000
+
+    set completeopt=longest
+
+    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+on_i = 2
+
+[[plugins]]
+repo = 'kana/vim-submode'
+on_i = 2
+hook_post_source = '''
+    call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+    call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+    call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+    call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+    call submode#map('bufmove', 'n', '', '<', '<C-w><')
+    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+on_i = 4
+hook_add = '''
+    nmap <Space>c <Plug>NERDCommenterToggle
+    smap <Space>c <Plug>NERDCommenterToggle
+    xmap <Space>c <Plug>NERDCommenterToggle
+'''
+hook_source = '''
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+
+    let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'} }
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+    let g:NERDTreeShowLineNumbers = 1
+    nmap <Space>n :NERDTree<CR>
+    augroup NERDTreeCmd
+        autocmd!
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTree | endif
+        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    augroup END
+'''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_i = 4
+
