@@ -88,7 +88,6 @@ hook_add = '''
 
  '''
 
-
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -120,7 +119,6 @@ hook_add = '''
     let g:lightline#ale#indicator_ok = "⬥"
 '''
 depends = ['lightline-ale']
-
 
 [[plugins]]
 repo = 'maximbaz/lightline-ale'

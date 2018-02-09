@@ -275,3 +275,12 @@ hook_add = '''
 repo = 'vim-jp/vimdoc-ja'
 on_i = 4
 
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = '''
+    let g:previm_open_cmd = 'open -a Firefox'
+    let g:previm_disable_default_css = 1
+    let g:previm_custom_css_path = '~/dotfiles/vim/rc/plugins/markdown.css'
+    let g:previm_enable_realtime = 1
+'''
+on_i = 4

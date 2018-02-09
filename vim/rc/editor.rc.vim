@@ -74,6 +74,12 @@ augroup DeleteSpace
     autocmd BufWritePre * :%s/\s\+$//ge
 augroup END
 
+augroup FoldMethod
+    autocmd!
+    autocmd FileType * setl foldmethod=indent
+    set foldcolumn=2
+augroup END
+
 augroup QuickFixCmd
     autocmd!
     autocmd QuickFixCmdPost *grep* :rightbelow cwindow 7
@@ -84,13 +90,6 @@ augroup QfAutoCommands
     " Auto-close quickfix window
     autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
-
-augroup FoldMethod
-    autocmd!
-    autocmd FileType * setl foldmethod=indent
-    set foldcolumn=2
-augroup END
-
 
 
 "クリップボードからコピペする際のインデントのズレを防ぐ

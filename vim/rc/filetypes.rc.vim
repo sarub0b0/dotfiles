@@ -5,10 +5,10 @@ augroup FileTypeDetect
     autocmd BufRead,BufNewFile Guardfile setfiletype ruby
     autocmd FileType ruby call s:ruby_tab_config()
     autocmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
+    autocmd FileType markdown set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
 augroup END
 
 function! s:default_config()
-    " タブ設定
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
@@ -58,6 +58,12 @@ function! s:ale_option()
     let l:include_dir = expand($ALE_C_INCLUDE_PATH)
     let g:ale_cpp_clang_options = '-std=c++14 -Wall -I' . l:include_dir
     let g:ale_cpp_gcc_options = '-std=c++14 -Wall -I' . l:include_dir
+endfunction
+
+function! s:delete_space_au()
+    augroup DeleteSpace
+        autocmd!
+    augroup END
 endfunction
 
 " augroup autoformat_settings
