@@ -30,7 +30,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # ------------------------------------
 if [ "$(uname)" = 'Darwin' ]; then
     # alias
-    alias ls='ls --color=always'
+    alias ls='ls -G'
 
     LDFLAGS="-L/usr/local/opt/llvm/lib/clang"
     CPPFLAGS="-I/usr/local/opt/llvm/include"
@@ -57,7 +57,10 @@ if [ "$(uname)" = 'Darwin' ]; then
     # completions
     fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
     #fpath=(~/dotfiles/docker-zsh-completions(N-/) $fpath)
-
+    if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+        alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+        alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    fi
     # ------------------------------------
     # Linux
     # ------------------------------------
@@ -76,52 +79,22 @@ else
             unset DISPLAY
         fi
     fi
-
-    #if [ "$(hostname)" != "crab" ]; then
-    #    if builtin command -v screenfetch > /dev/null; then
-    #        screenfetch
-    #    fi
-    #fi
 fi
 
-if [ -d "$HOME/.anyenv" ]; then
+if [ -f "$HOME/.anyenv/bin/anyenv" ]; then
     export PATH="$HOME/.anyenv/bin:$PATH"
     eval "$(anyenv init - zsh)"
 
     if [ "$(uname)" = "Darwin" ]; then
-        alias brew="env PATH=${PATH/\/Users\/kosay\/\.anyenv\/envs\/*env\/shims:/} brew"
+        alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
     fi
     # tmux対応
-    for D in `\ls $HOME/.anyenv/envs`
+    for D in `ls $HOME/.anyenv/envs`
     do
         export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
     done
 fi
 
-## rbenv
-#export RBENV_ROOT="${HOME}/.rbenv"
-#export PATH="${RBENV_ROOT}/bin:${PATH}"
-#if builtin command -v rbenv > /dev/null; then
-#    eval "$(rbenv init -)"
-#fi
-#
-## jenv
-#if builtin command -v jenv > /dev/null; then
-#    export PATH="${HOME}/.jenv/bin:${PATH}"
-#    eval "$(jenv init -)"
-#fi
-#
-### go
-##if builtin command -v go > /dev/null; then
-##    export GOPATH="${HOME}/go"
-##fi
-#
-## goenv
-#if builtin command -v goenv > /dev/null; then
-#    export PATH="$HOME/.goenv/bin:$PATH"
-#    eval "$(goenv init -)"
-#fi
-#
 # direnv
 if builtin command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
@@ -134,10 +107,7 @@ if builtin command -v nvim > /dev/null; then
     export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
     if [ "$(uname)" = "Darwin" ]; then
-        ls_result=`ls -t /usr/local/Cellar/neovim`
-        latest_version=${(z)ls_result}
-
-        alias less='/usr/local/Cellar/neovim/${latest_version[1]}/share/nvim/runtime/macros/less.sh'
+        alias less='/usr/local/opt/nvim/share/nvim/runtime/macros/less.sh'
     else
         alias less='/usr/share/nvim/runtime/macros/less.sh'
     fi

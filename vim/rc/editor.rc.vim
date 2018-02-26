@@ -1,4 +1,5 @@
 
+syntax on
 " encording utf-8
 set encoding=utf-8
 setl fileencoding=utf-8
@@ -18,7 +19,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-set list listchars=tab:\-\-
+set list
+set listchars=tab:\-\-
 
 " 編集中のファイルが変更されたら自動でロード
 set autoread
@@ -50,12 +52,8 @@ set dictionary=/usr/share/dict/words
 
 set completeopt=menuone,longest,menu
 
-set complete=.,w,b,u,t,i,d
+set complete=.,w,b,u,t,d
 
-
-syntax on
-
-filetype plugin indent on
 
 set number
 

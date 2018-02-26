@@ -5,26 +5,47 @@ augroup FileTypeDetect
     autocmd BufRead,BufNewFile Guardfile setfiletype ruby
     autocmd FileType ruby call s:ruby_tab_config()
     autocmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
-    autocmd FileType markdown set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
+    autocmd FileType nerdtree set nolist
+    autocmd FileType cs call s:csharp_setting()
 augroup END
 
 function! s:default_config()
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
+    set tabstop=4 softtabstop=4 shiftwidth=4
+endfunction
+
+function! s:csharp_setting()
+    set foldmethod=syntax
+    :ALEDisable
+    nnoremap <silent> <buffer> ma :OmniSharpAddToProject<CR>
+    nnoremap <silent> <buffer> mb :OmniSharpBuild<CR>
+    nnoremap <silent> <buffer> mc :OmniSharpFindSyntaxErrors<CR>
+    nnoremap <silent> <buffer> mf :OmniSharpCodeFormat<CR>
+    nnoremap <silent> <buffer> mj :OmniSharpGotoDefinition<CR>
+    nnoremap <silent> <buffer> <C-w>mj <C-w>s:OmniSharpGotoDefinition<CR>
+    nnoremap <silent> <buffer> mi :OmniSharpFindImplementations<CR>
+    nnoremap <silent> <buffer> mr :OmniSharpRename<CR>
+    nnoremap <silent> <buffer> mt :OmniSharpTypeLookup<CR>
+    nnoremap <silent> <buffer> mu :OmniSharpFindUsages<CR>
+    nnoremap <silent> <buffer> mx :OmniSharpGetCodeActions<CR>
+    setlocal omnifunc=PmniSharp#Complete
+    augroup CSharpSetting
+        autocmd!
+        autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+    augroup END
+    " set foldmethod=syntax
 endfunction
 
 " clang format config {{{
 function! s:clang_format_config()
+    set foldmethod=syntax
     if executable('clang-format')
-        source ~/dotfiles/vim/rc/plugins/gtags.vim
 
         augroup ClangFormatConfig
             autocmd!
             autocmd FileType c,cpp ClangFormatAutoEnable
         augroup END
 
-        nnoremap <buffer> f :ClangFormat<CR>
+        nnoremap <buffer> ff :ClangFormat<CR>
 
         let g:clang_fotmat#code_style = 'google'
 
@@ -58,6 +79,9 @@ function! s:ale_option()
     let l:include_dir = expand($ALE_C_INCLUDE_PATH)
     let g:ale_cpp_clang_options = '-std=c++14 -Wall -I' . l:include_dir
     let g:ale_cpp_gcc_options = '-std=c++14 -Wall -I' . l:include_dir
+    let g:ale_c_clang_options = '-Wall -I' . l:include_dir
+    let g:ale_c_gcc_options = '-Wall -I' . l:include_dir
+
 endfunction
 
 function! s:delete_space_au()
@@ -66,6 +90,12 @@ function! s:delete_space_au()
     augroup END
 endfunction
 
+function! s:markdown_opt()
+    augroup MarkdownOption
+        autocmd!
+        autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
+    augroup END
+endfunction
 " augroup autoformat_settings
 "   autocmd FileType bzl AutoFormatBuffer buildifier
 "   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format

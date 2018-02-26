@@ -1,0 +1,33 @@
+
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = 'md'
+hook_source = '''
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_math = 1
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+    " execute 'source' . g:cache_dir . '/dein/repos/github.com/scrooloose/nerdcommenter/plugin/NERD_commenter.vim'
+    nmap <Space>c <Plug>NERDCommenterToggle
+    smap <Space>c <Plug>NERDCommenterToggle
+    xmap <Space>c <Plug>NERDCommenterToggle
+
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+
+    let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'} }
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = '''
+    let g:previm_open_cmd = 'open -a Firefox'
+    let g:previm_disable_default_css = 1
+    let g:previm_custom_css_path = '~/dotfiles/vim/rc/plugins/markdown.css'
+    let g:previm_enable_realtime = 1
+'''
+# on_i = 4

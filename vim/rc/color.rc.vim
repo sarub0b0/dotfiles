@@ -1,4 +1,4 @@
-if has('nvim')
+if !has('vim')
     set termguicolors
     colorscheme OceanicNext
 else
