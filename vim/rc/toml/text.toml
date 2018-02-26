@@ -10,7 +10,6 @@ hook_source = '''
 [[plugins]]
 repo = 'scrooloose/nerdcommenter'
 hook_add = '''
-    " execute 'source' . g:cache_dir . '/dein/repos/github.com/scrooloose/nerdcommenter/plugin/NERD_commenter.vim'
     nmap <Space>c <Plug>NERDCommenterToggle
     smap <Space>c <Plug>NERDCommenterToggle
     xmap <Space>c <Plug>NERDCommenterToggle
