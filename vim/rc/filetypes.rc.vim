@@ -7,6 +7,8 @@ augroup FileTypeDetect
     autocmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
     autocmd FileType nerdtree set nolist
     autocmd FileType cs call s:csharp_setting()
+    autocmd BufRead,BufNewFile *.jade setfiletype pug
+    autocmd BufRead,BufNewFile *.fish setfiletype fish
 augroup END
 
 function! s:default_config()
@@ -14,7 +16,7 @@ function! s:default_config()
 endfunction
 
 function! s:csharp_setting()
-    set foldmethod=syntax
+    " set foldmethod=syntax
     :ALEDisable
     nnoremap <silent> <buffer> ma :OmniSharpAddToProject<CR>
     nnoremap <silent> <buffer> mb :OmniSharpBuild<CR>
@@ -64,6 +66,7 @@ function! s:clang_format_config()
                     \ 'BinPackArguments': 'false',
                     \ 'BinPackParameters': 'false',
                     \ 'SpaceAfterCStyleCast': 'true',
+                    \ 'ColumnLimit': 100,
                     \ }
     endif
 endfunction

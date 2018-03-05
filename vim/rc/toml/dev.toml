@@ -47,7 +47,7 @@ hook_source = '''
                 \   'runner': 'vimproc',
                 \   'runner/vimproc/updatetime': 60,
                 \   'outputter': 'error',
-                \   'outputter/error/success': 'buffer',
+                \   'outputter/error/success': 'quickfix',
                 \   'outputter/error/error': 'quickfix',
                 \   'outputter/buffer/close_on_empty': 1,
                 \   'outputter/buffer/split': 'botright 7',
@@ -73,8 +73,8 @@ hook_add = '''
     nmap <Space>r :cclose<CR>:write<CR>:QuickRun<Space>
     xmap <Space>r :<C-U>cclose<CR>:<C-U>write<CR>gv:QuickRun<Space>
 '''
-# on_i = 2
-# depends = ['vimproc.vim']
+on_i = 1
+depends = ['vimproc.vim']
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
@@ -106,18 +106,5 @@ hook_add = '''
         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 on_i = 1
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-    let g:NERDTreeShowLineNumbers = 1
-    nmap <Space>n :NERDTree<CR>
-    augroup NERDTreeCmd
-        autocmd!
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTree | endif
-        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    augroup END
-'''
 
 

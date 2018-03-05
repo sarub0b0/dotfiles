@@ -29,4 +29,4 @@ hook_add = '''
     let g:previm_custom_css_path = '~/dotfiles/vim/rc/plugins/markdown.css'
     let g:previm_enable_realtime = 1
 '''
-# on_i = 4
+on_i = 1

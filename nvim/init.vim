@@ -1,1 +1,0 @@
-/Users/kosay/dotfiles/vim/vimrc

@@ -7,3 +7,10 @@ on_ft = 'html'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+on_ft = 'pug'
+
+[[plugins]]
+repo = 'vim-scripts/fish-syntax'
+on_ft = 'fish'

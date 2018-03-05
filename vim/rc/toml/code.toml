@@ -1,0 +1,83 @@
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_source = '''
+    nnoremap <Space>i :IndentLinesToggle<CR>
+    let g:indentLine_setColors = 1
+    let g:indentLine_color_term = 239
+    let g:indentLine_color_gui = '#65737E'
+    let g:indentLine_char = '│'
+    " | ¦ ┆ │
+'''
+on_i = 1
+
+############################################
+# clang
+############################################
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+hook_add = '''
+    let g:neoinclude#paths = {
+    \   'c': '/usr/local/opt/allegro/include',
+    \   'cpp': '/usr/local/opt/allegro/include',
+    \}
+'''
+on_i = 1
+on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_i = 1
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+hook_source = '''
+    if has('mac')
+        let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+        let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/lib/clang'
+    else
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'
+        let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+    endif
+'''
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_i = 1
+on_source = ['deoplete']
+
+[[plugins]]
+repo = 'zebult/auto-gtags.vim'
+hook_add = '''
+    let g:auto_gtags = 1
+    source ~/dotfiles/vim/rc/plugins/gtags.vim
+'''
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+
+############################################
+# C#
+############################################
+[[plugins]]
+repo = "OmniSharp/omnisharp-vim"
+on_ft = ["cs"]
+build = "xbuild server/OmniSharp.sln"
+on_i = 1
+
+[[plugins]]
+repo = "Robzz/deoplete-omnisharp"
+on_source = ['deoplete']
+on_ft = ["cs"]
+on_i = 1
+
+############################################
+# go
+############################################
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = 'go'
+on_source = ['deoplete']
+
+
+
