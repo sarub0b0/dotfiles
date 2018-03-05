@@ -4,13 +4,20 @@ repo = 'othree/html5.vim'
 on_ft = 'html'
 
 [[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-[[plugins]]
 repo = 'digitaltoad/vim-pug'
 on_ft = 'pug'
 
 [[plugins]]
 repo = 'vim-scripts/fish-syntax'
 on_ft = 'fish'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'inkarkat/vim-ingo-library'
+
+[[plugins]]
+repo = 'inkarkat/vim-SyntaxRange'
+depands = ['vim-ingo-library']

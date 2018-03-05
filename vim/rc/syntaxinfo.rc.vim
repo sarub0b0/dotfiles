@@ -36,4 +36,15 @@ function! s:get_syn_info()
 endfunction
 command! SyntaxInfo call s:get_syn_info()
 
+augroup SyntaxRangeConfig
+    autocmd!
+    autocmd BufNewFile,BufRead *.toml call s:syntax_range_dein()
+    function! s:syntax_range_dein() abort
+        let start = '^\s*hook_\%('.
+                    \           'add\|source\|post_source\|post_update'.
+                    \           '\)\s*=\s*%s'
 
+        call SyntaxRange#Include(printf(start, "'''"), "'''", 'vim', '')
+        call SyntaxRange#Include(printf(start, '"""'), '"""', 'vim', '')
+    endfunction
+augroup END
