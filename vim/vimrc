@@ -2,12 +2,12 @@ scriptencoding utf-8
 
 if !has('nvim')
     if has('unix')
-        let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
-        set pythondll=$PYTHONHOME/lib/libpython2.7.so
-        py import sys
-        let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.4"
-        set pythonthreedll=$PYTHONHOME/lib/libpython3.6m.so
-        py3 import sys
+        " let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
+        " set pythondll=$PYTHONHOME/lib/libpython2.7.so
+        " py import sys
+        " let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.4"
+        " set pythonthreedll=$PYTHONHOME/lib/libpython3.6m.so
+        " py3 import sys
     else
         let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
         set pythondll=$PYTHONHOME/lib/libpython2.7.dylib
