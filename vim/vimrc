@@ -50,9 +50,9 @@ function! s:vimrc_local(loc)
     endfor
 endfunction
 
-" if !has('vim')
-call s:source_rc('dein.rc.vim')
-" endif
+if has('nvim')
+    call s:source_rc('dein.rc.vim')
+endif
 
 call s:source_rc('editor.rc.vim')
 
