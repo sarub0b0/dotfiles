@@ -52,6 +52,7 @@ hook_add = '''
 
     let g:ale_linters = {
     \   'c': ['clang'],
+    "\   'cpp': ['clang++'],
     \}
 
 '''

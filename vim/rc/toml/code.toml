@@ -41,8 +41,8 @@ hook_source = '''
     endif
 '''
 on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
-on_i = 1
 on_source = ['deoplete']
+on_i = 1
 
 [[plugins]]
 repo = 'zebult/auto-gtags.vim'
@@ -78,6 +78,5 @@ on_ft = 'go'
 repo = 'zchee/deoplete-go'
 on_ft = 'go'
 on_source = ['deoplete']
-
 
 
