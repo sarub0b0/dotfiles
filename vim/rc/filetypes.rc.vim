@@ -9,6 +9,7 @@ augroup FileTypeDetect
     autocmd FileType cs call s:csharp_setting()
     autocmd BufRead,BufNewFile *.jade setfiletype pug
     autocmd BufRead,BufNewFile *.fish setfiletype fish
+    autocmd FileType toml,vim,zsh,bash,help call s:fold_method_indent()
 augroup END
 
 function! s:default_config()
@@ -16,7 +17,6 @@ function! s:default_config()
 endfunction
 
 function! s:csharp_setting()
-    " set foldmethod=syntax
     :ALEDisable
     nnoremap <silent> <buffer> ma :OmniSharpAddToProject<CR>
     nnoremap <silent> <buffer> mb :OmniSharpBuild<CR>
@@ -34,7 +34,7 @@ function! s:csharp_setting()
         autocmd!
         autocmd BufWritePost *.cs call OmniSharp#AddToProject()
     augroup END
-    " set foldmethod=syntax
+    set foldmethod=syntax
 endfunction
 
 " clang format config {{{
@@ -66,7 +66,7 @@ function! s:clang_format_config()
                     \ 'BinPackArguments': 'false',
                     \ 'BinPackParameters': 'false',
                     \ 'SpaceAfterCStyleCast': 'true',
-                    \ 'ColumnLimit': 100,
+                    \ 'ColumnLimit': 78,
                     \ }
     endif
 endfunction
@@ -80,8 +80,8 @@ endfunction
 
 function! s:ale_option()
     let l:include_dir = expand($ALE_C_INCLUDE_PATH)
-    let g:ale_cpp_clang_options = '-std=c++14 -Wall -I' . l:include_dir
-    let g:ale_cpp_gcc_options = '-std=c++14 -Wall -I' . l:include_dir
+    let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir
+    let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir
     let g:ale_c_clang_options = '-Wall -I' . l:include_dir
     let g:ale_c_gcc_options = '-Wall -I' . l:include_dir
 
@@ -97,6 +97,13 @@ function! s:markdown_opt()
     augroup MarkdownOption
         autocmd!
         autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
+    augroup END
+endfunction
+
+function! s:fold_method_indent()
+    augroup FoldMethod
+        autocmd!
+        autocmd BufRead,BufNewFile * setl foldmethod=indent
     augroup END
 endfunction
 " augroup autoformat_settings

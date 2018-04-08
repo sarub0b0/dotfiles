@@ -1,7 +1,7 @@
 
 [[plugins]]
 repo = 'vim-latex/vim-latex'
-hook_source = '''
+hook_add = '''
     set shellslash
     set grepprg=grep\ -nH\ $*
     let g:tex_flavor='latex'
@@ -20,5 +20,5 @@ hook_source = '''
     let g:Tex_ViewRule_pdf = 'open -a /Applications/Preview.app'
 '''
 on_ft = 'tex'
-on_i = 1
+# on_i = 1
 

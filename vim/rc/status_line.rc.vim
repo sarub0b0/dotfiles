@@ -179,43 +179,43 @@ endfunction
 "----------------------------------------------------------
 " ステータスラインの設定
 "----------------------------------------------------------
-set showmode " 現在のモードを表示
+" set showmode " 現在のモードを表示
 "ステータスラインにコマンドを表示
-set showcmd
+" set showcmd
 "ステータスラインを常に表示
-set laststatus=2
+" set laststatus=2
 "ファイルナンバー表示
 ""set statusline=[%n]
 "ホスト名表示
 ""set statusline+=%{matchstr(hostname(),'\\w\\+')}@
 "ファイル名表示
-set statusline+=%<%F
+" set statusline+=%<%F
 "変更のチェック表示
 ""set statusline+=%m
 "読み込み専用かどうか表示
-set statusline+=%r
+" set statusline+=%r
 "ヘルプページなら[HELP]と表示
-set statusline+=%h
+" set statusline+=%h
 "プレビューウインドウなら[Prevew]と表示
-set statusline+=%w
+" set statusline+=%w
 "ファイルフォーマット表示
 ""set statusline+=[%{&fileformat}]
 "文字コード表示
-set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
+" set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
 "ファイルタイプ表示
 ""set statusline+=%y
 "ここからツールバー右側
-set statusline+=%=
+" set statusline+=%=
 "skk.vimの状態
 "set statusline+=%{exists('*SkkGetModeStr')?SkkGetModeStr():''}
 "文字バイト数/カラム番号
 ""set statusline+=[%{col('.')-1}=ASCII=%B,HEX=%c]
 "現在文字列/全体列表示
-set statusline+=[C=%c/%{col('$')-1}]
+" set statusline+=[C=%c/%{col('$')-1}]
 "現在文字行/全体行表示
-set statusline+=[L=%l/%L]
+" set statusline+=[L=%l/%L]
 "現在のファイルの文字数をカウント
-set statusline+=[WC=%{WordCount()}]
-set updatetime=0
+" set statusline+=[WC=%{WordCount()}]
+" set updatetime=0
 "現在行が全体行の何%目か表示
-set statusline+=[%p%%]
+" set statusline+=[%p%%]

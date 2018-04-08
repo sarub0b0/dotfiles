@@ -1,0 +1,8 @@
+
+[[plugins]]
+repo = 'rhysd/nyaovim-markdown-preview'
+on_ft = 'markdown'
+
+# [[plugins]]
+# repo = 'rhysd/nyaovim-running-gopher'
+# on_i = 1

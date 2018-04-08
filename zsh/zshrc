@@ -188,3 +188,14 @@ function _ssh {
     compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d ${HOME}/.ssh/config | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
 }
 
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection

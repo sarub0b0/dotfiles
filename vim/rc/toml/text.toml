@@ -1,7 +1,7 @@
 
 [[plugins]]
 repo = 'rcmdnk/vim-markdown'
-on_ft = 'md'
+on_ft = 'markdown'
 hook_source = '''
     let g:vim_markdown_frontmatter = 1
     let g:vim_markdown_math = 1
@@ -30,3 +30,5 @@ hook_add = '''
     let g:previm_enable_realtime = 1
 '''
 on_i = 1
+
+

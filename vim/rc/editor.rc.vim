@@ -1,5 +1,3 @@
-
-syntax on
 " encording utf-8
 set encoding=utf-8
 setl fileencoding=sjis
@@ -65,17 +63,15 @@ set t_Co=256
 
 set pumheight=20
 
+if has('nvim')
+    set inccommand=nosplit
+endif
+
 " let mapleader = "\<Space>"
 "
 augroup DeleteSpace
     autocmd!
     autocmd BufWritePre * :%s/\s\+$//ge
-augroup END
-
-augroup FoldMethod
-    autocmd!
-    autocmd FileType * setl foldmethod=indent
-    set foldcolumn=2
 augroup END
 
 augroup QuickFixCmd
@@ -86,7 +82,12 @@ augroup END
 augroup QfAutoCommands
     autocmd!
     " Auto-close quickfix window
-    autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+    autocmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix') | quit | endif
+augroup END
+
+augroup QfNERDClose
+    autocmd!
+    autocmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | quit | endif
 augroup END
 
 

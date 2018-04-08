@@ -5,8 +5,22 @@ repo = 'vim-scripts/sudo.vim'
 repo = 'kana/vim-fakeclip'
 
 [[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+    let g:NERDTreeShowLineNumbers = 1
+    let g:NERDTreeWinSize = 25
+    nmap <Space>n :NERDTreeToggle<CR>
+    augroup NERDTreeCmd
+        autocmd!
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTreeToggle | endif
+        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | quit | endif
+    augroup END
+'''
+on_event = 'VimEnter'
+
+[[plugins]]
 repo = 'kana/vim-submode'
-on_i = 1
 hook_post_source = '''
     call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
     call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
@@ -17,20 +31,7 @@ hook_post_source = '''
     call submode#map('bufmove', 'n', '', '+', '<C-w>+')
     call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-    let g:NERDTreeShowLineNumbers = 1
-    let g:NERDTreeWinSize = 25
-    nmap <Space>n :NERDTreeToggle<CR>
-    augroup NERDTreeCmd
-        autocmd!
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTreeToggle | endif
-        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    augroup END
-'''
+on_source = 'nerdtree'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'

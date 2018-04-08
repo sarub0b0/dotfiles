@@ -5,14 +5,14 @@ if !has('nvim')
         " let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
         " set pythondll=$PYTHONHOME/lib/libpython2.7.so
         " py import sys
-        " let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.4"
+        " let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.5"
         " set pythonthreedll=$PYTHONHOME/lib/libpython3.6m.so
         " py3 import sys
     else
         let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
         set pythondll=$PYTHONHOME/lib/libpython2.7.dylib
         py import sys
-        let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.4"
+        let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.5"
         set pythonthreedll=$PYTHONHOME/lib/libpython3.6m.dylib
         py3 import sys
     endif
@@ -24,7 +24,7 @@ augroup MyAutoCmd
 augroup END
 
 let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.14/bin/python')
-let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.4/bin/python')
+let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
 
 let g:vim_home = expand('~/dotfiles/vim')
 let g:rc_dir = expand('~/dotfiles/vim/rc')
@@ -67,7 +67,8 @@ call s:source_rc('filetypes.rc.vim')
 call s:source_rc('windowctrl.rc.vim')
 
 call s:source_rc('syntaxinfo.rc.vim')
-" call s:source_rc('status_line.rc.vim')
+
+call s:source_rc('status_line.rc.vim')
 
 
 
