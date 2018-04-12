@@ -80,7 +80,7 @@ hook_add = '''
     \           [ 'linter_errors', 'linter_warnings', 'linter_ok' ]
     \       ],
     \       'right': [
-    \           [ 'lineinfo' ], [ 'percent', 'wordcount' ],
+    \           [ 'lineinfo' ], [ 'percent'],
     \           [ 'fileformat', 'fileencoding', 'filetype' ]
     \       ]
     \   },
