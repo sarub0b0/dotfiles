@@ -1,3 +1,5 @@
+[[plugins]]
+repo = 'tpope/vim-dispatch'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -94,17 +96,17 @@ repo = 'Shougo/deoplete.nvim'
 hook_add = '''
     let g:deoplete#enable_at_startup = 1
     " let g:deoplete#auto_complete_start_length = 2
-    let g:deoplete#enable_camel_case = 0
-    let g:deoplete#enable_refresh_always = 1
+    " let g:deoplete#enable_camel_case = 0
+    " let g:deoplete#enable_refresh_always = 1
     " let g:deoplete#file#enable_buffer_path = 1
     " let g:deoplete#max_list = 100
-    let g:deoplete#num_processes = 2
+    " let g:deoplete#num_processes = 2
 
     "set completeopt=longest
 
-    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+    "inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+    "    \ neosnippet#expandable_or_jumpable() ?
+    "    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 on_i = 1
 

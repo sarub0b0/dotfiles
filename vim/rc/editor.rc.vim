@@ -55,9 +55,9 @@ set complete=.,w,b,u,t,d
 
 set number
 
-set scrolloff=5
+set scrolloff=10
 
-set ttyfast
+" set ttyfast
 
 set t_Co=256
 
