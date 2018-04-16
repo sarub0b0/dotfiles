@@ -184,6 +184,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # ssh の設定読み込み
+
 function _ssh {
     compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d ${HOME}/.ssh/config | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
 }
@@ -191,11 +192,14 @@ function _ssh {
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
+if [ "$(uname)" = "Darwin" ]; then
+    function peco-history-selection() {
+        BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+        CURSOR=$#BUFFER
+        zle reset-prompt
+    }
+else
+fi
 
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
