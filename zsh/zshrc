@@ -194,10 +194,20 @@ fi
 
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+if [ "$(uname)" = "Darwin" ]; then
+	function peco-history-selection() {
+		BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+		CURSOR=$#BUFFER
+		zle reset-prompt
+	}
+	zle -N peco-history-selection
+	bindkey '^r' peco-history-selection
+else
+	function peco-select-history() {
+		BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+		CURSOR=$#BUFFER
+		zle clear-screen
+	}
+	zle -N peco-select-history
+	bindkey '^r' peco-select-history
+fi
