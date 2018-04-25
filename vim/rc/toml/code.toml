@@ -22,11 +22,11 @@ hook_add = '''
     \}
 '''
 on_i = 1
-on_ft = ['c', 'cpp']
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
 
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
 on_i = 1
 
 [[plugins]]
@@ -40,7 +40,7 @@ hook_source = '''
         let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
     endif
 '''
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
 on_source = ['deoplete']
 on_i = 1
 
@@ -50,7 +50,7 @@ hook_add = '''
     let g:auto_gtags = 1
     source ~/dotfiles/vim/rc/plugins/gtags.vim
 '''
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp']
+on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
 
 ############################################
 # C#
@@ -82,4 +82,18 @@ repo = 'zchee/deoplete-go'
 on_ft = 'go'
 on_source = ['deoplete']
 
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
 
+[[plugins]]
+repo = 'zchee/deoplete-zsh'
+on_ft = 'zsh'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_source = '''
+    " let g:echodoc#type = 'signature'
+    call echodoc#enable()
+'''

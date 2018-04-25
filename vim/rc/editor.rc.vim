@@ -1,6 +1,6 @@
 " encording utf-8
 set encoding=utf-8
-setl fileencoding=sjis
+setl fileencoding=utf-8
 set fileencodings=utf-8,iso2022-jp,euc-jp,sjis
 scriptencoding utf-8
 
@@ -50,7 +50,7 @@ set dictionary=/usr/share/dict/words
 
 set completeopt=menuone,longest,menu
 
-set complete=.,w,b,u,t,d
+" set complete=.,w,b,u,t,d
 
 
 set number

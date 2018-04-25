@@ -35,7 +35,7 @@ hook_add = '''
     "\ (pumvisible() && neosnippet#expandable()) ?
     "\ "\<Plug>(neosnippet_expand)" : "\<CR>"
 
-    '''
+'''
 depends = ['neosnippet-snippets']
 on_ft = 'snippet'
 on_i = 1
