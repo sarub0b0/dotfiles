@@ -10,12 +10,9 @@ hook_add = '''
     let g:NERDTreeShowLineNumbers = 1
     let g:NERDTreeWinSize = 25
     nmap <Space>n :NERDTreeToggle<CR>
-    augroup NERDTreeCmd
-        autocmd!
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTreeToggle | endif
-        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | quit | endif
-    augroup END
+    autocmd MyAutoCmd StdinReadPre * let s:std_in=1
+    autocmd MyAutoCmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTreeToggle | endif
+    autocmd MyAutoCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | quit | endif
 '''
 on_event = 'VimEnter'
 

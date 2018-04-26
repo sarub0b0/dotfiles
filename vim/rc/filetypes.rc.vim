@@ -1,16 +1,13 @@
 scriptencoding utf-8
 
-augroup FileTypeDetect
-    autocmd!
-    autocmd BufRead,BufNewFile Guardfile setfiletype ruby
-    autocmd FileType ruby call s:ruby_tab_config()
-    autocmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
-    autocmd FileType nerdtree set nolist
-    autocmd FileType cs call s:csharp_setting()
-    autocmd BufRead,BufNewFile *.jade setfiletype pug
-    autocmd BufRead,BufNewFile *.fish setfiletype fish
-    autocmd FileType toml,vim,zsh,bash,help call s:fold_method_indent()
-augroup END
+autocmd MyAutoCmd BufRead,BufNewFile Guardfile setfiletype ruby
+autocmd MyAutoCmd FileType ruby call s:ruby_tab_config()
+autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
+autocmd MyAutoCmd FileType nerdtree set nolist
+autocmd MyAutoCmd FileType cs call s:csharp_setting()
+autocmd MyAutoCmd BufRead,BufNewFile *.jade setfiletype pug
+autocmd MyAutoCmd BufRead,BufNewFile *.fish setfiletype fish
+autocmd MyAutoCmd FileType toml,vim,zsh,bash,help call s:fold_method_indent()
 
 function! s:default_config()
     set tabstop=4 softtabstop=4 shiftwidth=4

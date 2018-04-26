@@ -69,26 +69,14 @@ endif
 
 " let mapleader = "\<Space>"
 "
-augroup DeleteSpace
-    autocmd!
-    autocmd BufWritePre * :%s/\s\+$//ge
-augroup END
+autocmd MyAutoCmd BufWritePre * :%s/\s\+$//ge
 
-augroup QuickFixCmd
-    autocmd!
-    autocmd QuickFixCmdPost *grep* :rightbelow cwindow 7
-augroup END
+autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 
-augroup QfAutoCommands
-    autocmd!
-    " Auto-close quickfix window
-    autocmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix') | quit | endif
-augroup END
+" Auto-close quickfix window
+autocmd MyAutoCmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix') | quit | endif
 
-augroup QfNERDClose
-    autocmd!
-    autocmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | quit | endif
-augroup END
+autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | quit | endif
 
 
 "クリップボードからコピペする際のインデントのズレを防ぐ

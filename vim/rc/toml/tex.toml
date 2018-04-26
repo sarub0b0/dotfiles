@@ -26,6 +26,7 @@
 repo = 'lervag/vimtex'
 on_ft = ['tex', 'plaintex']
 hook_source = '''
+    let g:tex_flavor='latex'
     let g:vimtex_compiler_latexmk = {
     \   'background': 1,
     \   'build_dir': '',
@@ -39,10 +40,39 @@ hook_source = '''
     \   ],
     \}
 
+    if has('mac')
+        let g:vimtex_view_method='skim'
+    else
+        let g:vimtex_view_method='zathura'
+    endif
+    if has('nvim')
+        let g:vimtex_compiler_progname
+            \ = 'nvr'
+    endif
     let g:vimtex_fold_enabled = 1
 
     let g:vimtex_view_general_viewer
           \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
     let g:vimtex_view_general_options = '-g -r @line @pdf @tex'
+
+    let g:vimtex_quickfix_latexlog = {
+    \    'default' : 1,
+    \    'general' : 1,
+    \    'references' : 1,
+    \    'overfull' : 1,
+    \    'underfull' : 1,
+    \    'font' : 0,
+    \    'packages' : {
+    \        'default' : 1,
+    \        'natbib' : 1,
+    \        'biblatex' : 1,
+    \        'babel' : 1,
+    \        'hyperref' : 1,
+    \        'scrreprt' : 1,
+    \        'fixltx2e' : 1,
+    \        'titlesec' : 1,
+    \    },
+    \}
+
 '''
 
