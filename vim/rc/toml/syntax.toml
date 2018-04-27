@@ -15,9 +15,32 @@ on_ft = 'fish'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
-[[plugins]]
-repo = 'inkarkat/vim-ingo-library'
+# [[plugins]] # switch filetype
+# repo = 'osyo-manga/vim-precious'
+# depends = 'context_filetype.vim'
+# on_if = 1
 
-[[plugins]]
-repo = 'inkarkat/vim-SyntaxRange'
-depands = ['vim-ingo-library']
+# [[plugins]] # filetype
+# repo = 'Shougo/context_filetype.vim'
+# on_if = 1
+
+# [[plugins]]
+# repo = 'inkarkat/vim-ingo-library'
+#
+# [[plugins]]
+# repo = 'inkarkat/vim-SyntaxRange'
+# depands = ['vim-ingo-library']
+# hook_source = '''
+#     augroup SyntaxRangeConfig
+#         autocmd!
+#         autocmd BufNewFile,BufRead *.toml call s:syntax_range_dein()
+#         function! s:syntax_range_dein() abort
+#             let start = '^\s*hook_\%('.
+#                         \           'add\|source\|post_source\|post_update'.
+#                         \           '\)\s*=\s*%s'
+#
+#             call SyntaxRange#Include(printf(start, "'''"), "'''", 'vim', '')
+#             call SyntaxRange#Include(printf(start, '"""'), '"""', 'vim', '')
+#         endfunction
+#     augroup END
+# '''

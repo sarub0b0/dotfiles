@@ -11,10 +11,25 @@ hook_add = '''
     let g:NERDTreeWinSize = 25
     nmap <Space>n :NERDTreeToggle<CR>
     autocmd MyAutoCmd StdinReadPre * let s:std_in=1
-    autocmd MyAutoCmd VimEnter * if argc() == 0 && !exists("s:std_in") | :NERDTreeToggle | endif
+    autocmd MyAutoCmd VimEnter * if (argc() == 0 && !exists("s:std_in")) | :NERDTreeToggle | endif
     autocmd MyAutoCmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | quit | endif
 '''
 on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_source = '''
+    nmap <Space>c <Plug>NERDCommenterToggle
+    smap <Space>c <Plug>NERDCommenterToggle
+    xmap <Space>c <Plug>NERDCommenterToggle
+
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+
+    let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'} }
+'''
+# on_i = 1
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'kana/vim-submode'
@@ -28,7 +43,7 @@ hook_post_source = '''
     call submode#map('bufmove', 'n', '', '+', '<C-w>+')
     call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
-on_source = 'nerdtree'
+on_if = 1
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'

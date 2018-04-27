@@ -27,10 +27,7 @@ function! s:csharp_setting()
     nnoremap <silent> <buffer> mu :OmniSharpFindUsages<CR>
     nnoremap <silent> <buffer> mx :OmniSharpGetCodeActions<CR>
     setlocal omnifunc=PmniSharp#Complete
-    augroup CSharpSetting
-        autocmd!
-        autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-    augroup END
+    autocmd MyAutoCmd BufWritePost *.cs call OmniSharp#AddToProject()
     set foldmethod=syntax
 endfunction
 
@@ -39,10 +36,7 @@ function! s:clang_format_config()
     set foldmethod=syntax
     if executable('clang-format')
 
-        augroup ClangFormatConfig
-            autocmd!
-            autocmd FileType c,cpp ClangFormatAutoEnable
-        augroup END
+        autocmd MyAutoCmd FileType c,cpp ClangFormatAutoEnable
 
         nnoremap <buffer> ff :ClangFormat<CR>
 
@@ -85,23 +79,15 @@ function! s:ale_option()
 endfunction
 
 function! s:delete_space_au()
-    augroup DeleteSpace
-        autocmd!
-    augroup END
 endfunction
 
 function! s:markdown_opt()
-    augroup MarkdownOption
-        autocmd!
-        autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
-    augroup END
+    autocmd MyAutoCmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+    " autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
 endfunction
 
 function! s:fold_method_indent()
-    augroup FoldMethod
-        autocmd!
-        autocmd BufRead,BufNewFile * setl foldmethod=indent
-    augroup END
+    autocmd MyAutoCmd BufRead,BufNewFile * setl foldmethod=indent
 endfunction
 " augroup autoformat_settings
 "   autocmd FileType bzl AutoFormatBuffer buildifier

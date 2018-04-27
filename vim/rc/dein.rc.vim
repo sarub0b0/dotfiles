@@ -3,10 +3,6 @@ scriptencoding utf-8
 " -----------------------------
 " dein settings
 " -----------------------------
-if &compatible
-    set nocompatible
-endif
-
 
 let g:config_dir = expand('$HOME/dotfiles/vim')
 let g:cache_dir = ''
@@ -19,9 +15,6 @@ endif
 if has('gui_running') || has('gui_macvim')
     let g:cache_dir = expand('$HOME/.cache/gvim')
 endif
-" if exists('g:nyaovim_version')
-"     let g:cache_dir = expand('$HOME/.cache/nyaovim')
-" endif
 
 let s:dein_dir = g:cache_dir . '/dein'
 
@@ -50,7 +43,6 @@ if dein#load_state(s:dein_dir)
     let s:tex_toml = s:toml_dir . '/tex.toml'
     let s:help_toml = s:toml_dir . '/help.toml'
 
-    " if !exists('g:nyaovim_version')
     call dein#load_toml(s:toml, {'lazy': 0})
     call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -67,19 +59,10 @@ if dein#load_state(s:dein_dir)
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
-    " else
-    "     let s:dein_nyaovim_toml = s:toml_dir . '/dein_nyaovim.toml'
-    "     let s:lazy_nyaovim_toml = s:toml_dir . '/lazy_nyaovim.toml'
-
-    "     call dein#load_toml(s:dein_nyaovim_toml, {'lazy': 0})
-    "     call dein#load_toml(s:lazy_nyaovim_toml, {'lazy': 1})
-    " endif
 
     call dein#end()
     call dein#save_state()
 endif
-
-filetype plugin indent on
 
 if dein#check_install()
     call dein#install()

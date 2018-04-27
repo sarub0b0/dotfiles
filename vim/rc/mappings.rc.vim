@@ -93,13 +93,9 @@ vnoremap k gk
 "----------------------------------------------------
 " GNU GLOBAL(gtags)
 "----------------------------------------------------
+autocmd MyAutoCmd FileType c,cpp,h,java :call s:gtags_remap()
 
-augroup Gtags
-    autocmd!
-    autocmd FileType c,cpp,h,java :call GtagsRemap()
-augroup END
-
-function! GtagsRemap()
+function! s:gtags_remap()
     if executable('gtags')
         nnoremap <C-g> :Gtags -g<Space>
         nnoremap <C-l> :Gtags -f %<CR>

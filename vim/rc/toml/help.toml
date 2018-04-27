@@ -1,10 +1,9 @@
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-on_i = 1
+on_ft = ['help']
 
 [[plugins]]
 repo = 'thinca/vim-ft-help_fold'
-on_i = 1
 on_ft = ['help']
 

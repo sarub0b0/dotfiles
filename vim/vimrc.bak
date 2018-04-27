@@ -46,15 +46,9 @@ set scrolloff=5
 set ttyfast
 set t_Co=256
 
-augroup DeleteSpace
-    autocmd!
-    autocmd BufWritePre * :%s/\s\+$//ge
-augroup END
+autocmd MyAutoCmd BufWritePre * :%s/\s\+$//ge
 
-augroup QuickFixCmd
-    autocmd!
-    autocmd QuickFixCmdPost *grep* :rightbelow cwindow 7
-augroup END
+autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 
 let mapleader = "\<Space>"
 

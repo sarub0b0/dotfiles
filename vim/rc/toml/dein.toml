@@ -1,9 +1,9 @@
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
+repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/dein.vim'
+repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 [[plugins]] # icons
 repo = 'ryanoasis/vim-devicons'

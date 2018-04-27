@@ -1,5 +1,14 @@
 scriptencoding utf-8
 
+if &compatible
+    set nocompatible
+endif
+
+augroup MyAutoCmd
+    autocmd!
+augroup END
+
+
 if !has('nvim')
     if has('unix')
         " let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
@@ -19,16 +28,12 @@ if !has('nvim')
 endif
 
 
-augroup MyAutoCmd
-    autocmd!
-augroup END
 
 let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.14/bin/python')
 let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
 
 let g:vim_home = expand('~/dotfiles/vim')
 let g:rc_dir = expand('~/dotfiles/vim/rc')
-
 
 " rcファイル読み込み関数
 function! s:source_rc(rc_file_name)
@@ -49,6 +54,8 @@ endfunction
 
 if has('nvim')
     call s:source_rc('dein.rc.vim')
+else
+    call s:source_rc('status_line.rc.vim')
 endif
 
 call s:source_rc('editor.rc.vim')
@@ -63,9 +70,8 @@ call s:source_rc('filetypes.rc.vim')
 
 call s:source_rc('windowctrl.rc.vim')
 
-call s:source_rc('syntaxinfo.rc.vim')
+" call s:source_rc('syntaxinfo.rc.vim')
 
-call s:source_rc('status_line.rc.vim')
 
 
 

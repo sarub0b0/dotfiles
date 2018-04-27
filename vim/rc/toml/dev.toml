@@ -13,29 +13,12 @@ hook_add = '''
     smap <C-k>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-    " SuperTab like snippets' behavior.
-    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    " imap <expr><TAB>
-    "  \ pumvisible() ? "\<C-n>" :
-    "  \ neosnippet#expandable_or_jumpable() ?
-    "  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-    " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    "  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#enable_completed_snippet = 1
+    let g:neosnippet#expand_word_boundary = 1
 
-    " For conceal markers.
-    if has('conceal')
-      set conceallevel=2 concealcursor=niv
-    endif
-
-    " Enable snipMate compatibility feature.
-    " let g:neosnippet#enable_snipmate_compatibility = 1
-
-    " Expand the completed snippet trigger by <CR>.
-    "imap <expr><CR>
-    "\ (pumvisible() && neosnippet#expandable()) ?
-    "\ "\<Plug>(neosnippet_expand)" : "\<CR>"
-
-'''
+    autocmd MyAutoCmd CompleteDone * call neosnippet#complete_done()
+ '''
 depends = ['neosnippet-snippets']
 on_ft = 'snippet'
 on_i = 1
@@ -75,7 +58,7 @@ hook_add = '''
     nmap <Space>r :cclose<CR>:write<CR>:QuickRun<Space>
     xmap <Space>r :<C-U>cclose<CR>:<C-U>write<CR>gv:QuickRun<Space>
 '''
-on_i = 1
+on_if = 1
 depends = ['vimproc.vim']
 
 [[plugins]]
@@ -90,24 +73,39 @@ hook_source = '''
 hook_add = '''
     nmap <Space>t :TagbarToggle<CR>
 '''
+on_if = 1
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
+    " Use deoplete.
     let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#auto_complete_start_length = 2
-    " let g:deoplete#enable_camel_case = 0
-    " let g:deoplete#enable_refresh_always = 1
-    " let g:deoplete#file#enable_buffer_path = 1
-    " let g:deoplete#max_list = 100
-    " let g:deoplete#num_processes = 2
+'''
+hook_source = '''
+    " Use smartcase.
+    call deoplete#custom#option('smart_case', v:true)
+    call deoplete#custom#option('camel_case', v:true)
 
-    "set completeopt=longest
+    call deoplete#custom#option('keyword_patterns', {
+    \   'tex': '\\?[a-zA-Z_]\w*',
+    \})
 
-    "inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-    "    \ neosnippet#expandable_or_jumpable() ?
-    "    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+    call deoplete#custom#option('sources', {
+    \   '_': ['buffer'],
+    \   'c': ['buffer', 'tag'],
+    \   'cpp': ['buffer', 'tag'],
+    \})
+
+
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
 '''
 on_i = 1
-
 

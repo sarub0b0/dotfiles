@@ -8,27 +8,12 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'scrooloose/nerdcommenter'
-hook_add = '''
-    nmap <Space>c <Plug>NERDCommenterToggle
-    smap <Space>c <Plug>NERDCommenterToggle
-    xmap <Space>c <Plug>NERDCommenterToggle
-
-    let g:NERDSpaceDelims = 1
-    let g:NERDDefaultAlign = 'left'
-
-    let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'} }
-'''
-on_i = 1
-
-[[plugins]]
 repo = 'kannokanno/previm'
-hook_add = '''
+on_cmd = 'PrevimOpen'
+hook_source = '''
     let g:previm_open_cmd = 'open -a Firefox'
     let g:previm_disable_default_css = 1
-    let g:previm_custom_css_path = '~/dotfiles/vim/rc/plugins/markdown.css'
+    let g:previm_custom_css_path = g:config_dir . '/rc/plugins/markdown.css'
     let g:previm_enable_realtime = 1
 '''
-on_i = 1
-
-
+on_ft = 'markdown'
