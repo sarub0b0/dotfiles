@@ -21,11 +21,11 @@ hook_add = '''
     \}
 '''
 on_source = 'deoplete'
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
+on_ft = ['c', 'cpp', 'cmake']
 
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
+on_ft = ['c', 'cpp', 'cmake']
 # on_if = 1
 
 [[plugins]]
@@ -39,7 +39,7 @@ hook_source = '''
         let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
     endif
 '''
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
+on_ft = ['c', 'cpp', 'cmake']
 on_source = ['deoplete']
 
 [[plugins]]
@@ -48,7 +48,7 @@ hook_add = '''
     let g:auto_gtags = 1
     source ~/dotfiles/vim/rc/plugins/gtags.vim
 '''
-on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
+on_ft = ['c', 'cpp', 'cmake']
 
 ############################################
 # C#
@@ -78,6 +78,25 @@ on_ft = ['c', 'cpp', 'cmake', 'h', 'hpp', 'hh']
 #     let g:deoplete_omnisharp_port = get(g:, "deoplete_omnisharp_port", 2000)
 # '''
 # on_ft = 'cs'
+
+############################################
+# ruby
+############################################
+# [[plugins]]
+# repo = 'uplus/deoplete-solargraph'
+# on_source = ['deoplete.nvim']
+# on_ft = 'ruby'
+# hook_source = '''
+# '''
+
+[[plugins]]
+repo = 'osyo-manga/vim-monster'
+on_ft = 'ruby'
+hook_source = '''
+    "let g:monster#completion#rcodetools#backend = "async_rct_complete"
+    let g:monster#completion#solargraph#backend = "async_solargraph_suggest"
+'''
+depends = 'vimproc.vim'
 
 
 ############################################
