@@ -46,8 +46,7 @@ hook_source = '''
         let g:vimtex_view_method='zathura'
     endif
     if has('nvim')
-        let g:vimtex_compiler_progname
-            \ = 'nvr'
+        let g:vimtex_compiler_progname = 'nvr'
     endif
     let g:vimtex_fold_enabled = 1
 
@@ -55,13 +54,15 @@ hook_source = '''
           \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
     let g:vimtex_view_general_options = '-g -r @line @pdf @tex'
 
+    let g:vimtex_quickfix_open_on_warning = 0
+
     let g:vimtex_quickfix_latexlog = {
     \    'default' : 1,
     \    'general' : 1,
     \    'references' : 1,
     \    'overfull' : 1,
     \    'underfull' : 1,
-    \    'font' : 0,
+    \    'font' : 1,
     \    'packages' : {
     \        'default' : 1,
     \        'natbib' : 1,
