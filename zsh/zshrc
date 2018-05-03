@@ -7,7 +7,6 @@ alias la='ls -lah'
 alias ..='cd ..'
 alias py='python'
 alias rb='ruby'
-alias rbe='rbenv'
 alias fgrep='grep --with-filename --line-number --color=always'
 alias grep='grep --color=always'
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
@@ -23,7 +22,6 @@ export EDITOR="vim"
 export PATH="${HOME}/bin:${PATH}"
 export TERM=xterm-256color
 export XDG_CONFIG_HOME="${HOME}/.config"
-
 
 # ------------------------------------
 # Mac OS
@@ -203,11 +201,11 @@ if [ "$(uname)" = "Darwin" ]; then
 	zle -N peco-history-selection
 	bindkey '^r' peco-history-selection
 else
-	function peco-select-history() {
-		BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
-		CURSOR=$#BUFFER
-		zle clear-screen
-	}
-	zle -N peco-select-history
-	bindkey '^r' peco-select-history
+	# function peco-select-history() {
+	#     BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+	#     CURSOR=$#BUFFER
+	#     zle clear-screen
+	# }
+	# zle -N peco-select-history
+	# bindkey '^r' peco-select-history
 fi
