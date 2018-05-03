@@ -24,13 +24,8 @@ if !has('nvim')
 endif
 
 
-if has('unix')
-    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.15/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
-else
-    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.14/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
-endif
+let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.15/bin/python')
+let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
 
 let g:vim_home = expand('~/dotfiles/vim')
 let g:rc_dir = expand('~/dotfiles/vim/rc')

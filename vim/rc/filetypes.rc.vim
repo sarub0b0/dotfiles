@@ -33,7 +33,7 @@ function! s:csharp_setting()
 endfunction
 
 function! s:clang_option()
-    set foldmethod=syntax
+    set foldmethod=indent
 endfunction
 
 " clang format config {{{
