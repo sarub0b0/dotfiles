@@ -29,9 +29,13 @@ on_ft = ['c', 'cpp', 'cmake']
 hook_source = '''
     let g:clang_format#auto_enable = 1
 
-    let g:clang_format#auto_format_on_insert_leave = 1
+    "let g:clang_format#auto_format_on_insert_leave = 1
 
-    let g:clang_format#command = "clang-format-6.0"
+    if has('mac')
+        let g:clang_format#command = "clang-format"
+    else
+        let g:clang_format#command = "clang-format-6.0"
+    endif
 
     let g:clang_format#code_style = 'google'
 
@@ -62,6 +66,7 @@ hook_source = '''
         autocmd FileType c,cpp,objc map <buffer><LocalLeader>x <Plug>(operator-clang-format)
     augroup END
 '''
+depends = 'vimproc.vim'
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
