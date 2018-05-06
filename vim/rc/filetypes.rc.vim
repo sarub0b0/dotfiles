@@ -33,39 +33,39 @@ function! s:csharp_setting()
 endfunction
 
 function! s:clang_option()
-    set foldmethod=indent
+    set foldmethod=syntax
 endfunction
 
 " clang format config {{{
-function! s:clang_format_config()
-    set foldmethod=syntax
-    if executable('clang-format')
+" function! s:clang_format_config()
+"     set foldmethod=syntax
+"     if executable('clang-format')
 
-        autocmd MyAutoCmd FileType c,cpp ClangFormatAutoEnable
+"         autocmd MyAutoCmd FileType c,cpp ClangFormatAutoEnable
 
-        nnoremap <buffer> ff :ClangFormat<CR>
+"         nnoremap <buffer> ff :ClangFormat<CR>
 
-        let g:clang_format#code_style = 'google'
+"         let g:clang_format#code_style = 'google'
 
-        let g:clang_format#style_options = {
-                    \ 'AlignConsecutiveAssignments': 'true',
-                    \ 'AlignTrailingComments': 'true',
-                    \ 'DerivePointerAlignment': 'false',
-                    \ 'PointerAlignment': 'Right',
-                    \ 'IndentCaseLabels': 'true',
-                    \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
-                    \ 'SpacesBeforeTrailingComments': 1,
-                    \ 'AlwaysBreakAfterDefinitionReturnType': 'false',
-                    \ 'AllowShortFunctionsOnASingleLine': 'None',
-                    \ 'AllowShortBlocksOnASingleLine': 'false',
-                    \ 'SortIncludes': 'false',
-                    \ 'BinPackArguments': 'false',
-                    \ 'BinPackParameters': 'false',
-                    \ 'SpaceAfterCStyleCast': 'true',
-                    \ 'ColumnLimit': 78,
-                    \ }
-    endif
-endfunction
+"         let g:clang_format#style_options = {
+"                     \ 'AlignConsecutiveAssignments': 'true',
+"                     \ 'AlignTrailingComments': 'true',
+"                     \ 'DerivePointerAlignment': 'false',
+"                     \ 'PointerAlignment': 'Right',
+"                     \ 'IndentCaseLabels': 'true',
+"                     \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
+"                     \ 'SpacesBeforeTrailingComments': 1,
+"                     \ 'AlwaysBreakAfterDefinitionReturnType': 'false',
+"                     \ 'AllowShortFunctionsOnASingleLine': 'None',
+"                     \ 'AllowShortBlocksOnASingleLine': 'false',
+"                     \ 'SortIncludes': 'false',
+"                     \ 'BinPackArguments': 'false',
+"                     \ 'BinPackParameters': 'false',
+"                     \ 'SpaceAfterCStyleCast': 'true',
+"                     \ 'ColumnLimit': 78,
+"                     \ }
+"     endif
+" endfunction
 " }}}
 
 function! s:ruby_tab_config()
@@ -76,10 +76,20 @@ endfunction
 
 function! s:ale_option()
     let l:include_dir = expand($ALE_C_INCLUDE_PATH)
-    let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir
-    let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir
-    let g:ale_c_clang_options = '-Wall -I' . l:include_dir
-    let g:ale_c_gcc_options = '-Wall -I' . l:include_dir
+    let l:lib_dir = expand($ALE_C_LIB_PATH)
+    if l:include_dir ==? ''
+        let l:include_dir = '-I../include'
+        let l:lib_dir = '-I../lib'
+        let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field ' . l:include_dir . l:lib_dir
+        let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field ' . l:include_dir . l:lib_dir
+        let g:ale_c_clang_options = '-std=c11 -Wall ' . l:include_dir . l:lib_dir
+        let g:ale_c_gcc_options = '-std=c11 -Wall ' . l:include_dir . l:lib_dir
+    endif
+
+    let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
+    let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
+    let g:ale_c_clang_options = '-std=c11 -Wall -I' . l:include_dir . ' -L' . l:lib_dir
+    let g:ale_c_gcc_options = '-Wall -I' . l:include_dir . ' -L' . l:lib_dir
 
 endfunction
 
@@ -94,14 +104,4 @@ endfunction
 function! s:fold_method_indent()
     autocmd MyAutoCmd BufRead,BufNewFile * setl foldmethod=indent
 endfunction
-" augroup autoformat_settings
-"   autocmd FileType bzl AutoFormatBuffer buildifier
-"   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-"   autocmd FileType dart AutoFormatBuffer dartfmt
-"   autocmd FileType go AutoFormatBuffer gofmt
-"   autocmd FileType gn AutoFormatBuffer gn
-"   autocmd FileType html,css,json AutoFormatBuffer js-beautify
-"   autocmd FileType java AutoFormatBuffer google-java-format
-"   autocmd FileType python AutoFormatBuffer yapf
-"    Alternative: autocmd FileType python AutoFormatBuffer autopep8
-" augroup END
+

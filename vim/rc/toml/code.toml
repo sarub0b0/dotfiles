@@ -29,12 +29,14 @@ on_ft = ['c', 'cpp', 'cmake']
 hook_source = '''
     let g:clang_format#auto_enable = 1
 
-    "let g:clang_format#auto_format_on_insert_leave = 1
+    "let g:clang_format#auto_format_on_insert_leave = 0
 
-    if has('mac')
+    if executable('clang-format')
         let g:clang_format#command = "clang-format"
-    else
+    elseif executable('clang-format-6.0')
         let g:clang_format#command = "clang-format-6.0"
+    elseif executable('clang-format-6.0.0')
+        let g:clang_format#command = "clang-format-6.0.0"
     endif
 
     let g:clang_format#code_style = 'google'
@@ -57,15 +59,26 @@ hook_source = '''
                 \ 'ColumnLimit': 78,
                 \ }
 
+    function! s:ex_clang_format(line1,line2)
+        if &l:foldmethod ==# 'syntax'
+            setlocal foldmethod=manual
+            execute a:line1 ',' a:line2 'ClangFormat'
+            setlocal foldmethod=syntax
+        else
+            execute a:line1 ',' a:line2 'ClangFormat'
+        endif
+    endfunction
+
+    command! -nargs=0 -range=% ExClangFormat call s:ex_clang_format(<line1>,<line2>)
+
     augroup ClangFormatSettings
         autocmd!
         " map to <Leader>cf in C++ code
-        autocmd FileType c,cpp,objc nnoremap <buffer><Space>f :<C-u>ClangFormat<CR>
-        autocmd FileType c,cpp,objc vnoremap <buffer><Space>f :ClangFormat<CR>
+        autocmd FileType c,cpp,objc nnoremap <buffer><Space>f :ExClangFormat<CR>
+        autocmd FileType c,cpp,objc vnoremap <buffer><Space>f :ExClangFormat<CR>
         " if you install vim-operator-user
         autocmd FileType c,cpp,objc map <buffer><LocalLeader>x <Plug>(operator-clang-format)
     augroup END
-
 '''
 depends = 'vimproc.vim'
 
@@ -80,8 +93,8 @@ hook_source = '''
         let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
         let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/lib/clang'
     else
-    let hostname = system('uname -n')
-    if hostname == "crab\n"
+    let s:hostname = system('uname -n')
+    if s:hostname == "crab\n"
         let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
     else
         let g:deoplete#sources#clang#libclang_path = '/usr/lib64/libclang.so'

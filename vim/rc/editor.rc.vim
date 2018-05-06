@@ -78,23 +78,55 @@ autocmd MyAutoCmd BufWritePre * :%s/\s\+$//ge
 autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 
 " Auto-close quickfix window
-autocmd MyAutoCmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix') | quit | endif
-autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | quit | endif
+autocmd MyAutoCmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix')
+            \| quit
+            \| endif
+autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree()
+            \| quit
+            \| quit
+            \| endif
 
 "クリップボードからコピペする際のインデントのズレを防ぐ
 if &term =~? 'xterm'
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
+    let &t_ti .= '\e[?2004h'
+    let &t_te .= '\e[?2004l'
+    let &pastetoggle = '\e[201~'
 
     function XTermPasteBegin(ret)
         set paste
         return a:ret
     endfunction
 
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
 endif
 
+" if &term =~? 'xterm'
+"     let &t_SI .= "\e[?2004h"
+"     let &t_EI .= "\e[?2004l"
+"     let &pastetoggle = "\e[201~"
 
+"     function XTermPasteBegin(ret)
+"         set paste
+"         return a:ret
+"     endfunction
+
+"     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+" endif
+
+augroup foldmethod_changed_insert
+    autocmd!
+    autocmd InsertEnter * if !exists('w:last_fdm')
+                \| let w:last_fdm=&foldmethod
+                \| setlocal foldmethod=manual
+                \| endif
+
+    autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
+                \| let &l:foldmethod=w:last_fdm
+                \| unlet w:last_fdm
+                \| endif
+augroup END
 
 

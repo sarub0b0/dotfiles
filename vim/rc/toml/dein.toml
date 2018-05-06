@@ -62,10 +62,17 @@ hook_add = '''
     let g:ale_open_list = 1
     let g:ale_keep_list_window_open = 0
 
-    let g:ale_linters = {
-    \   'c': ['clang'],
-    "\   'cpp': ['clang++'],
-    \}
+    let s:hostname = system('uname')
+    if s:hostname =~ "Linux"
+        let g:ale_linters = {
+            \ 'c': ['gcc'],
+            \}
+    else
+        let g:ale_linters = {
+        \   'c': ['clang'],
+        "\   'cpp': ['clang++'],
+        \}
+    endif
 
 '''
 
