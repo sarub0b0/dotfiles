@@ -54,7 +54,10 @@ set dictionary=/usr/share/dict/words
 
 set completeopt=menuone,longest,menu
 
+set wildignore=*.o,*.obj,GTAGS,GPATH,GRTAGS
 " set complete=.,w,b,u,t,d
+
+set grepprg=grep\ -rnHI
 
 
 set number
