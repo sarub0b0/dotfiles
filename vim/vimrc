@@ -8,24 +8,13 @@ augroup MyAutoCmd
     autocmd!
 augroup END
 
-
-if !has('nvim')
-    if has('unix')
-        " let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.14"
-        " set pythondll=$PYTHONHOME/lib/libpython2.7.so
-        " py import sys
-        " let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.5"
-        " set pythonthreedll=$PYTHONHOME/lib/libpython3.6m.so
-        " py3 import sys
-    else
-        let $PYTHONHOME=$PYENV_ROOT . "/versions/2.7.15"
-        let $PYTHONHOME=$PYENV_ROOT . "/versions/3.6.5"
-    endif
+if has('mac')
+    let g:python_host_prog = expand('/usr/local/opt/python2/bin/python2')
+    let g:python3_host_prog = expand('/usr/local/opt/python3/bin/python3')
+else
+    let g:python_host_prog = expand('$PYENV_ROOT/shims/python2.7')
+    let g:python3_host_prog = expand('$PYENV_ROOT/shims/python3.6')
 endif
-
-
-let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.15/bin/python')
-let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python')
 
 let g:vim_home = expand('~/dotfiles/vim')
 let g:rc_dir = expand('~/dotfiles/vim/rc')

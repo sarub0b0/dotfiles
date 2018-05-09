@@ -16,9 +16,9 @@ on_event = 'BufEnter'
 repo = 'Shougo/neoinclude.vim'
 hook_add = '''
     let g:neoinclude#paths = {
-    \   'c': '/usr/local/opt/allegro/include',
-    \   'cpp': '/usr/local/opt/allegro/include',
-    \}
+                \   'c': '/usr/local/opt/allegro/include',
+                \   'cpp': '/usr/local/opt/allegro/include',
+                \}
 '''
 on_source = 'deoplete'
 on_ft = ['c', 'cpp', 'cmake']

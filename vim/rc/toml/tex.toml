@@ -22,23 +22,24 @@
 # on_ft = 'tex'
 # on_i = 1
 
+
 [[plugins]]
 repo = 'lervag/vimtex'
 on_ft = ['tex']
 hook_source = '''
     let g:tex_flavor='latex'
     let g:vimtex_compiler_latexmk = {
-    \   'background': 1,
-    \   'build_dir': '',
-    \   'continuous': 1,
-    \   'options': [
-    \       '-pdfdvi',
-    \       '-verbose',
-    \       '-file-line-error',
-    \       '-synctex=1',
-    \       '-interaction=nonstopmode',
-    \   ],
-    \}
+                \   'background': 1,
+                \   'build_dir': '',
+                \   'continuous': 1,
+                \   'options': [
+                \       '-pdfdvi',
+                \       '-verbose',
+                \       '-file-line-error',
+                \       '-synctex=1',
+                \       '-interaction=nonstopmode',
+                \   ],
+                \}
 
     if has('mac')
         let g:vimtex_view_method='skim'
@@ -51,29 +52,29 @@ hook_source = '''
     let g:vimtex_fold_enabled = 1
 
     let g:vimtex_view_general_viewer
-          \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
     let g:vimtex_view_general_options = '-g -r @line @pdf @tex'
 
     let g:vimtex_quickfix_open_on_warning = 0
 
     let g:vimtex_quickfix_latexlog = {
-    \    'default' : 1,
-    \    'general' : 1,
-    \    'references' : 1,
-    \    'overfull' : 1,
-    \    'underfull' : 1,
-    \    'font' : 1,
-    \    'packages' : {
-    \        'default' : 1,
-    \        'natbib' : 1,
-    \        'biblatex' : 1,
-    \        'babel' : 1,
-    \        'hyperref' : 1,
-    \        'scrreprt' : 1,
-    \        'fixltx2e' : 1,
-    \        'titlesec' : 1,
-    \    },
-    \}
+                \    'default' : 1,
+                \    'general' : 1,
+                \    'references' : 1,
+                \    'overfull' : 1,
+                \    'underfull' : 1,
+                \    'font' : 1,
+                \    'packages' : {
+                \        'default' : 1,
+                \        'natbib' : 1,
+                \        'biblatex' : 1,
+                \        'babel' : 1,
+                \        'hyperref' : 1,
+                \        'scrreprt' : 1,
+                \        'fixltx2e' : 1,
+                \        'titlesec' : 1,
+                \    },
+                \}
 
 '''
 
