@@ -31,21 +31,45 @@ hook_source = '''
 # on_i = 1
 on_event = ['BufEnter']
 
-[[plugins]]
-repo = 'kana/vim-submode'
-hook_post_source = '''
-    call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-    call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-    call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-    call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-    call submode#map('bufmove', 'n', '', '<', '<C-w><')
-    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-'''
-on_if = 1
+# [[plugins]]
+# repo = 'kana/vim-submode'
+# hook_post_source = '''
+#     call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+#     call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+#     call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+#     call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+#     call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+#     call submode#map('bufmove', 'n', '', '<', '<C-w><')
+#     call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+#     call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+# '''
+# on_if = 1
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+[[plugins]]
+repo = 'severin-lemaignan/vim-minimap'
+on_i = 1
 
+# [[plugins]]
+# repo = 'hisaknown/nanomap.vim'
+# on_i = 1
+
+
+[[plugins]]
+repo = 'edkolev/tmuxline.vim'
+on_i = 1
+hook_source = '''
+    " let g:tmuxline_powerline_separators = 0
+    let g:tmuxline_theme = 'lightline'
+    " let g:tmuxline_preset = 'tmux'
+    " let g:tmuxline_preset = {
+    "       \'a'    : '#S',
+    "       \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f 1,2,3)'],
+    "       \'win'  : ['#I', '#W'],
+    "       \'cwin' : ['#I', '#W', '#F'],
+    "       \'x'    : '#(date)',
+    "       \'y'    : ['%R', '%a', '%Y'],
+    "       \'z'    : '#H'}
+'''

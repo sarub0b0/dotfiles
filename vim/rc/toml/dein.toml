@@ -68,10 +68,11 @@ hook_add = '''
             \ 'c': ['gcc'],
             \}
     else
-        let g:ale_linters = {
-        \   'c': ['clang'],
-        "\   'cpp': ['clang++'],
-        \}
+        "let g:ale_linters = {
+        "\   'c': ['clang'],
+        "\   'cpp': ['clang'],
+        ""\   'cpp': ["clangtidy"],
+        "\}
     endif
 
 '''

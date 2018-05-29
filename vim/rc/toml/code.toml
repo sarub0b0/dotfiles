@@ -1,13 +1,13 @@
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-hook_source = '''
-    nnoremap <Space>i :IndentLinesToggle<CR>
-    let g:indentLine_setColors = 1
-    let g:indentLine_color_term = 239
-    let g:indentLine_color_gui = '#65737E'
-    let g:indentLine_char = '│'
-'''
-on_event = 'BufEnter'
+# [[plugins]]
+# repo = 'Yggdroot/indentLine'
+# hook_source = '''
+#     nnoremap <Space>i :IndentLinesToggle<CR>
+#     let g:indentLine_setColors = 1
+#     let g:indentLine_color_term = 239
+#     let g:indentLine_color_gui = '#65737E'
+#     let g:indentLine_char = '│'
+# '''
+# on_event = 'BufEnter'
 
 ############################################
 # clang
@@ -15,10 +15,10 @@ on_event = 'BufEnter'
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
 hook_add = '''
-    let g:neoinclude#paths = {
-                \   'c': '/usr/local/opt/allegro/include',
-                \   'cpp': '/usr/local/opt/allegro/include',
-                \}
+    "let g:neoinclude#paths = {
+    "            \   'c': '/usr/local/opt/allegro/include',
+    "            \   'cpp': '/usr/local/opt/allegro/include',
+    "            \}
 '''
 on_source = 'deoplete'
 on_ft = ['c', 'cpp', 'cmake']

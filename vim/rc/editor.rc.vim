@@ -34,6 +34,7 @@ set cursorline
 " 改行時,同じインデントで始める
 " set smartindent
 set visualbell
+set visualbell t_vb=
 
 set hidden
 

@@ -3,7 +3,7 @@ scriptencoding utf-8
 autocmd MyAutoCmd BufRead,BufNewFile Guardfile set filetype=ruby
 autocmd MyAutoCmd FileType ruby call s:ruby_tab_config()
 " autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
-autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_option() | call s:ale_option()
+autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_option()
 autocmd MyAutoCmd FileType nerdtree set nolist
 " autocmd MyAutoCmd FileType cs call s:csharp_setting()
 autocmd MyAutoCmd BufRead,BufNewFile *.jade set filetype=pug
