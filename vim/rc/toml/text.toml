@@ -17,3 +17,4 @@ hook_source = '''
     let g:previm_enable_realtime = 1
 '''
 on_ft = 'markdown'
+

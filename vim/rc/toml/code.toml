@@ -20,7 +20,7 @@ hook_add = '''
     "            \   'cpp': '/usr/local/opt/allegro/include',
     "            \}
 '''
-on_source = 'deoplete'
+on_source = 'deoplete.nvim'
 on_ft = ['c', 'cpp', 'cmake']
 
 [[plugins]]
@@ -103,7 +103,7 @@ hook_source = '''
     endif
 '''
 on_ft = ['c', 'cpp', 'cmake']
-on_source = ['deoplete']
+on_source = ['deoplete.nvim']
 
 [[plugins]]
 repo = 'zebult/auto-gtags.vim'
@@ -120,13 +120,13 @@ on_ft = ['c', 'cpp', 'cmake']
 # repo = "OmniSharp/omnisharp-vim"
 # on_ft = ["cs"]
 # hook_source = '''
-#     let g:OmniSharp_server_path = g:config_dir . '/rc/plugins/OmniSharp.exe'
+#     let g:OmniSharp_server_path = g:config_dir . '/rc/plugins/omnisharp/omnisharp/OmniSharp.exe'
 #     let g:OmniSharp_server_use_mono = 1
 # '''
 
 # [[plugins]]
 # repo = "Robzz/deoplete-omnisharp"
-# on_source = ['deoplete']
+# on_source = ['deoplete.nvim']
 # on_ft = ["cs"]
 
 # dimixar/deoplete-omnisharp
@@ -172,7 +172,7 @@ on_ft = 'go'
 [[plugins]]
 repo = 'zchee/deoplete-go'
 on_ft = 'go'
-on_source = ['deoplete']
+on_source = ['deoplete.nvim']
 
 [[plugins]]
 repo = 'Shougo/neco-vim'

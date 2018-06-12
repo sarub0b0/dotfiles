@@ -36,15 +36,17 @@ if [ "$(uname)" = 'Darwin' ]; then
     #alias gcc="gcc ${LDFLAGS} ${CPPFLAGS}"
     #alias clang="/usr/local/opt/llvm/bin/clang ${LDFLAGS} ${CPPFLAGS}"
 
-    export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:${PATH}"
-    export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:${MANPATH}"
+    # export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:${PATH}"
+    # export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:${MANPATH}"
 
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+    # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    # export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
     # ADD bin directory
     export PATH="/usr/local/sbin:${PATH}"
 
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+    export PATH="/usr/local/opt/sqlite/bin:$PATH"
     # llvm
     #export PATH="/usr/local/opt/llvm/bin:${PATH}"
 
@@ -55,10 +57,10 @@ if [ "$(uname)" = 'Darwin' ]; then
     # completions
     fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
     #fpath=(~/dotfiles/docker-zsh-completions(N-/) $fpath)
-    if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-        alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-        alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    fi
+    # if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    #     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    #     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    # fi
     # ------------------------------------
     # Linux
     # ------------------------------------
@@ -192,15 +194,15 @@ fi
 
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-if [ "$(uname)" = "Darwin" ]; then
-	function peco-history-selection() {
-		BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-		CURSOR=$#BUFFER
-		zle reset-prompt
-	}
-	zle -N peco-history-selection
-	bindkey '^r' peco-history-selection
-else
+# if [ "$(uname)" = "Darwin" ]; then
+#     function peco-history-selection() {
+#         BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+#         CURSOR=$#BUFFER
+#         zle reset-prompt
+#     }
+#     zle -N peco-history-selection
+#     bindkey '^r' peco-history-selection
+# else
 	# function peco-select-history() {
 	#     BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
 	#     CURSOR=$#BUFFER
@@ -208,5 +210,5 @@ else
 	# }
 	# zle -N peco-select-history
 	# bindkey '^r' peco-select-history
-fi
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# fi
+
