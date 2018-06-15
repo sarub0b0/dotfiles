@@ -11,7 +11,9 @@ augroup END
 if has('mac')
     let g:python_host_prog = expand('/usr/local/opt/python2/bin/python2')
     let g:python3_host_prog = expand('/usr/local/opt/python3/bin/python3')
-    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.13/bin/python')
+
+    " let g:python_host_prog = expand('/usr/bin/python2.7')
+    " let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.13/bin/python')
 else
     " let g:python_host_prog = expand('$PYENV_ROOT/shims/python2.7')
     " let g:python3_host_prog = expand('$PYENV_ROOT/shims/python3.6')
@@ -39,11 +41,11 @@ function! s:vimrc_local(loc)
     endfor
 endfunction
 
-if has('nvim')
+" if has('nvim')
    call s:source_rc('dein.rc.vim')
-else
-   call s:source_rc('status_line.rc.vim')
-endif
+" else
+   " call s:source_rc('status_line.rc.vim')
+" endif
 
 " call s:source_rc('dein.rc.vim')
 

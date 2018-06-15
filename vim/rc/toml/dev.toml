@@ -5,23 +5,28 @@ repo = 'tpope/vim-dispatch'
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
+repo = 'Shougo/neosnippet.vim'
 hook_add = '''
     " Plugin key-mappings.
     " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k>     <Plug>(neosnippet_expand_target)
+    imap <silent><C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <silent><C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <silent><C-k> <Plug>(neosnippet_expand_target)
 
-    let g:neosnippet#enable_snipmate_compatibility = 1
+    "imap <expr><C-k> neosnippet#expandable_or_jumpable() ?
+    "    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+    "smap <expr><C-k> neosnippet#expandable_or_jumpable() ?
+    "    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+
+    "let g:neosnippet#enable_snipmate_compatibility = 1
     let g:neosnippet#enable_completed_snippet = 1
     let g:neosnippet#expand_word_boundary = 1
 
-    autocmd MyAutoCmd CompleteDone * call neosnippet#complete_done()
+    "autocmd MyAutoCmd CompleteDone * call neosnippet#complete_done()
  '''
 depends = ['neosnippet-snippets']
 on_ft = 'snippet'
-on_i = 1
+on_event = 'InsertCharPre'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -86,11 +91,11 @@ hook_source = '''
     call deoplete#custom#option('smart_case', v:true)
     call deoplete#custom#option('camel_case', v:true)
 
-    " call deoplete#custom#option('keyword_patterns', {
-    "             \   'tex': '\\?[a-zA-Z_]\w*',
-    "             \})
+    call deoplete#custom#option('keyword_patterns', {
+                \   'tex': '\\?[a-zA-Z_]\w*',
+                \})
 
-    " call deoplete#custom#option('sources', {
+    "call deoplete#custom#option('sources', {
     "             \   '_': ['buffer', 'tag', 'file', 'omni'],
     "             \   'c': ['buffer', 'tag'],
     "             \   'cpp': ['buffer', 'tag'],
@@ -98,17 +103,36 @@ hook_source = '''
     "             \   'ruby': ['buffer', 'omni'],
     "             \})
 
-    call deoplete#custom#var('omni', 'input_patterns', {
-                \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+    "call deoplete#custom#var('omni', 'input_patterns', {
+    "            \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
     "            \ 'java': '[^. *\t]\.\w*',
     "            \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
+    "            \})
+
+    " Change clang binary path
+    if has('mac')
+        call deoplete#custom#var('clangx', 'clang_binary', '/usr/local/opt/llvm/bin/clang')
+    endif
+
+    " Change clang options
+    call deoplete#custom#var('clangx', 'default_c_options', '')
+    call deoplete#custom#var('clangx', 'default_cpp_options', '')
+
+    call deoplete#custom#source('omni', 'functions', {
+                \ 'ruby':  'rubycomplete#Complete',
+    "             \ 'tex':  'vimtex#complete#omnifunc',
                 \})
 
+    call deoplete#custom#source('_', 'converters', [
+          \ 'converter_remove_paren',
+          \ 'converter_remove_overlap',
+          \ 'matcher_length',
+          \ 'converter_truncate_abbr',
+          \ 'converter_truncate_menu',
+          \ 'converter_auto_delimiter',
+          \ ])
 
-    " call deoplete#custom#source('omni', 'functions', {
-    "             \ 'ruby':  'rubycomplete#Complete',
-    "             \ 'tex':  'vimtex#complete#omnifunc',
-    "             \})
+    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 
     " <TAB>: completion.
     " inoremap <silent><expr> <TAB>
@@ -126,14 +150,16 @@ hook_source = '''
 
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+    "inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
     " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function() abort
-        return deoplete#close_popup() . "\<CR>"
-    endfunction
+    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    "function! s:my_cr_function() abort
+    "    return deoplete#close_popup() . "\<CR>"
+    "endfunction
 
 '''
 on_i = 1
+
+
 

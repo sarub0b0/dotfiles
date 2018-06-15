@@ -7,6 +7,7 @@ scriptencoding utf-8
 filetype plugin indent on
 syntax on
 
+setl spell spelllang=en,cjk
 
 set helplang=ja,en
 
@@ -38,7 +39,6 @@ set visualbell t_vb=
 
 set hidden
 
-
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
 set ignorecase
@@ -53,10 +53,10 @@ set wildmode=list:longest,full
 
 set dictionary=/usr/share/dict/words
 
-set completeopt=menuone,longest,menu
+set completeopt=menuone,menu
 
 set wildignore=*.o,*.obj,GTAGS,GPATH,GRTAGS
-" set complete=.,w,b,u,t,d
+" set complete=.,w,b,u,t
 
 set grepprg=grep\ -rnHI
 
