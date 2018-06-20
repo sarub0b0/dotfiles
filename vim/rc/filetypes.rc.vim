@@ -102,6 +102,6 @@ function! s:markdown_opt()
 endfunction
 
 function! s:fold_method_indent()
-    autocmd MyAutoCmd BufRead,BufNewFile * setl foldmethod=indent
+    autocmd MyAutoCmd BufRead,BufNewFile,BufEnter * setl foldmethod=indent
 endfunction
 

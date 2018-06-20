@@ -5,4 +5,4 @@ else
     set clipboard^=unnamedplus,autoselect
 endif
 
-
+" set clipboard=exclude:.*

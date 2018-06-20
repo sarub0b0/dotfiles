@@ -161,5 +161,6 @@ hook_source = '''
 '''
 on_i = 1
 
-
-
+[[plugins]]
+repo = 'sarub0b0/lldb.nvim'
+on_ft = ['c', 'cpp']
