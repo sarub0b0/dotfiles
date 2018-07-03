@@ -54,6 +54,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
     export PATH="${HOME}/Library/Android/sdk/tools:${PATH}"
 
+    export PATH="/usr/local/opt/openssl/bin:$PATH"
     # completions
     fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
     #fpath=(~/dotfiles/docker-zsh-completions(N-/) $fpath)

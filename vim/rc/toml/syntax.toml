@@ -15,6 +15,11 @@ on_ft = 'fish'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'vim-scripts/gnuplot.vim'
+on_ft = 'gp'
+
+
 # [[plugins]] # switch filetype
 # repo = 'osyo-manga/vim-precious'
 # depends = 'context_filetype.vim'

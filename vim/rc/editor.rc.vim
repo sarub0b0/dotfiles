@@ -15,6 +15,7 @@ set equalalways
 
 " indent
 set autoindent
+setl foldmethod=indent
 
 " タブ設定
 set expandtab

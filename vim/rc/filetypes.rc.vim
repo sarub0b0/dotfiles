@@ -8,7 +8,7 @@ autocmd MyAutoCmd FileType nerdtree set nolist
 autocmd MyAutoCmd FileType cs call s:csharp_setting()
 autocmd MyAutoCmd BufRead,BufNewFile *.jade set filetype=pug
 autocmd MyAutoCmd BufRead,BufNewFile *.fish set filetype=fish
-autocmd MyAutoCmd FileType toml,vim,zsh,bash,help call s:fold_method_indent()
+autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
 
 function! s:default_config()
     set tabstop=4 softtabstop=4 shiftwidth=4
@@ -101,7 +101,7 @@ function! s:markdown_opt()
     " autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
 endfunction
 
-function! s:fold_method_indent()
-    autocmd MyAutoCmd BufRead,BufNewFile,BufEnter * setl foldmethod=indent
+function! s:tex_foldmethod()
+    nnoremap <silent><buffer><Space>z setl foldmethod=expr
 endfunction
 

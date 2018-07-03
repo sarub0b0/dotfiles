@@ -120,7 +120,7 @@ hook_source = '''
 
     call deoplete#custom#source('omni', 'functions', {
                 \ 'ruby':  'rubycomplete#Complete',
-    "             \ 'tex':  'vimtex#complete#omnifunc',
+                \ 'tex':  'vimtex#complete#omnifunc',
                 \})
 
     call deoplete#custom#source('_', 'converters', [
