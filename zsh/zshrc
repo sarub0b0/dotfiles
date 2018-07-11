@@ -193,7 +193,17 @@ if [ "$(uname)" = "Darwin" ]; then
 else
 fi
 
-
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 # if [ "$(uname)" = "Darwin" ]; then
 #     function peco-history-selection() {
@@ -204,11 +214,11 @@ fi
 #     zle -N peco-history-selection
 #     bindkey '^r' peco-history-selection
 # else
-	# function peco-select-history() {
-	#     BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
-	#     CURSOR=$#BUFFER
-	#     zle clear-screen
-	# }
+# function peco-select-history() {
+#     BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+#     CURSOR=$#BUFFER
+#     zle clear-screen
+# }
 	# zle -N peco-select-history
 	# bindkey '^r' peco-select-history
 # fi
