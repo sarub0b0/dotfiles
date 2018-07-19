@@ -1,0 +1,3 @@
+xontrib load powerline
+$PL_TOOLBAR='who>cwd>branch'
+
