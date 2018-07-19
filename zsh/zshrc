@@ -113,10 +113,10 @@ if builtin command -v nvim > /dev/null; then
         alias less='/usr/share/nvim/runtime/macros/less.sh'
     fi
 else
-    ls_result=`ls -t /usr/share/vim | grep --color=never -e '[0-9][0-9]'`
-    latest_version=${(z)ls_result}
+    # ls_result=`ls -t /usr/share/vim | grep --color=never -e '[0-9][0-9]'`
+    # latest_version=${(z)ls_result}
 
-    alias less='/usr/share/vim/${ls_result}/macros/less.sh'
+    # alias less='/usr/share/vim/${ls_result}/macros/less.sh'
 fi
 LESS='-M'
 
