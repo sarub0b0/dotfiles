@@ -121,16 +121,16 @@ endif
 "     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 " endif
 
-augroup foldmethod_changed_insert
-    autocmd!
-    autocmd InsertEnter * if !exists('w:last_fdm')
-                \| let w:last_fdm=&foldmethod
-                \| setlocal foldmethod=manual
-                \| endif
+" augroup foldmethod_changed_insert
+"     autocmd!
+"     autocmd InsertEnter * if !exists('w:last_fdm')
+"                 \| let w:last_fdm=&foldmethod
+"                 \| setlocal foldmethod=manual
+"                 \| endif
 
-    autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
-                \| let &l:foldmethod=w:last_fdm
-                \| unlet w:last_fdm
-                \| endif
-augroup END
+"     autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
+"                 \| let &l:foldmethod=w:last_fdm
+"                 \| unlet w:last_fdm
+"                 \| endif
+" augroup END
 

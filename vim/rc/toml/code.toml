@@ -83,6 +83,7 @@ hook_source = '''
         " if you install vim-operator-user
         autocmd FileType c,cpp,objc map <buffer><LocalLeader>x <Plug>(operator-clang-format)
     augroup END
+
 '''
 depends = 'vimproc.vim'
 
