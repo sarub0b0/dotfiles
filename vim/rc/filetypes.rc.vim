@@ -9,6 +9,11 @@ autocmd MyAutoCmd FileType cs call s:csharp_setting()
 autocmd MyAutoCmd BufRead,BufNewFile *.jade set filetype=pug
 autocmd MyAutoCmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
+autocmd MyAutoCmd FileType python call s:python_setting()
+
+function! s:python_setting()
+    command! -nargs=0 Yapf :%!yapf
+endfunction
 
 function! s:default_config()
     set tabstop=4 softtabstop=4 shiftwidth=4
@@ -34,39 +39,8 @@ endfunction
 
 function! s:clang_option()
     set foldmethod=syntax
+    let g:c_syntax_for_h = 1
 endfunction
-
-" clang format config {{{
-" function! s:clang_format_config()
-"     set foldmethod=syntax
-"     if executable('clang-format')
-
-"         autocmd MyAutoCmd FileType c,cpp ClangFormatAutoEnable
-
-"         nnoremap <buffer> ff :ClangFormat<CR>
-
-"         let g:clang_format#code_style = 'google'
-
-"         let g:clang_format#style_options = {
-"                     \ 'AlignConsecutiveAssignments': 'true',
-"                     \ 'AlignTrailingComments': 'true',
-"                     \ 'DerivePointerAlignment': 'false',
-"                     \ 'PointerAlignment': 'Right',
-"                     \ 'IndentCaseLabels': 'true',
-"                     \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
-"                     \ 'SpacesBeforeTrailingComments': 1,
-"                     \ 'AlwaysBreakAfterDefinitionReturnType': 'false',
-"                     \ 'AllowShortFunctionsOnASingleLine': 'None',
-"                     \ 'AllowShortBlocksOnASingleLine': 'false',
-"                     \ 'SortIncludes': 'false',
-"                     \ 'BinPackArguments': 'false',
-"                     \ 'BinPackParameters': 'false',
-"                     \ 'SpaceAfterCStyleCast': 'true',
-"                     \ 'ColumnLimit': 78,
-"                     \ }
-"     endif
-" endfunction
-" }}}
 
 function! s:ruby_tab_config()
     setl tabstop=2
@@ -74,24 +48,20 @@ function! s:ruby_tab_config()
     setl shiftwidth=2
 endfunction
 
-function! s:ale_option()
-    let l:include_dir = expand($ALE_C_INCLUDE_PATH)
-    let l:lib_dir = expand($ALE_C_LIB_PATH)
-    if l:include_dir ==? ''
-        let l:include_dir = '-I../include'
-        let l:lib_dir = '-I../lib'
-        let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field ' . l:include_dir . l:lib_dir
-        let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field ' . l:include_dir . l:lib_dir
-        let g:ale_c_clang_options = '-std=c11 -Wall ' . l:include_dir . l:lib_dir
-        let g:ale_c_gcc_options = '-std=c11 -Wall ' . l:include_dir . l:lib_dir
-    endif
+" function! s:ale_option()
+"     let l:include_dir = expand($ALE_C_INCLUDE_PATH)
+"     let l:lib_dir = expand($ALE_C_LIB_PATH)
+"     if l:include_dir ==? ''
+"         let l:include_dir = '-I../include'
+"         let l:lib_dir = '-I../lib'
+"     endif
 
-    let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
-    let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
-    let g:ale_c_clang_options = '-std=c11 -Wall -I' . l:include_dir . ' -L' . l:lib_dir
-    let g:ale_c_gcc_options = '-Wall -I' . l:include_dir . ' -L' . l:lib_dir
+"     let g:ale_cpp_clang_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
+"     let g:ale_cpp_gcc_options = '-std=c++14 -Wall -Wno-unused-variable -Wno-unused-private-field -I' . l:include_dir . ' -L' . l:lib_dir
+"     let g:ale_c_clang_options = '-std=c11 -Wall -I' . l:include_dir . ' -L' . l:lib_dir
+"     let g:ale_c_gcc_options = '-Wall -I' . l:include_dir . ' -L' . l:lib_dir
 
-endfunction
+" endfunction
 
 function! s:delete_space_au()
 endfunction

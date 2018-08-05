@@ -24,8 +24,8 @@ hook_add = '''
     "            \   'cpp': '/usr/local/opt/allegro/include',
     "            \}
 '''
-on_source = 'deoplete.nvim'
 on_ft = ['c', 'cpp', 'cmake']
+on_source = 'deoplete.nvim'
 
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
@@ -65,9 +65,9 @@ hook_source = '''
 
     function! s:ex_clang_format(line1,line2)
         if &l:foldmethod ==# 'syntax'
-            setlocal foldmethod=manual
+            set foldmethod=manual
             execute a:line1 ',' a:line2 'ClangFormat'
-            setlocal foldmethod=syntax
+            set foldmethod=syntax
         else
             execute a:line1 ',' a:line2 'ClangFormat'
         endif
