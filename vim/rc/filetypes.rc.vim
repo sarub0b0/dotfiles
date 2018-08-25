@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let g:tex_flavor='latex'
+
 autocmd MyAutoCmd BufRead,BufNewFile Guardfile set filetype=ruby
 autocmd MyAutoCmd FileType ruby call s:ruby_tab_config()
 " autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
@@ -38,7 +40,8 @@ function! s:csharp_setting()
 endfunction
 
 function! s:clang_option()
-    set foldmethod=syntax
+    " set foldmethod=syntax
+    set foldmethod=manual
     let g:c_syntax_for_h = 1
 endfunction
 

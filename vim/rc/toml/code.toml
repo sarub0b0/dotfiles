@@ -65,9 +65,9 @@ hook_source = '''
 
     function! s:ex_clang_format(line1,line2)
         if &l:foldmethod ==# 'syntax'
-            set foldmethod=manual
+            setl foldmethod=manual
             execute a:line1 ',' a:line2 'ClangFormat'
-            set foldmethod=syntax
+            setl foldmethod=syntax
         else
             execute a:line1 ',' a:line2 'ClangFormat'
         endif
