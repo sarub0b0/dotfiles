@@ -116,7 +116,7 @@ on_source = ['deoplete.nvim']
 [[plugins]]
 repo = 'zebult/auto-gtags.vim'
 hook_add = '''
-    let g:auto_gtags = 1
+    let g:Gtags_Auto_Update = 1
     source ~/dotfiles/vim/rc/plugins/gtags.vim
 '''
 on_ft = ['c', 'cpp', 'cmake']

@@ -18,3 +18,7 @@ hook_source = '''
 '''
 on_ft = 'markdown'
 
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+on_i = 1
+

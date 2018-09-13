@@ -108,7 +108,7 @@ function! s:gtags_remap()
         nnoremap <C-l> :Gtags -f %<CR>
         nnoremap <C-j> :Gtags <C-r><C-w><CR>
         nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
-        nnoremap <S-u> :GtagsUpdate<CR>
+        nnoremap <C-h> :Gtags -s <C-r><C-w><CR>
     endif
 endfunction
 

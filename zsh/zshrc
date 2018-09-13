@@ -60,6 +60,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     # ADD bin directory
     export PATH="/usr/local/sbin:${PATH}"
 
+    export PATH="/usr/local/opt/expat/bin:$PATH"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
     export PATH="/usr/local/opt/sqlite/bin:$PATH"
     # llvm
@@ -168,6 +169,27 @@ if builtin command -v clang > /dev/null; then
 fi
 
 
+
+# -------------------------------------
+# 出力色付け
+# -------------------------------------
+# if [ -s "/usr/local/etc/grc.zsh" ]; then
+#     source /usr/local/etc/grc.zsh
+# fi
+
+# man
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
+
 LESS='-M'
 
 autoload colors
@@ -180,8 +202,6 @@ else
     PROMPT="%{$fg[green]%}%n@%m %{$reset_color%}%(!.#.$) "
 fi
 RPROMPT="[%~]"
-
-
 
 # -------------------------------------
 # 補完機能
@@ -235,7 +255,6 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # ssh の設定読み込み
-
 if [ "$(uname)" = "Darwin" ]; then
     function _ssh {
         compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d ${HOME}/.ssh/config | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
@@ -243,17 +262,6 @@ if [ "$(uname)" = "Darwin" ]; then
 else
 fi
 
-man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/opt/expat/bin:$PATH"
+
