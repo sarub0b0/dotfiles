@@ -6,7 +6,13 @@ endif
 
 augroup MyAutoCmd
     autocmd!
+
+    augroup DeleteLineEndSpaceCmd
+        autocmd!
+    augroup END
+
 augroup END
+
 
 if has('mac')
     let g:python_host_prog = expand('/usr/local/opt/python2/bin/python2')

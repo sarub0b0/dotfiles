@@ -12,6 +12,10 @@ autocmd MyAutoCmd BufRead,BufNewFile *.jade set filetype=pug
 autocmd MyAutoCmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
 autocmd MyAutoCmd FileType python call s:python_setting()
+autocmd MyAutoCmd FileType markdown call s:markdown_opt()
+
+function! s:markdown_setting()
+endfunction
 
 function! s:python_setting()
     command! -nargs=0 Yapf :%!yapf
@@ -71,6 +75,7 @@ endfunction
 
 function! s:markdown_opt()
     autocmd MyAutoCmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+    autocmd! DeleteLineEndSpaceCmd
     " autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
 endfunction
 

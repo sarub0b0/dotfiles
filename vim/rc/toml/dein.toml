@@ -151,7 +151,7 @@ hook_add = '''
     endfunction
 
     function! LightLineFilename()
-        return ('' != expand('%:p') ? winwidth(0) > 90 ? expand('%:p') : expand('%:t') : '[No Name]')
+        return ('' != expand('%:p') ? winwidth(0) > 70 ? expand('%:~:.') : expand('%:t') : '[No Name]')
     endfunction
 
     function! LightLineFiletype()

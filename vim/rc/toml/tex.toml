@@ -31,7 +31,7 @@ hook_source = '''
     endif
     let g:vimtex_fold_enabled = 1
 
-    autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
+    autocmd BufReadPre *.tex let b:vimtex_main = 'index.tex'
 
     let g:vimtex_view_general_viewer
                 \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'

@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-$latex            = 'platex -synctex=1 -halt-on-error';
+$latex            = 'platex -synctex=1 -halt-on-error -kanji=utf8';
 $bibtex           = 'pbibtex';
 $biber            = 'biber  -u -U --output_safechars';
 $dvipdf           = 'dvipdfmx %O -o %D %S';
