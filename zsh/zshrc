@@ -12,10 +12,6 @@ alias grep='grep --color=always'
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 alias gtags_remove='rm GPATH GRTAGS GTAGS'
 alias gobuild='go build'
-alias cc='cc -Wall'
-alias gcc='gcc -Wall'
-alias clang='clang -Wall'
-alias clang++='clang++ -Wall'
 alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
 
 export EDITOR="vim"
@@ -52,9 +48,16 @@ echo -ne "\e]2;\U0001f412\U0001f412\U0001f412\a"
 if [ "$(uname)" = 'Darwin' ]; then
     # alias
     alias ls='ls -G'
+    alias cc='cc -Wall'
+    alias gcc='gcc -Wall'
+    alias clang="/usr/bin/clang -Wall"
+    alias clang++="/usr/bin/clang++ -Wall"
 
-    LDFLAGS="-L/usr/local/opt/llvm/lib/clang"
-    CPPFLAGS="-I/usr/local/opt/llvm/include"
+    # LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+    # LDFLAGS="-L/usr/local/opt/llvm/lib"
+    # CPPFLAGS="-I/usr/local/opt/llvm/include"
+    # export PATH="/usr/local/opt/llvm/bin:$PATH"
+
     #alias cc="cc ${LDFLAGS} ${CPPFLAGS}"
     #alias gcc="gcc ${LDFLAGS} ${CPPFLAGS}"
     #alias clang="/usr/local/opt/llvm/bin/clang ${LDFLAGS} ${CPPFLAGS}"
@@ -69,7 +72,6 @@ if [ "$(uname)" = 'Darwin' ]; then
     export PATH="/usr/local/sbin:${PATH}"
 
     export PATH="/usr/local/opt/expat/bin:$PATH"
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
     export PATH="/usr/local/opt/sqlite/bin:$PATH"
     # llvm
     #export PATH="/usr/local/opt/llvm/bin:${PATH}"

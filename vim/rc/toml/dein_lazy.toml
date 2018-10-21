@@ -108,6 +108,11 @@ function! s:defx_my_settings() abort
 endfunction
 '''
 on_source = 'denite.nvim'
+
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim'
+# on_i = 1
+
 #
  # [[plugins]]
 # repo = 'hisaknown/nanomap.vim'

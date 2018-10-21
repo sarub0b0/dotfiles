@@ -72,11 +72,22 @@ endfunction
 
 function! s:delete_space_au()
 endfunction
-
+function! Markdown_fold(lnum)
+    let l:line = getline(a:lnum)
+    if l:line =~# '<style>'
+        return 1
+    endif
+    if l:line =~# '</style>'
+        return '<1'
+    endif
+    return '='
+endfunction
 function! s:markdown_opt()
     autocmd MyAutoCmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
     autocmd! DeleteLineEndSpaceCmd
     " autocmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% | call s:delete_space_au()
+    setl foldmethod=expr
+    setl foldexpr=Markdown_fold(v:lnum)
 endfunction
 
 function! s:tex_foldmethod()
