@@ -10,7 +10,6 @@ augroup MyAutoCmd
     augroup DeleteLineEndSpaceCmd
         autocmd!
     augroup END
-
 augroup END
 
 

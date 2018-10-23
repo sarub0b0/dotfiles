@@ -93,22 +93,22 @@ autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&bu
 
 "クリップボードからコピペする際のインデントのズレを防ぐ
 if &term =~? 'xterm'
-    let &t_ti .= '\e[?2004h'
-    let &t_te .= '\e[?2004l'
-    let &pastetoggle = '\e[201~'
+    let &t_ti .= "\e[?2004h"
+    let &t_te .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
 
     function XTermPasteBegin(ret)
         set paste
         return a:ret
     endfunction
 
-    " noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-    " cnoremap <special> <Esc>[200~ <nop>
-    " cnoremap <special> <Esc>[201~ <nop>
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
 endif
 
-" if &term =~? 'xterm'
+" if &term =~? 'xterm' && has('nvim')
 "     let &t_SI .= "\e[?2004h"
 "     let &t_EI .= "\e[?2004l"
 "     let &pastetoggle = "\e[201~"
