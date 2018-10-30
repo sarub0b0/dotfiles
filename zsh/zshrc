@@ -34,10 +34,6 @@ setopt hist_reduce_blanks
 # 開始と終了を記録
 # setopt EXTENDED_HISTORY
 
-echo -ne "\e]1;\U0001f412\U0001f412\U0001f412\a"
-
-echo -ne "\e]2;\U0001f412\U0001f412\U0001f412\a"
-
 # echo -ne "\e]6;1;bg;red;brightness;22\a"
 # echo -ne "\e]6;1;bg;green;brightness;37\a"
 # echo -ne "\e]6;1;bg;blue;brightness;43\a"
@@ -52,6 +48,11 @@ if [ "$(uname)" = 'Darwin' ]; then
     alias gcc='gcc -Wall'
     alias clang="/usr/bin/clang -Wall"
     alias clang++="/usr/bin/clang++ -Wall"
+
+    echo -ne "\e]1;\U0001f412\U0001f412\U0001f412\a"
+
+    echo -ne "\e]2;\U0001f412\U0001f412\U0001f412\a"
+
 
     # LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     # LDFLAGS="-L/usr/local/opt/llvm/lib"
