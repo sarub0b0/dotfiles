@@ -60,6 +60,8 @@ call s:source_rc('clipboard.rc.vim')
 
 call s:source_rc('color.rc.vim')
 
+call s:source_rc('syntax.rc.vim')
+
 call s:source_rc('mappings.rc.vim')
 
 call s:source_rc('filetypes.rc.vim')

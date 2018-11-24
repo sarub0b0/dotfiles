@@ -27,6 +27,10 @@ hook_add = '''
 repo = 'mhartington/oceanic-next'
 
 [[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+
+[[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
     " エラー行に表示するマーク
