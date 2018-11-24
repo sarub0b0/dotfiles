@@ -119,19 +119,19 @@ on_source = 'denite.nvim'
 # on_i = 1
 
 
-# [[plugins]]
-# repo = 'edkolev/tmuxline.vim'
-# on_i = 1
-# hook_source = '''
-#     " let g:tmuxline_powerline_separators = 0
-#     let g:tmuxline_theme = 'lightline'
-#     " let g:tmuxline_preset = 'tmux'
-#     " let g:tmuxline_preset = {
-#     "       \'a'    : '#S',
-#     "       \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f 1,2,3)'],
-#     "       \'win'  : ['#I', '#W'],
-#     "       \'cwin' : ['#I', '#W', '#F'],
-#     "       \'x'    : '#(date)',
-#     "       \'y'    : ['%R', '%a', '%Y'],
-#     "       \'z'    : '#H'}
-# '''
+[[plugins]]
+repo = 'edkolev/tmuxline.vim'
+on_i = 1
+hook_source = '''
+    " let g:tmuxline_powerline_separators = 0
+    let g:tmuxline_theme = 'lightline'
+    " let g:tmuxline_preset = 'tmux'
+    " let g:tmuxline_preset = {
+    "       \'a'    : '#S',
+    "       \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f 1,2,3)'],
+    "       \'win'  : ['#I', '#W'],
+    "       \'cwin' : ['#I', '#W', '#F'],
+    "       \'x'    : '#(date)',
+    "       \'y'    : ['%R', '%a', '%Y'],
+    "       \'z'    : '#H'}
+'''
