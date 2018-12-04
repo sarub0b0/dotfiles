@@ -7,7 +7,7 @@ scriptencoding utf-8
 filetype plugin indent on
 syntax on
 
-setl spell spelllang=en,cjk
+" setl spell spelllang=en,cjk
 
 set helplang=ja,en
 
