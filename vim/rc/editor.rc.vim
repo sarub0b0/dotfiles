@@ -78,7 +78,14 @@ endif
 
 " let mapleader = "\<Space>"
 
-autocmd DeleteLineEndSpaceCmd BufWritePre * :%s/\s\+$//ge
+" autocmd DeleteLineEndSpaceCmd BufWritePre * :keeppatterns %s/\s\+$//ge
+autocmd DeleteLineEndSpaceCmd BufWritePre * call s:remove_tail_spaces()
+
+function! s:remove_tail_spaces() abort
+    let l:view = winsaveview()
+    keeppatterns :%s/\s\+$//ge
+    silent call winrestview(l:view)
+endfunction
 
 autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 

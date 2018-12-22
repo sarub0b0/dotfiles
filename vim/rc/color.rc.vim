@@ -1,7 +1,7 @@
 if has('termguicolors')
     set termguicolors
 
-    let s:termcolor = 'iceberg'
+    let s:termcolor = 'OceanicNext'
 
     augroup TransparentBG
         autocmd!
