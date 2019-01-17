@@ -13,6 +13,7 @@ autocmd MyAutoCmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
 autocmd MyAutoCmd FileType python call s:python_setting()
 autocmd MyAutoCmd FileType markdown call s:markdown_opt()
+autocmd MyAutoCmd FileType sh call s:set_indent_format()
 
 function! s:markdown_setting()
 endfunction
@@ -23,6 +24,17 @@ endfunction
 
 function! s:default_config()
     set tabstop=4 softtabstop=4 shiftwidth=4
+endfunction
+
+function! s:set_indent_format()
+    command! -nargs=0 IndentFormat call s:indent_format()
+    nnoremap <silent> <Space>f :IndentFormat<CR>
+endfunction
+
+function! s:indent_format()
+    let l:view = winsaveview()
+    normal! gg=G
+    silent call winrestview(l:view)
 endfunction
 
 function! s:csharp_setting()
