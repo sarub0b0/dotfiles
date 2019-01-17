@@ -78,7 +78,7 @@ endif
 
 
 if has('persistent_undo')
-    set undodir=~.cache/vimundo
+    set undodir=~/.cache/vimundo
     set undofile
 endif
 
