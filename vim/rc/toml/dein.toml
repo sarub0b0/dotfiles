@@ -175,4 +175,9 @@ depends = ['lightline-ale']
 [[plugins]]
 repo = 'maximbaz/lightline-ale'
 
-
+[[plugins]]
+repo = 'itchyny/calendar.vim'
+hook_add = '''
+    let g:calendar_google_calendar = 1
+    let g:calendar_google_task = 1
+'''
