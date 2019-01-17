@@ -76,6 +76,14 @@ if has('nvim')
     set inccommand=nosplit
 endif
 
+
+if has('persistent_undo')
+    set undodir=~.cache/vimundo
+    set undofile
+endif
+
+
+
 " let mapleader = "\<Space>"
 
 " autocmd DeleteLineEndSpaceCmd BufWritePre * :keeppatterns %s/\s\+$//ge
