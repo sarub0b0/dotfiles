@@ -23,10 +23,10 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export HISTFILE=${HOME}/.zsh_history
 
 # メモリに保存される履歴の件数
-export HISTSIZE=5000
+export HISTSIZE=50000
 
 # 履歴ファイルに保存される履歴の件数
-export SAVEHIST=10000
+export SAVEHIST=100000
 
 # 余分な空白は詰めて記録
 setopt hist_reduce_blanks
@@ -152,10 +152,17 @@ if [ -f "$HOME/.anyenv/bin/anyenv" ]; then
     done
 fi
 
+if builtin command -v opam > /dev/null; then
+    test -r /Users/kosay/.opam/opam-init/init.zsh && . /Users/kosay/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+fi
+
+
+
 # direnv
 if builtin command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
+. $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # less color
 if builtin command -v nvim > /dev/null; then

@@ -13,6 +13,8 @@ set helplang=ja,en
 
 set equalalways
 
+set formatoptions+=mM
+
 " indent
 set autoindent
 setl foldmethod=indent
@@ -82,6 +84,8 @@ if has('persistent_undo')
     set undofile
 endif
 
+let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:subsubsections'
+set iskeyword=@,48-57,_,-,:,192-255
 
 
 " let mapleader = "\<Space>"
