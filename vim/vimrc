@@ -14,8 +14,8 @@ augroup END
 
 
 if has('mac')
-    let g:python_host_prog = expand('/usr/local/opt/python2/bin/python2')
-    let g:python3_host_prog = expand('/usr/local/opt/python3/bin/python3')
+    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.15/bin/python2')
+    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.6.5/bin/python3')
 
     " let g:python_host_prog = expand('/usr/bin/python2.7')
     " let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.13/bin/python')

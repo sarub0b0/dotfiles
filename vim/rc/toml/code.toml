@@ -60,7 +60,10 @@ hook_source = '''
                 \ 'BinPackArguments': 'false',
                 \ 'BinPackParameters': 'false',
                 \ 'SpaceAfterCStyleCast': 'true',
-                \ 'ColumnLimit': 78,
+                \ 'ColumnLimit': 120,
+                \ 'IndentWidth': 4,
+                \ 'UseTab': 'Never',
+                \ 'Standard': 'C++11',
                 \ }
 
     function! s:ex_clang_format(line1,line2)
@@ -71,6 +74,7 @@ hook_source = '''
         else
             execute a:line1 ',' a:line2 'ClangFormat'
         endif
+        retab 4
     endfunction
 
     command! -nargs=0 -range=% ExClangFormat call s:ex_clang_format(<line1>,<line2>)

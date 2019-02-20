@@ -35,7 +35,10 @@ hook_source = '''
     let g:NERDSpaceDelims = 1
     let g:NERDDefaultAlign = 'left'
 
-    let g:NERDCustomDelimiters = { 'c': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'} }
+    let g:NERDCustomDelimiters = {
+            \ 'c': {'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'},
+            \ 'gp': {'left': '#'}
+            \}
 '''
 # on_i = 1
 on_event = ['BufEnter']
