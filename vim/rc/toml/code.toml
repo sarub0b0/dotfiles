@@ -17,6 +17,10 @@
 # on_ft = ['c', 'cpp']
 
 [[plugins]]
+repo = 'kana/vim-operator-user'
+on_ft = ['c', 'cpp', 'cmake']
+
+[[plugins]]
 repo = 'Shougo/neoinclude.vim'
 hook_add = '''
     "let g:neoinclude#paths = {
@@ -35,6 +39,8 @@ hook_source = '''
 
     "let g:clang_format#auto_format_on_insert_leave = 0
 
+    let g:clang_format#detect_style_file = 0
+
     if executable('clang-format')
         let g:clang_format#command = "clang-format"
     elseif executable('clang-format-6.0')
@@ -47,6 +53,7 @@ hook_source = '''
 
     let g:clang_format#style_options = {
                 \ 'AlignConsecutiveAssignments': 'true',
+                "\ 'AlignConsecutiveDeclarations': 'true',
                 \ 'AlignTrailingComments': 'true',
                 \ 'DerivePointerAlignment': 'false',
                 \ 'PointerAlignment': 'Right',
@@ -60,7 +67,7 @@ hook_source = '''
                 \ 'BinPackArguments': 'false',
                 \ 'BinPackParameters': 'false',
                 \ 'SpaceAfterCStyleCast': 'true',
-                \ 'ColumnLimit': 120,
+                \ 'ColumnLimit': 80,
                 \ 'IndentWidth': 4,
                 \ 'UseTab': 'Never',
                 \ 'Standard': 'C++11',
@@ -74,7 +81,7 @@ hook_source = '''
         else
             execute a:line1 ',' a:line2 'ClangFormat'
         endif
-        retab 4
+        " retab 4
     endfunction
 
     command! -nargs=0 -range=% ExClangFormat call s:ex_clang_format(<line1>,<line2>)
@@ -90,10 +97,6 @@ hook_source = '''
 
 '''
 depends = 'vimproc.vim'
-
-[[plugins]]
-repo = 'kana/vim-operator-user'
-on_ft = ['c', 'cpp', 'cmake']
 
 [[plugins]]
 repo = 'Shougo/deoplete-clangx'
