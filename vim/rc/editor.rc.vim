@@ -154,3 +154,4 @@ endif
 "                 \| endif
 " augroup END
 
+command! -nargs=1 Rsync !rsync -avc $(pwd) <args>:
