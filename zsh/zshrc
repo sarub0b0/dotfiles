@@ -7,8 +7,9 @@ alias la='ls -lah'
 alias ..='cd ..'
 alias py='python'
 alias rb='ruby'
-alias fgrep='grep --with-filename --line-number --color=always'
-alias grep='grep --color=always'
+# alias fgrep='fgrep --with-filename --line-number --color=always'
+alias grep='grep --line-buffered'
+alias cgrep='grep --line-buffered --color=always'
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 alias gtags_remove='rm GPATH GRTAGS GTAGS'
 alias gobuild='go build'
@@ -52,6 +53,7 @@ if [ "$(uname)" = 'Darwin' ]; then
     echo -ne "\e]1;\U0001f412\U0001f412\U0001f412\a"
 
     echo -ne "\e]2;\U0001f412\U0001f412\U0001f412\a"
+
 
 
     # LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
@@ -332,3 +334,41 @@ function do_enter() {
 }
 # zle -N do_enter
 # bindkey '^m' do_enter # keyバインド
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if builtin command -v fzf > /dev/null; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+    function fvim() {
+        files=$(git ls-files) &&
+            selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
+            vim $selected_files
+    }
+
+    # function fd() {
+    #     local dir
+    #     dir=$(find ${1:-.} -path '*/\.*' -prune \
+    #         -o -type d -print 2> /dev/null | fzf +m) &&
+    #     cd "$dir"
+    # }
+    # # Use ~~ as the trigger sequence instead of the default **
+    # export FZF_COMPLETION_TRIGGER='~~'
+    # # # Options to fzf command
+    # export FZF_COMPLETION_OPTS='+c -x'
+    # # # Use fd (https://github.com/sharkdp/fd) instead of the default find
+    # # # command for listing path candidates.
+    # # # - The first argument to the function ($1) is the base path to start traversal
+    # # # - See the source code (completion.{bash,zsh}) for the details.
+    # function _fzf_compgen_path() {
+    #     fd --hidden --follow --exclude ".git" . "$1"
+    # }
+
+    # # # Use fd to generate the list for directory completion
+    # function _fzf_compgen_dir() {
+    #     fd --type d --hidden --follow --exclude ".git" . "$1"
+    # }
+    # complete -F _fzf_path_completion -o default -o bashdefault ag
+    # complete -F _fzf_dir_completion -o default -o bashdefault tree
+fi
+
