@@ -154,4 +154,20 @@ endif
 "                 \| endif
 " augroup END
 
-command! -nargs=1 Rsync !rsync -avc $(pwd) <args>:
+
+function! s:rsync_function(...)
+    if a:0 == 2
+        let l:list = a:000
+        let l:pwd = getcwd()
+        let l:pwd = "."
+        let l:cmd = ":!rsync -avc " . l:pwd . " " . l:list[0] . ":" . l:list[1]
+        execute l:cmd
+    else
+        echo "args: dst-host dst-dir"
+    endif
+endfunction
+
+command! -nargs=+ Rsync call s:rsync_function(<f-args>)
+
+
+

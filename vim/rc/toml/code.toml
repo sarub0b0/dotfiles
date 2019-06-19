@@ -181,13 +181,18 @@ depends = 'vimproc.vim'
 # go
 ############################################
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'zchee/nvim-go'
 on_ft = 'go'
+build = 'make'
 
 [[plugins]]
 repo = 'zchee/deoplete-go'
 on_ft = 'go'
+build = 'make'
 on_source = ['deoplete.nvim']
+hook_source = '''
+    let g:deoplete#sources#go#gocode_binary = $HOME . '/go/bin/gocode'
+'''
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
