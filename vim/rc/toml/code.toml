@@ -181,9 +181,13 @@ depends = 'vimproc.vim'
 # go
 ############################################
 [[plugins]]
-repo = 'zchee/nvim-go'
+# repo = 'zchee/nvim-go'
+repo = 'fatih/vim-go'
 on_ft = 'go'
-build = 'make'
+# build = 'make'
+hook_source = '''
+    let g:go_list_type = "quickfix"
+'''
 
 [[plugins]]
 repo = 'zchee/deoplete-go'
