@@ -145,3 +145,4 @@ hook_source = '''
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
 on_event = 'VimEnter'
+on_i = 1

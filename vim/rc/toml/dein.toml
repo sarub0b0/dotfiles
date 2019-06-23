@@ -121,6 +121,20 @@ hook_add = '''
     \   }
     \}
 
+    "let g:lightline.tab = {
+    "    \ 'active': [ 'tabnum', 'filename', 'filetype', 'modified' ],
+    "    \ 'inactive': [ 'tabnum', 'filename', 'filetype', 'modified' ]
+    "    \}
+    "let g:lightline.tab_component_function = {
+    "    \    'filename': 'LightLineTabFilename',
+    "    \    'filetype': 'LightLineTabFiletype',
+    "    \    'fileformat': 'LightLineTabFileformat',
+    "\}
+
+    "let g:lightline.tabline = {
+    "    \ 'left': [ [ 'tabs' ] ],
+    "    \ 'right': [ [ 'close' ] ] }
+
     let g:lightline#ale#indicator_warnings = "\uf12a"
     let g:lightline#ale#indicator_errors = "\uf00d"
     let g:lightline#ale#indicator_ok = "\uf00c"
@@ -166,6 +180,19 @@ hook_add = '''
     function! LightLineFileformat()
       return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
+    " ------------------------
+    "function! LightLineTabFilename(n)
+    "    return ('' != expand('%:p') ? winwidth(0) > 70 ? expand('%:~:.') : expand('%:t') : '[No Name]')
+    "endfunction
+
+    "function! LightLineTabFiletype(n)
+    "    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+    "endfunction
+
+    "function! LightLineTabFileformat(n)
+    "  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    "endfunction
+
 
     " hide --INSERT--
     set noshowmode

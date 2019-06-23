@@ -171,3 +171,14 @@ command! -nargs=+ Rsync call s:rsync_function(<f-args>)
 
 
 
+" command! -nargs=0 KillGoRunResult call KillGoRunResult()
+" function! KillGoRunResult() abort
+"   echo "Hello!!"
+"   let l:bufname = bufname('go run')
+"   if l:bufname == ""
+"       return
+"   endif
+"   let s:bf = bufnr(l:bufname)
+"   echo s:bf
+"   execute "bdelete! " . s:bf
+" endfunction
