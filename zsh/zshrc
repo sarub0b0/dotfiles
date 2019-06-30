@@ -1,3 +1,5 @@
+# zmodload zsh/zprof && zprof
+
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
@@ -79,8 +81,8 @@ __prompt () {
 
 __completion () {
     # 補完機能の強化
-    autoload -Uz compinit && compinit -i
-    #compinit
+    autoload -Uz compinit && compinit -C
+    # compinit -C
 
     # #補完に関するオプション
     #setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
@@ -140,7 +142,8 @@ __anyenv () {
             export PATH="$HOME/.anyenv/bin:$PATH"
         fi
 
-        eval "$(anyenv init - zsh)"
+        eval "$(anyenv init - --no-rehash)"
+        # eval "$(anyenv lazyload)"
         # tmux対応
         env_dir=$HOME/.anyenv/envs
         for D in `ls $env_dir`
@@ -148,6 +151,10 @@ __anyenv () {
             export PATH="$env_dir/$D/libexec:$PATH"
         done
     fi
+}
+
+__anyenv_lazy () {
+
 }
 
 __nvim () {
@@ -194,13 +201,7 @@ __fzf () {
 
 }
 
-__zplug () {
-    export ZPLUG_HOME=$HOME/.zplug
-    source $ZPLUG_HOME/init.zsh
-
-    zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-
-    ___p9k () {
+___p9k () {
         POWERLEVEL9K_MODE="nerdfont-complete"
 
         # battery
@@ -267,13 +268,45 @@ __zplug () {
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(dir_writable dir vcs battery)
     }
 
+# __zplug () {
+#     export ZPLUG_HOME=$HOME/.zplug
+#     source $ZPLUG_HOME/init.zsh
+
+#     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+#     zplug 'zsh-users/zsh-completions', use:'src/_*', lazy:true
+
+#     ___p9k
+
+#     if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
+#         touch ~/.zplug/last_zshrc_check_time
+#         if ! zplug check --verbose; then
+#             printf "Install? [y/N]: "
+#             if read -q; then
+#                 echo; zplug install
+#             fi
+#         fi
+#     fi
+#     zplug load
+#     # zplug check --verbose || zplug install
+#     # zplug load
+# }
+
+__zplugin () {
+    source "$HOME/.zplugin/bin/zplugin.zsh"
+    autoload -Uz _zplugin
+    (( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+    zplugin ice wait"0" blockf silent
+    zplugin light zsh-users/zsh-completions
+
+    zplugin light bhilburn/powerlevel9k
+    # zplugin ice wait'!0' atload"zsh-users/zsh-completions"
+
+    zpcompinit -C
+    # autoload -Uz compinit && compinit -C
 
     ___p9k
-
-    zplug check --verbose || zplug install
-    zplug load
 }
-
 __command () {
 
     man() {
@@ -296,17 +329,26 @@ __command () {
         }
 }
 
+__zcomp () {
+    if [ ! -f ~/.zshrc.zwc ] || [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
+        zcompile ~/.zshrc
+    fi
+    if [ ! -f ~/.zcompdump.zwc ] || [ $HOME/.zcompdump -nt ~/.zompdump.zwc ]; then
+        zcompile ~/.zcompdump
+    fi
+}
+
 # 一番最初
 __color
 
 __alias
 __envs
 __prompt
-__completion
 __anyenv
 __fzf
 __nvim
-__zplug
+__completion
+__zplugin
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
@@ -317,4 +359,8 @@ fi
 # 一番最後
 __command
 
+__zcomp
 
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi
