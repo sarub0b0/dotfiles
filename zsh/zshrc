@@ -192,7 +192,10 @@ __fzf () {
             # complete -F _fzf_dir_completion -o default -o bashdefault tree
     fi
 
-    export ZPLUG_HOME=/usr/local/opt/zplug
+}
+
+__zplug () {
+    export ZPLUG_HOME=$HOME/.zplug
     source $ZPLUG_HOME/init.zsh
 
     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
@@ -303,6 +306,7 @@ __completion
 __anyenv
 __fzf
 __nvim
+__zplug
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
