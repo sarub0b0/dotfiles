@@ -1,7 +1,7 @@
 #!/bin/bash
 
 vim () {
-    mkdir -p .config/nvim
+    mkdir -p $HOME/.config/nvim
     ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
     ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
 }
