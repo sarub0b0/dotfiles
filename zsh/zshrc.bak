@@ -1,0 +1,449 @@
+alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
+alias sudo='sudo -E'
+alias c='clear'
+alias sl='ls'
+alias ll='ls -lh'
+alias la='ls -lah'
+alias ..='cd ..'
+alias py='python'
+alias rb='ruby'
+# alias fgrep='fgrep --with-filename --line-number --color=always'
+alias grep='grep --line-buffered'
+alias cgrep='grep --line-buffered --color=always'
+alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+alias gtags_remove='rm GPATH GRTAGS GTAGS'
+alias gobuild='go build'
+alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
+
+export EDITOR="vim"
+export PATH="${HOME}/bin:${PATH}"
+export TERM=xterm-256color
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+
+# メモリに保存される履歴の件数
+export HISTSIZE=50000
+
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+
+# 開始と終了を記録
+# setopt EXTENDED_HISTORY
+
+# echo -ne "\e]6;1;bg;red;brightness;22\a"
+# echo -ne "\e]6;1;bg;green;brightness;37\a"
+# echo -ne "\e]6;1;bg;blue;brightness;43\a"
+
+# ------------------------------------
+# Mac OS
+# ------------------------------------
+if [ "$(uname)" = 'Darwin' ]; then
+    # alias
+    alias ls='ls -G'
+    alias cc='cc -Wall'
+    alias gcc='gcc -Wall'
+    alias clang="/usr/bin/clang -Wall"
+    alias clang++="/usr/bin/clang++ -Wall"
+
+    echo -ne "\e]1;\U0001f412\U0001f412\U0001f412\a"
+
+    echo -ne "\e]2;\U0001f412\U0001f412\U0001f412\a"
+
+    # LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+    # LDFLAGS="-L/usr/local/opt/llvm/lib"
+    # CPPFLAGS="-I/usr/local/opt/llvm/include"
+    # export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+    #alias cc="cc ${LDFLAGS} ${CPPFLAGS}"
+    #alias gcc="gcc ${LDFLAGS} ${CPPFLAGS}"
+    #alias clang="/usr/local/opt/llvm/bin/clang ${LDFLAGS} ${CPPFLAGS}"
+
+    # export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:${PATH}"
+    # export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman:${MANPATH}"
+
+    # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    # export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+    # ADD bin directory
+    export PATH="/usr/local/sbin:${PATH}"
+
+    export PATH="/usr/local/opt/expat/bin:$PATH"
+    export PATH="/usr/local/opt/sqlite/bin:$PATH"
+    # llvm
+    #export PATH="/usr/local/opt/llvm/bin:${PATH}"
+
+    # Android device monitor
+    export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
+    export PATH="${HOME}/Library/Android/sdk/tools:${PATH}"
+
+    export PATH="/usr/local/opt/openssl/bin:$PATH"
+    # completions
+    fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
+    #fpath=(~/dotfiles/docker-zsh-completions(N-/) $fpath)
+    # if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    #     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    #     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    # fi
+
+
+    if builtin command -v peco > /dev/null; then
+        function peco-history-selection() {
+            BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+            CURSOR=$#BUFFER
+            zle reset-prompt
+        }
+        zle -N peco-history-selection
+        bindkey '^r' peco-history-selection
+
+        alias g='cd $(ghq root)/$(ghq list | peco)'
+
+        if builtin command -v hub > /dev/null; then
+            alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+        fi
+    fi
+    # ------------------------------------
+    # Linux
+    # ------------------------------------
+else
+    alias ls='ls --color=auto'
+
+    if cat /proc/self/cgroup | grep 'docker' > /dev/null; then
+        export SHELL=/bin/zsh
+        pids=$(pidof /usr/bin/Xvfb)
+        if [ -n "$pids" ]; then
+            processes="$(ps --format command --no-headers -ww --pid $pids)"
+            display=":${processes##*:}"
+            display="${display%% *}"
+            export DISPLAY=$display
+        else
+            unset DISPLAY
+        fi
+    fi
+
+    if builtin command -v peco > /dev/null; then
+        function peco-select-history() {
+            BUFFER=$(\history -n -r 1 | peco --query "$LBUFFER")
+            CURSOR=$#BUFFER
+            zle clear-screen
+        }
+        zle -N peco-select-history
+        bindkey '^r' peco-select-history
+
+        alias g='cd $(ghq root)/$(ghq list | peco)'
+    fi
+fi
+
+if builtin command -v anyenv > /dev/null; then
+    if [ "$(uname)" = 'Darwin' ]; then
+        export PATH="/usr/local/opt/anyenv/bin:$PATH"
+        alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
+    else
+        export PATH="$HOME/.anyenv/bin:$PATH"
+    fi
+
+    eval "$(anyenv init - zsh)"
+    # tmux対応
+    for D in `ls $HOME/.anyenv/envs`
+    do
+        export PATH="$HOME/.anyenv/envs/$D/libexec:$PATH"
+        echo "$HOME/.anyenv/envs/$D/libexec"
+    done
+fi
+
+if builtin command -v opam > /dev/null; then
+    test -r /Users/kosay/.opam/opam-init/init.zsh && . /Users/kosay/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+fi
+
+
+
+# direnv
+if builtin command -v direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+. $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# less color
+if builtin command -v nvim > /dev/null; then
+    alias vim='nvim'
+
+    export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+    if [ "$(uname)" = "Darwin" ]; then
+        alias less='/usr/local/opt/nvim/share/nvim/runtime/macros/less.sh'
+    else
+        alias less='/usr/share/nvim/runtime/macros/less.sh'
+    fi
+else
+    # ls_result=`ls -t /usr/share/vim | grep --color=never -e '[0-9][0-9]'`
+    # latest_version=${(z)ls_result}
+
+    # alias less='/usr/share/vim/${ls_result}/macros/less.sh'
+fi
+
+if builtin command -v clang > /dev/null; then
+    export CC=clang
+fi
+
+
+
+# -------------------------------------
+# 出力色付け
+# -------------------------------------
+# if [ -s "/usr/local/etc/grc.zsh" ]; then
+#     source /usr/local/etc/grc.zsh
+# fi
+
+# man
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
+
+LESS='-M'
+
+autoload colors
+colors
+
+# PROMPT
+if [ "$(uname)" = "Darwin" ]; then
+    PROMPT="%{$fg[green]%}%n %{$reset_color%}%(!.#.$) "
+else
+    PROMPT="%{$fg[green]%}%n@%m %{$reset_color%}%(!.#.$) "
+fi
+RPROMPT="[%~]"
+
+# -------------------------------------
+# 補完機能
+# -------------------------------------
+
+# 補完機能の強化
+autoload -Uz compinit && compinit -i
+#compinit
+
+# #補完に関するオプション
+#setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt mark_dirs             # ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
+setopt list_types            # 補完候補一覧でファイルの種別を識別マーク表示 (訳注:ls -F の記号)
+#setopt auto_menu             # 補完キー連打で順に補完候補を自動で補完
+setopt auto_param_keys       # カッコの対応などを自動的に補完
+setopt interactive_comments  # コマンドラインでも # 以降をコメントと見なす
+setopt magic_equal_subst     # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+
+setopt complete_in_word      # 語の途中でもカーソル位置で補完
+setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
+
+setopt print_eight_bit       # 日本語ファイル名等8ビットを通す
+setopt extended_glob         # 拡張グロブで補完(~とか^とか。例えばless *.txt~memo.txt ならmemo.txt 以外の *.txt にマッチ)
+#setopt globdots              # 明確なドットの指定なしで.から始まるファイルをマッチ
+
+setopt list_packed           # リストを詰めて表示
+
+bindkey "^I" menu-complete   # 展開する前に補完候補を出させる(Ctrl-iで補完するようにする)
+
+# 補完候補を ←↓↑→ でも選択出来るようにする
+zstyle ':completion:*:default' menu select=2
+
+# 補完関数の表示を過剰にする編
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
+zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
+zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+
+bindkey -e
+
+# グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
+# したがって，すべての マッチ種別を別々に表示させたいなら以下のようにする
+zstyle ':completion:*' group-name ''
+
+#LS_COLORSを設定しておく
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+#ファイル補完候補に色を付ける
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# ssh の設定読み込み
+if [ "$(uname)" = "Darwin" ]; then
+    function _ssh {
+        compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d ${HOME}/.ssh/config | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
+    }
+else
+fi
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# 画面をclearして現在のディレクトリパスとディレクトリを表示
+function super_cool() {
+    clear
+    echo -e "\e[31m$(pwd)\e[m"
+    ls_abbrev
+}
+
+# 行が多かったら短縮表示しそれ以外は普通に表示
+ls_abbrev() {
+    if [[ ! -r $PWD ]]; then
+        return
+    fi
+
+    local ls_result
+    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls | sed $'/^\e\[[0-9;]*m$/d')
+
+    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+
+    if [ $ls_lines -gt 10 ]; then
+        echo "$ls_result" | head -n 5
+        echo '...'
+        echo "$ls_result" | tail -n 5
+        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+    else
+        ls
+    fi
+}
+# Enterが押されたら呼ばれる（lsしてからgit管理下で変更があったらgit status）
+function do_enter() {
+    if [ -n "$BUFFER" ]; then
+        zle accept-line
+        return 0
+    fi
+
+    clear
+
+    if [[ ! -r $PWD ]]; then
+        return
+    fi
+    # super_cool
+    # if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+    #     echo
+    #     echo -e "\e[0;33m--- git status ---\e[0m"
+    #     git status -sb
+    # fi
+    zle reset-prompt
+    return 0
+}
+# zle -N do_enter
+# bindkey '^m' do_enter # keyバインド
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if builtin command -v fzf > /dev/null; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+    function fvim() {
+        files=$(git ls-files) &&
+            selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
+            vim $selected_files
+    }
+
+    # function fd() {
+    #     local dir
+    #     dir=$(find ${1:-.} -path '*/\.*' -prune \
+    #         -o -type d -print 2> /dev/null | fzf +m) &&
+    #     cd "$dir"
+    # }
+    # # Use ~~ as the trigger sequence instead of the default **
+    # export FZF_COMPLETION_TRIGGER='~~'
+    # # # Options to fzf command
+    # export FZF_COMPLETION_OPTS='+c -x'
+    # # # Use fd (https://github.com/sharkdp/fd) instead of the default find
+    # # # command for listing path candidates.
+    # # # - The first argument to the function ($1) is the base path to start traversal
+    # # # - See the source code (completion.{bash,zsh}) for the details.
+    # function _fzf_compgen_path() {
+    #     fd --hidden --follow --exclude ".git" . "$1"
+    # }
+
+    # # # Use fd to generate the list for directory completion
+    # function _fzf_compgen_dir() {
+    #     fd --type d --hidden --follow --exclude ".git" . "$1"
+    # }
+    # complete -F _fzf_path_completion -o default -o bashdefault ag
+    # complete -F _fzf_dir_completion -o default -o bashdefault tree
+fi
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+# battery
+# POWERLEVEL9K_BATTERY_LOW_BACKGROUND='none'
+POWERLEVEL9K_BATTERY_LOW_FOREGROUND='001'
+# POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='none'
+POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='076'
+# POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='none'
+POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='076'
+# POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='none'
+POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='003'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
+POWERLEVEL9K_BATTERY_VERBOSE=false
+
+POWERLEVEL9K_BATTERY_STAGES=($'\uf244 ' $'\uf243 ' $'\uf242 ' $'\uf241 ' $'\uf240 ')
+# POWERLEVEL9K_BATTERY_STAGES=(
+#    $'▏    ▏' $'▎    ▏' $'▍    ▏' $'▌    ▏' $'▋    ▏' $'▊    ▏' $'▉    ▏' $'█    ▏'
+#    $'█▏   ▏' $'█▎   ▏' $'█▍   ▏' $'█▌   ▏' $'█▋   ▏' $'█▊   ▏' $'█▉   ▏' $'██   ▏'
+#    $'██   ▏' $'██▎  ▏' $'██▍  ▏' $'██▌  ▏' $'██▋  ▏' $'██▊  ▏' $'██▉  ▏' $'███  ▏'
+#    $'███  ▏' $'███▎ ▏' $'███▍ ▏' $'███▌ ▏' $'███▋ ▏' $'███▊ ▏' $'███▉ ▏' $'████ ▏'
+#    $'████ ▏' $'████▎▏' $'████▍▏' $'████▌▏' $'████▋▏' $'████▊▏' $'████▉▏' $'█████▏' )
+# POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(red1 orangered1 darkorange orange1 gold1 yellow1 yellow2 greenyellow chartreuse1 chartreuse2 green1)
+
+# user
+# POWERLEVEL9K_USER_DEFAULT_FOREGROUND='green'
+# POWERLEVEL9K_USER_DEFAULT_BACKGROUND='none'
+# POWERLEVEL9K_USER_SUDO_FOREGROUND='green'
+# POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
+# POWERLEVEL9K_USER_ICON="\uF415" # 
+# POWERLEVEL9K_ROOT_ICON="#"
+# POWERLEVEL9K_SUDO_ICON=$'\uF09C' # 
+POWERLEVEL9K_ALWAYS_SHOW_USER=true
+POWERLEVEL9K_USER_TEMPLATE="%n %(!.#.$)"
+
+# dir
+# POWERLEVEL9K_DIR_ICON_FOREGROUND='white'
+# POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
+# POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
+# POWERLEVEL9K_DIR_HOME_ETC_FOREGROUND='white'
+# POWERLEVEL9K_DIR_HOME_ETC_BACKGROUND='none'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+# vcs
+# POWERLEVEL9K_VCS_CLEAN_FOREGROUND='white'
+# POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
+# POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='white'
+# POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
+# POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='white'
+# POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
+
+
+# context
+POWERLEVEL9K_ALWAYS_SHOW_USER=true
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n %(!.#.$)"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="none"
+
+# POWERLEVEL9K_CONTEXT_TEMPLATE="%F{cyan}%n%f"
+# prompt
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(dir_writable dir vcs battery)
+
+zplug check --verbose || zplug install
+zplug load
+
+
