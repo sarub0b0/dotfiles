@@ -14,7 +14,15 @@ zsh () {
     ln -sf $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
 }
 
+completion () {
+    if [ "$(uname)" = 'Darwin' ]; then
+        ln -sf /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion ./zsh/completions/_docker
+    else
+    fi
+}
+
 vim
 tmux
 zsh
 
+completion
