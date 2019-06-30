@@ -1,1 +1,1 @@
-../zsh-completions/src/_redis-cli
+./zsh-completions/src/_redis-cli

@@ -1,1 +1,1 @@
-../zsh-completions/src/_dhcpcd
+./zsh-completions/src/_dhcpcd

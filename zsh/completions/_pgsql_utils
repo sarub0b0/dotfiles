@@ -1,1 +1,1 @@
-../zsh-completions/src/_pgsql_utils
+./zsh-completions/src/_pgsql_utils

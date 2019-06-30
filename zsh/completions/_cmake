@@ -1,1 +1,1 @@
-../zsh-completions/src/_cmake
+./zsh-completions/src/_cmake

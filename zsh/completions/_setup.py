@@ -1,1 +1,1 @@
-../zsh-completions/src/_setup.py
+./zsh-completions/src/_setup.py

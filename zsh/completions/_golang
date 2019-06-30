@@ -1,1 +1,1 @@
-../zsh-completions/src/_golang
+./zsh-completions/src/_golang
