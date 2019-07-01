@@ -142,8 +142,9 @@ __anyenv () {
             export PATH="$HOME/.anyenv/bin:$PATH"
         fi
 
-        eval "$(anyenv init - --no-rehash)"
-        # eval "$(anyenv lazyload)"
+        # eval "$(anyenv init - --no-rehash)"
+        # eval "$(anyenv init - )"
+        eval "$(anyenv lazyload)"
         # tmux対応
         env_dir=$HOME/.anyenv/envs
         for D in `ls $env_dir`
@@ -153,13 +154,14 @@ __anyenv () {
     fi
 }
 
-__anyenv_lazy () {
+# __anyenv_lazy () {
 
-}
+# }
 
 __nvim () {
     if builtin command -v nvim > /dev/null; then
-        alias vim='nvim'
+        # alias vim='nvim'
+        alias vim='pyenv version > /dev/null; nvim'
         export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
     fi
 }
@@ -296,6 +298,7 @@ __zplugin () {
     autoload -Uz _zplugin
     (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
+    # zpcompinit -C
     zplugin ice wait"0" blockf silent
     zplugin light zsh-users/zsh-completions
 
@@ -345,10 +348,10 @@ __alias
 __envs
 __prompt
 __anyenv
-__fzf
 __nvim
-__zplugin
 __completion
+__zplugin
+__fzf
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
