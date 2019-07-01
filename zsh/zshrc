@@ -1,5 +1,7 @@
 # zmodload zsh/zprof && zprof
 
+[[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
+
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
