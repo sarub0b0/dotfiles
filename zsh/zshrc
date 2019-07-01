@@ -86,7 +86,6 @@ __prompt () {
 __completion () {
     # 補完機能の強化
     autoload -Uz compinit && compinit -C
-    # compinit -C
 
     # #補完に関するオプション
     #setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
@@ -307,24 +306,25 @@ __fzf () {
 #     # zplug load
 # }
 
-__zplugin () {
-    source "$HOME/.zplugin/bin/zplugin.zsh"
-    autoload -Uz _zplugin
-    (( ${+_comps} )) && _comps[zplugin]=_zplugin
+# __zplugin () {
+#     source "$HOME/.zplugin/bin/zplugin.zsh"
+#     autoload -Uz _zplugin
+#     (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-    # zpcompinit -C
-    zplugin ice wait"0" blockf silent
-    zplugin light zsh-users/zsh-completions
+#     # zpcompinit -C
+#     zplugin ice wait"0" blockf silent
+#     zplugin light zsh-users/zsh-completions
 
 
-    # zplugin light bhilburn/powerlevel9k
-    # zplugin ice wait'!0' atload"zsh-users/zsh-completions"
+#     # zplugin light bhilburn/powerlevel9k
+#     # zplugin ice wait'!0' atload"zsh-users/zsh-completions"
 
-    zpcompinit -C
-    # autoload -Uz compinit && compinit -C
+#     zpcompinit -C
+#     # autoload -Uz compinit && compinit -C
 
-    # ___p9k
-}
+#     # ___p9k
+# }
+
 __command () {
 
     man() {
@@ -405,7 +405,7 @@ __prompt
 __anyenv
 __nvim
 __completion
-__zplugin
+# __zplugin
 __fzf
 
 if [ "$(uname)" = 'Darwin' ]; then
@@ -423,5 +423,5 @@ __zcomp
 
 
 # if (which zprof > /dev/null 2>&1) ;then
-#   zprof
+#     zprof
 # fi
