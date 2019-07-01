@@ -347,8 +347,8 @@ __prompt
 __anyenv
 __fzf
 __nvim
-__completion
 __zplugin
+__completion
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
