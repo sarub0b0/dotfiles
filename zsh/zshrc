@@ -87,7 +87,7 @@ __prompt () {
 
 __completion () {
     # 補完機能の強化
-    autoload -Uz compinit && compinit -C
+    autoload -Uz compinit && compinit -i
 
     # #補完に関するオプション
     #setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
