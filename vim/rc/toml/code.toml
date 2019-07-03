@@ -177,6 +177,15 @@ hook_source = '''
 '''
 depends = 'vimproc.vim'
 
+[[plugins]]
+repo = 'ruby-formatter/rufo-vim'
+on_ft = 'ruby'
+hook_source = '''
+    " Enable rufo (RUby FOrmat)
+    let g:rufo_auto_formatting = 1
+
+'''
+
 
 ############################################
 # go
