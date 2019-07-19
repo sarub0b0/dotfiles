@@ -131,10 +131,10 @@ __completion () {
 
 
     function _ssh {
-        compadd `grep -r --color=never "^Host" ${HOME}/.ssh/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
+        compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
     }
 
-    fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
+    # fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
 }
 
 
@@ -147,9 +147,9 @@ __anyenv () {
             export PATH="$HOME/.anyenv/bin:$PATH"
         fi
 
-        # eval "$(anyenv init - --no-rehash)"
+        eval "$(anyenv init - --no-rehash)"
         # eval "$(anyenv init - )"
-        eval "$(anyenv lazyload)"
+        # eval "$(anyenv lazyload)"
         # tmux対応
         env_dir=$HOME/.anyenv/envs
         for D in `ls $env_dir`
