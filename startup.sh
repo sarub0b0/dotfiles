@@ -26,4 +26,4 @@ vim
 tmux
 zsh
 
-completion
+# completion
