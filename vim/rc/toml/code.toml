@@ -231,3 +231,14 @@ hook_source = '''
 [[plugins]]
 repo = 'google/vim-codefmt'
 
+[[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+on_source = ['deoplete.nvim']
+hook_source = '''
+    call deoplete#custom#var('tabnine', {
+    \ 'line_limit': 500,
+    \ 'max_num_results': 20,
+    \ })
+'''
+build = './install.sh'
+
