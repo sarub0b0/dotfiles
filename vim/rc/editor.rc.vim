@@ -7,6 +7,12 @@ scriptencoding utf-8
 filetype plugin indent on
 syntax on
 
+" Explore
+let g:netrw_liststyle = 3
+let g:netrw_preview = 1
+let g:netrw_winsize = 20
+let g:netrw_list_hide = '^\..*'
+
 " setl spell spelllang=en,cjk
 
 set helplang=ja,en
