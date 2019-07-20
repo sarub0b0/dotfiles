@@ -1,7 +1,5 @@
 # zmodload zsh/zprof && zprof
 
-# [[ -z "$TMUX" && ! -z "$PS1" ]] && tmux
-
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
@@ -61,10 +59,6 @@ __linux () {
 }
 
 __color () {
-    # if [ -s "/usr/local/etc/grc.zsh" ]; then
-    #     source /usr/local/etc/grc.zsh
-    # fi
-
     export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
 
@@ -158,10 +152,6 @@ __anyenv () {
         done
     fi
 }
-
-# __anyenv_lazy () {
-
-# }
 
 __nvim () {
     if builtin command -v nvim > /dev/null; then
@@ -353,7 +343,7 @@ __zcomp () {
     if [ ! -f ~/.zshrc.zwc ] || [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
         zcompile ~/.zshrc
     fi
-    if [ ! -f ~/.zcompdump.zwc ] || [ $HOME/.zcompdump -nt ~/.zompdump.zwc ]; then
+    if [ ! -f ~/.zcompdump.zwc ] || [ $HOME/.zcompdump -nt ~/.zcompdump.zwc ]; then
         zcompile ~/.zcompdump
     fi
 }
