@@ -242,3 +242,37 @@ hook_source = '''
 '''
 build = './install.sh'
 
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_source = '''
+if executable('cquery')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'cquery',
+      \ 'cmd': {server_info->['cquery']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': { 'cacheDirectory': '~/.cache/cquery/cache' },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+endif
+'''
+
+[[plugins]]
+# repo = 'pdavydov108/vim-lsp-cquery'
+repo = 'Shougo/deoplete-lsp'
+hook_source = '''
+call lsp#server#add('c', 'cquery')
+call lsp#server#add('cpp', 'cquery')
+call lsp#server#add('cc', 'cquery')
+'''
+on_ft = ['c', 'cpp', 'cc']
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-snippets'
+on_source = 'neosnippet.vim'
+
+[[plugins]]
+repo = 'thomasfaingnaert/vim-lsp-neosnippet'
+on_source = 'neosnippet.vim'
