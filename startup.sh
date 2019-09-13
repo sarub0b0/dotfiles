@@ -22,8 +22,14 @@ completion () {
     fi
 }
 
+anyenv () {
+    git clone https://github.com/anyenv/anyenv ~/.anyenv
+    zsh ~/.anyenv/bin/anyenv init
+}
+
 vim
 tmux
 zsh
+anyenv
 
 # completion
