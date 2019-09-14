@@ -133,24 +133,24 @@ __completion () {
 
 
 __anyenv () {
-    if builtin command -v anyenv > /dev/null; then
-        if [ "$(uname)" = 'Darwin' ]; then
-            export PATH="/usr/local/opt/anyenv/bin:$PATH"
-            alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
-        else
-            export PATH="$HOME/.anyenv/bin:$PATH"
-        fi
-
-        eval "$(anyenv init - --no-rehash)"
-        # eval "$(anyenv init - )"
-        # eval "$(anyenv lazyload)"
-        # tmux対応
-        env_dir=$HOME/.anyenv/envs
-        for D in `ls $env_dir`
-        do
-            export PATH="$env_dir/$D/libexec:$PATH"
-        done
+    # if builtin command -v anyenv > /dev/null; then
+    if [ "$(uname)" = 'Darwin' ]; then
+        export PATH="/usr/local/opt/anyenv/bin:$PATH"
+        alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
+    else
+        export PATH="$HOME/.anyenv/bin:$PATH"
     fi
+
+    eval "$(anyenv init - --no-rehash)"
+    # eval "$(anyenv init - )"
+    # eval "$(anyenv lazyload)"
+    # tmux対応
+    env_dir=$HOME/.anyenv/envs
+    for D in `ls $env_dir`
+    do
+        export PATH="$env_dir/$D/libexec:$PATH"
+    done
+    # fi
 }
 
 __nvim () {
