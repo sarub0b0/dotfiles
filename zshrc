@@ -124,9 +124,9 @@ __completion () {
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 
-    function _ssh {
-        compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
-    }
+    # function _ssh {
+    #     compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
+    # }
 
     # fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
 }
