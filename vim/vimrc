@@ -55,7 +55,7 @@ if has('nvim')
    " call s:source_rc('status_line.rc.vim')
 endif
 
-" call s:source_rc('dein.rc.vim')
+call s:source_rc('dein.rc.vim')
 
 call s:source_rc('editor.rc.vim')
 

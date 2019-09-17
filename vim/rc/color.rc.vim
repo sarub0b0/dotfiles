@@ -3,14 +3,16 @@ if has('termguicolors')
 
     let s:termcolor = 'OceanicNext'
 
-    augroup TransparentBG
-        autocmd!
-        autocmd Colorscheme * highlight Normal guibg=none
-        autocmd Colorscheme * highlight NonText guibg=none
-        autocmd Colorscheme * highlight LineNr guibg=none
-        autocmd Colorscheme * highlight Folded guibg=none
-        autocmd Colorscheme * highlight EndOfBuffer guibg=none
-    augroup END
+    if has('nvim')
+        augroup TransparentBG
+            autocmd!
+            autocmd Colorscheme * highlight Normal guibg=none
+            autocmd Colorscheme * highlight NonText guibg=none
+            autocmd Colorscheme * highlight LineNr guibg=none
+            autocmd Colorscheme * highlight Folded guibg=none
+            autocmd Colorscheme * highlight EndOfBuffer guibg=none
+        augroup END
+    endif
 
     let colorschemes = getcompletion('', 'color')
     for scheme in colorschemes
