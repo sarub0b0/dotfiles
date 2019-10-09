@@ -219,3 +219,5 @@ repo = 'junegunn/fzf'
 build = './install --all'
 merged = 0
 
+# [[plugins]]
+# repo = 'willelz/badapple.nvim'
