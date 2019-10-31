@@ -38,7 +38,10 @@ set listchars=tab:\-\-
 set autoread
 
 " 現在の行を強調
-set cursorline
+set nocursorline
+if has('nvim')
+    set cursorline
+endif
 " highlight clear CursorLine
 " set cursorcolumn
 " 改行時,同じインデントで始める

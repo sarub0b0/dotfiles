@@ -23,12 +23,12 @@ completion () {
 }
 
 anyenv () {
-    git clone https://github.com/anyenv/anyenv ~/.anyenv
+    git clone --depth 1 https://github.com/anyenv/anyenv ~/.anyenv
     zsh ~/.anyenv/bin/anyenv init
     if [ -d $HOME/.anyenv/plugins ]; then
         mkdir -p $HOME/.anyenv/plugins
     fi
-    git clone https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
+    git clone --depth 1 https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
 }
 
 vim
