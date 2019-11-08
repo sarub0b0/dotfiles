@@ -17,6 +17,7 @@ __alias () {
     alias gtags_remove='rm GPATH GRTAGS GTAGS'
     alias gobuild='go build'
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
+    alias k='kubectl'
 
 }
 
@@ -33,6 +34,9 @@ __envs () {
     setopt hist_reduce_blanks
 
     export GOPATH=~/.go
+
+    export DOCKER_BUILDKIT=1
+    export COMPOSE_DOCKER_CLI_BUILD=1
 
 }
 
