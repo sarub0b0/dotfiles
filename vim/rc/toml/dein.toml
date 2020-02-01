@@ -221,3 +221,6 @@ merged = 0
 
 # [[plugins]]
 # repo = 'willelz/badapple.nvim'
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
