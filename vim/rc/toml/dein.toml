@@ -31,7 +31,7 @@ repo = 'cocopon/iceberg.vim'
 
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'dense-analysis/ale'
 hook_add = '''
     " エラー行に表示するマーク
     " let g:ale_sign_error = '⨉'
