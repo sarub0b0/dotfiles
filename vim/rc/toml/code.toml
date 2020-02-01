@@ -60,7 +60,7 @@ hook_source = '''
                 \ 'IndentCaseLabels': 'true',
                 \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
                 \ 'SpacesBeforeTrailingComments': 1,
-                \ 'AlwaysBreakAfterReturnType': 'ALLDefinitions',
+                \ 'AlwaysBreakAfterReturnType': 'AllDefinitions',
                 \ 'AllowShortFunctionsOnASingleLine': 'None',
                 \ 'AllowShortBlocksOnASingleLine': 'false',
                 \ 'SortIncludes': 'false',
