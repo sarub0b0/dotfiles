@@ -200,7 +200,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
+repo = 'deoplete-plugins/deoplete-go'
 on_ft = 'go'
 build = 'make'
 on_source = ['deoplete.nvim']
@@ -213,11 +213,11 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
 [[plugins]]
-repo = 'zchee/deoplete-zsh'
+repo = 'deoplete-plugins/deoplete-zsh'
 on_ft = 'zsh'
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
+repo = 'deoplete-plugins/deoplete-jedi'
 on_ft = 'python'
 
 [[plugins]]
