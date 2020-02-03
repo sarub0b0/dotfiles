@@ -5,6 +5,9 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+
 [[plugins]] # icons
 repo = 'ryanoasis/vim-devicons'
 hook_add = '''
@@ -218,6 +221,3 @@ hook_add = 'nmap <silent> <Leader>d <Plug>DashSearch'
 repo = 'junegunn/fzf'
 build = './install --all'
 merged = 0
-
-# [[plugins]]
-# repo = 'willelz/badapple.nvim'

@@ -23,6 +23,8 @@ __alias () {
 
 __envs () {
     export EDITOR="vim"
+    # export GOPATH="$GOROOT"
+
     export PATH="${HOME}/bin:${PATH}"
     export TERM=xterm-256color
     export XDG_CONFIG_HOME="${HOME}/.config"
@@ -33,10 +35,17 @@ __envs () {
 
     setopt hist_reduce_blanks
 
-    export GOPATH=~/.go
+    export PATH="$GOPATH/bin:$PATH"
+
+    export PATH="${NODENV_ROOT}/versions/12.11.1/bin:$PATH"
+
 
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
+
+    export KUBECONFIG=$HOME/.kube/config-lab
+
+    export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
 
 }
 
@@ -128,9 +137,9 @@ __completion () {
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 
-    # function _ssh {
-    #     compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
-    # }
+    function _ssh {
+        compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
+    }
 
     # fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
 }
@@ -180,146 +189,8 @@ __fzf () {
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-
-
-        # function fd() {
-        #     local dir
-        #     dir=$(find ${1:-.} -path '*/\.*' -prune \
-        #         -o -type d -print 2> /dev/null | fzf +m) &&
-        #     cd "$dir"
-        # }
-        # # Use ~~ as the trigger sequence instead of the default **
-        # export FZF_COMPLETION_TRIGGER='~~'
-        # # # Options to fzf command
-        # export FZF_COMPLETION_OPTS='+c -x'
-        # # # Use fd (https://github.com/sharkdp/fd) instead of the default find
-        # # # command for listing path candidates.
-            # # # - The first argument to the function ($1) is the base path to start traversal
-            # # # - See the source code (completion.{bash,zsh}) for the details.
-                # function _fzf_compgen_path() {
-                #     fd --hidden --follow --exclude ".git" . "$1"
-                # }
-
-        # # # Use fd to generate the list for directory completion
-            # function _fzf_compgen_dir() {
-            #     fd --type d --hidden --follow --exclude ".git" . "$1"
-            # }
-            # complete -F _fzf_path_completion -o default -o bashdefault ag
-            # complete -F _fzf_dir_completion -o default -o bashdefault tree
     fi
-
 }
-
-# ___p9k () {
-#         POWERLEVEL9K_MODE="nerdfont-complete"
-
-#         # battery
-#         # POWERLEVEL9K_BATTERY_LOW_BACKGROUND='none'
-#         POWERLEVEL9K_BATTERY_LOW_FOREGROUND='001'
-#         # POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='none'
-#         POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='076'
-#         # POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='none'
-#         POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='076'
-#         # POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='none'
-#         POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='003'
-#         POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
-#         POWERLEVEL9K_BATTERY_VERBOSE=false
-
-#         POWERLEVEL9K_BATTERY_STAGES=($'\uf244 ' $'\uf243 ' $'\uf242 ' $'\uf241 ' $'\uf240 ')
-#         # POWERLEVEL9K_BATTERY_STAGES=(
-#         #    $'▏    ▏' $'▎    ▏' $'▍    ▏' $'▌    ▏' $'▋    ▏' $'▊    ▏' $'▉    ▏' $'█    ▏'
-#         #    $'█▏   ▏' $'█▎   ▏' $'█▍   ▏' $'█▌   ▏' $'█▋   ▏' $'█▊   ▏' $'█▉   ▏' $'██   ▏'
-#         #    $'██   ▏' $'██▎  ▏' $'██▍  ▏' $'██▌  ▏' $'██▋  ▏' $'██▊  ▏' $'██▉  ▏' $'███  ▏'
-#         #    $'███  ▏' $'███▎ ▏' $'███▍ ▏' $'███▌ ▏' $'███▋ ▏' $'███▊ ▏' $'███▉ ▏' $'████ ▏'
-#         #    $'████ ▏' $'████▎▏' $'████▍▏' $'████▌▏' $'████▋▏' $'████▊▏' $'████▉▏' $'█████▏' )
-#         # POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(red1 orangered1 darkorange orange1 gold1 yellow1 yellow2 greenyellow chartreuse1 chartreuse2 green1)
-
-#         # user
-#         # POWERLEVEL9K_USER_DEFAULT_FOREGROUND='green'
-#         # POWERLEVEL9K_USER_DEFAULT_BACKGROUND='none'
-#         # POWERLEVEL9K_USER_SUDO_FOREGROUND='green'
-#         # POWERLEVEL9K_USER_ROOT_FOREGROUND='red'
-#         # POWERLEVEL9K_USER_ICON="\uF415" # 
-#         # POWERLEVEL9K_ROOT_ICON="#"
-#         # POWERLEVEL9K_SUDO_ICON=$'\uF09C' # 
-#         POWERLEVEL9K_ALWAYS_SHOW_USER=true
-#         POWERLEVEL9K_USER_TEMPLATE="%n %(!.#.$)"
-
-#         # dir
-#         # POWERLEVEL9K_DIR_ICON_FOREGROUND='white'
-#         # POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
-#         # POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
-#         # POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='white'
-#         # POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
-#         # POWERLEVEL9K_DIR_HOME_ETC_FOREGROUND='white'
-#         # POWERLEVEL9K_DIR_HOME_ETC_BACKGROUND='none'
-#         POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-#         POWERLEVEL9K_SHORTEN_DELIMITER=""
-#         POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-#         # vcs
-#         # POWERLEVEL9K_VCS_CLEAN_FOREGROUND='white'
-#         # POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
-#         # POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='white'
-#         # POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
-#         # POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='white'
-#         # POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
-
-
-#         # context
-#         POWERLEVEL9K_ALWAYS_SHOW_USER=true
-#         POWERLEVEL9K_CONTEXT_TEMPLATE="%n %(!.#.$)"
-#         POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="none"
-
-#         # POWERLEVEL9K_CONTEXT_TEMPLATE="%F{cyan}%n%f"
-#         # prompt
-#         POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-#         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context)
-#         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(dir_writable dir battery)
-
-#         POWERLEVEL9K_USE_CACHE=true
-#     }
-
-# __zplug () {
-#     export ZPLUG_HOME=$HOME/.zplug
-#     source $ZPLUG_HOME/init.zsh
-
-#     zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-#     zplug 'zsh-users/zsh-completions', use:'src/_*', lazy:true
-
-#     ___p9k
-
-#     if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
-#         touch ~/.zplug/last_zshrc_check_time
-#         if ! zplug check --verbose; then
-#             printf "Install? [y/N]: "
-#             if read -q; then
-#                 echo; zplug install
-#             fi
-#         fi
-#     fi
-#     zplug load
-#     # zplug check --verbose || zplug install
-#     # zplug load
-# }
-
-# __zplugin () {
-#     source "$HOME/.zplugin/bin/zplugin.zsh"
-#     autoload -Uz _zplugin
-#     (( ${+_comps} )) && _comps[zplugin]=_zplugin
-
-#     # zpcompinit -C
-#     zplugin ice wait"0" blockf silent
-#     zplugin light zsh-users/zsh-completions
-
-
-#     # zplugin light bhilburn/powerlevel9k
-#     # zplugin ice wait'!0' atload"zsh-users/zsh-completions"
-
-#     zpcompinit -C
-#     # autoload -Uz compinit && compinit -C
-
-#     # ___p9k
-# }
 
 __command () {
 
@@ -352,57 +223,20 @@ __zcomp () {
     fi
 }
 
-# __powerline_go () {
-#     function powerline_precmd() {
-#         eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -eval \
-#             -modules user -modules-right perms,gitlite,cwd -cwd-mode plain \
-#             -max-width 30 -cwd-max-dir-size 5 -colorize-hostname -cwd-max-depth 10)"
-#     }
 
-#     function install_powerline_precmd() {
-#         for s in "${precmd_functions[@]}"; do
-#             if [ "$s" = "powerline_precmd" ]; then
-#                 return
-#             fi
-#         done
-#         precmd_functions+=(powerline_precmd)
-#     }
-
-#     if [ "$TERM" != "linux" ]; then
-#         install_powerline_precmd
-#     fi
-# }
-
-# __powerline_shell () {
-#     function powerline_precmd() {
-#         PS1="$(powerline-shell --shell zsh $?)"
-#     }
-
-#     function install_powerline_precmd() {
-#         for s in "${precmd_functions[@]}"; do
-#             if [ "$s" = "powerline_precmd" ]; then
-#                 return
-#             fi
-#         done
-#         precmd_functions+=(powerline_precmd)
-#     }
-
-#     if [ "$TERM" != "linux" ]; then
-#         install_powerline_precmd
-#     fi
-# }
 
 # 一番最初
 __color
 
 __alias
-__envs
 __prompt
 __anyenv
 __nvim
 __completion
 # __zplugin
 __fzf
+
+__envs
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
@@ -415,6 +249,8 @@ __command
 
 __zcomp
 
+
+eval "$(kubectl completion zsh)"
 # __powerline_shell
 
 
