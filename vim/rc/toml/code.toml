@@ -60,7 +60,7 @@ hook_source = '''
                 \ 'IndentCaseLabels': 'true',
                 \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
                 \ 'SpacesBeforeTrailingComments': 1,
-                \ 'AlwaysBreakAfterDefinitionReturnType': 'false',
+                \ 'AlwaysBreakAfterReturnType': 'AllDefinitions',
                 \ 'AllowShortFunctionsOnASingleLine': 'None',
                 \ 'AllowShortBlocksOnASingleLine': 'false',
                 \ 'SortIncludes': 'false',
@@ -200,7 +200,7 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
+repo = 'deoplete-plugins/deoplete-go'
 on_ft = 'go'
 build = 'make'
 on_source = ['deoplete.nvim']
@@ -213,11 +213,11 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
 [[plugins]]
-repo = 'zchee/deoplete-zsh'
+repo = 'deoplete-plugins/deoplete-zsh'
 on_ft = 'zsh'
 
 [[plugins]]
-repo = 'zchee/deoplete-jedi'
+repo = 'deoplete-plugins/deoplete-jedi'
 on_ft = 'python'
 
 [[plugins]]
@@ -236,7 +236,7 @@ repo = 'tbodt/deoplete-tabnine'
 on_source = ['deoplete.nvim']
 hook_source = '''
     call deoplete#custom#var('tabnine', {
-    \ 'line_limit': 500,
+    \ 'line_limit': 100,
     \ 'max_num_results': 20,
     \ })
 '''
