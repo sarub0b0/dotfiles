@@ -263,9 +263,9 @@ endif
 # repo = 'pdavydov108/vim-lsp-cquery'
 repo = 'Shougo/deoplete-lsp'
 hook_source = '''
-call lsp#server#add('c', 'cquery')
-call lsp#server#add('cpp', 'cquery')
-call lsp#server#add('cc', 'cquery')
+"call lsp#server#add('c', 'cquery')
+"call lsp#server#add('cpp', 'cquery')
+"call lsp#server#add('cc', 'cquery')
 '''
 on_ft = ['c', 'cpp', 'cc']
 
@@ -273,6 +273,3 @@ on_ft = ['c', 'cpp', 'cc']
 repo = 'thomasfaingnaert/vim-lsp-snippets'
 on_source = 'neosnippet.vim'
 
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-neosnippet'
-on_source = 'neosnippet.vim'

@@ -14,6 +14,13 @@ autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
 autocmd MyAutoCmd FileType python call s:python_setting()
 autocmd MyAutoCmd FileType markdown call s:markdown_opt()
 autocmd MyAutoCmd FileType sh call s:set_indent_format()
+autocmd MyAutoCmd FileType yaml call s:yaml_setting()
+
+function! s:yaml_setting()
+    setl tabstop=2
+    setl softtabstop=2
+    setl shiftwidth=2
+endfunction
 
 function! s:markdown_setting()
 endfunction
