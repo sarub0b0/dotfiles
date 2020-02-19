@@ -251,7 +251,9 @@ __command
 __zcomp
 
 
-eval "$(kubectl completion zsh)"
+if builtin command -v kubectl > /dev/null; then
+    eval "$(kubectl completion zsh)"
+fi
 # __powerline_shell
 
 
