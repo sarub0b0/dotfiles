@@ -43,9 +43,10 @@ __envs () {
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-    export KUBECONFIG=$HOME/.kube/config-lab
+    export KUBECONFIG=$HOME/.kube/config-eks
 
     export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
+    export PATH=$HOME/work/service-mesh/istio-1.4.4/bin:$PATH
 
 }
 
