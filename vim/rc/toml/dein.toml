@@ -32,6 +32,9 @@ repo = 'mhartington/oceanic-next'
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
 
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+
 
 [[plugins]]
 repo = 'dense-analysis/ale'
@@ -62,6 +65,9 @@ hook_add = '''
 
     let g:ale_lint_on_insert_leave = 0
 
+    " ファイルを保存したときにfix実行
+    let g:ale_fix_on_save = 1
+
     " lint結果をロケーションリストとQuickFixには表示しない
     " 出てると結構うざいしQuickFixを書き換えられるのは困る
     let g:ale_set_loclist = 0
@@ -82,6 +88,20 @@ hook_add = '''
         "\}
     endif
 
+    let g:ale_linters = {
+            \'c': ['clang'],
+            \'cpp': ['clang'],
+            \'html': ['eslint'],
+            \'javascript': ['eslint'],
+            \'css': ['eslint'],
+            \'vue': ['eslint'],
+            \}
+    let g:ale_fixers = {
+            \'html': ['prettier'],
+            \'css': ['prettier'],
+            \'javascript': ['eslint'],
+            \'vue': ['eslint'],
+            \}
 '''
 
 [[plugins]]
@@ -199,6 +219,7 @@ hook_add = '''
 
     " hide --INSERT--
     set noshowmode
+
 '''
 depends = ['lightline-ale']
 

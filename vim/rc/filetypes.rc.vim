@@ -3,7 +3,7 @@ scriptencoding utf-8
 let g:tex_flavor='latex'
 
 autocmd MyAutoCmd BufRead,BufNewFile Guardfile set filetype=ruby
-autocmd MyAutoCmd FileType ruby call s:ruby_tab_config()
+autocmd MyAutoCmd FileType ruby call s:two_indent_config()
 " autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_format_config() | call s:ale_option()
 " autocmd MyAutoCmd FileType c,cpp,h,java call s:clang_option()
 autocmd MyAutoCmd FileType nerdtree set nolist
@@ -15,6 +15,7 @@ autocmd MyAutoCmd FileType python call s:python_setting()
 autocmd MyAutoCmd FileType markdown call s:markdown_opt()
 autocmd MyAutoCmd FileType sh call s:set_indent_format()
 autocmd MyAutoCmd FileType yaml call s:yaml_setting()
+autocmd MyAutoCmd FileType html,md,javascript,typescript,css call s:two_indent_config()
 
 function! s:yaml_setting()
     setl tabstop=2
@@ -68,7 +69,7 @@ function! s:clang_option()
     let g:c_syntax_for_h = 1
 endfunction
 
-function! s:ruby_tab_config()
+function! s:two_indent_config()
     setl tabstop=2
     setl softtabstop=2
     setl shiftwidth=2
