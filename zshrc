@@ -45,8 +45,9 @@ __envs () {
 
     export KUBECONFIG=$HOME/.kube/config-eks
 
-    export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
-    export PATH=$HOME/work/service-mesh/istio-1.4.4/bin:$PATH
+    # export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
+    # export PATH=$HOME/work/service-mesh/istio-1.4.4/bin:$PATH
+    export PATH=$HOME/work/service-mesh/istio-1.5.0/bin:$PATH
 
 }
 
