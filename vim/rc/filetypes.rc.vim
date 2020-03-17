@@ -17,6 +17,9 @@ autocmd MyAutoCmd FileType sh call s:set_indent_format()
 autocmd MyAutoCmd FileType yaml call s:yaml_setting()
 autocmd MyAutoCmd FileType html,md,javascript,typescript,css call s:two_indent_config()
 
+autocmd MyAutoCmd BufWinEnter,WinEnter term://* startinsert
+autocmd MyAutoCmd BufLeave stopinsert
+
 function! s:yaml_setting()
     setl tabstop=2
     setl softtabstop=2

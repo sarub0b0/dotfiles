@@ -245,3 +245,6 @@ merged = 0
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
+
+# [[plugins]]
+# repo = 'alvan/vim-closetag'
