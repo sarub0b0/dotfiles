@@ -3,9 +3,17 @@ autocmd MyAutoCmd FileType text,tex,ruby,c,cpp,python call s:plain_text()
 autocmd MyAutoCmd FileType ruby call s:ruby_file_comment()
 
 autocmd MyAutoCmd Syntax * call s:error_syntax()
+autocmd MyAutoCmd Syntax * call s:warning_syntax()
+
+
 function! s:error_syntax()
     highlight link qfError ErrorMsg
     highlight link QuickFixLine CursorLine
+endfunction
+
+function! s:warning_syntax()
+    highlight link ALEWarningLine Comment
+    highlight link ALEWarning Comment
 endfunction
 
 

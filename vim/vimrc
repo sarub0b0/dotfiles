@@ -61,7 +61,7 @@ call s:source_rc('filetypes.rc.vim')
 
 call s:source_rc('windowctrl.rc.vim')
 
-" call s:source_rc('syntaxinfo.rc.vim')
+call s:source_rc('syntaxinfo.rc.vim')
 
 
 
