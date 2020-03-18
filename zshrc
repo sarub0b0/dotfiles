@@ -18,7 +18,6 @@ __alias () {
     alias gobuild='go build'
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
     alias k='kubectl'
-
 }
 
 __envs () {
@@ -43,12 +42,14 @@ __envs () {
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-    export KUBECONFIG=$HOME/.kube/config-eks
 
     # export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
     # export PATH=$HOME/work/service-mesh/istio-1.4.4/bin:$PATH
     export PATH=$HOME/work/service-mesh/istio-1.5.0/bin:$PATH
 
+    if [ "$(hostname)" = "kosay-bbtower.local" ]; then
+        export KUBECONFIG=$HOME/.kube/config-gke
+    fi
 }
 
 __iterm2 () {
@@ -83,12 +84,16 @@ __color () {
     colors
 }
 
-__prompt () {
+__default_prompt () {
     if [ "$(uname)" = "Darwin" ]; then
         PROMPT="%{$fg[green]%}%n %{$reset_color%}%(!.#.$) "
     else
         PROMPT="%{$fg[green]%}%n@%m %{$reset_color%}%(!.#.$) "
     fi
+}
+
+__prompt () {
+    __default_prompt
     # RPROMPT="[%~]"
     # RPROMPT="[%(5~|…/%3~|%~)]"
     RPROMPT="[%{$fg[yellow]%}%(5~|%-1~/…/%3~|%4~)%{$reset_color%}]"
@@ -225,6 +230,28 @@ __zcomp () {
     fi
 }
 
+__kubectl_prompt_color() {
+    [[ "$ZSH_KUBECTL_USER" =~ "admin" ]] && color=red || color=blue
+    echo "$color"
+}
+
+kubectl-enable () {
+    PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%10>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
+    zle reset-prompt
+}
+
+kubectl-disable () {
+    __default_prompt
+    zle reset-prompt
+}
+
+__zsh_kubectl_prompt () {
+    source /usr/local/opt/zsh-kubectl-prompt/etc/zsh-kubectl-prompt/kubectl.zsh
+    zle -N kubectl-enable kubectl-enable
+    zle -N kubectl-disable kubectl-disable
+    bindkey '^G^M' kubectl-enable
+    bindkey '^G^N' kubectl-disable
+}
 
 
 # 一番最初
@@ -239,6 +266,8 @@ __completion
 __fzf
 
 __envs
+
+__zsh_kubectl_prompt
 
 if [ "$(uname)" = 'Darwin' ]; then
     __mac
