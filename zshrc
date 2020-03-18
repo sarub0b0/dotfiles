@@ -246,7 +246,7 @@ kubectl-disable () {
 }
 
 __zsh_kubectl_prompt () {
-    source /usr/local/opt/zsh-kubectl-prompt/etc/zsh-kubectl-prompt/kubectl.zsh
+    source $HOME/.zsh-kubectl-prompt/kubectl.zsh
     zle -N kubectl-enable kubectl-enable
     zle -N kubectl-disable kubectl-disable
     bindkey '^G^M' kubectl-enable

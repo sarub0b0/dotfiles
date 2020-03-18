@@ -31,9 +31,13 @@ anyenv () {
     git clone --depth 1 https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
 }
 
+kubectl-prompt () {
+    git clone --depth 1 https://github.com/superbrothers/zsh-kubectl-prompt.git $HOME/.zsh-kubectl-prompt
+}
+
 vim
 tmux
 zsh
 anyenv
-
+kubectl-prompt
 # completion
