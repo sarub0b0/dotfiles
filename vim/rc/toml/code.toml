@@ -190,7 +190,7 @@ depends = 'vimproc.vim'
 ############################################
 # go
 ############################################
-[[plugins]]
+# [[plugins]]
 # repo = 'zchee/nvim-go'
 # repo = 'fatih/vim-go'
 # on_ft = 'go'
@@ -273,9 +273,4 @@ on_ft = ['c', 'cpp', 'cc']
 repo = 'thomasfaingnaert/vim-lsp-snippets'
 on_source = 'neosnippet.vim'
 
-[[plugins]]
-repo = 'alvan/vim-closetag'
-hook_add = '''
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'
-    let g:closetag_filetypes = 'html,xhtml,phtml,erb,php,vue'
-'''
+

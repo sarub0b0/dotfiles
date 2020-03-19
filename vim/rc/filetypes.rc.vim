@@ -18,7 +18,7 @@ autocmd MyAutoCmd FileType yaml call s:yaml_setting()
 autocmd MyAutoCmd FileType html,md,javascript,typescript,css call s:two_indent_config()
 
 autocmd MyAutoCmd BufWinEnter,WinEnter term://* startinsert
-autocmd MyAutoCmd BufLeave stopinsert
+autocmd MyAutoCmd BufLeave term://* stopinsert
 
 function! s:yaml_setting()
     setl tabstop=2

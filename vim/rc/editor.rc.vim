@@ -6,7 +6,7 @@ scriptencoding utf-8
 
 " set maxmem=2000000
 " set maxmemtot=2000000
-set maxmempattern=2000000
+" set maxmempattern=2000000
 
 filetype plugin indent on
 syntax on
