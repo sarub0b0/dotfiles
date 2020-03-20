@@ -16,14 +16,6 @@ augroup MyAutoCmd
     augroup END
 augroup END
 
-augroup MyAutoCmd
-  autocmd!
-  " autocmd BufWritePost *.vim source $MYVIMRC
-  " autocmd BufWritePost *.toml source $MYVIMRC
-  " autocmd BufWritePost vimrc source $MYVIMRC
-augroup END
-
-
 if has('mac')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.17/bin/python2')
     let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.8.2/bin/python3')
@@ -54,13 +46,9 @@ endfunction
 
 if has('nvim')
    call s:source_rc('dein.rc.vim')
-" else
-   " call s:source_rc('status_line.rc.vim')
 endif
 
 call s:source_rc('editor.rc.vim')
-
-call s:source_rc('clipboard.rc.vim')
 
 call s:source_rc('color.rc.vim')
 
@@ -71,9 +59,3 @@ call s:source_rc('mappings.rc.vim')
 call s:source_rc('filetypes.rc.vim')
 
 call s:source_rc('windowctrl.rc.vim')
-
-call s:source_rc('syntaxinfo.rc.vim')
-
-
-
-

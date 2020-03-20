@@ -3,13 +3,6 @@ scriptencoding utf-8
 map <C-s> <Nop>
 
 "----------------------------------------------------
-" file close
-"----------------------------------------------------
-" nnoremap <Space>w :<C-u>w<CR>
-" nnoremap <Space>q :<C-u>q<CR>
-" nnoremap <Space>Q :<C-u>q!<CR>
-
-"----------------------------------------------------
 " 検索のハイライト削除
 "----------------------------------------------------
 nnoremap <ESC><ESC> :noh<CR>
@@ -27,16 +20,9 @@ nnoremap <silent><C-q> :cclose<CR>
 "----------------------------------------------------
 " 閉じかっこ自動補完
 "----------------------------------------------------
-"inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
-"inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
-"inoremap [ []<Left>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
-"inoremap " ""<ESC>i
-" inoremap "<Enter> ""<Left><CR><ESC><S-o>
-"inoremap ' ''<ESC>i
-" inoremap '<Enter> ''<Left><CR><ESC><S-o>
 
 "----------------------------------------------------
 " insert -> nomarl remap
@@ -99,14 +85,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-"----------------------------------------------------
-" scroll
-"----------------------------------------------------
-"noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
-"noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
-"noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
-"noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc
@@ -133,38 +111,15 @@ nmap <Space>q  <Plug>(coc-fix-current)
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-snippets
 """""""""""""""""""""""""""""""""""""""""""""""""
-" Use <C-l> for trigger snippet expand.
-" imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-k> <Plug>(coc-snippets-expand-jump)
 inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm() :
             \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-
-"----------------------------------------------------
-" GNU GLOBAL(gtags)
-"----------------------------------------------------
-" autocmd MyAutoCmd FileType c,cpp,h,java :call s:gtags_remap()
-
-" function! s:gtags_remap()
-"     if executable('gtags')
-"         nnoremap <C-g> :Gtags -g<Space>
-"         nnoremap <C-l> :Gtags -f %<CR>
-"         nnoremap <C-j> :Gtags <C-r><C-w><CR>
-"         nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
-"         nnoremap <C-h> :Gtags -s <C-r><C-w><CR>
-"     endif
-" endfunction
 
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>

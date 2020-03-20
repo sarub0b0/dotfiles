@@ -29,82 +29,6 @@ hook_add = '''
 [[plugins]]
 repo = 'mhartington/oceanic-next'
 
-# [[plugins]]
-# repo = 'cocopon/iceberg.vim'
-
-# [[plugins]]
-# repo = 'ayu-theme/ayu-vim'
-
-
-# [[plugins]]
-# repo = 'dense-analysis/ale'
-# hook_add = '''
-#     " エラー行に表示するマーク
-#     " let g:ale_sign_error = '⨉'
-#     " let g:ale_sign_warning = '⚠'
-
-#     let g:ale_sign_error = "\uf00d"
-#     let g:ale_sign_warning = "\uf12a"
-
-#     " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
-#     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-#     " エラー表示の列を常時表示
-#     let g:ale_sign_column_always = 0
-
-#     " メッセージフォーマット
-#     let g:ale_statusline_format = ["\uf00d %d", "\uf12a %d", "\uf00c"]
-#     " ファイルを開いたときにlint実行
-#     let g:ale_lint_on_enter = 0
-
-#     " ファイルを保存したときにlint実行
-#     let g:ale_lint_on_save = 1
-
-#     " 編集中のlintはしない
-#     let g:ale_lint_on_text_changed = 0
-
-#     let g:ale_lint_on_insert_leave = 0
-
-#     " ファイルを保存したときにfix実行
-#     let g:ale_fix_on_save = 1
-
-#     " lint結果をロケーションリストとQuickFixには表示しない
-#     " 出てると結構うざいしQuickFixを書き換えられるのは困る
-#     let g:ale_set_loclist = 0
-#     let g:ale_set_quickfix = 1
-#     let g:ale_open_list = 1
-#     let g:ale_keep_list_window_open = 0
-
-#     let s:hostname = system('uname')
-#     if s:hostname =~ "Linux"
-#         let g:ale_linters = {
-#             \ 'c': ['gcc'],
-#             \}
-#     else
-#         "let g:ale_linters = {
-#         "\   'c': ['clang'],
-#         "\   'cpp': ['clang'],
-#         ""\   'cpp': ["clangtidy"],
-#         "\}
-#     endif
-
-#     let g:ale_linters = {
-#             \'c': ['clang'],
-#             \'cpp': ['clang'],
-#             \'html': ['eslint'],
-#             \'javascript': ['eslint'],
-#             \'css': ['eslint'],
-#             \'vue': ['eslint'],
-#             \}
-#     let g:ale_fixers = {
-#             \'html': ['prettier'],
-#             \'css': ['prettier'],
-#             \'yaml': ['prettier'],
-#             \'javascript': ['eslint'],
-#             \'vue': ['eslint'],
-#             \}
-# '''
-
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -198,45 +122,11 @@ endfunction
 function! LightLineFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
-" ------------------------
-"function! LightLineTabFilename(n)
-"    return ('' != expand('%:p') ? winwidth(0) > 70 ? expand('%:~:.') : expand('%:t') : '[No Name]')
-"endfunction
-
-"function! LightLineTabFiletype(n)
-"    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-"endfunction
-
-"function! LightLineTabFileformat(n)
-"  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-"endfunction
-
 
 " hide --INSERT--
 set noshowmode
 
 '''
-# depends = ['lightline-ale']
-
-# [[plugins]]
-# repo = 'maximbaz/lightline-ale'
-
-# [[plugins]]
-# repo = 'itchyny/calendar.vim'
-# hook_add = '''
-#     let g:calendar_google_calendar = 1
-#     let g:calendar_google_task = 1
-# '''
-
-# [[plugins]]
-# repo = 'rizzatti/dash.vim'
-# hook_add = 'nmap <silent> <Leader>d <Plug>DashSearch'
-
-
-# [[plugins]]
-# repo = 'junegunn/fzf'
-# build = './install --all'
-# merged = 0
 
 [[plugins]]
 repo = 'alvan/vim-closetag'
@@ -258,3 +148,29 @@ let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F10>'
 '''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merged = 0
+
+hook_add = '''
+let g:coc_status_error_sign = "\uf00d"
+let g:coc_status_warning_sign = "\uf12a"
+'''
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_post_source = '''
+    call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+    call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+    call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+    call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+    call submode#map('bufmove', 'n', '', '<', '<C-w><')
+    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+on_i = 1
+
+

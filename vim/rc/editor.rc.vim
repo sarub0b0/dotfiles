@@ -4,10 +4,6 @@ setl fileencoding=utf-8
 set fileencodings=utf-8,iso2022-jp,euc-jp,sjis
 scriptencoding utf-8
 
-" set maxmem=2000000
-" set maxmemtot=2000000
-" set maxmempattern=2000000
-
 filetype plugin indent on
 syntax on
 
@@ -17,8 +13,6 @@ let g:netrw_liststyle = 3
 let g:netrw_preview = 1
 let g:netrw_winsize = 20
 let g:netrw_list_hide = '^\..*'
-
-" setl spell spelllang=en,cjk
 
 set helplang=ja,en
 
@@ -47,10 +41,7 @@ set nocursorline
 if has('nvim')
     set cursorline
 endif
-" highlight clear CursorLine
-" set cursorcolumn
-" 改行時,同じインデントで始める
-" set smartindent
+
 set visualbell
 set visualbell t_vb=
 
@@ -142,33 +133,6 @@ if &term =~? 'xterm'
     cnoremap <special> <Esc>[201~ <nop>
 endif
 
-" if &term =~? 'xterm' && has('nvim')
-"     let &t_SI .= "\e[?2004h"
-"     let &t_EI .= "\e[?2004l"
-"     let &pastetoggle = "\e[201~"
-
-"     function XTermPasteBegin(ret)
-"         set paste
-"         return a:ret
-"     endfunction
-
-"     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-" endif
-
-" augroup foldmethod_changed_insert
-"     autocmd!
-"     autocmd InsertEnter * if !exists('w:last_fdm')
-"                 \| let w:last_fdm=&foldmethod
-"                 \| setlocal foldmethod=manual
-"                 \| endif
-
-"     autocmd InsertLeave,WinLeave * if exists('w:last_fdm')
-"                 \| let &l:foldmethod=w:last_fdm
-"                 \| unlet w:last_fdm
-"                 \| endif
-" augroup END
-
-
 function! s:rsync_function(...)
     if a:0 == 2
         let l:list = a:000
@@ -184,15 +148,11 @@ endfunction
 command! -nargs=+ Rsync call s:rsync_function(<f-args>)
 
 
+if has('nvim')
+    let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+    set clipboard&
+    set clipboard+=unnamedplus
+else
+    set clipboard^=unnamedplus,autoselect
+endif
 
-" command! -nargs=0 KillGoRunResult call KillGoRunResult()
-" function! KillGoRunResult() abort
-"   echo "Hello!!"
-"   let l:bufname = bufname('go run')
-"   if l:bufname == ""
-"       return
-"   endif
-"   let s:bf = bufnr(l:bufname)
-"   echo s:bf
-"   execute "bdelete! " . s:bf
-" endfunction
