@@ -1,0 +1,17 @@
+{
+  "languageserver": {
+    "cmake": {
+      "command": "cmake-language-server",
+      "filetypes": ["cmake"],
+      "rootPatterns": ["build/"],
+      "initializationOptions": {
+        "buildDirectory": "build"
+      }
+    }
+  },
+  "diagnostic.errorSign": "\uf00d",
+  "diagnostic.warningSign": "\uf12a",
+  "diagnostic.infoSign": ">>",
+  "diagnostic.hintSign": ">>",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true
+}

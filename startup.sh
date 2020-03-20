@@ -3,7 +3,9 @@
 vim () {
     mkdir -p $HOME/.config/nvim
     ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
+    ln -sf $HOME/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
     ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+
 }
 
 tmux () {
