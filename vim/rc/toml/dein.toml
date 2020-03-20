@@ -6,6 +6,9 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]] # icons
@@ -153,7 +156,6 @@ let g:floaterm_keymap_toggle = '<F10>'
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 merged = 0
-
 hook_add = '''
 let g:coc_status_error_sign = "\uf00d"
 let g:coc_status_warning_sign = "\uf12a"
