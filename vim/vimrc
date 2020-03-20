@@ -6,10 +6,21 @@ endif
 
 augroup MyAutoCmd
     autocmd!
+augroup END
+
+augroup MyAutoCmd
+    autocmd!
 
     augroup DeleteLineEndSpaceCmd
         autocmd!
     augroup END
+augroup END
+
+augroup MyAutoCmd
+  autocmd!
+  " autocmd BufWritePost *.vim source $MYVIMRC
+  " autocmd BufWritePost *.toml source $MYVIMRC
+  " autocmd BufWritePost vimrc source $MYVIMRC
 augroup END
 
 

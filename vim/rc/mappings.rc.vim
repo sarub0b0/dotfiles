@@ -5,9 +5,9 @@ map <C-s> <Nop>
 "----------------------------------------------------
 " file close
 "----------------------------------------------------
-nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>q :<C-u>q<CR>
-nnoremap <Space>Q :<C-u>q!<CR>
+" nnoremap <Space>w :<C-u>w<CR>
+" nnoremap <Space>q :<C-u>q<CR>
+" nnoremap <Space>Q :<C-u>q!<CR>
 
 "----------------------------------------------------
 " 検索のハイライト削除
@@ -106,24 +106,68 @@ vnoremap k gk
 "noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
 "noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
 "noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" coc
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Symbol renaming.
+nmap <Space>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <silent><Space>f  <Plug>(coc-format-selected)<CR>
+nmap <silent><Space>f  <Plug>(coc-format)<CR>
+
+" Apply AutoFix to problem on the current line.
+nmap <Space>q  <Plug>(coc-fix-current)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Use <C-l> for trigger snippet expand.
+" imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+" imap <C-k> <Plug>(coc-snippets-expand-jump)
+inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm() :
+            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 "----------------------------------------------------
 " GNU GLOBAL(gtags)
 "----------------------------------------------------
-autocmd MyAutoCmd FileType c,cpp,h,java :call s:gtags_remap()
+" autocmd MyAutoCmd FileType c,cpp,h,java :call s:gtags_remap()
 
-function! s:gtags_remap()
-    if executable('gtags')
-        nnoremap <C-g> :Gtags -g<Space>
-        nnoremap <C-l> :Gtags -f %<CR>
-        nnoremap <C-j> :Gtags <C-r><C-w><CR>
-        nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
-        nnoremap <C-h> :Gtags -s <C-r><C-w><CR>
-    endif
-endfunction
+" function! s:gtags_remap()
+"     if executable('gtags')
+"         nnoremap <C-g> :Gtags -g<Space>
+"         nnoremap <C-l> :Gtags -f %<CR>
+"         nnoremap <C-j> :Gtags <C-r><C-w><CR>
+"         nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
+"         nnoremap <C-h> :Gtags -s <C-r><C-w><CR>
+"     endif
+" endfunction
 
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-
 
 "----------------------------------------------------
 " If foldmethod is syntax
@@ -140,3 +184,4 @@ function! s:undo_redo_foldmethod()
                 \:setlocal foldmethod=syntax<CR>
 endfunction
 
+nmap ,v :edit $MYVIMRC<CR>

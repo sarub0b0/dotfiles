@@ -16,90 +16,90 @@
 # repo = 'dbgx/lldb.nvim'
 # on_ft = ['c', 'cpp']
 
-[[plugins]]
-repo = 'kana/vim-operator-user'
-on_ft = ['c', 'cpp', 'cmake']
+# [[plugins]]
+# repo = 'kana/vim-operator-user'
+# on_ft = ['c', 'cpp', 'cmake']
 
-[[plugins]]
-repo = 'Shougo/neoinclude.vim'
-hook_add = '''
-    "let g:neoinclude#paths = {
-    "            \   'c': '/usr/local/opt/allegro/include',
-    "            \   'cpp': '/usr/local/opt/allegro/include',
-    "            \}
-'''
-on_ft = ['c', 'cpp', 'cmake']
-on_source = 'deoplete.nvim'
+# [[plugins]]
+# repo = 'Shougo/neoinclude.vim'
+# hook_add = '''
+#     "let g:neoinclude#paths = {
+#     "            \   'c': '/usr/local/opt/allegro/include',
+#     "            \   'cpp': '/usr/local/opt/allegro/include',
+#     "            \}
+# '''
+# on_ft = ['c', 'cpp', 'cmake']
+# on_source = 'deoplete.nvim'
 
-[[plugins]]
-repo = 'rhysd/vim-clang-format'
-on_ft = ['c', 'cpp', 'cmake']
-hook_source = '''
-    let g:clang_format#auto_enable = 1
+# [[plugins]]
+# repo = 'rhysd/vim-clang-format'
+# on_ft = ['c', 'cpp', 'cmake']
+# hook_source = '''
+#     let g:clang_format#auto_enable = 1
 
-    "let g:clang_format#auto_format_on_insert_leave = 0
+#     "let g:clang_format#auto_format_on_insert_leave = 0
 
-    let g:clang_format#detect_style_file = 0
+#     let g:clang_format#detect_style_file = 0
 
-    if executable('clang-format')
-        let g:clang_format#command = "clang-format"
-    elseif executable('clang-format-6.0')
-        let g:clang_format#command = "clang-format-6.0"
-    elseif executable('clang-format-6.0.0')
-        let g:clang_format#command = "clang-format-6.0.0"
-    endif
+#     if executable('clang-format')
+#         let g:clang_format#command = "clang-format"
+#     elseif executable('clang-format-6.0')
+#         let g:clang_format#command = "clang-format-6.0"
+#     elseif executable('clang-format-6.0.0')
+#         let g:clang_format#command = "clang-format-6.0.0"
+#     endif
 
-    let g:clang_format#code_style = 'google'
+#     let g:clang_format#code_style = 'google'
 
-    let g:clang_format#style_options = {
-                \ 'AlignConsecutiveAssignments': 'true',
-                "\ 'AlignConsecutiveDeclarations': 'true',
-                \ 'AlignTrailingComments': 'true',
-                \ 'DerivePointerAlignment': 'false',
-                \ 'PointerAlignment': 'Right',
-                \ 'IndentCaseLabels': 'true',
-                \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
-                \ 'SpacesBeforeTrailingComments': 1,
-                \ 'AlwaysBreakAfterReturnType': 'AllDefinitions',
-                \ 'AllowShortFunctionsOnASingleLine': 'None',
-                \ 'AllowShortBlocksOnASingleLine': 'false',
-                \ 'SortIncludes': 'false',
-                \ 'BinPackArguments': 'false',
-                \ 'BinPackParameters': 'false',
-                \ 'SpaceAfterCStyleCast': 'true',
-                \ 'ColumnLimit': 80,
-                \ 'IndentWidth': 4,
-                \ 'UseTab': 'Never',
-                \ 'Standard': 'C++11',
-                \ }
+#     let g:clang_format#style_options = {
+#                 \ 'AlignConsecutiveAssignments': 'true',
+#                 "\ 'AlignConsecutiveDeclarations': 'true',
+#                 \ 'AlignTrailingComments': 'true',
+#                 \ 'DerivePointerAlignment': 'false',
+#                 \ 'PointerAlignment': 'Right',
+#                 \ 'IndentCaseLabels': 'true',
+#                 \ 'KeepEmptyLinesAtTheStartOfBlocks': 'true',
+#                 \ 'SpacesBeforeTrailingComments': 1,
+#                 \ 'AlwaysBreakAfterReturnType': 'AllDefinitions',
+#                 \ 'AllowShortFunctionsOnASingleLine': 'None',
+#                 \ 'AllowShortBlocksOnASingleLine': 'false',
+#                 \ 'SortIncludes': 'false',
+#                 \ 'BinPackArguments': 'false',
+#                 \ 'BinPackParameters': 'false',
+#                 \ 'SpaceAfterCStyleCast': 'true',
+#                 \ 'ColumnLimit': 80,
+#                 \ 'IndentWidth': 4,
+#                 \ 'UseTab': 'Never',
+#                 \ 'Standard': 'C++11',
+#                 \ }
 
-    function! s:ex_clang_format(line1,line2)
-        if &l:foldmethod ==# 'syntax'
-            setl foldmethod=manual
-            execute a:line1 ',' a:line2 'ClangFormat'
-            setl foldmethod=syntax
-        else
-            execute a:line1 ',' a:line2 'ClangFormat'
-        endif
-        " retab 4
-    endfunction
+#     function! s:ex_clang_format(line1,line2)
+#         if &l:foldmethod ==# 'syntax'
+#             setl foldmethod=manual
+#             execute a:line1 ',' a:line2 'ClangFormat'
+#             setl foldmethod=syntax
+#         else
+#             execute a:line1 ',' a:line2 'ClangFormat'
+#         endif
+#         " retab 4
+#     endfunction
 
-    command! -nargs=0 -range=% ExClangFormat call s:ex_clang_format(<line1>,<line2>)
+#     command! -nargs=0 -range=% ExClangFormat call s:ex_clang_format(<line1>,<line2>)
 
-    augroup ClangFormatSettings
-        autocmd!
-        " map to <Leader>cf in C++ code
-        autocmd FileType c,cpp,objc nnoremap <buffer><Space>f :ExClangFormat<CR>
-        autocmd FileType c,cpp,objc vnoremap <buffer><Space>f :ExClangFormat<CR>
-        " if you install vim-operator-user
-        autocmd FileType c,cpp,objc map <buffer><LocalLeader>x <Plug>(operator-clang-format)
-    augroup END
+#     augroup ClangFormatSettings
+#         autocmd!
+#         " map to <Leader>cf in C++ code
+#         autocmd FileType c,cpp,objc nnoremap <buffer><Space>f :ExClangFormat<CR>
+#         autocmd FileType c,cpp,objc vnoremap <buffer><Space>f :ExClangFormat<CR>
+#         " if you install vim-operator-user
+#         autocmd FileType c,cpp,objc map <buffer><LocalLeader>x <Plug>(operator-clang-format)
+#     augroup END
 
-'''
-depends = 'vimproc.vim'
+# '''
+# depends = 'vimproc.vim'
 
-[[plugins]]
-repo = 'Shougo/deoplete-clangx'
+# [[plugins]]
+# repo = 'Shougo/deoplete-clangx'
 
 # [[plugins]]
 # repo = 'zchee/deoplete-clang'
@@ -117,16 +117,16 @@ repo = 'Shougo/deoplete-clangx'
 #     endif
 #     endif
 # '''
-on_ft = ['c', 'cpp', 'cmake']
-on_source = ['deoplete.nvim']
+# on_ft = ['c', 'cpp', 'cmake']
+# on_source = ['deoplete.nvim']
 
-[[plugins]]
-repo = 'zebult/auto-gtags.vim'
-hook_add = '''
-    let g:Gtags_Auto_Update = 1
-    source ~/dotfiles/vim/rc/plugins/gtags.vim
-'''
-on_ft = ['c', 'cpp', 'cmake']
+# [[plugins]]
+# repo = 'zebult/auto-gtags.vim'
+# hook_add = '''
+#     let g:Gtags_Auto_Update = 1
+#     source ~/dotfiles/vim/rc/plugins/gtags.vim
+# '''
+# on_ft = ['c', 'cpp', 'cmake']
 
 ############################################
 # C#
@@ -167,15 +167,15 @@ on_ft = ['c', 'cpp', 'cmake']
 # hook_source = '''
 # '''
 
-[[plugins]]
-repo = 'osyo-manga/vim-monster'
-on_ft = 'ruby'
-hook_source = '''
-    let g:monster#completion#backend = 'solargraph'
-    let g:monster#completion#rcodetools#backend = "async_rct_complete"
-    let g:monster#completion#solargraph#backend = "async_solargraph_suggest"
-'''
-depends = 'vimproc.vim'
+# [[plugins]]
+# repo = 'osyo-manga/vim-monster'
+# on_ft = 'ruby'
+# hook_source = '''
+#     let g:monster#completion#backend = 'solargraph'
+#     let g:monster#completion#rcodetools#backend = "async_rct_complete"
+#     let g:monster#completion#solargraph#backend = "async_solargraph_suggest"
+# '''
+# depends = 'vimproc.vim'
 
 # [[plugins]]
 # repo = 'ruby-formatter/rufo-vim'
@@ -199,78 +199,61 @@ depends = 'vimproc.vim'
 #     let g:go_list_type = "quickfix"
 # '''
 
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-go'
-on_ft = 'go'
-build = 'make'
-on_source = ['deoplete.nvim']
-hook_source = '''
-    let g:deoplete#sources#go#gocode_binary = $HOME . '/go/bin/gocode'
-'''
+# [[plugins]]
+# repo = 'deoplete-plugins/deoplete-go'
+# on_ft = 'go'
+# build = 'make'
+# on_source = ['deoplete.nvim']
+# hook_source = '''
+#     let g:deoplete#sources#go#gocode_binary = $HOME . '/go/bin/gocode'
+# '''
 
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
+# [[plugins]]
+# repo = 'Shougo/neco-vim'
+# on_ft = 'vim'
 
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-zsh'
-on_ft = 'zsh'
+# [[plugins]]
+# repo = 'deoplete-plugins/deoplete-zsh'
+# on_ft = 'zsh'
 
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-jedi'
-on_ft = 'python'
+# [[plugins]]
+# repo = 'deoplete-plugins/deoplete-jedi'
+# on_ft = 'python'
 
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = '''
-    " let g:echodoc#type = 'signature'
-    call echodoc#enable()
-'''
+# [[plugins]]
+# repo = 'Shougo/echodoc.vim'
+# on_event = 'CompleteDone'
+# hook_source = '''
+#     " let g:echodoc#type = 'signature'
+#     call echodoc#enable()
+# '''
 
 # [[plugins]]
 # repo = 'google/vim-codefmt'
 
-[[plugins]]
-repo = 'tbodt/deoplete-tabnine'
-on_source = ['deoplete.nvim']
-hook_source = '''
-    call deoplete#custom#var('tabnine', {
-    \ 'line_limit': 100,
-    \ 'max_num_results': 20,
-    \ })
-'''
-build = './install.sh'
+# [[plugins]]
+# repo = 'tbodt/deoplete-tabnine'
+# on_source = ['deoplete.nvim']
+# hook_source = '''
+#     call deoplete#custom#var('tabnine', {
+#     \ 'line_limit': 100,
+#     \ 'max_num_results': 20,
+#     \ })
+# '''
+# build = './install.sh'
 
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_source = '''
-if executable('cquery')
-   au User lsp_setup call lsp#register_server({
-      \ 'name': 'cquery',
-      \ 'cmd': {server_info->['cquery']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-      \ 'initialization_options': { 'cacheDirectory': '~/.cache/cquery/cache' },
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-      \ })
-endif
-'''
-
-[[plugins]]
-# repo = 'pdavydov108/vim-lsp-cquery'
-repo = 'Shougo/deoplete-lsp'
-hook_source = '''
-"call lsp#server#add('c', 'cquery')
-"call lsp#server#add('cpp', 'cquery')
-"call lsp#server#add('cc', 'cquery')
-'''
-on_ft = ['c', 'cpp', 'cc']
-
-[[plugins]]
-repo = 'thomasfaingnaert/vim-lsp-snippets'
-on_source = 'neosnippet.vim'
+# [[plugins]]
+# repo = 'prabirshrestha/async.vim'
 
 
+# [[plugins]]
+# repo = 'tyru/caw.vim'
+# hook_source = '''
+# " 行の最初の文字の前にコメント文字をトグル
+# nmap <Leader>c <Plug>(caw:hatpos:toggle)
+# vmap <Leader>c <Plug>(caw:hatpos:toggle)
+# " 行頭にコメントをトグル
+# nmap <Leader>, <Plug>(caw:zeropos:toggle)
+# vmap <Leader>, <Plug>(caw:zeropos:toggle)
+# '''
+# on_i = 1

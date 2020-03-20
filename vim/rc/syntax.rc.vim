@@ -12,8 +12,8 @@ function! s:error_syntax()
 endfunction
 
 function! s:warning_syntax()
-    highlight link ALEWarningLine Comment
-    highlight link ALEWarning Comment
+    " highlight link ALEWarningLine Comment
+    " highlight link ALEWarning Comment
 endfunction
 
 

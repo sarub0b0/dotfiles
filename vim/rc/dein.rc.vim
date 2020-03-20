@@ -39,6 +39,7 @@ if dein#load_state(s:dein_dir)
     let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
     let s:syntax_toml = s:toml_dir . '/syntax.toml'
     let s:dev_toml = s:toml_dir . '/dev.toml'
+    let s:lsp_toml = s:toml_dir . '/lsp.toml'
     let s:text_toml = s:toml_dir . '/text.toml'
     let s:code_toml = s:toml_dir . '/code.toml'
     let s:tex_toml = s:toml_dir . '/tex.toml'
@@ -50,6 +51,7 @@ if dein#load_state(s:dein_dir)
     call dein#load_toml(s:dev_toml, {'lazy': 1})
     call dein#load_toml(s:syntax_toml, {'lazy': 1})
 
+    call dein#load_toml(s:lsp_toml, {'lazy': 0})
     call dein#load_toml(s:code_toml, {'lazy': 1})
     call dein#load_toml(s:tex_toml, {'lazy': 1})
     call dein#load_toml(s:text_toml, {'lazy': 1})

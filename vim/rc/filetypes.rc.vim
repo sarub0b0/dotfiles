@@ -15,7 +15,7 @@ autocmd MyAutoCmd FileType python call s:python_setting()
 autocmd MyAutoCmd FileType markdown call s:markdown_opt()
 autocmd MyAutoCmd FileType sh call s:set_indent_format()
 autocmd MyAutoCmd FileType yaml call s:yaml_setting()
-autocmd MyAutoCmd FileType html,md,javascript,typescript,css call s:two_indent_config()
+autocmd MyAutoCmd FileType html,md,javascript,typescript,css,json call s:two_indent_config()
 
 autocmd MyAutoCmd BufWinEnter,WinEnter term://* startinsert
 autocmd MyAutoCmd BufLeave term://* stopinsert

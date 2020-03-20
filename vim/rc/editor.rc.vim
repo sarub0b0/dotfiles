@@ -103,7 +103,7 @@ let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:su
 set iskeyword=@,48-57,_,-,:,192-255
 
 
-" let mapleader = "\<Space>"
+let mapleader = ","
 
 " autocmd DeleteLineEndSpaceCmd BufWritePre * :keeppatterns %s/\s\+$//ge
 autocmd DeleteLineEndSpaceCmd BufWritePre * call s:remove_tail_spaces()
