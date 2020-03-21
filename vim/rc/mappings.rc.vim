@@ -105,8 +105,18 @@ nmap <Space>rn <Plug>(coc-rename)
 xmap <silent><Space>f  <Plug>(coc-format-selected)<CR>
 nmap <silent><Space>f  <Plug>(coc-format)<CR>
 
+" Remap keys for applying codeAction to the current line.
+nmap <Space>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <Space>q  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-snippets
@@ -120,6 +130,19 @@ let g:coc_snippet_prev = '<c-k>'
 inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm() :
             \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>

@@ -159,6 +159,26 @@ merged = 0
 hook_add = '''
 let g:coc_status_error_sign = "\uf00d"
 let g:coc_status_warning_sign = "\uf12a"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+    call CocAction('doHover')
+"  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+augroup MyCoc
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 '''
 
 [[plugins]]
