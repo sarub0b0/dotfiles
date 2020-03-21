@@ -12,8 +12,8 @@ autocmd MyAutoCmd BufRead,BufEnter */doc/* if &buftype ==# 'help' | wincmd L | s
 " terminal
 "
 if has('nvim')
-    autocmd MyAutoCmd TermOpen * if &buftype == 'terminal' | setl nonumber | endif
-    command! -nargs=0 Terminal vertical botright new | terminal
+  autocmd MyAutoCmd TermOpen * if &buftype == 'terminal' | setl nonumber | endif
+  command! -nargs=0 Terminal vertical botright new | terminal
 endif
 "
 " man

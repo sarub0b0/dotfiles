@@ -39,7 +39,7 @@ set autoread
 " 現在の行を強調
 set nocursorline
 if has('nvim')
-    set cursorline
+  set cursorline
 endif
 
 set visualbell
@@ -81,13 +81,13 @@ set t_Co=256
 set pumheight=20
 
 if has('nvim')
-    set inccommand=nosplit
+  set inccommand=nosplit
 endif
 
 
 if has('persistent_undo')
-    set undodir=~/.cache/vimundo
-    set undofile
+  set undodir=~/.cache/vimundo
+  set undofile
 endif
 
 let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:subsubsections'
@@ -100,59 +100,59 @@ let mapleader = ","
 autocmd DeleteLineEndSpaceCmd BufWritePre * call s:remove_tail_spaces()
 
 function! s:remove_tail_spaces() abort
-    let l:view = winsaveview()
-    keeppatterns :%s/\s\+$//ge
-    silent call winrestview(l:view)
+  let l:view = winsaveview()
+  keeppatterns :%s/\s\+$//ge
+  silent call winrestview(l:view)
 endfunction
 
 autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 
 " Auto-close quickfix window
 autocmd MyAutoCmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix')
-            \| quit
-            \| endif
+      \| quit
+      \| endif
 autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree()
-            \| quit
-            \| quit
-            \| endif
+      \| quit
+      \| quit
+      \| endif
 
 "クリップボードからコピペする際のインデントのズレを防ぐ
 if &term =~? 'xterm'
-    let &t_ti .= "\e[?2004h"
-    let &t_te .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
+  let &t_ti .= "\e[?2004h"
+  let &t_te .= "\e[?2004l"
+  let &pastetoggle = "\e[201~"
 
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
+  function XTermPasteBegin(ret)
+    set paste
+    return a:ret
+  endfunction
 
-    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-    cnoremap <special> <Esc>[200~ <nop>
-    cnoremap <special> <Esc>[201~ <nop>
+  noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+  cnoremap <special> <Esc>[200~ <nop>
+  cnoremap <special> <Esc>[201~ <nop>
 endif
 
 function! s:rsync_function(...)
-    if a:0 == 2
-        let l:list = a:000
-        let l:pwd = getcwd()
-        let l:pwd = "."
-        let l:cmd = ":!rsync -avc " . l:pwd . " " . l:list[0] . ":" . l:list[1]
-        execute l:cmd
-    else
-        echo "args: dst-host dst-dir"
-    endif
+  if a:0 == 2
+    let l:list = a:000
+    let l:pwd = getcwd()
+    let l:pwd = "."
+    let l:cmd = ":!rsync -avc " . l:pwd . " " . l:list[0] . ":" . l:list[1]
+    execute l:cmd
+  else
+    echo "args: dst-host dst-dir"
+  endif
 endfunction
 
 command! -nargs=+ Rsync call s:rsync_function(<f-args>)
 
 
 if has('nvim')
-    let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
-    set clipboard&
-    set clipboard+=unnamedplus
+  let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+  set clipboard&
+  set clipboard+=unnamedplus
 else
-    set clipboard^=unnamedplus,autoselect
+  set clipboard^=unnamedplus,autoselect
 endif
 

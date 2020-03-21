@@ -33,8 +33,8 @@ inoremap <silent> jj <ESC>
 " terminal -> normal remap
 "----------------------------------------------------
 if has('terminal') || has('nvim')
-    tnoremap <silent> <ESC> <C-\><C-n>
-    tnoremap <silent> jj <C-\><C-n>
+  tnoremap <silent> <ESC> <C-\><C-n>
+  tnoremap <silent> jj <C-\><C-n>
 endif
 
 "----------------------------------------------------
@@ -127,14 +127,16 @@ let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
-inoremap <silent><expr> <C-k> pumvisible() ? coc#_select_confirm() :
-            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-j> pumvisible() ? coc#_select_confirm() :
+      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -153,13 +155,13 @@ nnoremap <C-p> :cp<CR>
 autocmd MyAutoCmd BufReadPost * if &l:foldmethod ==# 'syntax' | call s:undo_redo_foldmethod()
 
 function! s:undo_redo_foldmethod()
-    nmap <silent> u :setlocal foldmethod=manual<CR>
-                \:normal! u<CR>
-                \:setlocal foldmethod=syntax<CR>
+  nmap <silent> u :setlocal foldmethod=manual<CR>
+        \:normal! u<CR>
+        \:setlocal foldmethod=syntax<CR>
 
-    nmap <silent> <C-r> :setlocal foldmethod=manual<CR>
-                \:redo<CR>
-                \:setlocal foldmethod=syntax<CR>
+  nmap <silent> <C-r> :setlocal foldmethod=manual<CR>
+        \:redo<CR>
+        \:setlocal foldmethod=syntax<CR>
 endfunction
 
 nmap ,v :edit $MYVIMRC<CR>
