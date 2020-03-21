@@ -7,6 +7,7 @@ scriptencoding utf-8
 filetype plugin indent on
 syntax on
 
+set updatetime=1000
 
 " Explore
 let g:netrw_liststyle = 3
