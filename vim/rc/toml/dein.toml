@@ -23,11 +23,14 @@ hook_add = '''
     " let g:webdevicons_conceal_nerdtree_brackets = 0
 '''
 
+# [[plugins]]
+# repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+# hook_add = '''
+#     let g:NERDTreeLimitedSyntax  =  1
+# '''
+
 [[plugins]]
-repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-hook_add = '''
-    let g:NERDTreeLimitedSyntax  =  1
-'''
+repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'mhartington/oceanic-next'
@@ -192,7 +195,7 @@ augroup end
 
 [[plugins]]
 repo = 'kana/vim-submode'
-hook_post_source = '''
+hook_add = '''
     call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
     call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
     call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
@@ -202,4 +205,10 @@ hook_post_source = '''
     call submode#map('bufmove', 'n', '', '+', '<C-w>+')
     call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 '''
-on_i = 1
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build_on = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'

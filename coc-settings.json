@@ -13,5 +13,25 @@
   "diagnostic.warningSign": "\uf12a",
   "diagnostic.infoSign": ">>",
   "diagnostic.hintSign": ">>",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.useQuickfixForLocations": false,
+  "coc.preferences.formatOnInsertLeave": true,
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "explorer.width": 25,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": true
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.keyMappings": {
+    "u": "gotoParent"
+  }
 }

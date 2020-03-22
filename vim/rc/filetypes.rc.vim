@@ -11,9 +11,6 @@ autocmd MyAutoCmd FileType tex,plaintex call s:tex_foldmethod()
 autocmd MyAutoCmd FileType markdown call s:markdown_opt()
 autocmd MyAutoCmd FileType html,md,javascript,typescript,css,json,yaml,vim call s:two_indent_config()
 
-autocmd MyAutoCmd BufWinEnter,WinEnter term://* startinsert
-autocmd MyAutoCmd BufLeave term://* stopinsert
-
 function! s:default_config()
   set tabstop=4 softtabstop=4 shiftwidth=4
 endfunction

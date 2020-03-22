@@ -69,6 +69,11 @@ nnoremap sx <C-w>x
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 
+tmap <C-s>h <ESC><C-w>h
+tmap <C-s>i <ESC><C-w>i
+tmap <C-s>j <ESC><C-w>j
+tmap <C-s>k <ESC><C-w>k
+
 
 "----------------------------------------------------
 " j k remap
@@ -158,6 +163,22 @@ xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-explorer
+"""""""""""""""""""""""""""""""""""""""""""""""""
+:nmap <Space>n :CocCommand explorer<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" coc-actions
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <Space>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 "----------------------------------------------------
 " If foldmethod is syntax
 "----------------------------------------------------

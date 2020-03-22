@@ -4,10 +4,12 @@ setl fileencoding=utf-8
 set fileencodings=utf-8,iso2022-jp,euc-jp,sjis
 scriptencoding utf-8
 
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
+
 filetype plugin indent on
 syntax on
 
-set updatetime=1000
+set updatetime=3000
 
 " Explore
 let g:netrw_liststyle = 3
