@@ -44,9 +44,6 @@ __envs () {
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-
-    # export PATH=$HOME/work/service-mesh/istio-1.4.2/bin:$PATH
-    # export PATH=$HOME/work/service-mesh/istio-1.4.4/bin:$PATH
     export PATH=$HOME/work/service-mesh/istio-1.5.0/bin:$PATH
 
     if [ "$(hostname)" = "kosay-bbtower.local" ]; then
@@ -96,8 +93,6 @@ __default_prompt () {
 
 __prompt () {
     __default_prompt
-    # RPROMPT="[%~]"
-    # RPROMPT="[%(5~|…/%3~|%~)]"
     RPROMPT="[%{$fg[yellow]%}%(5~|%-1~/…/%3~|%4~)%{$reset_color%}]"
 }
 
@@ -150,12 +145,13 @@ __completion () {
         compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
     }
 
-    # fpath=(~/dotfiles/zsh/completions(N-/) $fpath)
+    if builtin command -v kubectl > /dev/null; then
+        eval "$(kubectl completion zsh)"
+    fi
 }
 
 
 __anyenv () {
-    # if builtin command -v anyenv > /dev/null; then
     if [ "$(uname)" = 'Darwin' ]; then
         export PATH="/usr/local/opt/anyenv/bin:$PATH"
         alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
@@ -164,8 +160,6 @@ __anyenv () {
     fi
 
     eval "$(anyenv init - --no-rehash)"
-    # eval "$(anyenv init - )"
-    # eval "$(anyenv lazyload)"
     # tmux対応
     env_dir=$HOME/.anyenv/envs
     for D in `ls $env_dir`
@@ -177,8 +171,6 @@ __anyenv () {
 
 __nvim () {
     if builtin command -v nvim > /dev/null; then
-        # alias vim='nvim'
-        # alias vim='pyenv version > /dev/null; nvim'
         export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
         vim () {
@@ -198,11 +190,17 @@ __fzf () {
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
+        function ghq-fzf () {
+            local src=$(ghq list | fzf --preview "head --head 50 $(ghq root)/{}/README.*")
+            if [ -n "$src" ]; then
+                cd $(ghq root)/$src
+            fi
+        }
     fi
+    bindkey '^T' transpose-chars
 }
 
 __command () {
-
     man() {
         env \
             LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -264,7 +262,6 @@ __prompt
 __anyenv
 __nvim
 __completion
-# __zplugin
 __fzf
 
 __envs
@@ -277,18 +274,7 @@ if [ "$(uname)" = 'Darwin' ]; then
 else
     __linux
 fi
+
 # 一番最後
 __command
-
 __zcomp
-
-
-if builtin command -v kubectl > /dev/null; then
-    eval "$(kubectl completion zsh)"
-fi
-# __powerline_shell
-
-
-# if (which zprof > /dev/null 2>&1) ;then
-#     zprof
-# fi
