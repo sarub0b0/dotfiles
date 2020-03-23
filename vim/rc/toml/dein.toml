@@ -23,12 +23,6 @@ hook_add = '''
     " let g:webdevicons_conceal_nerdtree_brackets = 0
 '''
 
-# [[plugins]]
-# repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-# hook_add = '''
-#     let g:NERDTreeLimitedSyntax  =  1
-# '''
-
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
@@ -212,3 +206,14 @@ build_on = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets']
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+
