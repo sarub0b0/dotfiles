@@ -26,15 +26,6 @@ let g:ft_man_folding_enable = 1
 autocmd MyAutoCmd FileType man wincmd L | setl nonumber | setl winfixwidth | vertical resize 80
 
 " vim終了時のquickfixとfilerの管理
-
-function! s:buffer_list() abort
-  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
-endfunction
-
-function! s:buffer_len() abort
-  return len(s:buffer_list())
-endfunction
-
 " quickfixかfiler以外のウィンドウが全て閉じられたら、quickfixを閉じる
 autocmd MyAutoCmd WinEnter * call s:auto_close_quickfix_or_filer()
 
@@ -66,12 +57,16 @@ endfunction
 " ファイル指定なしで起動した場合にエクスプローラーを起動
 autocmd MyAutoCmd VimEnter * call s:open_coc_explorer()
 
-function! s:open_coc_explorer() abort
-  if s:buffer_len() > 1
-    return
-  endif
+function! s:buffer_list() abort
+  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
+endfunction
 
-  if bufname() !=# ''
+function! s:buffer_len() abort
+  return len(s:buffer_list())
+endfunction
+
+function! s:open_coc_explorer() abort
+  if s:buffer_len() > 1 && bufname() !=# ''
     return
   endif
 
