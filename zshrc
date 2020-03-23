@@ -36,8 +36,6 @@ __envs () {
 
     export PATH="$GOPATH/bin:$PATH"
 
-    export PATH="${NODENV_ROOT}/versions/12.11.1/bin:$PATH"
-
     export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 
