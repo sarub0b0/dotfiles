@@ -8,13 +8,11 @@ coc-floaterm
 coc-git
 coc-html
 coc-json
-coc-neosnippet
 coc-pairs
 coc-prettier
 coc-python
 coc-snippets
 coc-solargraph
 coc-tabnine
-coc-ultisnips
 coc-vimlsp
 coc-yaml
