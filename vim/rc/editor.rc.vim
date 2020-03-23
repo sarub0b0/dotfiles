@@ -110,15 +110,6 @@ endfunction
 
 autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
 
-" Auto-close quickfix window
-autocmd MyAutoCmd WinEnter * if ((winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix')
-      \| quit
-      \| endif
-autocmd MyAutoCmd WinEnter * if (winnr('$') == 2) && getbufvar(winbufnr(2), '&buftype') == 'quickfix' && exists("b:NERDTree") && b:NERDTree.isTabTree()
-      \| quit
-      \| quit
-      \| endif
-
 "クリップボードからコピペする際のインデントのズレを防ぐ
 if &term =~? 'xterm'
   let &t_ti .= "\e[?2004h"
