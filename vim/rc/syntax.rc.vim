@@ -1,4 +1,8 @@
 scriptencoding utf-8
+
+highlight NormalNC ctermbg=240 guibg=#343d46
+set winhighlight=NormalNC:NormalNC
+
 autocmd MyAutoCmd FileType text,tex,ruby,c,cpp,python call s:plain_text()
 autocmd MyAutoCmd FileType ruby call s:ruby_file_comment()
 
