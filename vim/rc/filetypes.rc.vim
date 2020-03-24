@@ -37,6 +37,7 @@ function! Markdown_fold(lnum)
   endif
   return '='
 endfunction
+
 function! s:markdown_opt()
   autocmd MyAutoCmd FileType markdown,text set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
   autocmd! DeleteLineEndSpaceCmd
@@ -48,4 +49,3 @@ endfunction
 function! s:tex_foldmethod()
   nnoremap <silent><buffer><Space>z setl foldmethod=expr
 endfunction
-

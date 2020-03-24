@@ -101,12 +101,13 @@ nmap <Space>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <silent><Space>f  <Plug>(coc-format-selected)<CR>
-nmap <silent><Space>f  <Plug>(coc-format)<CR>
+nmap <silent><Space>f  <Plug>(coc-format)
 
 " Remap keys for applying codeAction to the current line.
 nmap <Space>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <Space>q  <Plug>(coc-fix-current)
+xmap <Space>q  :CocFix<CR>
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -167,8 +168,7 @@ xmap ag <Plug>(coc-git-chunk-outer)
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-explorer
 """""""""""""""""""""""""""""""""""""""""""""""""
-:nmap <Space>n :CocCommand explorer<CR>
-
+nmap <Space>n :CocCommand explorer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-actions
@@ -195,3 +195,5 @@ function! s:undo_redo_foldmethod()
 endfunction
 
 nmap ,v :edit $MYVIMRC<CR>
+
+let g:floaterm_keymap_toggle = '<Space>\'
