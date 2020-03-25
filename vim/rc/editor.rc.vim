@@ -7,6 +7,8 @@ scriptencoding utf-8
 filetype plugin indent on
 syntax on
 
+set shortmess+=I
+
 set updatetime=3000
 
 " Explore

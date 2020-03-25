@@ -55,7 +55,7 @@ endfunction
 
 " coc explorer
 " ファイル指定なしで起動した場合にエクスプローラーを起動
-autocmd MyAutoCmd BufNewRead * call s:open_coc_explorer()
+autocmd MyAutoCmd VimEnter * call s:open_coc_explorer()
 
 function! s:buffer_list() abort
   return filter(range(1, bufnr('$')), 'buflisted(v:val)')
