@@ -84,6 +84,13 @@ vnoremap j gj
 vnoremap k gk
 
 
+"----------------------------------------------------
+" f bで左右移動（insert mode）
+"----------------------------------------------------
+
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,6 +186,7 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <Space>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
 "----------------------------------------------------
 " If foldmethod is syntax
 "----------------------------------------------------
@@ -196,4 +204,15 @@ endfunction
 
 nmap ,v :edit $MYVIMRC<CR>
 
+
+"----------------------------------------------------
+" coc-floaterm
+"----------------------------------------------------
 let g:floaterm_keymap_toggle = '<Space>\'
+
+
+"----------------------------------------------------
+" coc-translator
+"----------------------------------------------------
+nmap <Leader>t <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-pv)
