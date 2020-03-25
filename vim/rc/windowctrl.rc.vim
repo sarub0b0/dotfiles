@@ -66,7 +66,10 @@ function! s:buffer_len() abort
 endfunction
 
 function! s:open_coc_explorer() abort
-  if s:buffer_len() > 1 && bufname() !=# ''
+  if s:buffer_len() > 1
+    return
+  endif
+  if bufname() !=# ''
     return
   endif
 
