@@ -1,0 +1,79 @@
+[[plugins]]
+repo = 'skanehira/preview-markdown.vim'
+on_ft = 'markdown'
+hook_source = '''
+    let g:preview_markdown_vertical = 1
+    let g:preview_markdown_parser = 'glow'
+'''
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+hook_source = '''
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_toc_autofit = 0
+    let g:vim_markdown_math = 1
+    let g:vim_markdown_folding_disabled = 1
+    let g:tex_conceal = ""
+    let g:vim_markdown_fenced_languages = [
+        \ 'c++',
+        \ 'c',
+        \ 'shell',
+        \ 'bash',
+        \ 'java',
+        \ 'ruby',
+        \ 'python',
+        \ 'json',
+        \ 'xml',
+        \ 'javascript',
+        \ 'js=javascript'
+    \]
+
+'''
+
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+on_i = 1
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.vim'
+on_ft = 'markdown'
+hook_source = '''
+    let g:mkdp_auto_start = 0
+    let g:mkdp_auto_close = 1
+    let g:mkdp_refresh_slow = 0
+'''
+
+[[plugins]]
+repo = 'iamcco/mathjax-support-for-mkdp'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'godlygeek/tabular'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = 'markdown'
+hook_source = '''
+let g:gfm_syntax_enable_always = 1
+let g:gfm_syntax_enable_filetypes = ['markdown']
+
+let g:gfm_syntax_hightlight_inline_code = 1
+let g:gfm_syntax_hightlight_mention = 1
+let g:gfm_syntax_hightlight_strikethrough = 1
+let g:gfm_syntax_hightlight_emoji = 1
+let g:gfm_syntax_hightlight_table = 1
+let g:gfm_syntax_hightlight_issue_number = 1
+let g:gfm_syntax_hightlight_checkbox = 1
+'''
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+    let g:indent_guides_enable_on_vim_startup = 1
+    set ts=4 sw=4 et
+    let g:indent_guides_start_level = 2
+    let g:indent_guides_guide_size = 1
+'''
+on_ft = 'markdown'

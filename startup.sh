@@ -1,13 +1,20 @@
 #!/bin/bash
 
 vim () {
-    mkdir -p $HOME/.config/nvim
-    ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
-    ln -sf $HOME/dotfiles/coc-settings.json $HOME/.config/nvim/coc-settings.json
-    ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+    rm -rf $HOME/.vim
+    rm -rf $HOME/.vimrc
+    echo "$HOME/dotfiles/vimrc -> $HOME/.vim"
+    echo "$HOME/dotfiles/vimrc/init.vim -> $HOME/.vimrc"
 
+    ln -sf $HOME/dotfiles/vimrc $HOME/.vim
+    ln -sf $HOME/dotfiles/vimrc/init.vim $HOME/.vimrc
 }
+neovim () {
+    rm -rf $HOME/.config/nvim
 
+    echo "$HOME/dotfiles/vimrc -> $HOME/.config/nvim"
+    ln -sf $HOME/dotfiles/vimrc $HOME/.config/nvim
+}
 tmux () {
     ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 }
@@ -38,6 +45,7 @@ kubectl-prompt () {
 }
 
 vim
+neovim
 tmux
 zsh
 anyenv

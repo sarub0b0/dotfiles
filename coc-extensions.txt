@@ -14,5 +14,7 @@ coc-python
 coc-snippets
 coc-solargraph
 coc-tabnine
+coc-translator
+coc-vetur
 coc-vimlsp
 coc-yaml

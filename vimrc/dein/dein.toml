@@ -1,0 +1,208 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]] # icons
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+    let g:webdevicons_enable_nerdtree = 1
+    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+    let g:WebDevIconsNerdTreeBeforeGlyphPadding = ' '
+    let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+    let g:WebDevIconsOS = 'Darwin'
+    " let g:webdevicons_conceal_nerdtree_brackets = 0
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+\   'active': {
+\       'left': [
+\           ['mode', 'paste'],
+\           ['readonly', 'filename', 'modified', 'gitstatus', 'gitstatusbuffer'],
+\           ['cocstatusdiagnostic'],
+\       ],
+\       'right': [
+\           [ 'lineinfo' ], [ 'percent'],
+\           [ 'fileformat', 'fileencoding', 'filetype' ]
+\       ]
+\   },
+\   'component_function':{
+\      'wordcount': 'WordCount',
+\      'fugitive': 'LightLineFugitive',
+\      'readonly': 'LightLineReadonly',
+\      'modified': 'LightLineModified',
+\      'filename': 'LightLineFilename',
+\      'filetype': 'LightLineFiletype',
+\      'fileformat': 'LightLineFileformat',
+\      'cocstatus': 'CocStatus',
+\      'cocstatusdiagnostic': 'CocStatusDiagnostic',
+\      'currentfunction': 'CocCurrentFunction',
+\      'gitstatus': 'GitStatusGlobal',
+\      'gitstatusbuffer': 'GitStatusBuffer',
+\   },
+\   'colorscheme': 'oceanicnext',
+\   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\}
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+function! CocStatus() abort
+    return get(g:, 'coc_status', '')
+endfunction
+
+function! GitStatusGlobal()
+    return get(g:, 'coc_git_status', '')
+endfunction
+
+function! GitStatusBuffer()
+    let l:msg = get(b:, 'coc_git_status', '')
+    return msg[2:-2]
+endfunction
+
+function! CocStatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, g:coc_status_error_sign . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, g:coc_status_warning_sign . info['warning'])
+  endif
+  return join(msgs, ' ')
+endfunction
+
+function! LightLineModified()
+    if &filetype == "help"
+        return ""
+    elseif &modified
+        return "+"
+    elseif &modifiable
+        return ""
+    else
+        return ""
+    endif
+endfunction
+
+function! LightLineReadonly()
+    if &filetype == "help"
+        return ""
+    elseif &readonly
+        return "\uf023"
+    else
+        return ""
+    endif
+endfunction
+
+function! LightLineFugitive()
+    if exists("*fugitive#head")
+        let _ = fugitive#head()
+        return strlen(_) ? "\ue725 "._ : ''
+    endif
+    return ''
+endfunction
+
+function! LightLineFilename()
+    return ('' != expand('%:p') ? winwidth(0) > 70 ? expand('%:~:.') : expand('%:t') : '[No Name]')
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+" hide --INSERT--
+set noshowmode
+
+'''
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+hook_add = '''
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.js'
+    let g:closetag_filetypes = 'html,xhtml,phtml,erb,php,vue,javascript'
+'''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+hook_add = '''
+let g:floaterm_position = 'topright'
+
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merged = 0
+hook_add = '''
+let g:coc_status_error_sign = "\uf00d"
+let g:coc_status_warning_sign = "\uf12a"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  call CocAction('doHover')
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+augroup MyCoc
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+'''
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+    call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+    call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+    call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+    call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+    call submode#map('bufmove', 'n', '', '<', '<C-w><')
+    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build_on = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+

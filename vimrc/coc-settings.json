@@ -2,12 +2,8 @@
   "languageserver": {
     "cmake": {
       "command": "cmake-language-server",
-      "filetypes": [
-        "cmake"
-      ],
-      "rootPatterns": [
-        "build/"
-      ],
+      "filetypes": ["cmake"],
+      "rootPatterns": ["build/"],
       "initializationOptions": {
         "buildDirectory": "build"
       }
@@ -21,9 +17,7 @@
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.useQuickfixForLocations": false,
   "coc.preferences.formatOnInsertLeave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "eslint.filetypes": [
     "javascript",
     "javascriptreact",
@@ -49,9 +43,7 @@
     "u": "gotoParent"
   },
   "translator.toLang": "ja",
-  "translator.engines": [
-    "google"
-  ],
+  "translator.engines": ["google"],
   "yaml.schemas": {
     "kubernetes": "/*.yaml"
   }
