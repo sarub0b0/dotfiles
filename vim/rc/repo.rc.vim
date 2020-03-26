@@ -37,11 +37,11 @@ endfunction
 function! s:repo(multi, cb) abort
   if executable('ghq') && exists('*fzf#run()') && executable('fzf')
     call fzf#run({
-          \ 'source': systemlist('ghq list'),
-          \ 'sink': a:cb,
-          \ 'options': a:multi,
-          \ 'down': '20%'},
-          \ )
+        \ 'source': systemlist('ghq list'),
+        \ 'sink': a:cb,
+        \ 'options': a:multi,
+        \ 'down': '20%'},
+        \ )
   else
     echo "doesn't installed ghq or fzf.vim (require fzf)"
   endif

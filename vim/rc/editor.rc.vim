@@ -97,7 +97,9 @@ let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:su
 set iskeyword=@,48-57,_,-,:,192-255
 
 
-let mapleader = ","
+let g:mapleader = ","
+
+let g:vim_indent_cont = 4
 
 " autocmd DeleteLineEndSpaceCmd BufWritePre * :keeppatterns %s/\s\+$//ge
 
