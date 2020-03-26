@@ -45,26 +45,26 @@ function! s:get_syn_attr(synid)
   let guifg = synIDattr(a:synid, 'fg', 'gui')
   let guibg = synIDattr(a:synid, 'bg', 'gui')
   return {
-        \ 'name': name,
-        \ 'ctermfg': ctermfg,
-        \ 'ctermbg': ctermbg,
-        \ 'guifg': guifg,
-        \ 'guibg': guibg}
+      \ 'name': name,
+      \ 'ctermfg': ctermfg,
+      \ 'ctermbg': ctermbg,
+      \ 'guifg': guifg,
+      \ 'guibg': guibg}
 endfunction
 function! s:get_syn_info()
   let baseSyn = s:get_syn_attr(s:get_syn_id(0))
   echo 'name: ' . baseSyn.name .
-        \ ' ctermfg=' . baseSyn.ctermfg .
-        \ ' ctermbg=' . baseSyn.ctermbg .
-        \ ' guifg=' . baseSyn.guifg .
-        \ ' guibg=' . baseSyn.guibg
+      \ ' ctermfg=' . baseSyn.ctermfg .
+      \ ' ctermbg=' . baseSyn.ctermbg .
+      \ ' guifg=' . baseSyn.guifg .
+      \ ' guibg=' . baseSyn.guibg
   let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
   echo 'link to'
   echo 'name: ' . linkedSyn.name .
-        \ ' ctermfg=' . linkedSyn.ctermfg .
-        \ ' ctermbg=' . linkedSyn.ctermbg .
-        \ ' guifg=' . linkedSyn.guifg .
-        \ ' guibg=' . linkedSyn.guibg
+      \ ' ctermfg=' . linkedSyn.ctermfg .
+      \ ' ctermbg=' . linkedSyn.ctermbg .
+      \ ' guifg=' . linkedSyn.guifg .
+      \ ' guibg=' . linkedSyn.guibg
 
 endfunction
 

@@ -27,6 +27,7 @@ set formatoptions+=mM
 " indent
 set autoindent
 setl foldmethod=indent
+let g:vim_indent_cont = 4
 
 " タブ設定
 set expandtab
@@ -122,17 +123,17 @@ if &term =~? 'xterm'
 endif
 
 if has('nvim')
-    set cursorline
+  set cursorline
 
-    set inccommand=nosplit
+  set inccommand=nosplit
 
-    let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
-    set clipboard&
-    set clipboard+=unnamedplus
+  let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+  set clipboard&
+  set clipboard+=unnamedplus
 else
-    set nocursorline
+  set nocursorline
 
-    set clipboard^=unnamedplus,autoselect
+  set clipboard^=unnamedplus,autoselect
 endif
 
 

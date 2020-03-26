@@ -134,15 +134,15 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
 inoremap <silent><expr> <C-j> pumvisible() ? coc#_select_confirm() :
-      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+    \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
