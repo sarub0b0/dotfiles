@@ -95,16 +95,6 @@ set iskeyword=@,48-57,_,-,:,192-255
 let g:mapleader = ","
 
 
-autocmd DeleteLineEndSpaceCmd BufWritePre * call s:remove_tail_spaces()
-
-function! s:remove_tail_spaces() abort
-  let l:view = winsaveview()
-  keeppatterns :%s/\s\+$//ge
-  silent call winrestview(l:view)
-endfunction
-
-autocmd MyAutoCmd QuickFixCmdPost *grep* :rightbelow cwindow 7
-
 "クリップボードからコピペする際のインデントのズレを防ぐ
 if &term =~? 'xterm'
   let &t_ti .= "\e[?2004h"
