@@ -1,16 +1,35 @@
 
 " =======================================================
-" ファイルに書かれているcoc extensionをインストールする
+" よく使うcoc extensionをインストールする
 " =======================================================
-function! s:coc_install(filename)
-  echomsg "Start install " . a:filename
-  let l:install_list = []
-  let l:idx = 1
-  for l:ext in readfile(a:filename)
-    echomsg "(" . l:idx . ") " . l:ext
-    let l:idx = l:idx + 1
-    call coc#util#install_extension([l:ext])
+
+let s:extensions = [
+    \ 'coc-actions',
+    \ 'coc-clangd',
+    \ 'coc-cmake',
+    \ 'coc-css',
+    \ 'coc-eslint',
+    \ 'coc-explorer',
+    \ 'coc-floaterm',
+    \ 'coc-git',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-markdownlint',
+    \ 'coc-pairs',
+    \ 'coc-prettier',
+    \ 'coc-python',
+    \ 'coc-snippets',
+    \ 'coc-solargraph',
+    \ 'coc-tabnine',
+    \ 'coc-translator',
+    \ 'coc-vimlsp',
+    \ 'coc-yaml',
+    \ ]
+
+function! s:coc_all_install() abort
+  for l:ext in s:extensions
+    execute ':CocInstall ' . l:ext
   endfor
 endfunction
 
-command! -nargs=1 -complete=file CocBeginInstall call s:coc_install("<args>")
+command! -nargs=0 CocALLInstall call s:coc_all_install()
