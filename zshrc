@@ -38,9 +38,6 @@ __envs () {
 
     export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-    export PATH="${NODENV_ROOT}/versions/13.11.0/bin:$PATH"
-
-
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
