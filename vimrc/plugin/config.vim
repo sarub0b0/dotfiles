@@ -82,7 +82,6 @@ set t_Co=256
 
 set pumheight=20
 
-
 if has('persistent_undo')
   set undodir=~/.cache/vimundo
   set undofile
@@ -120,6 +119,9 @@ if has('nvim')
   let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
   set clipboard&
   set clipboard+=unnamedplus
+
+  set pumblend=10
+  set winblend=10
 else
   set nocursorline
 
@@ -127,3 +129,9 @@ else
 endif
 
 
+
+"----------------------------------------------------
+" coc-floaterm
+"----------------------------------------------------
+
+let g:floaterm_winblend = 10

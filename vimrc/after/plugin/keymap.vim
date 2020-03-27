@@ -93,14 +93,15 @@ xmap <silent> <Space>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<C
 nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 
-"----------------------------------------------------
-" coc-floaterm
-"----------------------------------------------------
-let g:floaterm_keymap_toggle = '<Space>\'
-
 
 "----------------------------------------------------
 " coc-translator
 "----------------------------------------------------
 nmap <Leader>t <Plug>(coc-translator-p)
 vmap <Leader>t <Plug>(coc-translator-pv)
+
+
+"----------------------------------------------------
+" coc-floaterm
+"----------------------------------------------------
+let g:floaterm_keymap_toggle = '<Space>\'
