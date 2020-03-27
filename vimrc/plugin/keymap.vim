@@ -92,8 +92,6 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-Space> coc#refresh()
 
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>

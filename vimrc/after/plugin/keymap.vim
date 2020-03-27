@@ -74,6 +74,8 @@ xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
 
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-explorer
@@ -89,7 +91,6 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <Space>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
 
 
 "----------------------------------------------------

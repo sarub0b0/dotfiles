@@ -32,10 +32,8 @@ endif
 
 let s:dein_dir = g:cache_dir . '/dein'
 
-" dein.vim¤Î¥Ç¥£¥ì¥¯¥È¥ê
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" ¤Ê¤±¤ì¤Ðgit clone
 if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
 endif
@@ -47,7 +45,6 @@ if dein#load_state(s:dein_dir)
 
   let s:toml_dir  = g:config_dir . '/dein'
 
-  " ´ÉÍý¤¹¤ë¥×¥é¥°¥¤¥ó¤òµ­½Ò¤·¤¿¥Õ¥¡¥¤¥ë
   let s:toml = s:toml_dir . '/dein.toml'
   let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
   let s:syntax_toml = s:toml_dir . '/syntax.toml'
