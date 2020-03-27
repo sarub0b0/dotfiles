@@ -99,9 +99,3 @@ nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR
 "----------------------------------------------------
 nmap <Leader>t <Plug>(coc-translator-p)
 vmap <Leader>t <Plug>(coc-translator-pv)
-
-
-"----------------------------------------------------
-" coc-floaterm
-"----------------------------------------------------
-let g:floaterm_keymap_toggle = '<Space>\'

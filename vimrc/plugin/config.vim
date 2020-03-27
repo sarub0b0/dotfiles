@@ -133,5 +133,5 @@ endif
 "----------------------------------------------------
 " coc-floaterm
 "----------------------------------------------------
-
+let g:floaterm_keymap_toggle = '<Space>\'
 let g:floaterm_winblend = 10
