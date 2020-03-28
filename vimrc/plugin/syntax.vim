@@ -1,9 +1,12 @@
 scriptencoding utf-8
 
 "#343d46 #4f5b66
-if has('neovim')
-  highlight MyNormalNC ctermbg=240 guibg=#3d4853
+highlight MyNormalNC ctermbg=240 guibg=#3d4853
+if has('nvim')
   set winhighlight=NormalNC:MyNormalNC
+else
+  autocmd MyAutoCmd WinEnter,BufWinEnter * set wincolor=
+  autocmd MyAutoCmd WinLeave * set wincolor=MyNormalNC
 endif
 
 autocmd MyAutoCmd Syntax * call s:error_syntax()
