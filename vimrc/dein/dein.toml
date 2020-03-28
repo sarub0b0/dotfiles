@@ -25,6 +25,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+let g:fugitive_no_maps = 1
+'''
 
 [[plugins]]
 repo = 'mhartington/oceanic-next'
