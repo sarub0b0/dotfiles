@@ -42,6 +42,7 @@
   "explorer.keyMappings": {
     "u": "gotoParent"
   },
+  "python.jediEnabled": false,
   "translator.toLang": "ja",
   "translator.engines": ["google"],
   "yaml.schemas": {
