@@ -3,7 +3,3 @@
 repo = 'vim-jp/vimdoc-ja'
 on_ft = ['help']
 
-[[plugins]]
-repo = 'thinca/vim-ft-help_fold'
-on_ft = ['help']
-
