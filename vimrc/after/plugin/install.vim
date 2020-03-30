@@ -34,3 +34,18 @@ function! s:coc_all_install() abort
 endfunction
 
 command! -nargs=0 CocALLInstall call s:coc_all_install()
+
+
+" function! ExtensionsList(timer) abort
+"   let l:stats = CocAction('extensionStats')
+
+"   if type(l:stats) != v:t_list
+"     return
+"   endif
+
+"   call timer_stop(a:timer)
+
+"   call filter(l:stats, 'v:val["isLocal"] == v:false')
+"   let g:coc_extensions_list = map(l:stats, 'v:val["id"]')
+" endfunction
+" let s:timer_start = timer_start(500, 'ExtensionsList', {'repeat': 3})
