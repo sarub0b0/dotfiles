@@ -8,6 +8,7 @@ let s:extensions = [
     \ 'coc-clangd',
     \ 'coc-cmake',
     \ 'coc-css',
+    \ 'coc-emoji',
     \ 'coc-eslint',
     \ 'coc-explorer',
     \ 'coc-floaterm',
