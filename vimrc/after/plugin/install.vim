@@ -19,10 +19,13 @@ let s:extensions = [
     \ 'coc-pairs',
     \ 'coc-prettier',
     \ 'coc-python',
+    \ 'coc-sh',
     \ 'coc-snippets',
     \ 'coc-solargraph',
     \ 'coc-tabnine',
     \ 'coc-translator',
+    \ 'coc-tsserver',
+    \ 'coc-vetur',
     \ 'coc-vimlsp',
     \ 'coc-yaml',
     \ ]
