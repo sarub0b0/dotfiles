@@ -1,4 +1,46 @@
 {
+  "clock.enable": false,
+  "clock.winblend": 100,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.formatOnInsertLeave": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "*"
+  ],
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.useQuickfixForLocations": false,
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "vue",
+    "javascript"
+  ],
+  "diagnostic.errorSign": "\uf00d",
+  "diagnostic.hintSign": ">>",
+  "diagnostic.infoSign": ">>",
+  "diagnostic.warningSign": "\uf12a",
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "eslint.autoFixOnSave": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.keyMappings": {
+    "u": "gotoParent"
+  },
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": true
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.width": 25,
   "languageserver": {
     "cmake": {
       "command": "cmake-language-server",
@@ -13,47 +55,8 @@
       }
     }
   },
-  "diagnostic.errorSign": "\uf00d",
-  "diagnostic.warningSign": "\uf12a",
-  "diagnostic.infoSign": ">>",
-  "diagnostic.hintSign": ">>",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.hoverTarget": "float",
-  "coc.preferences.useQuickfixForLocations": false,
-  "coc.preferences.formatOnInsertLeave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
-  "coc.source.emoji.filetypes": [
-    "markdown",
-    "vue",
-    "javascript"
-  ],
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
-  "eslint.autoFixOnSave": true,
-  "explorer.width": 25,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.icon.enableVimDevicons": false,
-  "explorer.sources": [
-    {
-      "name": "buffer",
-      "expand": true
-    },
-    {
-      "name": "file",
-      "expand": true
-    }
-  ],
-  "explorer.keyMappings": {
-    "u": "gotoParent"
-  },
   "python.jediEnabled": false,
+  "sh.enable": true,
   "translator.toLang": "ja",
   "translator.engines": [
     "google"
