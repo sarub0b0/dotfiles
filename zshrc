@@ -216,7 +216,7 @@ __fzf () {
                     echo;
                     '"${lscmd} "'"${__cd_nxt}";
             '
-            local lsd=$(echo ".." && find . -type d -maxdepth 3)
+            local lsd=$(echo "$(echo ".." && find . -type d -maxdepth 3 -not -path '*/\.git/*' -and -not -path '\.')" | sort )
             local dir="$(printf '%s\n' "${lsd[@]}" | fzf --reverse --preview $fzf_preview_opt)"
             [[ ${#dir} != 0 ]] || return 0
             builtin cd "$dir" &> /dev/null
