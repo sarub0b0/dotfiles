@@ -187,14 +187,42 @@ __fzf () {
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-        function ghq-fzf () {
+        ghq-fzf () {
             local src=$(ghq list | fzf --preview "head --head 50 $(ghq root)/{}/README.*")
             if [ -n "$src" ]; then
                 cd $(ghq root)/$src
             fi
         }
+
+        fd () {
+            local dir
+            dir=$(find ${1:-.} -path '*/\.*' -prune \
+                -o -type d -print 2> /dev/null | fzf +m) &&
+            cd "$dir"
+        }
+
+        cd() {
+            if [[ "$#" != 0 ]]; then
+                builtin cd "$@";
+                return
+            fi
+            local lscmd='ls -p --color=always'
+            if [ "$(uname)" = 'Darwin' ]; then
+                lscmd='ls -p -FG'
+            fi
+            local fzf_preview_opt=' __cd_nxt="$(echo {})";
+                    __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
+                    echo $__cd_path;
+                    echo;
+                    '"${lscmd} "'"${__cd_nxt}";
+            '
+            local lsd=$(echo ".." && find . -type d -maxdepth 3)
+            local dir="$(printf '%s\n' "${lsd[@]}" | fzf --reverse --preview $fzf_preview_opt)"
+            [[ ${#dir} != 0 ]] || return 0
+            builtin cd "$dir" &> /dev/null
+        }
+        bindkey '^T' transpose-chars
     fi
-    bindkey '^T' transpose-chars
 }
 
 __command () {
@@ -250,6 +278,31 @@ __zsh_kubectl_prompt () {
     bindkey '^G^N' kubectl-disable
 }
 
+__z () {
+    if [ "$(uname)" = "Darwin" ]; then
+        source /usr/local/opt/z/etc/profile.d/z.sh
+
+        if builtin command -v fzf > /dev/null; then
+            unalias z
+            z() {
+                if [[ -z "$*" ]]; then
+                    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+                else
+                    _last_z_args="$@"
+                    _z "$@"
+                fi
+            }
+
+            zz() {
+                cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+            }
+
+            alias j=z
+            alias jj=zz
+        fi
+    fi
+}
+
 
 # 一番最初
 __color
@@ -260,8 +313,10 @@ __anyenv
 __nvim
 __completion
 __fzf
+__z
 
 __envs
+
 
 __zsh_kubectl_prompt
 
