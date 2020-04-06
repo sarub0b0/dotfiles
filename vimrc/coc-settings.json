@@ -1,6 +1,8 @@
 {
   "clock.enable": false,
   "clock.winblend": 100,
+  "coc-actions.useCursorLine": false,
+  "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnInsertLeave": true,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
