@@ -213,6 +213,9 @@ build_on = './install --all'
 repo = 'junegunn/fzf.vim'
 
 [[plugins]]
+repo = 'jremmen/vim-ripgrep'
+
+[[plugins]]
 repo = 'honza/vim-snippets'
 
 [[plugins]]
