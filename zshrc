@@ -18,6 +18,7 @@ __alias () {
     alias gobuild='go build'
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
     alias k='kubectl'
+    alias kb='kubie'
 }
 
 __envs () {
@@ -46,6 +47,8 @@ __envs () {
     if [ "$(hostname)" = "kosay-bbtower.local" ]; then
         export KUBECONFIG=$HOME/.kube/config-gke
     fi
+
+    export PATH=$HOME/.cargo/bin:$PATH
 }
 
 __iterm2 () {
