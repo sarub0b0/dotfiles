@@ -131,7 +131,16 @@ command! -nargs=+ Rsync call s:rsync_function(<f-args>)
 
 autocmd DeleteLineEndSpaceCmd BufWritePre * call s:remove_tail_spaces()
 
+let s:ignore_filetype = [
+    \ 'markdown'
+    \ ]
+
 function! s:remove_tail_spaces() abort
+
+  if -1 < match(s:ignore_filetype, &ft)
+    return
+  end
+
   let l:view = winsaveview()
   keeppatterns :%s/\s\+$//ge
   silent call winrestview(l:view)
