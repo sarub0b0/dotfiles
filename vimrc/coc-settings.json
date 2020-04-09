@@ -5,10 +5,16 @@
   "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnInsertLeave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "*"
+  ],
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.useQuickfixForLocations": false,
-  "coc.source.emoji.filetypes": ["markdown", "vue", "javascript"],
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "vue",
+    "javascript"
+  ],
   "diagnostic.errorSign": "\uf00d",
   "diagnostic.hintSign": ">>",
   "diagnostic.infoSign": ">>",
@@ -40,8 +46,12 @@
   "languageserver": {
     "cmake": {
       "command": "cmake-language-server",
-      "filetypes": ["cmake"],
-      "rootPatterns": ["build/"],
+      "filetypes": [
+        "cmake"
+      ],
+      "rootPatterns": [
+        "build/"
+      ],
       "initializationOptions": {
         "buildDirectory": "build"
       }
@@ -52,7 +62,10 @@
   "solargraph.commandPath": "/Users/kosay/.anyenv/envs/rbenv/shims/solargraph",
   "solargraph.formatting": true,
   "translator.toLang": "ja",
-  "translator.engines": ["google"],
+  "translator.engines": [
+    "google"
+  ],
+  "tsserver.trace.server": "verbose",
   "yaml.schemas": {
     "kubernetes": "/*.yaml"
   }
