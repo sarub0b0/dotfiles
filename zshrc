@@ -49,6 +49,8 @@ __envs () {
     fi
 
     export PATH=$HOME/.cargo/bin:$PATH
+
+    export PATH=$NODENV_ROOT/versions/*/bin:$PATH
 }
 
 __iterm2 () {
