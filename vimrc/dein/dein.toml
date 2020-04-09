@@ -237,3 +237,20 @@ nnoremap <silent> <Space>t :<C-u>Vista!!<CR>
 
 autocmd MyAutoCmd FileType vista,vista_kind nnoremap <buffer><silent> / :<c-u>call vista#finder#fzf#Run()<CR>
 '''
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+"let g:context_filetype#filetypes = {
+"\'vue': [
+"\  {
+"\     'start': '^<template.*>',
+"\     'end': '^<\/template>',
+"\     'filetype': 'html'
+"\  }
+"\]
+"\}
+'''
