@@ -254,3 +254,6 @@ hook_add = '''
 "\]
 "\}
 '''
+
+[[plugins]]
+repo = 'puremourning/vimspector'
