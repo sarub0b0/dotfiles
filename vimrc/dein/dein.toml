@@ -257,3 +257,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'puremourning/vimspector'
+build = './install_gadget.py --all --disable-tcl --force-enable-node --force-enable-chrome'
+hook_add = '''
+let g:vimspector_enable_mappings = 'HUMAN'
+'''
