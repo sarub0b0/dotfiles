@@ -53,6 +53,7 @@
   "sh.enable": true,
   "solargraph.commandPath": "/Users/kosay/.anyenv/envs/rbenv/shims/solargraph",
   "solargraph.formatting": true,
+  "tabnine.disable_filetypes": ["coc-explorer"],
   "translator.toLang": "ja",
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",

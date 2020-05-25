@@ -33,6 +33,8 @@ __envs () {
     export HISTSIZE=50000
     export SAVEHIST=100000
 
+    export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
+
     setopt hist_reduce_blanks
 
     export PATH="$GOPATH/bin:$PATH"
@@ -192,7 +194,7 @@ __fzf () {
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-        ghq-fzf () {
+        gf () {
             local src=$(ghq list | fzf --preview "head --head 50 $(ghq root)/{}/README.*")
             if [ -n "$src" ]; then
                 cd $(ghq root)/$src
