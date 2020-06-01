@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-"#343d46 #4f5b66
+" #343d46 #4f5b66
 highlight MyNormalNC ctermbg=240 guibg=#3d4853
 if has('nvim')
   set winhighlight=NormalNC:MyNormalNC

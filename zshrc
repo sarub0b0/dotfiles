@@ -156,12 +156,7 @@ __completion () {
 
 
 __anyenv () {
-    if [ "$(uname)" = 'Darwin' ]; then
-        export PATH="/usr/local/opt/anyenv/bin:$PATH"
-        alias brew="env PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin brew"
-    else
-        export PATH="$HOME/.anyenv/bin:$PATH"
-    fi
+    export PATH="$HOME/.anyenv/bin:$PATH"
 
     eval "$(anyenv init - --no-rehash)"
     # tmux対応
