@@ -52,7 +52,7 @@ __envs () {
 
     export PATH=$HOME/.cargo/bin:$PATH
 
-    export PATH=$NODENV_ROOT/versions/*/bin:$PATH
+    export PATH=$NODENV_ROOT/versions/$(nodenv global)/bin:$PATH
 }
 
 __iterm2 () {
