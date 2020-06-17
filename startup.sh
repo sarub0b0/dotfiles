@@ -44,6 +44,8 @@ kubectl-prompt () {
     git clone --depth 1 https://github.com/superbrothers/zsh-kubectl-prompt.git $HOME/.zsh-kubectl-prompt
 }
 
+ln -sf $HOME/dotfiles/clang-format $HOME/.clang-format
+
 vim
 neovim
 tmux
