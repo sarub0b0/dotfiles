@@ -208,10 +208,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'junegunn/fzf'
-build_on = './install --all'
+build = './install --all'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+depends = 'fzf'
 
 [[plugins]]
 repo = 'jremmen/vim-ripgrep'
