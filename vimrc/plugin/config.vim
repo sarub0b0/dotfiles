@@ -66,7 +66,7 @@ set dictionary=/usr/share/dict/words
 
 set completeopt=menuone,menu
 
-set wildignore=*.o,*.obj,GTAGS,GPATH,GRTAGS
+set wildignore=*.o,*.obj,GTAGS,GPATH,GRTAGS,core
 " set complete=.,w,b,u,t
 
 set grepprg=grep\ -rnHI
