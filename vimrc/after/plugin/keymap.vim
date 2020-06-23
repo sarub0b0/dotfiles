@@ -32,6 +32,11 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait><space>j  :<C-u>CocList -A diagnostics<cr>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""
 " coc-snippets
 """""""""""""""""""""""""""""""""""""""""""""""""
