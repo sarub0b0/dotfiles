@@ -215,6 +215,10 @@ repo = 'junegunn/fzf.vim'
 depends = 'fzf'
 
 [[plugins]]
+repo = 'antoinemadec/coc-fzf'
+depends = ['fzf', 'fzf.vim', 'coc.nvim']
+
+[[plugins]]
 repo = 'jremmen/vim-ripgrep'
 
 [[plugins]]
