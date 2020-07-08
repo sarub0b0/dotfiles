@@ -267,3 +267,26 @@ hook_add = '''
 # hook_add = '''
 # let g:vimspector_enable_mappings = 'HUMAN'
 # '''
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-devicons.vim'
+hook_add = '''
+    let g:fern#renderer = "devicons"
+'''
+depends = 'fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-mapping-project-top.vim'
+depends = 'fern.vim'
+
+[[plugins]]
+repo = 'LumaKernel/fern-mapping-fzf.vim'
+depends = ['fzf', 'fern.vim']
+hook_add = '''
+let s:bin_dir = g:cache_dir . '/dein/repos/github.com/junegunn/fzf.vim/bin/preview.sh'
+let s:preview_command = s:bin_dir .' {}'
+let g:fern#mapping#fzf#fzf_options = {'options': ['--layout=reverse', '--info=inline', '--preview', s:preview_command]}
+'''
