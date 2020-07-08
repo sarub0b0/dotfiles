@@ -286,3 +286,8 @@ depends = 'fern.vim'
 [[plugins]]
 repo = 'LumaKernel/fern-mapping-fzf.vim'
 depends = ['fzf', 'fern.vim']
+hook_add = '''
+let s:bin_dir = g:cache_dir . '/dein/repos/github.com/junegunn/fzf.vim/bin/preview.sh'
+let s:preview_command = s:bin_dir .' {}'
+let g:fern#mapping#fzf#fzf_options = {'options': ['--layout=reverse', '--info=inline', '--preview', s:preview_command]}
+'''
