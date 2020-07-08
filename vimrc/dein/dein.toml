@@ -267,3 +267,22 @@ build = './install_gadget.py --all --disable-tcl --force-enable-node --force-ena
 hook_add = '''
 let g:vimspector_enable_mappings = 'HUMAN'
 '''
+
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-devicons.vim'
+hook_add = '''
+    let g:fern#renderer = "devicons"
+'''
+depends = 'fern.vim'
+
+[[plugins]]
+repo = 'lambdalisue/fern-mapping-project-top.vim'
+depends = 'fern.vim'
+
+[[plugins]]
+repo = 'LumaKernel/fern-mapping-fzf.vim'
+depends = ['fzf', 'fern.vim']
