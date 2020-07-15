@@ -20,14 +20,14 @@ nnoremap <silent><C-q> :cclose<CR>
 "----------------------------------------------------
 " insert -> nomarl remap
 "----------------------------------------------------
-inoremap <silent> jj <ESC>
+" inoremap <silent> jj <ESC>
 
 "----------------------------------------------------
 " terminal -> normal remap
 "----------------------------------------------------
 if has('terminal') || has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
-  tnoremap <silent> jj <C-\><C-n>
+  " tnoremap <silent> jj <C-\><C-n>
 endif
 
 "----------------------------------------------------
