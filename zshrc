@@ -30,8 +30,8 @@ __envs () {
     export XDG_CONFIG_HOME="${HOME}/.config"
 
     export HISTFILE=${HOME}/.zsh_history
-    export HISTSIZE=50000
-    export SAVEHIST=100000
+    export HISTSIZE=10000
+    export SAVEHIST=10000
 
     export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
 
