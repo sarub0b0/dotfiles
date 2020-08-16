@@ -3,7 +3,7 @@
 " よく使うcoc extensionをインストールする
 " =======================================================
 
-let s:extensions = [
+let g:extensions = [
     \ 'coc-actions',
     \ 'coc-clangd',
     \ 'coc-cmake',
@@ -20,6 +20,7 @@ let s:extensions = [
     \ 'coc-pairs',
     \ 'coc-prettier',
     \ 'coc-python',
+    \ 'coc-rls',
     \ 'coc-sh',
     \ 'coc-snippets',
     \ 'coc-solargraph',
@@ -31,13 +32,13 @@ let s:extensions = [
     \ 'coc-yaml',
     \ ]
 
-function! s:coc_all_install() abort
-  for l:ext in s:extensions
-    execute ':CocInstall ' . l:ext
-  endfor
-endfunction
+" function! s:coc_all_install() abort
+"   for l:ext in s:extensions
+"     execute ':CocInstall ' . l:ext
+"   endfor
+" endfunction
 
-command! -nargs=0 CocALLInstall call s:coc_all_install()
+" command! -nargs=0 CocALLInstall call s:coc_all_install()
 
 
 " function! ExtensionsList(timer) abort
