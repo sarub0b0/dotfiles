@@ -21,7 +21,7 @@ if has('nvim')
   autocmd MyAutoCmd BufLeave term://* stopinsert
 
   autocmd MyAutoCmd TermOpen * if &buftype == 'terminal' | setl nonumber | startinsert| endif
-  command! -nargs=0 Terminal vertical botright new | resize 25 | startinsert | terminal
+  command! -nargs=0 Terminal vertical botright new | startinsert | terminal
 else
   command! Terminal call popup_create(term_start([&shell], #{ hidden: 1, term_finish: 'close'}), #{ border: [], minwidth: &columns/2, minheight: &lines/2, line: 1, col: &columns/2, pos: 'topleft', resize: 'true' })
 endif

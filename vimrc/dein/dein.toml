@@ -297,3 +297,6 @@ let s:bin_dir = g:cache_dir . '/dein/repos/github.com/junegunn/fzf.vim/bin/previ
 let s:preview_command = s:bin_dir .' {}'
 let g:fern#mapping#fzf#fzf_options = {'options': ['--layout=reverse', '--info=inline', '--preview', s:preview_command]}
 '''
+
+[[plugins]]
+repo = 'bumaociyuan/vim-swift'
