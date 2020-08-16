@@ -16,10 +16,11 @@ else
   let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.8.3/bin/python')
 endif
 
+
+
 " -----------------------------
 " dein settings
 " -----------------------------
-
 if has('nvim')
 
   let g:dein#install_process_timeout = 240
@@ -70,9 +71,11 @@ if has('nvim')
     call dein#end()
     call dein#save_state()
   endif
+
+  filetype plugin indent on
+  syntax enable
+
+  if dein#check_install()
+    call dein#install()
+  endif
 endif
-
-
-filetype plugin indent on
-syntax enable
-

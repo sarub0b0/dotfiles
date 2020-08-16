@@ -91,7 +91,8 @@ let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:su
 set iskeyword=@,48-57,_,-,:,192-255
 
 
-let g:mapleader = ","
+let g:mapleader = "\\"
+let g:maplocalleader = "\\"
 
 
 "クリップボードからコピペする際のインデントのズレを防ぐ

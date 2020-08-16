@@ -19,6 +19,7 @@ __alias () {
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
     alias k='kubectl'
     alias kb='kubie'
+    alias tf='terraform'
 }
 
 __envs () {
