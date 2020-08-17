@@ -20,6 +20,9 @@ __alias () {
     alias k='kubectl'
     alias kb='kubie'
     alias tf='terraform'
+    alias tp='telepresence'
+    alias ds='devspace'
+    alias sf='skaffold'
 }
 
 __envs () {
