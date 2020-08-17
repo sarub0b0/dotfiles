@@ -36,23 +36,26 @@ endfunction
 " =======================================================
 
 " ファイル指定なしで起動した場合にエクスプローラーを起動
-autocmd MyAutoCmd VimEnter * call s:open_coc_explorer()
 
-function! s:buffer_list() abort
-  return filter(range(1, bufnr('$')), 'buflisted(v:val)')
-endfunction
+if get(g:, 'coc_enabled', 0)
+  autocmd MyAutoCmd VimEnter * call s:open_coc_explorer()
 
-function! s:buffer_len() abort
-  return len(s:buffer_list())
-endfunction
+  function! s:buffer_list() abort
+    return filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  endfunction
 
-function! s:open_coc_explorer() abort
-  if s:buffer_len() > 1
-    return
-  endif
-  if bufname() !=# ''
-    return
-  endif
+  function! s:buffer_len() abort
+    return len(s:buffer_list())
+  endfunction
 
-  :CocCommand explorer
-endfunction
+  function! s:open_coc_explorer() abort
+    if s:buffer_len() > 1
+      return
+    endif
+    if bufname() !=# ''
+      return
+    endif
+
+    :CocCommand explorer
+  endfunction
+endif

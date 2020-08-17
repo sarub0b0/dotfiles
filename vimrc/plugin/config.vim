@@ -117,7 +117,9 @@ if has('nvim')
 
   set inccommand=nosplit
 
-  let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+  if has('mac')
+    let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+  endif
   set clipboard&
   set clipboard+=unnamedplus
 

@@ -21,7 +21,8 @@ endif
 " -----------------------------
 " dein settings
 " -----------------------------
-function! s:init_dein() abort
+if has('nvim')
+
   let g:dein#install_process_timeout = 240
   let s:dein_dir = ''
 
@@ -71,15 +72,10 @@ function! s:init_dein() abort
     call dein#save_state()
   endif
 
-
   filetype plugin indent on
   syntax enable
 
   if dein#check_install()
     call dein#install()
   endif
-endfunction
-
-if has('nvim')
-  call s:init_dein()
 endif
