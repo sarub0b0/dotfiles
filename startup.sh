@@ -44,6 +44,10 @@ kubectl-prompt () {
     git clone --depth 1 https://github.com/superbrothers/zsh-kubectl-prompt.git $HOME/.zsh-kubectl-prompt
 }
 
+gcloud-prompt () {
+    git clone --depth 1 https://github.com/ocadaruma/zsh-gcloud-prompt.git $HOME/.zsh-gcloud-prompt
+}
+
 ln -sf $HOME/dotfiles/clang-format $HOME/.clang-format
 
 vim
@@ -52,4 +56,5 @@ tmux
 zsh
 anyenv
 kubectl-prompt
+gcloud-prompt
 # completion

@@ -267,7 +267,8 @@ __kubectl_prompt_color() {
 }
 
 kubectl-enable () {
-    PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%10>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
+    # PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%20>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
+    PROMPT=$'%{$fg[$(__kubectl_prompt_color)]%}gcp info: $ZSH_GCLOUD_PROMPT\nk8s cluster info: ($ZSH_KUBECTL_CONTEXT:$ZSH_KUBECTL_NAMESPACE)\n%{$fg[green]%}%n %{$reset_color%}%(!.#.$) '
     zle reset-prompt
 }
 
@@ -278,6 +279,7 @@ kubectl-disable () {
 
 __zsh_kubectl_prompt () {
     source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+    source $HOME/.zsh-gcloud-prompt/gcloud.zsh
     zle -N kubectl-enable kubectl-enable
     zle -N kubectl-disable kubectl-disable
     bindkey '^G^M' kubectl-enable
