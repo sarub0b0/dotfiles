@@ -268,7 +268,7 @@ __kubectl_prompt_color() {
 
 kubectl-enable () {
     # PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%20>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
-    PROMPT=$'%{$fg[$(__kubectl_prompt_color)]%}gcp info: $ZSH_GCLOUD_PROMPT\nk8s cluster info: ($ZSH_KUBECTL_CONTEXT:$ZSH_KUBECTL_NAMESPACE)\n%{$fg[green]%}%n %{$reset_color%}%(!.#.$) '
+    PROMPT=$'%{$fg[$(__kubectl_prompt_color)]%}gcp: $ZSH_GCLOUD_PROMPT\nk8s: ($ZSH_KUBECTL_CONTEXT:$ZSH_KUBECTL_NAMESPACE)\n%{$fg[green]%}%n %{$reset_color%}%(!.#.$) '
     zle reset-prompt
 }
 
