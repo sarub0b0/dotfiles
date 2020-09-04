@@ -26,7 +26,7 @@ set formatoptions+=mM
 
 " indent
 set autoindent
-setl foldmethod=indent
+" setl foldmethod=indent
 let g:vim_indent_cont = 4
 
 " タブ設定
