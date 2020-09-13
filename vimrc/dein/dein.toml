@@ -8,9 +8,6 @@ build = 'make'
 [[plugins]]
 repo = 'tpope/vim-dispatch'
 
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
-
 [[plugins]] # icons
 repo = 'ryanoasis/vim-devicons'
 hook_add = '''
@@ -260,13 +257,6 @@ hook_add = '''
 "\]
 "\}
 '''
-
-# [[plugins]]
-# repo = 'puremourning/vimspector'
-# build = './install_gadget.py --all --disable-tcl --force-enable-node --force-enable-chrome'
-# hook_add = '''
-# let g:vimspector_enable_mappings = 'HUMAN'
-# '''
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
