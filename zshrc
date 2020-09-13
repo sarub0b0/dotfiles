@@ -278,8 +278,12 @@ kubectl-disable () {
 }
 
 __zsh_kubectl_prompt () {
-    source $HOME/.zsh-kubectl-prompt/kubectl.zsh
-    source $HOME/.zsh-gcloud-prompt/gcloud.zsh
+    if [ -f $HOME/.zsh-kubectl-prompt/kubectl.zsh ]; then
+        source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+    fi
+    if [ -f $HOME/.zsh-gcloud-prompt/gcloud.zsh ]; then
+        source $HOME/.zsh-gcloud-prompt/gcloud.zsh
+    fi
     zle -N kubectl-enable kubectl-enable
     zle -N kubectl-disable kubectl-disable
     bindkey '^G^M' kubectl-enable
