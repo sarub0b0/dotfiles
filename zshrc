@@ -194,7 +194,7 @@ __fzf () {
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
         gf () {
-            local src=$(ghq list | fzf --preview "head --head 50 $(ghq root)/{}/README.*")
+            local src=$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")
             if [ -n "$src" ]; then
                 cd $(ghq root)/$src
             fi
@@ -244,7 +244,7 @@ __command () {
             man "$@"
         }
 
-    fvim () {
+    fv () {
         files=$(git ls-files) && \
             selected_files=$(echo "$files" |\
             fzf -m --preview 'head -100 {}') &&\
