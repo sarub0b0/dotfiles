@@ -22,6 +22,9 @@ endif
 " dein settings
 " -----------------------------
 if has('nvim')
+  if filereadable(expand("$HOME/.dein_update_token.vim"))
+    source $HOME/.dein_update_token.vim
+  endif
 
   let g:dein#install_process_timeout = 240
   let s:dein_dir = ''
