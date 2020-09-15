@@ -18,6 +18,8 @@ __alias () {
     alias gobuild='go build'
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
     alias k='kubectl'
+    alias kc='kubectx'
+    alias kn='kubens'
     alias kb='kubie'
     alias tf='terraform'
     alias tp='telepresence'
