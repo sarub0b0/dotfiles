@@ -21,8 +21,6 @@ tmux () {
 
 zsh () {
     ln -sf $HOME/dotfiles/zshrc $HOME/.zshrc
-    echo "Install zplugin"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 }
 
 completion () {
