@@ -164,7 +164,7 @@ __completion () {
 __anyenv () {
     export PATH="$HOME/.anyenv/bin:$PATH"
 
-    eval "$(anyenv init - --no-rehash)"
+    eval "$(anyenv init - zsh)"
     # tmux対応
     env_dir=$HOME/.anyenv/envs
     for D in `ls $env_dir`
