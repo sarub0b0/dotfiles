@@ -31,7 +31,7 @@ completion () {
 
 anyenv () {
     git clone --depth 1 https://github.com/anyenv/anyenv ~/.anyenv
-    zsh ~/.anyenv/bin/anyenv init
+    eval "$(~/.anyenv/bin/anyenv init - zsh)"
     if [ -d $HOME/.anyenv/plugins ]; then
         mkdir -p $HOME/.anyenv/plugins
     fi
