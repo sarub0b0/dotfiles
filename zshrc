@@ -28,7 +28,9 @@ __alias () {
 }
 
 __envs () {
-    export EDITOR="vim"
+    if builtin command -v nvim > /dev/null; then
+        export EDITOR="nvim"
+    fi
     # export GOPATH="$GOROOT"
 
     export PATH="${HOME}/bin:${PATH}"
@@ -59,6 +61,8 @@ __envs () {
     export PATH=$HOME/.cargo/bin:$PATH
 
     export PATH=$NODENV_ROOT/versions/$(nodenv global)/bin:$PATH
+
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 }
 
 __iterm2 () {
@@ -164,7 +168,7 @@ __completion () {
 __anyenv () {
     export PATH="$HOME/.anyenv/bin:$PATH"
 
-    eval "$(anyenv init - zsh)"
+    eval "$(anyenv init - zsh --no-rehash)"
     # tmux対応
     env_dir=$HOME/.anyenv/envs
     for D in `ls $env_dir`
@@ -269,7 +273,12 @@ __kubectl_prompt_color() {
 }
 
 kubectl-enable () {
-    # PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%20>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
+    if [ -f $HOME/.zsh-kubectl-prompt/kubectl.zsh ]; then
+        source $HOME/.zsh-kubectl-prompt/kubectl.zsh
+    fi
+    if [ -f $HOME/.zsh-gcloud-prompt/gcloud.zsh ]; then
+        source $HOME/.zsh-gcloud-prompt/gcloud.zsh
+    fi
     PROMPT=$'%{$fg[$(__kubectl_prompt_color)]%}gcp: $ZSH_GCLOUD_PROMPT\nk8s: ($ZSH_KUBECTL_CONTEXT:$ZSH_KUBECTL_NAMESPACE)\n%{$fg[green]%}%n %{$reset_color%}%(!.#.$) '
     zle reset-prompt
 }
@@ -280,12 +289,6 @@ kubectl-disable () {
 }
 
 __zsh_kubectl_prompt () {
-    if [ -f $HOME/.zsh-kubectl-prompt/kubectl.zsh ]; then
-        source $HOME/.zsh-kubectl-prompt/kubectl.zsh
-    fi
-    if [ -f $HOME/.zsh-gcloud-prompt/gcloud.zsh ]; then
-        source $HOME/.zsh-gcloud-prompt/gcloud.zsh
-    fi
     zle -N kubectl-enable kubectl-enable
     zle -N kubectl-disable kubectl-disable
     bindkey '^G^M' kubectl-enable
