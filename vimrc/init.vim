@@ -21,7 +21,7 @@ endif
 " -----------------------------
 " dein settings
 " -----------------------------
-if has('nvim')
+if has('nvim') && !exists('g:vscode')
   if filereadable(expand("$HOME/.dein_update_token.vim"))
     source $HOME/.dein_update_token.vim
   endif

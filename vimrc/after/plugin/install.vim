@@ -24,7 +24,6 @@ let g:extensions = [
     \ 'coc-sh',
     \ 'coc-snippets',
     \ 'coc-solargraph',
-    \ 'coc-tabnine',
     \ 'coc-translator',
     \ 'coc-tsserver',
     \ 'coc-vetur',
