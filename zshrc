@@ -156,7 +156,11 @@ __completion () {
     }
 
     if builtin command -v kubectl > /dev/null; then
-        eval "$(kubectl completion zsh)"
+        if ! [ -f /tmp/kubectl.cache ]; then
+            kubectl completion zsh > /tmp/kubectl.cache
+            zcompile /tmp/kubectl.cache
+        fi
+        source /tmp/kubectl.cache
     fi
 }
 
@@ -164,14 +168,18 @@ __completion () {
 __anyenv () {
     export PATH="$HOME/.anyenv/bin:$PATH"
 
-    eval "$(anyenv init - --no-rehash)"
+    if ! [ -f /tmp/anyenv.cache ]; then
+        anyenv init - zsh --no-rehash > /tmp/anyenv.cache
+        zcompile /tmp/anyenv.cache
+    fi
+    source /tmp/anyenv.cache
+
     # tmux対応
     env_dir=$HOME/.anyenv/envs
     for D in `ls $env_dir`
     do
         export PATH="$env_dir/$D/libexec:$PATH"
     done
-    # fi
 }
 
 __nvim () {
@@ -269,7 +277,8 @@ __kubectl_prompt_color() {
 }
 
 kubectl-enable () {
-    # PROMPT='%{$fg[green]%}%n %{$fg[$(__kubectl_prompt_color)]%}(%20>..>$ZSH_KUBECTL_CONTEXT%<</$ZSH_KUBECTL_NAMESPACE) %{$reset_color%}%(!.#.$) '
+    __read_zsh_prompt
+
     PROMPT=$'%{$fg[$(__kubectl_prompt_color)]%}gcp: $ZSH_GCLOUD_PROMPT\nk8s: ($ZSH_KUBECTL_CONTEXT:$ZSH_KUBECTL_NAMESPACE)\n%{$fg[green]%}%n %{$reset_color%}%(!.#.$) '
     zle reset-prompt
 }
@@ -279,13 +288,16 @@ kubectl-disable () {
     zle reset-prompt
 }
 
-__zsh_kubectl_prompt () {
+__read_zsh_prompt () {
     if [ -f $HOME/.zsh-kubectl-prompt/kubectl.zsh ]; then
         source $HOME/.zsh-kubectl-prompt/kubectl.zsh
     fi
     if [ -f $HOME/.zsh-gcloud-prompt/gcloud.zsh ]; then
         source $HOME/.zsh-gcloud-prompt/gcloud.zsh
     fi
+}
+
+__zsh_kubectl_prompt () {
     zle -N kubectl-enable kubectl-enable
     zle -N kubectl-disable kubectl-disable
     bindkey '^G^M' kubectl-enable
