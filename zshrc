@@ -28,7 +28,9 @@ __alias () {
 }
 
 __envs () {
-    export EDITOR="vim"
+    if builtin command -v nvim > /dev/null; then
+        export EDITOR="nvim"
+    fi
     # export GOPATH="$GOROOT"
 
     export PATH="${HOME}/bin:${PATH}"
@@ -59,6 +61,8 @@ __envs () {
     export PATH=$HOME/.cargo/bin:$PATH
 
     export PATH=$NODENV_ROOT/versions/$(nodenv global)/bin:$PATH
+
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 }
 
 __iterm2 () {

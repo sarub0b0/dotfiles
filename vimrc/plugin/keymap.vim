@@ -10,7 +10,7 @@ nnoremap <ESC><ESC> :noh<CR>
 "----------------------------------------------------
 " Man pager
 "----------------------------------------------------
-nnoremap <Space>m <Plug>ManPreGetPage<CR>
+nnoremap <Space>m :<C-u>Man<CR>
 
 "----------------------------------------------------
 " QuickFix
