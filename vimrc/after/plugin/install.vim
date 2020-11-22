@@ -3,7 +3,7 @@
 " よく使うcoc extensionをインストールする
 " =======================================================
 
-let g:extensions = [
+let g:coc_global_extensions = [
     \ 'coc-actions',
     \ 'coc-clangd',
     \ 'coc-cmake',
@@ -24,7 +24,6 @@ let g:extensions = [
     \ 'coc-sh',
     \ 'coc-snippets',
     \ 'coc-solargraph',
-    \ 'coc-tabnine',
     \ 'coc-translator',
     \ 'coc-tsserver',
     \ 'coc-vetur',

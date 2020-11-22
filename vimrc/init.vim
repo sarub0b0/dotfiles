@@ -13,7 +13,7 @@ if has('mac')
   let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.8.3/bin/python3')
 else
   let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.8.3/bin/python')
+  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.0/bin/python')
 endif
 
 
@@ -21,7 +21,7 @@ endif
 " -----------------------------
 " dein settings
 " -----------------------------
-if has('nvim')
+if has('nvim') && !exists('g:vscode')
   if filereadable(expand("$HOME/.dein_update_token.vim"))
     source $HOME/.dein_update_token.vim
   endif
