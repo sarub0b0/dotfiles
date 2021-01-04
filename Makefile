@@ -1,5 +1,5 @@
 
-all: vim neovim tmux zsh anyenv kubectl-prompt
+all: vim neovim tmux zsh anyenv kubectl-prompt gcloud-prompt docker-completion clang-format markdownlintrc
 
 .PHONY: vim
 vim:
@@ -50,6 +50,30 @@ anyenv:
 .PHONY: kubectl-prompt
 kubectl-prompt:
 	@echo '===================================='
-	@echo '  Download zsh-kubectl-prompt '
+	@echo '  Download zsh-kubectl-prompt'
 	@echo '===================================='
 	-git clone --depth 1 https://github.com/superbrothers/zsh-kubectl-prompt.git $(HOME)/.zsh-kubectl-prompt
+
+.PHONY: gcloud-prompt
+gcloud-prompt:
+	@echo '===================================='
+	@echo '  Download zsh-gcloud-prompt'
+	@echo '===================================='
+	-git clone --depth 1 https://github.com/ocadaruma/zsh-gcloud-prompt.git $(HOME)/.zsh-gcloud-prompt
+
+.PHONY: docker-completion
+docker-completion:
+	@echo '===================================='
+	@echo '  Setup docker-completion for MacOS'
+	@echo '===================================='
+	if [ "$(shell uname)" = 'Darwin' ]; then ln -sf /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion ./zsh/completions/_docker fi
+
+
+.PHONY: clang-format
+clang-format:
+	ln -sf $(HOME)/dotfiles/clang-format $(HOME)/.clang-format
+
+.PHONY: markdownlintrc
+markdownlintrc:
+	ln -sf $(HOME)/dotfiles/markdownlintrc $(HOME)/.markdownlintrc
+
