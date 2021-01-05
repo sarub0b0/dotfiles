@@ -28,6 +28,7 @@ __alias () {
     alias tp='telepresence'
     alias ds='devspace'
     alias sf='skaffold'
+    alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
 }
 
 __envs () {
@@ -56,7 +57,6 @@ __envs () {
     export COMPOSE_DOCKER_CLI_BUILD=1
 
     export PATH=$HOME/work/service-mesh/istio-1.5.0/bin:$PATH
-
 
     export PATH=$HOME/.cargo/bin:$PATH
 

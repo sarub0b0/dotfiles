@@ -1,9 +1,9 @@
 {
   "clangd.arguments": ["--fallback-style=google"],
+  "clangd.fallbackFlags": ["-I", "include/"],
   "coc-actions.useCursorLine": false,
   "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.formatOnInsertLeave": true,
   "coc.preferences.formatOnSaveFiletypes": ["*"],
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.useQuickfixForLocations": false,
