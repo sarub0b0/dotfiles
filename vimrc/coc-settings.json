@@ -1,23 +1,13 @@
 {
-  "clock.enable": false,
-  "clock.winblend": 100,
-  "clangd.arguments": [
-    "--fallback-style=google"
-  ],
+  "clangd.arguments": ["--fallback-style=google"],
   "coc-actions.useCursorLine": false,
   "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnInsertLeave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.useQuickfixForLocations": false,
-  "coc.source.emoji.filetypes": [
-    "markdown",
-    "vue",
-    "javascript"
-  ],
+  "coc.source.emoji.filetypes": ["markdown", "vue", "javascript"],
   "diagnostic.errorSign": "\uf00d",
   "diagnostic.hintSign": ">>",
   "diagnostic.infoSign": ">>",
@@ -33,7 +23,7 @@
   "explorer.file.autoReveal": false,
   "explorer.icon.enableNerdfont": true,
   "explorer.icon.enableVimDevicons": false,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "u": "gotoParent"
   },
   "explorer.previewAction.onHover": false,
@@ -51,12 +41,8 @@
   "languageserver": {
     "cmake": {
       "command": "cmake-language-server",
-      "filetypes": [
-        "cmake"
-      ],
-      "rootPatterns": [
-        "build/"
-      ],
+      "filetypes": ["cmake"],
+      "rootPatterns": ["build/"],
       "initializationOptions": {
         "buildDirectory": "build"
       }
@@ -64,17 +50,16 @@
   },
   "python.jediEnabled": false,
   "sh.enable": true,
-  "solargraph.commandPath": "/Users/kosay/.anyenv/envs/rbenv/shims/solargraph",
   "solargraph.formatting": true,
-  "tabnine.disable_filetypes": [
-    "coc-explorer"
-  ],
   "translator.toLang": "ja",
-  "translator.engines": [
-    "google"
-  ],
+  "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "kubernetes": "/*.yaml"
+    "https://json.schemastore.org/composer": "/*",
+    "kubernetes": "/*.yaml",
+    "https://json.schemastore.org/gitlab-ci": [
+      ".gitlab-ci.yml",
+      ".gitlab/*.yml"
+    ]
   }
 }
