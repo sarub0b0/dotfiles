@@ -29,6 +29,19 @@ __alias () {
     alias ds='devspace'
     alias sf='skaffold'
     alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
+    alias cb="cargo build"
+    alias cr="cargo run"
+}
+
+__history () {
+    export HISTFILE=${HOME}/.zsh_history
+    export HISTSIZE=10000
+    export SAVEHIST=10000
+
+    setopt hist_reduce_blanks
+    setopt share_history
+    setopt hist_save_no_dups
+    setopt hist_expire_dups_first
 }
 
 __envs () {
@@ -41,13 +54,7 @@ __envs () {
     export TERM=xterm-256color
     export XDG_CONFIG_HOME="${HOME}/.config"
 
-    export HISTFILE=${HOME}/.zsh_history
-    export HISTSIZE=10000
-    export SAVEHIST=10000
-
     export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
-
-    setopt hist_reduce_blanks
 
     export PATH="$GOPATH/bin:$PATH"
 
@@ -415,6 +422,7 @@ __completion
 __fzf
 __z
 
+__history
 __envs
 
 
