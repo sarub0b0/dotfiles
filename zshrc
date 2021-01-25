@@ -368,7 +368,7 @@ pf_argo_prod () {
 
 pf_argo_dev () {
     local port=$1
-    kubectl port-forward -n argocd --context gke_dev-bbtower-portal_asia-northeast1_pro-portal-cluster svc/argocd-server $port:443 &
+    kubectl port-forward -n argocd --context gke_dev-bbtower-portal_asia-northeast1-a_dev-portal-cluster svc/argocd-server $port:443 &
     while (true);
     do
         curl localhost:$port -s > /dev/null;
@@ -379,12 +379,29 @@ pf_argo_dev () {
 
 kwatch () {
     local resource=""
+    local namespace=""
     if [ -z "$1" ]; then
         resource="all,ing,secret,cm,pvc,pv"
     else
         resource=$1
     fi
-    watch kubectl get $resource
+
+    if [ -n "$2" ]; then
+        namespace="-n $2"
+    fi
+
+
+    watch kubectl get $resource $namespace
+}
+
+ktop () {
+    local target="pod"
+    if [ -z "$1" ]; then
+        target=pod
+    else
+        target=$1
+    fi
+    watch kubectl top $target
 }
 
 # 一番最初
