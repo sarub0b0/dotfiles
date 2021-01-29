@@ -195,7 +195,16 @@ __anyenv () {
             $0 "$@"
         }
 
-       eval "$($HOME/dotfiles/anyenv_lazyload)"
+        eval "$($HOME/dotfiles/anyenv_lazyload)"
+
+        node_version=$(cat $NODENV_ROOT/version)
+        ruby_version=$(cat $RBENV_ROOT/version)
+
+        path=(
+            $NODENV_ROOT/versions/$node_version/bin(N-/)
+            $RBENV_ROOT/versions/$ruby_version/bin(N-/)
+            $path
+        )
     fi
 }
 

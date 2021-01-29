@@ -34,10 +34,9 @@ do
 
 # init on call **env
 cat <<EOS
+export ${ENV_ROOT}="$anyenv_root/envs/$env"
 function ${env}() {
   unset -f ${env}
-  export ${ENV_ROOT}="$anyenv_root/envs/$env"
-  # export PATH=$anyenv_root/envs/${env}/bin:\${PATH}
   path=($anyenv_root/envs/${env}/bin(N-/) \$path)
   eval "\$(${env} init - \${SHELL})"
   ${env} \$@
