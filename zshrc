@@ -54,6 +54,7 @@ __envs () {
         $GOPATH/bin(N-/)
         /usr/local/opt/llvm/bin(N-/)
         $HOME/work/service-mesh/istio-1.5.0/bin(N-/)
+        /usr/local/kubebuilder/bin(N-/)
         ${KREW_ROOT:-$HOME/.krew}/bin(N-/)
         $path
     )
