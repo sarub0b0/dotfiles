@@ -48,30 +48,28 @@ __envs () {
     if builtin command -v nvim > /dev/null; then
         export EDITOR="nvim"
     fi
-    # export GOPATH="$GOROOT"
 
-    export PATH="${HOME}/bin:${PATH}"
-    export TERM=xterm-256color
+    path=(
+        ${HOME}/bin(N-/)
+        $GOPATH/bin(N-/)
+        /usr/local/opt/llvm/bin(N-/)
+        $HOME/work/service-mesh/istio-1.5.0/bin(N-/)
+        ${KREW_ROOT:-$HOME/.krew}/bin(N-/)
+        $path
+    )
+
     export XDG_CONFIG_HOME="${HOME}/.config"
 
+    export TERM=xterm-256color
+
     export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
-
-    export PATH="$GOPATH/bin:$PATH"
-
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
 
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-    export PATH=$HOME/work/service-mesh/istio-1.5.0/bin:$PATH
-
-    export PATH=$HOME/.cargo/bin:$PATH
-
-    export PATH=$NODENV_ROOT/versions/$(nodenv global)/bin:$PATH
 
     export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 }
 
 __iterm2 () {
@@ -85,10 +83,12 @@ __mac () {
     alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
     # ADD bin directory
-    export PATH="/usr/local/sbin:${PATH}"
-
-    export PATH="/usr/local/opt/expat/bin:$PATH"
-    export PATH="/usr/local/opt/sqlite/bin:$PATH"
+    path=(
+        /usr/local/sbin(N-/)
+        /usr/local/opt/expat/bin(N-/)
+        /usr/local/opt/sqlite/bin(N-/)
+        $path
+    )
     export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
     export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
 }
@@ -170,14 +170,6 @@ __completion () {
         compadd `grep -r --color=never "^Host" ${HOME}/.ssh/conf.d/* | sed -e "s/^\/User.*Host *//" | sed -e "s/*//"`
     }
 
-    if builtin command -v kubectl > /dev/null; then
-        if ! [ -f /tmp/kubectl.cache ]; then
-            kubectl completion zsh > /tmp/kubectl.cache
-            zcompile /tmp/kubectl.cache
-        fi
-        source /tmp/kubectl.cache
-    fi
-
     if [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
         source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
         source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
@@ -186,20 +178,25 @@ __completion () {
 
 
 __anyenv () {
-    export PATH="$HOME/.anyenv/bin:$PATH"
+    path=(
+        $HOME/.anyenv/bin(N-/)
+        $path
+    )
 
-    if ! [ -f /tmp/anyenv.cache ]; then
-        anyenv init - zsh > /tmp/anyenv.cache
-        zcompile /tmp/anyenv.cache
+    if builtin command -v anyenv > /dev/null; then
+
+        typeset -g anyenv_loaded=0
+        anyenv() {
+            unfunction "$0"
+            if [ ${anyenv_loaded} -eq 0 ]; then
+                eval "$(anyenv init - zsh)"
+                anyenv_loaded=1
+            fi
+            $0 "$@"
+        }
+
+       eval "$($HOME/dotfiles/anyenv_lazyload)"
     fi
-    source /tmp/anyenv.cache
-
-    # tmux対応
-    env_dir=$HOME/.anyenv/envs
-    for D in `ls $env_dir`
-    do
-        export PATH="$env_dir/$D/libexec:$PATH"
-    done
 }
 
 __nvim () {
@@ -360,6 +357,7 @@ kgetall () {
             echo "$resource"
         fi
     done
+    unset i
 }
 
 
@@ -411,6 +409,14 @@ ktop () {
     watch kubectl top $target
 }
 
+if builtin command -v kubectl > /dev/null; then
+    kubectl() {
+        unfunction "$0"
+        source <(kubectl completion zsh)
+        $0 "$@"
+    }
+fi
+
 # 一番最初
 __color
 
@@ -438,3 +444,7 @@ fi
 # 一番最後
 __command
 __zcomp
+
+# if (which zprof > /dev/null 2>&1); then
+#     zprof
+# fi
