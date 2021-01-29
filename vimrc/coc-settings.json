@@ -50,12 +50,16 @@
   },
   "python.jediEnabled": false,
   "sh.enable": true,
-  "solargraph.commandPath": "/Users/kosay/.anyenv/envs/rbenv/shims/solargraph",
   "solargraph.formatting": true,
   "translator.toLang": "ja",
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "kubernetes": "/*.yaml"
+    "https://json.schemastore.org/composer": "/*",
+    "kubernetes": "/*.yaml",
+    "https://json.schemastore.org/gitlab-ci": [
+      ".gitlab-ci.yml",
+      ".gitlab/*.yml"
+    ]
   }
 }

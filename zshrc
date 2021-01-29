@@ -18,14 +18,30 @@ __alias () {
     alias gobuild='go build'
     alias gitlogtree='git log --graph --date=iso --pretty="[%ad]%C(auto) %h%d %Cgreen%an%Creset : %s"'
     alias k='kubectl'
-    alias kc='kubectx'
-    alias kn='kubens'
+    alias kc='kubectl ctx'
+    alias kn='kubectl ns'
+    alias kv='kubeval'
+    alias kvs='kubectl view-secret'
+    alias kst='kubectl status'
     alias kb='kubie'
     alias tf='terraform'
     alias tp='telepresence'
     alias ds='devspace'
     alias sf='skaffold'
     alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
+    alias cb="cargo build"
+    alias cr="cargo run"
+}
+
+__history () {
+    export HISTFILE=${HOME}/.zsh_history
+    export HISTSIZE=10000
+    export SAVEHIST=10000
+
+    setopt hist_reduce_blanks
+    setopt share_history
+    setopt hist_save_no_dups
+    setopt hist_expire_dups_first
 }
 
 __envs () {
@@ -38,13 +54,7 @@ __envs () {
     export TERM=xterm-256color
     export XDG_CONFIG_HOME="${HOME}/.config"
 
-    export HISTFILE=${HOME}/.zsh_history
-    export HISTSIZE=10000
-    export SAVEHIST=10000
-
     export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
-
-    setopt hist_reduce_blanks
 
     export PATH="$GOPATH/bin:$PATH"
 
@@ -60,6 +70,8 @@ __envs () {
     export PATH=$NODENV_ROOT/versions/$(nodenv global)/bin:$PATH
 
     export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 }
 
 __iterm2 () {
@@ -77,6 +89,8 @@ __mac () {
 
     export PATH="/usr/local/opt/expat/bin:$PATH"
     export PATH="/usr/local/opt/sqlite/bin:$PATH"
+    export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+    export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
 }
 
 __linux () {
@@ -163,6 +177,11 @@ __completion () {
         fi
         source /tmp/kubectl.cache
     fi
+
+    if [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
+        source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+        source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+    fi
 }
 
 
@@ -170,7 +189,7 @@ __anyenv () {
     export PATH="$HOME/.anyenv/bin:$PATH"
 
     if ! [ -f /tmp/anyenv.cache ]; then
-        anyenv init - zsh --no-rehash > /tmp/anyenv.cache
+        anyenv init - zsh > /tmp/anyenv.cache
         zcompile /tmp/anyenv.cache
     fi
     source /tmp/anyenv.cache
@@ -330,6 +349,67 @@ __z () {
     fi
 }
 
+kgetall () {
+    list=$(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq )
+
+    for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq );
+    do
+        resource=$(kubectl get --ignore-not-found ${i})
+        if ! [ -z "$resource" ]; then
+            echo "Resource: " ${i}
+            echo "$resource"
+        fi
+    done
+}
+
+
+pf_argo_prod () {
+    local port=$1
+    kubectl port-forward -n argocd --context gke_pro-bbtower-portal_asia-northeast1_pro-portal-cluster svc/argocd-server $port:443 &
+    while (true);
+    do
+        curl localhost:$port -s > /dev/null;
+        sleep 30;
+    done
+}
+
+pf_argo_dev () {
+    local port=$1
+    kubectl port-forward -n argocd --context gke_dev-bbtower-portal_asia-northeast1-a_dev-portal-cluster svc/argocd-server $port:443 &
+    while (true);
+    do
+        curl localhost:$port -s > /dev/null;
+        sleep 30;
+    done
+}
+
+
+kwatch () {
+    local resource=""
+    local namespace=""
+    if [ -z "$1" ]; then
+        resource="all,ing,secret,cm,pvc,pv"
+    else
+        resource=$1
+    fi
+
+    if [ -n "$2" ]; then
+        namespace="-n $2"
+    fi
+
+
+    watch kubectl get $resource $namespace
+}
+
+ktop () {
+    local target="pod"
+    if [ -z "$1" ]; then
+        target=pod
+    else
+        target=$1
+    fi
+    watch kubectl top $target
+}
 
 # 一番最初
 __color
@@ -342,6 +422,7 @@ __completion
 __fzf
 __z
 
+__history
 __envs
 
 

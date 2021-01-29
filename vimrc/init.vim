@@ -10,10 +10,10 @@ augroup END
 
 if has('mac')
   let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python2')
-  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.8.3/bin/python3')
+  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python3')
 else
   let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.0/bin/python')
+  let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python')
 endif
 
 
