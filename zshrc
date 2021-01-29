@@ -200,10 +200,12 @@ __anyenv () {
 
         node_version=$(cat $NODENV_ROOT/version)
         ruby_version=$(cat $RBENV_ROOT/version)
+        python_version=$(cat $PYENV_ROOT/version)
 
         path=(
             $NODENV_ROOT/versions/$node_version/bin(N-/)
             $RBENV_ROOT/versions/$ruby_version/bin(N-/)
+            $PYENV_ROOT/versions/$python_version/bin(N-/)
             $path
         )
     fi
@@ -214,10 +216,6 @@ __nvim () {
         export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
         vim () {
-            if [ -z "$initialized_pyenv" ]; then
-                initialized_pyenv=1
-                pyenv versions > /dev/null
-            fi
             nvim $@
         }
     fi
