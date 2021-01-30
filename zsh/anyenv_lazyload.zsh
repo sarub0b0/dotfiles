@@ -29,17 +29,17 @@ anyenv_root="${HOME}/.anyenv"
 for env in $(/bin/ls $anyenv_root/envs/)
 do
 
-    shims="${shims}$anyenv_root/envs/$env/shims:"
+    # shims="${shims}$anyenv_root/envs/$env/shims:"
     ENV_ROOT=$(echo ${env} | awk '{print toupper($0)}')_ROOT
 
 # init on call **env
 cat <<EOS
 export ${ENV_ROOT}="$anyenv_root/envs/$env"
 function ${env}() {
-  unset -f ${env}
-  path=($anyenv_root/envs/${env}/bin(N-/) \$path)
-  eval "\$(${env} init - \${SHELL})"
-  ${env} \$@
+    unset -f ${env}
+    path=($anyenv_root/envs/${env}/bin(N-/) \$path)
+    eval "\$(${env} init - \${SHELL})"
+    ${env} \$@
 }
 EOS
 
