@@ -32,9 +32,13 @@ do
     # shims="${shims}$anyenv_root/envs/$env/shims:"
     ENV_ROOT=$(echo ${env} | awk '{print toupper($0)}')_ROOT
 
+    root=$anyenv_root/envs/$env
+    export ${ENV_ROOT}="$root"
+    version=$(cat $root/version)
+    path=($root/$version/bin(N-/) $path)
+
 # init on call **env
 cat <<EOS
-export ${ENV_ROOT}="$anyenv_root/envs/$env"
 function ${env}() {
     unset -f ${env}
     path=($anyenv_root/envs/${env}/bin(N-/) \$path)
