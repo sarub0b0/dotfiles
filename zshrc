@@ -140,6 +140,12 @@ source $HOME/dotfiles/zsh/command.zsh
 # 一番最後
 __zcompile
 
+if builtin command -v starship > /dev/null; then
+    eval "$(starship init zsh)"
+fi
+
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
 # fi
+
+

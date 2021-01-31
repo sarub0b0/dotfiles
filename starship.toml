@@ -1,0 +1,8 @@
+[golang]
+symbol = ""
+
+[kubernetes]
+disabled = false
+
+[gcloud]
+format = 'on [$symbol$account(\($project\))]($style) '
