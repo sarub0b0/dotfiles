@@ -41,9 +41,10 @@ export ${ENV_ROOT}=$root
 if [ -e "$root/version" ]; then
     path=($root/versions/\$(cat $root/version)/bin(N-/) \$path)
 fi
+path=($root/shims(N-/) \$path)
 function ${env}() {
     unset -f ${env}
-    path=($anyenv_root/envs/${env}/bin(N-/) \$path)
+    path=($root/bin(N-/) \$path)
     eval "\$(${env} init - \${SHELL})"
     ${env} \$@
 }
