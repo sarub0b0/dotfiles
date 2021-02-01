@@ -77,3 +77,8 @@ clang-format:
 markdownlintrc:
 	ln -sf $(HOME)/dotfiles/markdownlintrc $(HOME)/.markdownlintrc
 
+
+.PHONY: starship
+starship:
+	ln -sf $(HOME)/dotfiles/starship.toml $(HOME)/.config/starship.toml
+
