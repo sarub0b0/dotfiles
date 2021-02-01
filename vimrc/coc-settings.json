@@ -55,11 +55,10 @@
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "https://json.schemastore.org/composer": "/*",
-    "kubernetes": "/*.yaml",
+    "kubernetes": ["manifests/**.yaml", "manifest/**.yaml", "/*.yaml"],
     "https://json.schemastore.org/gitlab-ci": [
-      ".gitlab-ci.yml",
-      ".gitlab/*.yml"
+      "/.gitlab-ci.yml",
+      "/.gitlab/*.yml"
     ]
   }
 }
