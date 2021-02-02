@@ -52,6 +52,7 @@
   "sh.enable": true,
   "solargraph.formatting": true,
   "snippets.userSnippetsDirectory": "~/.vim/snippets/",
+  "snippets.snipmate.enable": false,
   "translator.toLang": "ja",
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",
