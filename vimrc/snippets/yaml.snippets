@@ -23,7 +23,7 @@
 #        endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-snippet deployment "kind: Deployment"
+snippet deployment "kind: Deployment" b
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,10 +40,9 @@ spec:
       containers:
         - name: ${4:app}
           image: ${5:nginx}
-          ${0}
+endsnippet
 
-
-snippet service "kind: Service"
+snippet service "kind: Service" b
 apiVersion: v1
 kind: Service
 metadata:
@@ -54,10 +53,9 @@ spec:
   ports:
     - port: ${3:80}
       targetPort: ${4:80}
-      ${0}
+endsnippet
 
-
-snippet job "Kind: Job"
+snippet job "Kind: Job" b
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -70,8 +68,26 @@ spec:
       containers:
         - name: ${4:job}
           image: ${5:busybox}
-          ${0}
+endsnippet
 
+snippet externalsecret "Kind: ExternalSecret" b
+apiVersion: kubernetes-client.io/v1
+kind: ExternalSecret
+metadata:
+  name: ${1:secret}
+spec:
+  backendType: ${2:gcpSecretsManager}
+  projectId: ${3:project_id}
+  ${4:template:
+    type: kubernetes.io/dockerconfigjson # (optional) for docker}
+  data:
+    - key: ${5:secret-name-at-secret-manager}
+      name: ${6:key-name|.dockerconfigjson}
+      version: ${7:latest}
+endsnippet
 
-
-
+snippet argocd-hook "ArgoCD Resource Hooks" b
+argocd.argoproj.io/hook: ${1:PreSync|Sync|PostSync|SyncFail|Skip}
+argocd.argoproj.io/hook-delete-policy: ${2:HookSucceeded|HookFailed|BeforeHookCreation}
+argocd.argoproj.io/sync-wave: ${3:"0"}
+endsnippet
