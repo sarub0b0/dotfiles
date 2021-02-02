@@ -23,6 +23,53 @@
 #        endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet namespace "kind: Namespace" b
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${1:namespace}
+endsnippet
+
+snippet serviceaccount "kind: ServiceAccount" b
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${1:service-account}
+endsnippet
+
+snippet role "Kind: Role" b
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ${1:role}
+rules:
+  - apiGroups:
+      - ${2:""}
+    resources:
+      - ${3:pods}
+    verbs:
+      - ${4:get
+      - watch
+      - list}
+endsnippet
+
+snippet rolebinding "kind: RoleBinding" b
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ${1:role-binding}
+subjects:
+  - kind: ${2:ServiceAccount|User|Group}
+    name: ${3:name}
+    namespace: ${4:namespace}
+    apiGroup: ${5:""|rbac.authrization.k8s.io}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ${6:Role|ClusterRole}
+  name: ${7:name}
+endsnippet
+
 snippet deployment "kind: Deployment" b
 apiVersion: apps/v1
 kind: Deployment
@@ -30,7 +77,7 @@ metadata:
   name: ${1:app}
 spec:
   selector:
-    ${2:matchLabels}:
+    ${2:matchLabels # or matchExpressions}:
       ${3:app: app}
   template:
     metadata:
@@ -55,6 +102,28 @@ spec:
       targetPort: ${4:80}
 endsnippet
 
+snippet ingress "Kind: Ingress" b
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ${1:ingress}
+  ${2:annotations:
+    ${3:kubernetes.io/ingress.allow-http: "false"}}
+spec:
+  ${4:tls:
+    - secretName: ${5:secret-name}
+      ${6:hosts:
+        - ${7:example.com}}
+  }rules:
+    - host: ${7:example.com}
+      http:
+        paths:
+          - ${8:path: ${9:/path}}
+            backend:
+              serviceName: ${10:service-name}
+              servicePort: ${11:80}
+endsnippet
+
 snippet job "Kind: Job" b
 apiVersion: batch/v1
 kind: Job
@@ -70,6 +139,53 @@ spec:
           image: ${5:busybox}
 endsnippet
 
+snippet cronjob "Kind: CronJob" b
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ${1:cron-job}
+spec:
+  schedule: ${2:"0 * * * *"}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: ${3:Never}
+          containers:
+            - name: ${4:cron-job}
+              image: ${5:busybox}
+endsnippet
+
+snippet persistentvolumeclaim "Kind: PersistentVolumeClaim" b
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${1:pvc}
+spec:
+  storageClassName: ${2:"standard"}
+  accessModes:
+    - ${3:ReadWriteOnce}
+  resources:
+    requests:
+      storage: ${4:1G}
+endsnippet
+
+snippet persistentvolume "Kind: PersistentVolume" b
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ${1:pv}
+spec:
+  storageClassName: ${2:""}
+  capacity:
+    storage: ${3:"10G"}
+  accessModes:
+    - ${4:ReadWriteOnce}
+  ${5:gcePersistentDisk:
+    pdName: mysql-disk-zonal
+    fsType: ext4}
+endsnippet
+
 snippet externalsecret "Kind: ExternalSecret" b
 apiVersion: kubernetes-client.io/v1
 kind: ExternalSecret
@@ -78,11 +194,25 @@ metadata:
 spec:
   backendType: ${2:gcpSecretsManager}
   projectId: ${3:project_id}
-  ${4:template:
-    type: kubernetes.io/dockerconfigjson # (optional) for docker}
   data:
     - key: ${5:secret-name-at-secret-manager}
-      name: ${6:key-name|.dockerconfigjson}
+      name: ${6:KEY_NAME}
+      version: ${7:latest}
+endsnippet
+
+snippet externalsecret-dockerconfigjson "Kind: ExternalSecret # For dockerconfigjson" b
+apiVersion: kubernetes-client.io/v1
+kind: ExternalSecret
+metadata:
+  name: ${1:secret}
+spec:
+  backendType: ${2:gcpSecretsManager}
+  projectId: ${3:project_id}
+  template:
+    type: kubernetes.io/dockerconfigjson
+  data:
+    - key: ${5:secret-name-at-secret-manager}
+      name: .dockerconfigjson
       version: ${7:latest}
 endsnippet
 
@@ -91,3 +221,14 @@ argocd.argoproj.io/hook: ${1:PreSync|Sync|PostSync|SyncFail|Skip}
 argocd.argoproj.io/hook-delete-policy: ${2:HookSucceeded|HookFailed|BeforeHookCreation}
 argocd.argoproj.io/sync-wave: ${3:"0"}
 endsnippet
+
+snippet managedcertificate "GCP ManagedCertificate" b
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: ${1:name}
+spec:
+  domains:
+    - ${2:domain}
+endsnippet
+
