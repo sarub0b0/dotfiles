@@ -51,6 +51,7 @@
   "python.jediEnabled": false,
   "sh.enable": true,
   "solargraph.formatting": true,
+  "snippets.userSnippetsDirectory": "~/.vim/snippets/",
   "translator.toLang": "ja",
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",

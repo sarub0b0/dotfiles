@@ -1,0 +1,77 @@
+# A valid snippet should starts with:
+#
+#        snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#        endsnippet
+#
+# Snippet options:
+#
+#        b - Beginning of line.
+#        i - In-word expansion.
+#        w - Word boundary.
+#        r - Regular expression
+#        e - Custom context snippet
+#        A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#        snippet emitter "emitter properties" b
+#        private readonly ${1} = new Emitter<$2>()
+#        public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#        endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet deployment "kind: Deployment"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${1:app}
+spec:
+  selector:
+    ${2:matchLabels}:
+      ${3:app: app}
+  template:
+    metadata:
+      labels:
+        ${3:app:app}
+    spec:
+      containers:
+        - name: ${4:app}
+          image: ${5:nginx}
+          ${0}
+
+
+snippet service "kind: Service"
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${1:service}
+spec:
+  selector:
+    ${2:app: app}
+  ports:
+    - port: ${3:80}
+      targetPort: ${4:80}
+      ${0}
+
+
+snippet job "Kind: Job"
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ${1:job}
+spec:
+  backoffLimit: ${2:6}
+  template:
+    spec:
+      restartPolicy: ${3:Never}
+      containers:
+        - name: ${4:job}
+          image: ${5:busybox}
+          ${0}
+
+
+
+
