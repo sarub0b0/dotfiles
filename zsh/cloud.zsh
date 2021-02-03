@@ -50,7 +50,7 @@ kwatch () {
     local resource=""
     local namespace=""
     if [ -z "$1" ]; then
-        resource="all,ing,secret,cm,pvc,pv"
+        resource="all,ing,secret,es,cm,pvc,pv"
     else
         resource=$1
     fi
