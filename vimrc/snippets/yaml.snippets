@@ -156,6 +156,15 @@ spec:
               image: ${5:busybox}
 endsnippet
 
+snippet configmap "Kind: ConfigMap" b
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${1:configmap}
+data:
+  ${2:key: value}
+endsnippet
+
 snippet persistentvolumeclaim "Kind: PersistentVolumeClaim" b
 apiVersion: v1
 kind: PersistentVolumeClaim
