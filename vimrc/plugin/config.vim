@@ -88,7 +88,7 @@ if has('persistent_undo')
 endif
 
 let tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:subsubsections'
-set iskeyword=@,48-57,_,-,:,192-255
+set iskeyword=@,48-57,_,-,>,192-255
 
 
 let g:mapleader = "\\"
