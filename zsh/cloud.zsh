@@ -73,14 +73,6 @@ ktop () {
     watch kubectl top $target
 }
 
-if builtin command -v kubectl > /dev/null; then
-    kubectl() {
-        unfunction "$0"
-        source <(kubectl completion zsh)
-        $0 "$@"
-    }
-fi
-
 kgetall () {
     list=$(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq )
 
