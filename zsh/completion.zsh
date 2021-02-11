@@ -50,12 +50,14 @@ _ssh(){
 
 
 
-gcloud (){
-    unfunction "$0"
+if builtin command -v gcloud > /dev/null; then
     if [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
         source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
         source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
     fi
-    $0 "$@"
-}
+fi
+
+if builtin command -v kubectl > /dev/null; then
+    source <(kubectl completion zsh)
+fi
 
