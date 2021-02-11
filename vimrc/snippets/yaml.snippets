@@ -77,7 +77,7 @@ metadata:
   name: ${1:app}
 spec:
   selector:
-    ${2:matchLabels # or matchExpressions}:
+    ${2:matchLabels: # or matchExpressions}:
       ${3:app: app}
   template:
     metadata:

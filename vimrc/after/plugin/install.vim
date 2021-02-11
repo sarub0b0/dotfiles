@@ -20,7 +20,6 @@ let g:coc_global_extensions = [
     \ 'coc-pairs',
     \ 'coc-prettier',
     \ 'coc-python',
-    \ 'coc-rls',
     \ 'coc-sh',
     \ 'coc-snippets',
     \ 'coc-solargraph',
