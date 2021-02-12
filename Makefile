@@ -82,3 +82,21 @@ markdownlintrc:
 starship:
 	ln -sf $(HOME)/dotfiles/starship.toml $(HOME)/.config/starship.toml
 
+.PHONY: krew
+krew:
+	cd "$(shell mktemp -d)" && \
+	curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" && \
+	tar zxvf krew.tar.gz && \
+	$(eval KREW := ./krew-$(shell uname | tr '[:upper:]' '[:lower:]')_$(shell uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$$/arm/' -e 's/aarch64$$/arm64/')) \
+	$(KREW) install krew
+
+
+.PHONY:
+krew-update:
+	kubectl krew update
+
+.PHONY: kubectx
+kubectx: krew-update
+	kubectl krew update
+	kubectl krew install ctx
+	kubectl krew install ns
