@@ -91,7 +91,7 @@ krew:
 	$(KREW) install krew
 
 
-.PHONY:
+.PHONY: krew-update
 krew-update:
 	kubectl krew update
 
