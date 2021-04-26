@@ -31,6 +31,7 @@ __alias () {
     alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
     alias cb="cargo build"
     alias cr="cargo run"
+    alias kt="kubetui"
 
 
     if [ "$(uname)" = 'Darwin' ]; then
@@ -149,3 +150,5 @@ fi
 # fi
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
