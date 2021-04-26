@@ -15,7 +15,7 @@ if !exists('g:vscode')
     let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python3')
   else
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python')
+    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.4/bin/python')
   endif
 
 
