@@ -51,8 +51,8 @@ __envs () {
         ${HOME}/bin(N-/)
         $GOPATH/bin(N-/)
         /usr/local/opt/llvm/bin(N-/)
-        $HOME/work/service-mesh/istio-1.5.0/bin(N-/)
         /usr/local/kubebuilder/bin(N-/)
+        $HOME/.cargo/bin(N-/)
         ${KREW_ROOT:-$HOME/.krew}/bin(N-/)
         $path
     )
@@ -87,7 +87,7 @@ __history () {
     export SAVEHIST=10000
 
     setopt hist_reduce_blanks
-    setopt share_history
+    # setopt share_history
     setopt hist_save_no_dups
     setopt hist_expire_dups_first
 }
@@ -149,3 +149,5 @@ fi
 # fi
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
