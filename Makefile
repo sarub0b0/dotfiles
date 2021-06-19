@@ -43,7 +43,6 @@ anyenv:
 	@echo '  Download anyenv and anyenv-update'
 	@echo '===================================='
 	git clone --depth 1 https://github.com/anyenv/anyenv ~/.anyenv
-	~/.anyenv/bin/anyenv init
 	if [ -d $(HOME)/.anyenv/plugins ]; then mkdir -p $(HOME)/.anyenv/plugins; fi;
 	-git clone --depth 1 https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
 
@@ -100,3 +99,9 @@ kubectx: krew-update
 	kubectl krew update
 	kubectl krew install ctx
 	kubectl krew install ns
+
+.PHONY: git-config
+git-config:
+	git config --global alias.st status
+	git config --global alias.co checkout
+	git config --global alias.br branch
