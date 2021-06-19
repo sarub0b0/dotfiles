@@ -49,10 +49,9 @@ __envs () {
 
     path=(
         ${HOME}/bin(N-/)
-        $GOPATH/bin(N-/)
         /usr/local/opt/llvm/bin(N-/)
         /usr/local/kubebuilder/bin(N-/)
-        $HOME/.cargo/bin(N-/)
+        ${HOME}/.cargo/bin(N-/)
         ${KREW_ROOT:-$HOME/.krew}/bin(N-/)
         $path
     )
