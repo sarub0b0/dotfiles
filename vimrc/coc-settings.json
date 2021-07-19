@@ -20,9 +20,7 @@
     "vue"
   ],
   "eslint.autoFixOnSave": true,
-  "explorer.file.autoReveal": false,
   "explorer.icon.enableNerdfont": true,
-  "explorer.icon.enableVimDevicons": false,
   "explorer.keyMappings.global": {
     "u": "gotoParent"
   },
@@ -57,10 +55,11 @@
   "translator.engines": ["google"],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "kubernetes": ["manifests/**.yaml", "manifest/**.yaml", "/*.yaml"],
+    "kubernetes": ["manifest*/**/*.yaml", "/*.yaml"],
     "https://json.schemastore.org/gitlab-ci": [
-      "/.gitlab-ci.yml",
-      "/.gitlab/*.yml"
+      "/**/.gitlab-ci.yml",
+      "/**/.gitlab/*.y*ml"
     ]
-  }
+  },
+  "yaml.schemaStore.enable": true
 }
