@@ -152,3 +152,5 @@ fi
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
