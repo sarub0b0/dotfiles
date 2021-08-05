@@ -102,7 +102,7 @@ spec:
       targetPort: ${4:80}
 endsnippet
 
-snippet ingress "Kind: Ingress" b
+snippet ingress-v1beta1 "Kind: Ingress (v1beta1)" b
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -122,6 +122,31 @@ spec:
             backend:
               serviceName: ${10:service-name}
               servicePort: ${11:80}
+endsnippet
+
+snippet ingress "Kind: Ingress (v1)" b
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${1:ingress}
+  ${2:annotations:
+    ${3:kubernetes.io/ingress.allow-http: "false"}}
+spec:
+  ${4:tls:
+    - secretName: ${5:secret-name}
+      ${6:hosts:
+        - ${7:example.com}}
+  }rules:
+    - host: ${7:example.com}
+      http:
+        paths:
+          - ${8:path: ${9:/path}}
+            pathType: ImplementationSpecific # | Exact | Prefix
+            backend:
+              service: # or resource
+                name: ${10:service-name}
+                port:
+                  number: ${11:80}
 endsnippet
 
 snippet job "Kind: Job" b
