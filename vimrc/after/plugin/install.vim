@@ -28,6 +28,8 @@ let g:coc_global_extensions = [
     \ 'coc-vetur',
     \ 'coc-vimlsp',
     \ 'coc-yaml',
+    \ 'coc-spell-checker',
+    \ 'coc-rust-analyzer',
     \ ]
 
 " function! s:coc_all_install() abort

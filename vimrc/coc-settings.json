@@ -55,5 +55,19 @@
       "/**/.gitlab/*.y*ml"
     ]
   },
-  "yaml.schemaStore.enable": true
+  "yaml.schemaStore.enable": true,
+  "cSpell.userWords": [
+    "auths",
+    "bbtower",
+    "bbtservice",
+    "devteam",
+    "hostnames",
+    "inplace",
+    "kaniko",
+    "microservices",
+    "mikefarah",
+    "mkdir",
+    "netrc",
+    "xargs"
+  ]
 }

@@ -120,4 +120,10 @@ if get(g:, 'coc_enabled', 0)
   "----------------------------------------------------
   nmap <Leader>t <Plug>(coc-translator-p)
   vmap <Leader>t <Plug>(coc-translator-pv)
+
+  "----------------------------------------------------
+  " coc-spell-checker
+  "----------------------------------------------------
+  vmap <leader>a <Plug>(coc-codeaction-selected)
+  nmap <leader>a <Plug>(coc-codeaction-selected)
 endif
