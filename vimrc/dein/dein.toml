@@ -288,3 +288,6 @@ repo = 'bumaociyuan/vim-swift'
 [[plugins]]
 repo = 'vim-jp/vital.vim'
 merged = 0
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
