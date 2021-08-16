@@ -306,7 +306,7 @@ function! GetUniqueSessionName()
 
   let coc_explorer_bufnr = bufnr('coc-explorer')
   if coc_explorer_bufnr != -1
-    execute 'bdelete ' . coc_explorer_bufnr
+    execute 'bdelete ' coc_explorer_bufnr
   endif
 
   let path = fnamemodify(getcwd(), ':~:t')
