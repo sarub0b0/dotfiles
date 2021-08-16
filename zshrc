@@ -57,8 +57,6 @@ __envs () {
         $path
     )
 
-    export XDG_CONFIG_HOME="${HOME}/.config"
-
     export TERM=xterm-256color
 
     export DOCKER_BUILDKIT=1
