@@ -291,3 +291,41 @@ merged = 0
 
 [[plugins]]
 repo = 'mhinz/vim-startify'
+hook_add = '''
+
+let bookmark_file = '~/.vim-startify-bookmarks'
+if filereadable(expand(bookmark_file)) == v:false
+  execute ":redir! > " . bookmark_file
+    :silent! echon '~/dotfiles/vimrc/init.vim' . "\n"
+    :silent! echon '~/dotfiles/vimrc/dein/dein.toml' . "\n"
+    :silent! echon bookmark_file . "\n"
+  :redir END
+endif
+
+function! GetUniqueSessionName()
+
+  let coc_explorer_bufnr = bufnr('coc-explorer')
+  if coc_explorer_bufnr != -1
+    execute 'bdelete ' . coc_explorer_bufnr
+  endif
+
+  let path = fnamemodify(getcwd(), ':~:t')
+  let path = empty(path) ? 'no-project' : path
+  let branch = gitbranch#name()
+  let branch = empty(branch) ? '' : '-' . branch
+  return substitute(path . branch, '/', '-', 'g')
+endfunction
+
+autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+
+let g:startify_change_to_vcs_root = 1
+let g:startify_bookmarks = systemlist('cat ' . bookmark_file)
+
+let g:startify_skiplist = ["~/.cache/nvim/"]
+
+set sessionoptions-=help
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+
