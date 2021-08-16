@@ -1,0 +1,33 @@
+[http]
+	sslVerify = false
+[color]
+	ui = true
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	ci = commit
+	mt = mergetool
+	dt = difftool
+[core]
+	editor = nvim
+[ghq]
+	root = ~/work/ghq
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -R -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+	ff = only
+	tool = nvimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "nvimdiff"]
+	cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\""
+[pull]
+	ff = only
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+[init]
+	defaultBranch = main
+
