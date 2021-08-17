@@ -55,7 +55,7 @@ __fzf () {
             echo "$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")"
         }
 
-        devst () {
+        dev () {
             local repo=$(__ghq_select_repo)
             if [ -n "$repo" ]; then
                 tmux new-session \; send-keys "cd $(ghq root)/${repo}" C-m \; send-keys "vim" C-m
