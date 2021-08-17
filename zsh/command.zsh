@@ -51,10 +51,21 @@ __fzf () {
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
+        __ghq_select_repo () {
+            echo "$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")"
+        }
+
+        devst () {
+            local repo=$(__ghq_select_repo)
+            if [ -n "$repo" ]; then
+                tmux new-session \; send-keys "cd $(ghq root)/${repo}" C-m \; send-keys "vim" C-m
+            fi
+        }
+
         gf () {
-            local src=$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")
-            if [ -n "$src" ]; then
-                cd $(ghq root)/$src
+            local repo=$(__ghq_select_repo)
+            if [ -n "$repo" ]; then
+                cd $(ghq root)/$repo
             fi
         }
 
