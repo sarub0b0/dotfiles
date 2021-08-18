@@ -58,7 +58,8 @@ __fzf () {
         dev () {
             local repo=$(__ghq_select_repo)
             if [ -n "$repo" ]; then
-                tmux new-session \; send-keys "cd $(ghq root)/${repo}" C-m \; send-keys "vim" C-m
+                cd $(ghq root)/$repo
+                tmux new-session \; send-keys "vim" C-m
             fi
         }
 
