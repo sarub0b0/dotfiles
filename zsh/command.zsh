@@ -57,9 +57,11 @@ __fzf () {
 
         dev () {
             local repo=$(__ghq_select_repo)
+            local prev_dir=${PWD}
             if [ -n "$repo" ]; then
                 cd $(ghq root)/$repo
                 tmux new-session \; send-keys "vim" C-m
+                cd $prev_dir
             fi
         }
 
