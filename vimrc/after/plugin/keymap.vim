@@ -16,11 +16,16 @@ if get(g:, 'coc_enabled', 0)
   nmap <Space>rn <Plug>(coc-rename)
 
   " Formatting selected code.
-  xmap <silent><Space>f  <Plug>(coc-format-selected)<CR>
+  xmap <silent><Space>f  <Plug>(coc-format-selected)
   nmap <silent><Space>f  <Plug>(coc-format)
 
-  " Remap keys for applying codeAction to the current line.
-  nmap <Space>ac  <Plug>(coc-codeaction)
+  " Applying codeAction to the selected region.
+  nmap <silent><Space>a  <Plug>(coc-codeaction-selected)
+  xmap <silent><Space>a  <Plug>(coc-codeaction-selected)
+
+  " Remap keys for applying codeAction to the current buffer.
+  nmap <silent><Space>ac  <Plug>(coc-codeaction)
+
   " Apply AutoFix to problem on the current line.
   nmap <Space>q  <Plug>(coc-fix-current)
   xmap <Space>q  :CocFix<CR>
