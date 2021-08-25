@@ -103,27 +103,9 @@ if get(g:, 'coc_enabled', 0)
   """""""""""""""""""""""""""""""""""""""""""""""""
   nmap <Space>n :CocCommand explorer<CR>
 
-  """""""""""""""""""""""""""""""""""""""""""""""""
-  " coc-actions
-  """""""""""""""""""""""""""""""""""""""""""""""""
-  " Remap for do codeAction of selected region
-  function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-  endfunction
-  xmap <silent> <Space>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-  nmap <silent> <Space>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
-
-
   "----------------------------------------------------
   " coc-translator
   "----------------------------------------------------
   nmap <Leader>t <Plug>(coc-translator-p)
   vmap <Leader>t <Plug>(coc-translator-pv)
-
-  "----------------------------------------------------
-  " coc-spell-checker
-  "----------------------------------------------------
-  vmap <leader>a <Plug>(coc-codeaction-selected)
-  nmap <leader>a <Plug>(coc-codeaction-selected)
 endif

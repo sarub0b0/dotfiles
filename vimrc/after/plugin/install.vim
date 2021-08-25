@@ -4,7 +4,6 @@
 " =======================================================
 
 let g:coc_global_extensions = [
-    \ 'coc-actions',
     \ 'coc-clangd',
     \ 'coc-cmake',
     \ 'coc-css',
