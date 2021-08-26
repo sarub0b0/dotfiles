@@ -66,8 +66,8 @@ nnoremap s= <C-w>=
 nnoremap s0 <C-w>=
 nnoremap sx <C-w>x
 
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
+nnoremap ss <C-w>s
+nnoremap sv <C-w>v
 
 tmap <C-s>h <ESC><C-w>h
 tmap <C-s>i <ESC><C-w>i
