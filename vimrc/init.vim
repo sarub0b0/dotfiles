@@ -10,10 +10,14 @@ augroup MyAutoCmd
 augroup END
 
 if !exists('g:vscode')
+
   if has('mac')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python2')
     let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python3')
-  else
+  elseif has('win32') || has('win64')
+    let g:python_host_prog = expand('C:/Python27')
+    let g:python3_host_prog = expand('C:/Python39')
+  elseif has('unix')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
     let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.5/bin/python')
   endif
