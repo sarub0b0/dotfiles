@@ -1,12 +1,23 @@
 {
-  "clangd.arguments": ["--fallback-style=google"],
-  "clangd.fallbackFlags": ["-I", "include/"],
+  "clangd.arguments": [
+    "--fallback-style=google"
+  ],
+  "clangd.fallbackFlags": [
+    "-I",
+    "include/"
+  ],
   "coc-actions.useCursorLine": false,
   "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.formatOnSaveFiletypes": ["*"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "*"
+  ],
   "coc.preferences.useQuickfixForLocations": false,
-  "coc.source.emoji.filetypes": ["markdown", "vue", "javascript"],
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "vue",
+    "javascript"
+  ],
   "diagnostic.errorSign": "\uf00d",
   "diagnostic.hintSign": ">>",
   "diagnostic.infoSign": ">>",
@@ -31,25 +42,40 @@
   "languageserver": {
     "cmake": {
       "command": "cmake-language-server",
-      "filetypes": ["cmake"],
-      "rootPatterns": ["build/"],
+      "filetypes": [
+        "cmake"
+      ],
+      "rootPatterns": [
+        "build/"
+      ],
       "initializationOptions": {
         "buildDirectory": "build"
       }
     }
   },
+  "prettier.disableLanguages": [
+    "vue",
+    "json"
+  ],
   "python.jediEnabled": false,
-  "rust-analyzer.diagnostics.disabled": ["macro-error"],
+  "rust-analyzer.diagnostics.disabled": [
+    "macro-error"
+  ],
   "rust-analyzer.updates.channel": "stable",
   "sh.enable": true,
   "solargraph.formatting": true,
   "snippets.userSnippetsDirectory": "~/.vim/snippets/",
   "snippets.snipmate.enable": false,
   "translator.toLang": "ja",
-  "translator.engines": ["google"],
+  "translator.engines": [
+    "google"
+  ],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "kubernetes": ["manifest*/**/*.yaml", "/*.yaml"],
+    "kubernetes": [
+      "manifest*/**/*.yaml",
+      "/*.yaml"
+    ],
     "https://json.schemastore.org/gitlab-ci": [
       "/**/.gitlab-ci.yml",
       "/**/.gitlab/*.y*ml"
@@ -57,26 +83,44 @@
   },
   "yaml.schemaStore.enable": true,
   "cSpell.userWords": [
-    "IRAM",
-    "RSSI",
-    "SSID",
+    "Kube",
+    "Kubeconfig",
+    "Nerdfont",
+    "Quickfix",
+    "apimachinery",
+    "aquasec",
     "auths",
+    "autodiscover",
     "bbtower",
     "bbtservice",
     "clangd",
+    "clusterrole",
+    "clusterrolebinding",
+    "cmake",
+    "codeclimate",
+    "codequality",
     "devteam",
     "dprintln",
     "himawari",
     "hostnames",
     "inplace",
     "kaniko",
-    "mfeed",
+    "kubernetes",
+    "letsencrypt",
     "microservices",
     "mikefarah",
     "mkdir",
     "netrc",
-    "println",
-    "wifi",
+    "openapi",
+    "prettierrc",
+    "printf",
+    "serviceaccount",
+    "snipmate",
+    "solargraph",
+    "trivy",
+    "trivycache",
+    "whitesource",
+    "workdir",
     "xargs"
   ]
 }
