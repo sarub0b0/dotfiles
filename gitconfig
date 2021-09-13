@@ -6,7 +6,7 @@
 	co = checkout
 	st = status
 	br = branch
-	ci = commit
+	cm = commit
 	mt = mergetool
 	dt = difftool
 [core]
