@@ -34,6 +34,8 @@ LWin & v::Send ^{v}
 
 LWin & a::Send ^{a}
 
+LWin & f::Send ^{f}
+
 ~^[::IME_SET(0)
 ~Esc::IME_SET(0)
 
