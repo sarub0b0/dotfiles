@@ -13,6 +13,7 @@ Set-Alias vim nvim
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 function script:ghq_list () {
+    $env:FZF_DEFAULT_OPTS = '--height 40% --layout=reverse --border'
     ghq list | fzf
 }
 
