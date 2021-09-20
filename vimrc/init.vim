@@ -26,7 +26,7 @@ if !exists('g:vscode')
     let g:python3_host_prog = expand('$HOME/scoop/apps/python39/current/python.exe')
   elseif has('unix')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.5/bin/python')
+    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.7/bin/python')
   endif
 
 

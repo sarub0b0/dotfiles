@@ -87,6 +87,7 @@
     "Kubeconfig",
     "Nerdfont",
     "Quickfix",
+    "Termion",
     "apimachinery",
     "aquasec",
     "auths",
