@@ -1,5 +1,12 @@
 scriptencoding utf-8
 
+if has('win32') || has('win64')
+  let &shell = has('win32') ? 'powershell' : 'pwsh'
+  let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+  let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  set shellquote= shellxquote=
+endif
 
 augroup MyAutoCmd
   autocmd!
@@ -15,11 +22,11 @@ if !exists('g:vscode')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python2')
     let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.1/bin/python3')
   elseif has('win32') || has('win64')
-    let g:python_host_prog = expand('C:/Python27/python.exe')
-    let g:python3_host_prog = expand('C:/Python39/python.exe')
+    let g:python_host_prog = expand('$HOME/scoop/apps/python27/current/python.exe')
+    let g:python3_host_prog = expand('$HOME/scoop/apps/python39/current/python.exe')
   elseif has('unix')
     let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.5/bin/python')
+    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.7/bin/python')
   endif
 
 

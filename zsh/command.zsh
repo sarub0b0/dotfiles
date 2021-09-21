@@ -47,6 +47,7 @@ __z () {
 __fzf () {
 
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    bindkey '^T' transpose-chars
 
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -99,7 +100,6 @@ __fzf () {
             [[ ${#dir} != 0 ]] || return 0
             builtin cd "$dir" &> /dev/null
         }
-        bindkey '^T' transpose-chars
     fi
 }
 
