@@ -59,7 +59,8 @@
   ],
   "python.jediEnabled": false,
   "rust-analyzer.diagnostics.disabled": [
-    "macro-error"
+    "macro-error",
+    "inactive-code"
   ],
   "rust-analyzer.updates.channel": "stable",
   "sh.enable": true,
