@@ -33,10 +33,9 @@ LWin & c::Send ^{c}
 LWin & v::Send ^{v}
 
 LWin & a::Send ^{a}
-
 LWin & f::Send ^{f}
 
-^[::Send {Esc}
+^[::ESCAPE_AND_IME_OFF()
 Esc::ESCAPE_AND_IME_OFF()
 
 
