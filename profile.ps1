@@ -14,7 +14,13 @@ Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 function script:ghq_list () {
     $env:FZF_DEFAULT_OPTS = '--height 40% --layout=reverse --border'
-    ghq list | fzf
+
+    if (Get-Command bat -ea SilentlyContinue) {
+        ghq list | fzf --preview "bat $(ghq root)/{}/README.*"
+    }
+    else {
+        ghq list | fzf
+    }
 }
 
 
