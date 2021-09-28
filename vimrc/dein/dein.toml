@@ -221,9 +221,6 @@ repo = 'antoinemadec/coc-fzf'
 depends = ['fzf', 'fzf.vim', 'coc.nvim']
 
 [[plugins]]
-repo = 'jremmen/vim-ripgrep'
-
-[[plugins]]
 repo = 'honza/vim-snippets'
 
 [[plugins]]
