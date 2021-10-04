@@ -33,11 +33,16 @@ LWin & c::Send ^{c}
 LWin & v::Send ^{v}
 
 LWin & a::Send ^{a}
-
 LWin & f::Send ^{f}
 
-~^[::IME_SET(0)
-~Esc::IME_SET(0)
+^[::ESCAPE_AND_IME_OFF()
+Esc::ESCAPE_AND_IME_OFF()
+
+
+ESCAPE_AND_IME_OFF(){
+    IME_SET(0)
+    Send {Esc}
+}
 
 
 #IfWinActive ahk_exe WindowsTerminal.exe
