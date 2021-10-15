@@ -113,11 +113,22 @@ __nvim () {
     fi
 }
 
-if [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
-    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-fi
+__google_cloud_sdk () {
+    export CLOUDSDK_PYTHON=$PYENV_ROOT/shims/python
+
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/usr/local/opt/google-cloud-sdk/path.zsh.inc' ]; then
+        . '/usr/local/opt/google-cloud-sdk/path.zsh.inc';
+    fi
+
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/usr/local/opt/google-cloud-sdk/completion.zsh.inc' ]; then
+        . '/usr/local/opt/google-cloud-sdk/completion.zsh.inc';
+    fi
+
+}
 
 __fzf
 __nvim
 __z
+__google_cloud_sdk

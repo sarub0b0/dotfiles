@@ -73,7 +73,6 @@ __envs () {
             $path
         )
         export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
-        export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
         export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
     else
     fi

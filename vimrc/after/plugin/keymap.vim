@@ -58,6 +58,9 @@ if get(g:, 'coc_enabled', 0)
   " Search workspace symbols.
   nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 
+  " Range Hover
+  vnoremap <silent> K <cmd>call CocActionAsync('doHover')<CR>
+
   """""""""""""""""""""""""""""""""""""""""""""""""
   " coc-snippets
   """""""""""""""""""""""""""""""""""""""""""""""""
