@@ -4,3 +4,6 @@ endfunction
 
 
 command! ProjectFiles execute 'Files' . s:find_git_root()
+
+let $FZF_DEFAULT_OPTS .= ' --bind ctrl-a:toggle-all'
+
