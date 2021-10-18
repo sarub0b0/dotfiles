@@ -92,6 +92,7 @@
     "Kubeconfig",
     "Nerdfont",
     "Quickfix",
+    "SAST",
     "Termion",
     "Varchar",
     "actix",
