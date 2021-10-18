@@ -122,6 +122,8 @@ __zcompile () {
 }
 
 
+fpath+=~/.zsh.d/completions
+
 # 一番最初
 __color
 __alias
