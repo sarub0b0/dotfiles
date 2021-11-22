@@ -35,6 +35,9 @@ function! s:vsplit_fugitive()
     :belowright vertical G
 endfunction
 
+nnoremap <silent> <Space>g :<C-u>G<CR>
+nnoremap <silent> <Space>G :<C-u>Gv<CR>
+
 '''
 
 [[plugins]]
