@@ -338,3 +338,5 @@ autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 
+[[plugins]]
+repo = 'github/copilot.vim'
