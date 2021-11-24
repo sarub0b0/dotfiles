@@ -78,7 +78,7 @@
       "manifest*/**/*.yaml",
       "/*.yaml"
     ],
-    "https://json.schemastore.org/gitlab-ci": [
+    "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
       "/**/.gitlab-ci.yml",
       "/**/.gitlab/*.y*ml"
     ]
