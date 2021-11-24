@@ -338,5 +338,13 @@ autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'kat0h/bufpreview.vim'
+
 [[plugins]]
 repo = 'github/copilot.vim'
+
+[[plugins]]
+repo = 'jparise/vim-graphql'
