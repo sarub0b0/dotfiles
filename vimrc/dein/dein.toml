@@ -338,6 +338,7 @@ autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 
+[[plugins]]
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
