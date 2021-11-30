@@ -1,5 +1,25 @@
 scriptencoding utf-8
 
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu = 1
+let g:skip_loading_mswin = 1
+let g:loaded_tutor_mode_plugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_remote_plugins = 1
+let g:loaded_shada_plugin = 1
+let g:loaded_gzip = 1
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_tar = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_matchparen = 1
+let g:loaded_spellfile_plugin = 1
+
 if has('win32') || has('win64')
   let &shell = has('win32') ? 'powershell' : 'pwsh'
   let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
