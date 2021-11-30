@@ -32,6 +32,7 @@ __alias () {
     alias cb="cargo build"
     alias cr="cargo run"
     alias kt="kubetui"
+    alias v="nvim"
 
 
     if [ "$(uname)" = 'Darwin' ]; then
