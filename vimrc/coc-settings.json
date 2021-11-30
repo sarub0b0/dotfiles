@@ -23,7 +23,6 @@
   "diagnostic.infoSign": ">>",
   "diagnostic.warningSign": "\uf12a",
   "eslint.autoFixOnSave": true,
-  "explorer.quitOnOpen": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.keyMappings.global": {
     "u": "gotoParent"
