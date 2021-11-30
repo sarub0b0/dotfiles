@@ -332,8 +332,8 @@ function! GetUniqueSessionName()
 endfunction
 
 autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-
 '''
+depends = ['vim-gitbranch']
 
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
