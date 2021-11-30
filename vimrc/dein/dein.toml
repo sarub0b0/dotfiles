@@ -23,7 +23,7 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-let g:fugitive_no_maps = 1
+let g:fugitive_no_maps = 0
 
 autocmd MyAutoCmd WinEnter * if exists('b:git_dir') | let g:git_dir = b:git_dir | endif
 
