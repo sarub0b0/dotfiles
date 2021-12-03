@@ -1,3 +1,15 @@
+if get(g:, 'loaded_fzf_vim', 0)
+  nnoremap <silent> <Leader>f :GFiles<CR>
+  nnoremap <silent> <Leader>F :Files<CR>
+
+  nnoremap <silent> <Leader>b :Buffers<CR>
+
+  nnoremap <silent> <Leader>l :BLines<CR>
+  nnoremap <silent> <Leader>L :Lines<CR>
+
+  nnoremap <silent> <Leader>c :BCommits<CR>
+  nnoremap <silent> <Leader>C :Commits<CR>
+endif
 
 if get(g:, 'coc_enabled', 0)
   """""""""""""""""""""""""""""""""""""""""""""""""
