@@ -44,3 +44,41 @@
 [[plugins]]
 repo = 'sarub0b0/lldb.nvim'
 on_ft = ['c', 'cpp']
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+merged = 0
+
+[[plugins]]
+repo = 'jparise/vim-graphql'
+on_ft = 'graphql'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+"let g:context_filetype#filetypes = {
+"\'vue': [
+"\  {
+"\     'start': '^<template.*>',
+"\     'end': '^<\/template>',
+"\     'filetype': 'html'
+"\  }
+"\]
+"\}
+'''
+on_ft = 'vue'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+hook_add = '''
+    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.js'
+    let g:closetag_filetypes = 'html,xhtml,phtml,erb,php,vue,javascript'
+'''
+on_ft = ['vue', 'html', 'xhtml', 'phtml', 'erb', 'php', 'javascript']
+
+
+
+

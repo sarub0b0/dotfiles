@@ -5,39 +5,4 @@ repo = 'vim-scripts/sudo.vim'
 repo = 'kana/vim-fakeclip'
 
 [[plugins]]
-repo = 'preservim/nerdcommenter'
-hook_source = '''
-    nmap <Space>c <Plug>NERDCommenterToggle
-    smap <Space>c <Plug>NERDCommenterToggle
-    xmap <Space>c <Plug>NERDCommenterToggle
-
-    let g:NERDSpaceDelims = 1
-    let g:NERDDefaultAlign = 'left'
-
-    let g:NERDCustomDelimiters = {
-            \ 'c': {'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'},
-            \ 'gp': {'left': '#'}
-            \}
-
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        let syn = tolower(syn)
-        exe 'setf '.syn
-      endif
-    endif
-  endif
-endfu
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-'''
-on_event = ['BufEnter']
+repo = 'vim-denops/denops.vim'

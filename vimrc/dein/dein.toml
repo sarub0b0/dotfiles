@@ -155,13 +155,6 @@ set noshowmode
 '''
 
 [[plugins]]
-repo = 'alvan/vim-closetag'
-hook_add = '''
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.js'
-    let g:closetag_filetypes = 'html,xhtml,phtml,erb,php,vue,javascript'
-'''
-
-[[plugins]]
 repo = 'voldikss/vim-floaterm'
 hook_add = '''
 let g:floaterm_position = 'topright'
@@ -243,53 +236,6 @@ autocmd MyAutoCmd FileType vista,vista_kind nnoremap <buffer><silent> / :<c-u>ca
 '''
 
 [[plugins]]
-repo = 'posva/vim-vue'
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-hook_add = '''
-"let g:context_filetype#filetypes = {
-"\'vue': [
-"\  {
-"\     'start': '^<template.*>',
-"\     'end': '^<\/template>',
-"\     'filetype': 'html'
-"\  }
-"\]
-"\}
-'''
-
-[[plugins]]
-repo = 'lambdalisue/fern.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-hook_add = '''
-    let g:fern#renderer = "devicons"
-'''
-depends = 'fern.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-mapping-project-top.vim'
-depends = 'fern.vim'
-
-[[plugins]]
-repo = 'LumaKernel/fern-mapping-fzf.vim'
-depends = ['fzf', 'fern.vim']
-hook_add = '''
-let s:bin_dir = g:cache_dir . '/dein/repos/github.com/junegunn/fzf.vim/bin/preview.sh'
-let s:preview_command = s:bin_dir .' {}'
-let g:fern#mapping#fzf#fzf_options = {'options': ['--layout=reverse', '--info=inline', '--preview', s:preview_command]}
-'''
-
-[[plugins]]
-repo = 'bumaociyuan/vim-swift'
-
-[[plugins]]
-repo = 'vim-jp/vital.vim'
-merged = 0
-
-[[plugins]]
 repo = 'mhinz/vim-startify'
 hook_add = '''
 set sessionoptions-=help
@@ -339,13 +285,43 @@ depends = ['vim-gitbranch']
 repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'kat0h/bufpreview.vim'
-
-[[plugins]]
 repo = 'github/copilot.vim'
 
 [[plugins]]
-repo = 'jparise/vim-graphql'
+repo = 'preservim/nerdcommenter'
+hook_add = '''
+    nmap <Space>c <Plug>NERDCommenterToggle
+    smap <Space>c <Plug>NERDCommenterToggle
+    xmap <Space>c <Plug>NERDCommenterToggle
+
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+
+    let g:NERDCustomDelimiters = {
+            \ 'c': {'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'},
+            \ 'gp': {'left': '#'}
+            \}
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        let syn = tolower(syn)
+        exe 'setf '.syn
+      endif
+    endif
+  endif
+endfu
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+'''
+
+
