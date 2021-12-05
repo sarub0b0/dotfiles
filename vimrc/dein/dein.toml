@@ -236,55 +236,6 @@ autocmd MyAutoCmd FileType vista,vista_kind nnoremap <buffer><silent> / :<c-u>ca
 '''
 
 [[plugins]]
-repo = 'mhinz/vim-startify'
-hook_add = '''
-set sessionoptions-=help
-
-let bookmark_file = '~/.vim-startify-bookmarks'
-
-let g:startify_change_to_vcs_root = 1
-let g:startify_bookmarks = systemlist('cat ' . bookmark_file)
-let g:startify_skiplist = ["~/.cache/nvim/"]
-let g:startify_session_dir = "~/.vim-session"
-
-if isdirectory(expand(g:startify_session_dir)) == v:false
-  echomsg "====================================="
-  echomsg " Create session-dir for vim-startify"
-  echomsg "====================================="
-  execute '!mkdir ' . expand(g:startify_session_dir)
-endif
-
-
-if filereadable(expand(bookmark_file)) == v:false
-  execute ":redir! > " . bookmark_file
-    :silent! echon '~/dotfiles/vimrc/init.vim' . "\n"
-    :silent! echon '~/dotfiles/vimrc/dein/dein.toml' . "\n"
-    :silent! echon bookmark_file . "\n"
-  :redir END
-endif
-
-function! GetUniqueSessionName()
-
-  let coc_explorer_bufnr = bufnr('coc-explorer')
-  if coc_explorer_bufnr != -1
-      execute 'bdelete ' coc_explorer_bufnr
-  endif
-
-  let path = fnamemodify(getcwd(), ':~:t')
-  let path = empty(path) ? 'no-project' : path
-  let branch = gitbranch#name()
-  let branch = empty(branch) ? '' : '-' . branch
-  return substitute(path . branch, '/', '-', 'g')
-endfunction
-
-autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-'''
-depends = ['vim-gitbranch']
-
-[[plugins]]
-repo = 'itchyny/vim-gitbranch'
-
-[[plugins]]
 repo = 'github/copilot.vim'
 
 [[plugins]]
