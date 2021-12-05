@@ -118,7 +118,33 @@ if has('nvim')
   set inccommand=nosplit
 
   if has('mac')
-    let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+    let g:clipboard = {
+      \   'name': 'pbcopy',
+      \   'copy': {
+      \     '+': 'pbcopy',
+      \     '*': 'pbcopy'
+      \   },
+      \   'paste': {
+      \     '+': 'pbpaste',
+      \     '*': 'pbpaste'
+      \   },
+      \   'cache_enabled': 0
+      \ }
+  endif
+
+  if has('wsl')
+    let g:clipboard = {
+        \   'name': 'win32yank',
+        \   'copy': {
+        \     '+': 'win32yank.exe -i',
+        \     '*': 'win32yank.exe -i'
+        \    },
+        \     'paste': {
+        \       '+': 'win32yank.exe -o',
+        \       '*': 'win32yank.exe -o'
+        \   },
+        \   'cache_enabled': 1
+        \ }
   endif
   set clipboard&
   set clipboard+=unnamedplus
