@@ -16,15 +16,12 @@ if has('termguicolors')
     augroup END
   endif
 
-  let colorschemes = getcompletion('', 'color')
-  for scheme in colorschemes
-    if scheme ==# s:termcolor
-      execute 'colorscheme ' . s:termcolor
-      break
-    else
-      colorscheme default
-    endif
-  endfor
+  let colorschemes = getcompletion(s:termcolor, 'color')
+  if index(colorschemes, s:termcolor) >= 0
+    execute 'colorscheme ' . s:termcolor
+  else
+    colorscheme default
+  endif
 
 else
   colorscheme default

@@ -155,13 +155,6 @@ set noshowmode
 '''
 
 [[plugins]]
-repo = 'alvan/vim-closetag'
-hook_add = '''
-    let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue,*.js'
-    let g:closetag_filetypes = 'html,xhtml,phtml,erb,php,vue,javascript'
-'''
-
-[[plugins]]
 repo = 'voldikss/vim-floaterm'
 hook_add = '''
 let g:floaterm_position = 'topright'
@@ -243,109 +236,43 @@ autocmd MyAutoCmd FileType vista,vista_kind nnoremap <buffer><silent> / :<c-u>ca
 '''
 
 [[plugins]]
-repo = 'posva/vim-vue'
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-hook_add = '''
-"let g:context_filetype#filetypes = {
-"\'vue': [
-"\  {
-"\     'start': '^<template.*>',
-"\     'end': '^<\/template>',
-"\     'filetype': 'html'
-"\  }
-"\]
-"\}
-'''
-
-[[plugins]]
-repo = 'lambdalisue/fern.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-hook_add = '''
-    let g:fern#renderer = "devicons"
-'''
-depends = 'fern.vim'
-
-[[plugins]]
-repo = 'lambdalisue/fern-mapping-project-top.vim'
-depends = 'fern.vim'
-
-[[plugins]]
-repo = 'LumaKernel/fern-mapping-fzf.vim'
-depends = ['fzf', 'fern.vim']
-hook_add = '''
-let s:bin_dir = g:cache_dir . '/dein/repos/github.com/junegunn/fzf.vim/bin/preview.sh'
-let s:preview_command = s:bin_dir .' {}'
-let g:fern#mapping#fzf#fzf_options = {'options': ['--layout=reverse', '--info=inline', '--preview', s:preview_command]}
-'''
-
-[[plugins]]
-repo = 'bumaociyuan/vim-swift'
-
-[[plugins]]
-repo = 'vim-jp/vital.vim'
-merged = 0
-
-[[plugins]]
-repo = 'mhinz/vim-startify'
-hook_add = '''
-set sessionoptions-=help
-
-let bookmark_file = '~/.vim-startify-bookmarks'
-
-let g:startify_change_to_vcs_root = 1
-let g:startify_bookmarks = systemlist('cat ' . bookmark_file)
-let g:startify_skiplist = ["~/.cache/nvim/"]
-let g:startify_session_dir = "~/.vim-session"
-
-if isdirectory(expand(g:startify_session_dir)) == v:false
-  echomsg "====================================="
-  echomsg " Create session-dir for vim-startify"
-  echomsg "====================================="
-  execute '!mkdir ' . expand(g:startify_session_dir)
-endif
-
-
-if filereadable(expand(bookmark_file)) == v:false
-  execute ":redir! > " . bookmark_file
-    :silent! echon '~/dotfiles/vimrc/init.vim' . "\n"
-    :silent! echon '~/dotfiles/vimrc/dein/dein.toml' . "\n"
-    :silent! echon bookmark_file . "\n"
-  :redir END
-endif
-
-function! GetUniqueSessionName()
-
-  let coc_explorer_bufnr = bufnr('coc-explorer')
-  if coc_explorer_bufnr != -1
-      execute 'bdelete ' coc_explorer_bufnr
-  endif
-
-  let path = fnamemodify(getcwd(), ':~:t')
-  let path = empty(path) ? 'no-project' : path
-  let branch = gitbranch#name()
-  let branch = empty(branch) ? '' : '-' . branch
-  return substitute(path . branch, '/', '-', 'g')
-endfunction
-
-autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-'''
-depends = ['vim-gitbranch']
-
-[[plugins]]
-repo = 'itchyny/vim-gitbranch'
-
-[[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'kat0h/bufpreview.vim'
-
-[[plugins]]
 repo = 'github/copilot.vim'
 
 [[plugins]]
-repo = 'jparise/vim-graphql'
+repo = 'preservim/nerdcommenter'
+hook_add = '''
+    nmap <Space>c <Plug>NERDCommenterToggle
+    smap <Space>c <Plug>NERDCommenterToggle
+    xmap <Space>c <Plug>NERDCommenterToggle
+
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
+
+    let g:NERDCustomDelimiters = {
+            \ 'c': {'left': '//', 'leftAlt': '/**', 'rightAlt': '*/'},
+            \ 'gp': {'left': '#'}
+            \}
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        let syn = tolower(syn)
+        exe 'setf '.syn
+      endif
+    endif
+  endif
+endfu
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+'''
+
+

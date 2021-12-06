@@ -9,6 +9,8 @@ if get(g:, 'loaded_fzf_vim', 0)
 
   nnoremap <silent> <Leader>c :BCommits<CR>
   nnoremap <silent> <Leader>C :Commits<CR>
+
+  nnoremap <silent> <Leader>r :Rg<CR>
 endif
 
 if get(g:, 'coc_enabled', 0)
