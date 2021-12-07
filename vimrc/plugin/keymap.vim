@@ -74,6 +74,13 @@ tmap <C-s>i <ESC><C-w>i
 tmap <C-s>j <ESC><C-w>j
 tmap <C-s>k <ESC><C-w>k
 
+"----------------------------------------------------
+" コマンドモード
+"----------------------------------------------------
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
 
 "----------------------------------------------------
 " j k remap
@@ -83,7 +90,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-
 "----------------------------------------------------
 " f bで左右移動（insert mode）
 "----------------------------------------------------
@@ -91,12 +97,8 @@ vnoremap k gk
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-
-
 nnoremap <C-n> :cn<CR>
 nnoremap <C-p> :cp<CR>
-
-
 
 "----------------------------------------------------
 " load vimrc
