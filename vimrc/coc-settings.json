@@ -83,6 +83,9 @@
       "/**/.gitlab/*.y*ml"
     ]
   },
+  "yaml.customTags": [
+    "!reference Sequence"
+  ],
   "yaml.schemaStore.enable": true,
   "cSpell.userWords": [
     "ACMR",
