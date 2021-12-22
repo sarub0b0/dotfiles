@@ -79,6 +79,3 @@ hook_add = '''
 '''
 on_ft = ['vue', 'html', 'xhtml', 'phtml', 'erb', 'php', 'javascript']
 
-
-
-
