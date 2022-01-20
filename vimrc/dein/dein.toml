@@ -275,4 +275,8 @@ function! NERDCommenter_after()
 endfunction
 '''
 
-
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+hook_add = '''
+let g:rust_fold = 1
+'''
