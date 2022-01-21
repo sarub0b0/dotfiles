@@ -1,6 +1,10 @@
 
 all: vim neovim tmux zsh anyenv kubectl-prompt gcloud-prompt docker-completion clang-format markdownlintrc
 
+.PHONY: rust-install
+rust-install:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 .PHONY: neovim-install
 neovim-install:
 	apt-get install -y software-properties-common
