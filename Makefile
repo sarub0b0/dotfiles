@@ -1,6 +1,13 @@
 
 all: vim neovim tmux zsh anyenv kubectl-prompt gcloud-prompt docker-completion clang-format markdownlintrc
 
+.PHONY: neovim-install
+neovim-install:
+	apt-get install -y software-properties-common
+	add-apt-repository ppa:neovim-ppa/unstable
+	apt-get update
+	apt-get install -y neovim
+
 .PHONY: vim
 vim:
 	@echo '===================================='
