@@ -1,6 +1,17 @@
 
 all: vim neovim tmux zsh anyenv kubectl-prompt gcloud-prompt docker-completion clang-format markdownlintrc
 
+.PHONY: rust-install
+rust-install:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+.PHONY: neovim-install
+neovim-install:
+	apt-get install -y software-properties-common
+	add-apt-repository ppa:neovim-ppa/unstable
+	apt-get update
+	apt-get install -y neovim
+
 .PHONY: vim
 vim:
 	@echo '===================================='
@@ -105,3 +116,7 @@ git-config:
 	git config --global alias.st status
 	git config --global alias.co checkout
 	git config --global alias.br branch
+
+powerlevel10k:
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+	ln -sf $(HOME)/dotfiles/p10k.zsh ~/.p10k.zsh
