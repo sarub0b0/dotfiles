@@ -155,6 +155,10 @@ if [ "$(uname)" = "Darwin" ]; then
     source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
+if [ "$(uname)" = "Linux" ]; then
+    source ~/.powerlevel10k/powerlevel10k.zsh-theme
+fi
+
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
 # fi

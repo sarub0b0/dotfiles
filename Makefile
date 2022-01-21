@@ -105,3 +105,7 @@ git-config:
 	git config --global alias.st status
 	git config --global alias.co checkout
 	git config --global alias.br branch
+
+powerlevel10k:
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+	ln -sf $(HOME)/dotfiles/p10k.zsh ~/.p10k.zsh
