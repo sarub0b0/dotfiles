@@ -151,20 +151,20 @@ __zcompile
 #     eval "$(starship init zsh)"
 # fi
 
-if [ "$(uname)" = "Darwin" ]; then
-    source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
-fi
-
-if [ "$(uname)" = "Linux" ]; then
-    source ~/.powerlevel10k/powerlevel10k.zsh-theme
-fi
-
-# if (which zprof > /dev/null 2>&1); then
-#     zprof
-# fi
-
+case "$(uname)" in
+    Darwin)
+        source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+        ;;
+    Linux)
+        source ~/.powerlevel10k/powerlevel10k.zsh-theme
+        ;;
+esac
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# if (which zprof > /dev/null 2>&1); then
+#     zprof
+# fi
