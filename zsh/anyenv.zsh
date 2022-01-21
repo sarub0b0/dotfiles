@@ -7,13 +7,19 @@ __anyenv () {
     )
 
     if builtin command -v anyenv > /dev/null; then
-        anyenv() {
-            unfunction "$0"
-            eval "$(anyenv init - zsh)"
-            $0 "$@"
-        }
 
-        eval "$($HOME/dotfiles/zsh/anyenv_lazyload.zsh)"
+        if builtin command -v p10k > /dev/null; then
+            eval "$(anyenv init - zsh)"
+
+        else
+            anyenv() {
+                unfunction "$0"
+                eval "$(anyenv init - zsh)"
+                $0 "$@"
+            }
+
+            eval "$($HOME/dotfiles/zsh/anyenv_lazyload.zsh)"
+        fi
     fi
 }
 __anyenv

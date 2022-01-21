@@ -1,3 +1,4 @@
+
 scriptencoding utf-8
 
 if exists('b:my_did_ftplugin')
@@ -5,3 +6,4 @@ if exists('b:my_did_ftplugin')
 endif
 let b:my_did_ftplugin = 1
 
+let g:rust_fold = 1
