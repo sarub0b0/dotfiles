@@ -70,7 +70,8 @@ __envs () {
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/usr/local/lib
+    export LIBRARY_PATH=/usr/local/lib
 
 
     if [ "$(uname)" = 'Darwin' ]; then
@@ -80,7 +81,7 @@ __envs () {
             /usr/local/opt/sqlite/bin(N-/)
             $path
         )
-        export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/work/include/
+        export CPLUS_INCLUDE_PATH=/usr/local/include:$HOME/work/include/
         export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
     else
     fi
