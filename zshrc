@@ -148,10 +148,6 @@ source $HOME/dotfiles/zsh/command.zsh
 # 一番最後
 __zcompile
 
-# if builtin command -v starship > /dev/null; then
-#     eval "$(starship init zsh)"
-# fi
-
 case "$(uname)" in
     Darwin)
         source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
