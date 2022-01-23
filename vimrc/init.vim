@@ -38,15 +38,11 @@ augroup END
 
 if !exists('g:vscode')
 
-  if has('mac')
-    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python2')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.7/bin/python3')
+  if has('mac') || has('unix') || has('wsl')
+    let g:python_host_prog = expand('$ASDF_DIR/installs/python/2.7.18/bin/python')
   elseif has('win32') || has('win64')
     let g:python_host_prog = expand('$HOME/scoop/apps/python27/current/python.exe')
     let g:python3_host_prog = expand('$HOME/scoop/apps/python39/current/python.exe')
-  elseif has('unix')
-    let g:python_host_prog = expand('$PYENV_ROOT/versions/2.7.18/bin/python')
-    let g:python3_host_prog = expand('$PYENV_ROOT/versions/3.9.7/bin/python')
   endif
 
 
