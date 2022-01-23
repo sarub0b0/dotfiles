@@ -120,3 +120,8 @@ git-config:
 powerlevel10k:
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
 	ln -sf $(HOME)/dotfiles/p10k.zsh ~/.p10k.zsh
+
+.PHONY: asdf
+asdf:
+	git clone --depth=1 https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+	ln -sf $(HOME)/dotfiles/asdfrc ~/.asdfrc
