@@ -140,7 +140,7 @@ __prompt
 __history
 __envs
 
-source $HOME/dotfiles/zsh/anyenv.zsh
+# source $HOME/dotfiles/zsh/anyenv.zsh
 source $HOME/dotfiles/zsh/completion.zsh
 source $HOME/dotfiles/zsh/cloud.zsh
 source $HOME/dotfiles/zsh/command.zsh
