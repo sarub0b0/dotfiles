@@ -281,3 +281,6 @@ repo = 'rust-lang/rust.vim'
 hook_add = '''
 let g:rust_fold = 1
 '''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
