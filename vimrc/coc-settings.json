@@ -6,6 +6,7 @@
     "-I",
     "include/"
   ],
+  "cSpell.showStatus": false,
   "coc-actions.useCursorLine": false,
   "coc-actions.showActionKind": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
