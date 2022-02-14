@@ -39,3 +39,4 @@ core
 .clang-format
 
 .vim/
+starship.toml
