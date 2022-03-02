@@ -284,3 +284,13 @@ let g:rust_fold = 1
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+
+[[plugins]]
+repo = 'mvllow/modes.nvim'
+
+[[plugins]]
+repo = 'RRethy/vim-hexokinase'
+build = 'make hexokinase'
+hook_add = '''
+let g:Hexokinase_ftEnabled = []
+'''
