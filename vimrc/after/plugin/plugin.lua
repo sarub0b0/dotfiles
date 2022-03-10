@@ -1,3 +1,5 @@
+if not (vim.g.vscode)  then
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = "maintained",
   sync_install = false,
@@ -19,4 +21,5 @@ require('modes').setup {
   focus_only = true
 }
 
+end
 
