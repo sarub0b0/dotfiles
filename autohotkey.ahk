@@ -51,6 +51,9 @@ ESCAPE_AND_IME_OFF(){
 #IfWinActive ahk_exe WindowsTerminal.exe
 LWin & v::Send ^+{v}
 
+#IfWinActive ahk_exe wezterm-gui.exe
+LWin & v::Send ^+{v}
+LWin & c::Send ^+{c}
 
 #IfWinNotActive ahk_group Terminal
 ^h::Send {Backspace}
