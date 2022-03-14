@@ -82,7 +82,6 @@ __envs () {
             $path
         )
         export CPLUS_INCLUDE_PATH=/usr/local/include:$HOME/work/include/
-        export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
     else
     fi
 }

@@ -114,7 +114,6 @@ __nvim () {
 }
 
 __google_cloud_sdk () {
-    export CLOUDSDK_PYTHON=$PYENV_ROOT/shims/python
 
     # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/usr/local/opt/google-cloud-sdk/path.zsh.inc' ]; then
