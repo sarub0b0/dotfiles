@@ -185,15 +185,32 @@ local launch_menu = {
   },
 }
 
+local default_prog = {}
+if wezterm.target_triple == "x86_64-apple-darwin" then
+    default_prog = {
+        "/bin/zsh",
+        "-l"
+    }
+elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    default_prog = {
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "~",
+    }
+end
+
+
 return {
-  font = wezterm.font("HackGenNerd Console"),
-  default_prog = {
-    "wsl",
-    "-d",
-    "Ubuntu",
-    "--cd",
-    "~",
-  },
+  font = wezterm.font_with_fallback({
+      "RictyDiminished Nerd Font",
+      "HackGenNerd Console",
+  }),
+
+  use_ime = true,
+
+  default_prog = default_prog,
 
   -- color_scheme = "OceanicNext",
 
