@@ -244,7 +244,7 @@ return {
     bottom = 5,
   },
 
-  debug_key_events = true,
+  -- debug_key_events = true,
 
   leader = keys.leader,
   keys = keys.keys,
