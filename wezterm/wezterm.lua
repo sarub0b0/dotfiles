@@ -191,11 +191,16 @@ local launch_menu = {
 }
 
 local default_prog = {}
+local font = {}
+
 if wezterm.target_triple == "x86_64-apple-darwin" then
     default_prog = {
         "/bin/zsh",
         "-l"
     }
+
+    font = wezterm.font("RictyDiminished Nerd Font")
+
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
     default_prog = {
         "wsl",
@@ -204,14 +209,13 @@ elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
         "--cd",
         "~",
     }
+
+    font = wezterm.font("HackGenNerd Console")
 end
 
 
 return {
-  font = wezterm.font_with_fallback({
-      "RictyDiminished Nerd Font",
-      "HackGenNerd Console",
-  }),
+  font = font,
 
   use_ime = true,
 
