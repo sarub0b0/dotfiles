@@ -14,6 +14,11 @@ local keys = {
       action = "ToggleFullScreen",
     },
     {
+      key = "F11",
+      mods = "",
+      action = "ToggleFullScreen",
+    },
+     {
       key = "v",
       mods = "LEADER",
       action = wezterm.action {
