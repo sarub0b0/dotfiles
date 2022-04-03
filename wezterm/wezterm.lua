@@ -14,6 +14,11 @@ local keys = {
       action = "ToggleFullScreen",
     },
     {
+      key = "F11",
+      mods = "",
+      action = "ToggleFullScreen",
+    },
+     {
       key = "v",
       mods = "LEADER",
       action = wezterm.action {
@@ -185,15 +190,36 @@ local launch_menu = {
   },
 }
 
+local default_prog = {}
+local font = {}
+
+if wezterm.target_triple == "x86_64-apple-darwin" then
+    default_prog = {
+        "/bin/zsh",
+        "-l"
+    }
+
+    font = wezterm.font("RictyDiminished Nerd Font")
+
+elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    default_prog = {
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "~",
+    }
+
+    font = wezterm.font("HackGenNerd Console")
+end
+
+
 return {
-  font = wezterm.font("HackGenNerd Console"),
-  default_prog = {
-    "wsl",
-    "-d",
-    "Ubuntu",
-    "--cd",
-    "~",
-  },
+  font = font,
+
+  use_ime = true,
+
+  default_prog = default_prog,
 
   -- color_scheme = "OceanicNext",
 
@@ -218,7 +244,7 @@ return {
     bottom = 5,
   },
 
-  debug_key_events = true,
+  -- debug_key_events = true,
 
   leader = keys.leader,
   keys = keys.keys,

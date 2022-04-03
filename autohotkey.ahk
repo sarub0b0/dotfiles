@@ -25,6 +25,9 @@ IME_SET(SetSts, WinTitle="A")    {
           ,  Int, SetSts) ;lParam  : 0 or 1
 }
 
+GroupAdd, Terminal, ahk_class org.wezfurlong.wezterm        ; wezterm
+GroupAdd, Terminal, ahk_class CASCADIA_HOSTING_WINDOW_CLASS ; windows terminal
+
 LWin::F13
 RWin::F14
 
@@ -48,8 +51,11 @@ ESCAPE_AND_IME_OFF(){
 #IfWinActive ahk_exe WindowsTerminal.exe
 LWin & v::Send ^+{v}
 
+#IfWinActive ahk_exe wezterm-gui.exe
+LWin & v::Send ^+{v}
+LWin & c::Send ^+{c}
 
-#IfWinNotActive ahk_exe WindowsTerminal.exe
+#IfWinNotActive ahk_group Terminal
 ^h::Send {Backspace}
 
 ^p::Send {Up}
