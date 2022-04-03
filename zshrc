@@ -39,6 +39,7 @@ __alias () {
     alias cb="cargo build"
     alias cr="cargo run"
     alias kt="kubetui"
+    alias vim="nvim"
     alias v="nvim"
 
 
