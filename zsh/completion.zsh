@@ -1,6 +1,9 @@
 # 補完機能の強化
-[ -d ~/.asdf ] && fpath=(~/.asdf/completions $fpath)
-[ -d ~/.zsh/completion ] && fpath(~/.zsh/completion $fpath)
+fpath=(
+    ~/.asdf/completions(N-/)
+    ~/.zsh/completion(N-/)
+    $fpath
+)
 
 autoload -Uz compinit && compinit -i
 
