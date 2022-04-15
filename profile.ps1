@@ -1,12 +1,6 @@
 Import-Module PSReadLine
 Set-PSReadlineOption -EditMode Emacs
 
-# Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
-}
-Invoke-Expression (&starship init powershell)
 
 Set-Alias vim nvim
 
@@ -22,7 +16,6 @@ function script:ghq_list () {
         ghq list | fzf
     }
 }
-
 
 function gf () {
     $repo = $(script:ghq_list)
