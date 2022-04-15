@@ -300,5 +300,9 @@ let g:Hexokinase_ftEnabled = []
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
 [[plugins]]
 repo = 'kwkarlwang/bufresize.nvim'
