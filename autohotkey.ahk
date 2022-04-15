@@ -55,6 +55,9 @@ LWin & v::Send ^+{v}
 LWin & v::Send ^+{v}
 LWin & c::Send ^+{c}
 
+#IfWinActive ahk_group Terminal
+Alt & Backspace::Send {Del}
+
 #IfWinNotActive ahk_group Terminal
 ^h::Send {Backspace}
 
