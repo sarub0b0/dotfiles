@@ -39,6 +39,7 @@ __alias () {
     alias cb="cargo build"
     alias cr="cargo run"
     alias kt="kubetui"
+    alias vim="nvim"
     alias v="nvim"
 
 
@@ -128,9 +129,6 @@ __zcompile () {
         zcompile ~/.zcompdump
     fi
 }
-
-
-fpath+=~/.zsh.d/completions
 
 # 一番最初
 __color

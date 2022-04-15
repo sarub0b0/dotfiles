@@ -77,6 +77,7 @@ docker-completion:
 	@echo '  Setup docker-completion for MacOS'
 	@echo '===================================='
 	if [ "$(shell uname)" = 'Darwin' ]; then ln -sf /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion ./zsh/completions/_docker fi
+	if [ "$(shell uname)" = 'Linux' ]; mkdir -p ~/.zsh/completion && then curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose fi
 
 
 .PHONY: clang-format
@@ -94,11 +95,14 @@ starship:
 
 .PHONY: krew
 krew:
-	cd "$(shell mktemp -d)" && \
-	curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" && \
-	tar zxvf krew.tar.gz && \
-	$(eval KREW := ./krew-$(shell uname | tr '[:upper:]' '[:lower:]')_$(shell uname -m | sed -e 's/x86_64/amd64/' -e 's/arm.*$$/arm/' -e 's/aarch64$$/arm64/')) \
-	$(KREW) install krew
+	$(eval OS := $(shell uname | tr '[:upper:]' '[:lower:]') )
+	$(eval ARCH := $(shell uname -m | sed -s 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') )
+	$(eval KREW := $(shell krew-${OS}_${ARCH}) )
+	echo $(ARCH)
+	# cd $(shell mktemp -d)
+	# curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/$(KREW).tar.gz
+	# tar zxvf $(KREW).tar.gz
+	# ./$(KREW) install krew
 
 
 .PHONY: krew-update

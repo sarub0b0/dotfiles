@@ -286,6 +286,9 @@ let g:rust_fold = 1
 repo = 'nvim-treesitter/nvim-treesitter'
 
 [[plugins]]
+repo = 'romgrk/nvim-treesitter-context'
+
+[[plugins]]
 repo = 'mvllow/modes.nvim'
 
 [[plugins]]
@@ -294,3 +297,12 @@ build = 'make hexokinase'
 hook_add = '''
 let g:Hexokinase_ftEnabled = []
 '''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'kwkarlwang/bufresize.nvim'

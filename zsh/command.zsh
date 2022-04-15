@@ -103,16 +103,6 @@ __fzf () {
     fi
 }
 
-__nvim () {
-    if builtin command -v nvim > /dev/null; then
-        export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
-        vim () {
-            nvim $@
-        }
-    fi
-}
-
 __google_cloud_sdk () {
 
     # The next line updates PATH for the Google Cloud SDK.
@@ -128,6 +118,5 @@ __google_cloud_sdk () {
 }
 
 __fzf
-__nvim
 __z
 __google_cloud_sdk
