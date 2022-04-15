@@ -21,5 +21,9 @@ require('modes').setup {
   focus_only = true
 }
 
+require('treesitter-context').setup {
+    enable = true,
+}
+
 end
 
