@@ -2,8 +2,10 @@ Import-Module PSReadLine
 Set-PSReadlineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
 
+oh-my-posh prompt init pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/star.omp.json' | Invoke-Expression
 
 Set-Alias vim nvim
+Set-Alias v nvim
 
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
