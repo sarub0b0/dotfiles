@@ -1,5 +1,6 @@
 Import-Module PSReadLine
 Set-PSReadlineOption -EditMode Emacs
+Set-PSReadlineOption -BellStyle None
 
 
 Set-Alias vim nvim
