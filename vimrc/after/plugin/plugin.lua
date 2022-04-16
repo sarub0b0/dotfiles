@@ -49,5 +49,7 @@ require('treesitter-context').setup {
     enable = true,
 }
 
+require('bufresize').setup {}
+
 end
 
