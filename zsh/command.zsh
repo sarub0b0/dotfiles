@@ -21,7 +21,7 @@ fv () {
 
 __z () {
     if [ "$(uname)" = "Darwin" ]; then
-        source /usr/local/opt/z/etc/profile.d/z.sh
+        source $(brew --prefix z)/etc/profile.d/z.sh
 
         if builtin command -v fzf > /dev/null; then
             unalias z
