@@ -1,7 +1,31 @@
 if not (vim.g.vscode)  then
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "bash",
+    "c",
+    "cmake",
+    "comment",
+    "cpp",
+    "css",
+    "dot",
+    "go",
+    "gomod",
+    "graphql",
+    "http",
+    "javascript",
+    "json",
+    "lua",
+    "make",
+    "perl",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "toml",
+    "vim",
+    "yaml",
+  },
   sync_install = false,
 
   highlight = {
