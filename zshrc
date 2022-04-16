@@ -35,7 +35,6 @@ __alias () {
     alias tp='telepresence'
     alias ds='devspace'
     alias sf='skaffold'
-    alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
     alias cb="cargo build"
     alias cr="cargo run"
     alias kt="kubetui"
