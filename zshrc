@@ -158,8 +158,9 @@ esac
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[ -d ~/.asdf ] && source ~/.asdf/asdf.sh
+[ -d "$(brew --prefix asdf)" ] && source $(brew --prefix asdf)/libexec/asdf.sh
 
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
 # fi
+

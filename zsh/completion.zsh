@@ -2,6 +2,7 @@
 fpath=(
     ~/.asdf/completions(N-/)
     ~/.zsh/completion(N-/)
+    $(brew --prefix)/share/zsh/site-functions(N-/)
     $fpath
 )
 
