@@ -1,10 +1,14 @@
 # 補完機能の強化
+brew_prefix=/opt/homebrew
+
 fpath=(
     ~/.asdf/completions(N-/)
     ~/.zsh/completion(N-/)
-    $(brew --prefix)/share/zsh/site-functions(N-/)
+    ${brew_prefix}/share/zsh/site-functions(N-/)
     $fpath
 )
+
+[ -d "${brew_prefix}/opt/zsh-autosuggestions" ] && source ${brew_prefix}/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit && compinit -i
 

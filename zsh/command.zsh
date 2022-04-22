@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+brew_prefix=/opt/homebrew
+
 man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -21,7 +23,7 @@ fv () {
 
 __z () {
     if [ "$(uname)" = "Darwin" ]; then
-        source $(brew --prefix z)/etc/profile.d/z.sh
+        source ${brew_prefix}/opt/z/etc/profile.d/z.sh
 
         if builtin command -v fzf > /dev/null; then
             unalias z
@@ -105,16 +107,12 @@ __fzf () {
 
 __google_cloud_sdk () {
 
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f "$(brew --caskroom google-cloud-sdk)/latest/google-cloud-sdk/path.zsh.inc" ]; then
-        . $(brew --caskroom google-cloud-sdk)/latest/google-cloud-sdk/path.zsh.inc
+    if [ -d "${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]; then
+        # The next line updates PATH for the Google Cloud SDK.
+        . ${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+        # The next line enables shell command completion for gcloud.
+        . ${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
     fi
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f "$(brew --caskroom google-cloud-sdk)/latest/google-cloud-sdk/completion.zsh.inc" ]; then
-        . $(brew --caskroom google-cloud-sdk)/latest/google-cloud-sdk/completion.zsh.inc
-    fi
-
 }
 
 __fzf
