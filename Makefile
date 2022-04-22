@@ -124,7 +124,6 @@ git-config:
 .PHONY: powerlevel10k
 powerlevel10k:
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
-	ln -sf $(HOME)/dotfiles/p10k.zsh ~/.p10k.zsh
 
 .PHONY: asdf
 asdf:
