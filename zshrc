@@ -7,8 +7,6 @@ fi
 
 # zmodload zsh/zprof && zprof
 
-brew_prefix=/opt/homebrew
-
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
@@ -146,7 +144,7 @@ __zcompile
 
 case "$(uname)" in
     Darwin)
-        source ${brew_prefix}/opt/powerlevel10k/powerlevel10k.zsh-theme
+        source ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme
         ;;
     Linux)
         source ~/.powerlevel10k/powerlevel10k.zsh-theme
@@ -158,7 +156,7 @@ esac
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
 [[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
 
-[ -d "${brew_prefix}/opt/asdf" ] && source ${brew_prefix}/opt/asdf/libexec/asdf.sh
+[ -d "${HOMEBREW_PREFIX}/opt/asdf" ] && source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
