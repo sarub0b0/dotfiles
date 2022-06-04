@@ -95,14 +95,10 @@ starship:
 
 .PHONY: krew
 krew:
-	$(eval OS := $(shell uname | tr '[:upper:]' '[:lower:]') )
-	$(eval ARCH := $(shell uname -m | sed -s 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') )
-	$(eval KREW := $(shell krew-${OS}_${ARCH}) )
-	echo $(ARCH)
-	# cd $(shell mktemp -d)
-	# curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/$(KREW).tar.gz
-	# tar zxvf $(KREW).tar.gz
-	# ./$(KREW) install krew
+	$(eval OS := $(shell uname | tr '[:upper:]' '[:lower:]'))
+	$(eval ARCH := $(shell uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$$/arm64/'))
+	$(eval KREW := krew-${OS}_${ARCH})
+	cd $(shell mktemp -d); curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/$(KREW).tar.gz; tar zxvf $(KREW).tar.gz; ./$(KREW) install krew
 
 
 .PHONY: krew-update
