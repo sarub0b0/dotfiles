@@ -35,7 +35,6 @@ __alias () {
     alias tp='telepresence'
     alias ds='devspace'
     alias sf='skaffold'
-    alias brew="PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin brew"
     alias cb="cargo build"
     alias cr="cargo run"
     alias kt="kubetui"
@@ -137,9 +136,7 @@ __prompt
 __history
 __envs
 
-# source $HOME/dotfiles/zsh/anyenv.zsh
 source $HOME/dotfiles/zsh/completion.zsh
-source $HOME/dotfiles/zsh/cloud.zsh
 source $HOME/dotfiles/zsh/command.zsh
 
 # 一番最後
@@ -147,7 +144,7 @@ __zcompile
 
 case "$(uname)" in
     Darwin)
-        source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+        source ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme
         ;;
     Linux)
         source ~/.powerlevel10k/powerlevel10k.zsh-theme
@@ -156,10 +153,10 @@ esac
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
+[[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
 
-[ -d ~/.asdf ] && source ~/.asdf/asdf.sh
+[ -d "${HOMEBREW_PREFIX}/opt/asdf" ] && source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

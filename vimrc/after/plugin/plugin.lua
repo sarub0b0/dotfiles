@@ -2,14 +2,19 @@ if not (vim.g.vscode)  then
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
+    "bash",
     "c",
     "cmake",
+    "comment",
     "cpp",
     "css",
     "dot",
     "go",
+    "gomod",
+    "graphql",
     "graphql",
     "html",
+    "http",
     "javascript",
     "json",
     "json5",

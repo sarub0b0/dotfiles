@@ -2,8 +2,11 @@
 fpath=(
     ~/.asdf/completions(N-/)
     ~/.zsh/completion(N-/)
+    ${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/)
     $fpath
 )
+
+[ -d "${HOMEBREW_PREFIX}/opt/zsh-autosuggestions" ] && source ${HOMEBREW_PREFIX}/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit && compinit -i
 

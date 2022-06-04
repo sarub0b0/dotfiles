@@ -21,7 +21,7 @@ fv () {
 
 __z () {
     if [ "$(uname)" = "Darwin" ]; then
-        source /usr/local/opt/z/etc/profile.d/z.sh
+        source ${HOMEBREW_PREFIX}/opt/z/etc/profile.d/z.sh
 
         if builtin command -v fzf > /dev/null; then
             unalias z
@@ -102,16 +102,12 @@ __fzf () {
 
 __google_cloud_sdk () {
 
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/usr/local/opt/google-cloud-sdk/path.zsh.inc' ]; then
-        . '/usr/local/opt/google-cloud-sdk/path.zsh.inc';
+    if [ -d "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]; then
+        # The next line updates PATH for the Google Cloud SDK.
+        . ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+        # The next line enables shell command completion for gcloud.
+        . ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
     fi
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/usr/local/opt/google-cloud-sdk/completion.zsh.inc' ]; then
-        . '/usr/local/opt/google-cloud-sdk/completion.zsh.inc';
-    fi
-
 }
 
 __fzf
