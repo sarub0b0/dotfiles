@@ -46,9 +46,6 @@ __z () {
 
 __fzf () {
 
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    bindkey '^T' transpose-chars
-
     if builtin command -v fzf > /dev/null; then
         export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 

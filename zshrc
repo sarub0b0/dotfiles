@@ -161,6 +161,10 @@ esac
 
 [ -d ~/.asdf ] && source ~/.asdf/asdf.sh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey '^T' transpose-chars
+
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
 # fi
