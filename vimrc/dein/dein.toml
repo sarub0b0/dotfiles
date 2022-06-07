@@ -51,7 +51,6 @@ let g:lightline = {
 \       'left': [
 \           ['mode', 'paste'],
 \           ['readonly', 'filename', 'modified', 'gitstatus', 'gitstatusbuffer'],
-\           ['coc_current_function', 'cocstatusdiagnostic', 'cocstatus'],
 \       ],
 \       'right': [
 \           [ 'lineinfo' ], [ 'percent'],
