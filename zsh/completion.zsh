@@ -1,6 +1,6 @@
 # 補完機能の強化
 fpath=(
-    ~/.asdf/completions(N-/)
+    ${HOMEBREW_PREFIX}/opt/asdf/completions(N-/)
     ~/.zsh/completion(N-/)
     ${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/)
     $fpath
