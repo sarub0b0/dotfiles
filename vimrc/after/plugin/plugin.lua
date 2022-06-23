@@ -47,7 +47,6 @@ require('modes').setup {
     visual = '#c594c5',
   },
   line_opacity = 0.5,
-  focus_only = true
 }
 
 require('treesitter-context').setup {
