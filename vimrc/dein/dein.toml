@@ -205,12 +205,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-
-[[plugins]]
 repo = 'junegunn/fzf.vim'
-depends = 'fzf'
 
 [[plugins]]
 repo = 'antoinemadec/coc-fzf'
