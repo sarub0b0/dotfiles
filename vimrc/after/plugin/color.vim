@@ -18,12 +18,14 @@ if has('termguicolors') && !exists('g:vscode')
 
   let colorschemes = getcompletion(s:termcolor, 'color')
   if index(colorschemes, s:termcolor) >= 0
-    let g:oceanic_next_terminal_bold = 1
     let g:oceanic_next_terminal_italic = 1
+    let g:oceanic_next_terminal_bold = 1
 
     execute 'colorscheme ' . s:termcolor
 
-    execute "hi VertSplit guifg=#343d46 ctermfg=237 guibg=NONE ctermbg=NONE"
+    " 31: let s:base02 = ['#4f5b66', '240']
+    hi VertSplit ctermfg=240 guifg=#4f5b66 ctermbg=NONE guibg=NONE
+
   else
     colorscheme default
   endif

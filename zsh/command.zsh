@@ -46,61 +46,56 @@ __z () {
 
 __fzf () {
 
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    bindkey '^T' transpose-chars
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-    if builtin command -v fzf > /dev/null; then
-        export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+    __ghq_select_repo () {
+        echo "$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")"
+    }
 
-        __ghq_select_repo () {
-            echo "$(ghq list | fzf --preview "head -n 30 $(ghq root)/{}/README.*")"
-        }
+    dev () {
+        local repo=$(__ghq_select_repo)
+        local prev_dir=${PWD}
+        if [ -n "$repo" ]; then
+            cd $(ghq root)/$repo
+            tmux new-session \; send-keys "vim" C-m
+            cd $prev_dir
+        fi
+    }
 
-        dev () {
-            local repo=$(__ghq_select_repo)
-            local prev_dir=${PWD}
-            if [ -n "$repo" ]; then
-                cd $(ghq root)/$repo
-                tmux new-session \; send-keys "vim" C-m
-                cd $prev_dir
-            fi
-        }
+    gf () {
+        local repo=$(__ghq_select_repo)
+        if [ -n "$repo" ]; then
+            cd $(ghq root)/$repo
+        fi
+    }
 
-        gf () {
-            local repo=$(__ghq_select_repo)
-            if [ -n "$repo" ]; then
-                cd $(ghq root)/$repo
-            fi
-        }
+    fd () {
+        local dir
+        dir=$(find ${1:-.} -path '*/\.*' -prune \
+            -o -type d -print 2> /dev/null | fzf +m) &&
+        cd "$dir"
+    }
 
-        fd () {
-            local dir
-            dir=$(find ${1:-.} -path '*/\.*' -prune \
-                -o -type d -print 2> /dev/null | fzf +m) &&
-            cd "$dir"
-        }
-
-        cd() {
-            if [[ "$#" != 0 ]]; then
-                builtin cd "$@";
-                return
-            fi
-            local lscmd='ls -p --color=always'
-            if [ "$(uname)" = 'Darwin' ]; then
-                lscmd='ls -p -FG'
-            fi
-            local fzf_preview_opt=' __cd_nxt="$(echo {})";
-                    __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
-                    echo $__cd_path;
-                    echo;
-                    '"${lscmd} "'"${__cd_nxt}";
-            '
-            local lsd=$(echo $HOME && echo ".." && find . -maxdepth 3 -type d -not -path '*/\.*' -and -not -path '\.')
-            local dir="$(printf '%s\n' "${lsd[@]}" | fzf --reverse --preview $fzf_preview_opt)"
-            [[ ${#dir} != 0 ]] || return 0
-            builtin cd "$dir" &> /dev/null
-        }
-    fi
+    cd() {
+        if [[ "$#" != 0 ]]; then
+            builtin cd "$@";
+            return
+        fi
+        local lscmd='ls -p --color=always'
+        if [ "$(uname)" = 'Darwin' ]; then
+            lscmd='ls -p -FG'
+        fi
+        local fzf_preview_opt=' __cd_nxt="$(echo {})";
+                __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
+                echo $__cd_path;
+                echo;
+                '"${lscmd} "'"${__cd_nxt}";
+        '
+        local lsd=$(echo $HOME && echo ".." && find . -maxdepth 3 -type d -not -path '*/\.*' -and -not -path '\.')
+        local dir="$(printf '%s\n' "${lsd[@]}" | fzf --reverse --preview $fzf_preview_opt)"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &> /dev/null
+    }
 }
 
 __google_cloud_sdk () {

@@ -217,12 +217,10 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-
-[[plugins]]
 repo = 'junegunn/fzf.vim'
-depends = 'fzf'
+hook_add ='''
+set runtimepath+=,$HOMEBREW_PREFIX/opt/fzf
+'''
 
 [[plugins]]
 repo = 'antoinemadec/coc-fzf'

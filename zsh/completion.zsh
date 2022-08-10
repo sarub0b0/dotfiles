@@ -1,6 +1,6 @@
 # 補完機能の強化
 fpath=(
-    ~/.asdf/completions(N-/)
+    ${HOMEBREW_PREFIX}/opt/asdf/completions(N-/)
     ~/.zsh/completion(N-/)
     ${HOMEBREW_PREFIX}/share/zsh/site-functions(N-/)
     $fpath
@@ -8,6 +8,7 @@ fpath=(
 
 [ -d "${HOMEBREW_PREFIX}/opt/zsh-autosuggestions" ] && source ${HOMEBREW_PREFIX}/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+_cache_hosts=(`fgrep -r --color=never "Host " $HOME/.ssh/conf.d | awk '{print $2}'`)
 autoload -Uz compinit && compinit -i
 
 # #補完に関するオプション
@@ -50,13 +51,8 @@ zstyle ':completion:*' group-name ''
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-
-# ssh
-_ssh(){
-    compadd `fgrep -r --color=never "^Host " ${HOME}/.ssh/conf.d/* | awk '{print $2}'`
-}
-
-
+zstyle ':completion:ssh:*' hosts on
+zstyle ':completion:ssh:*' config on
 
 if builtin command -v kubectl > /dev/null; then
     source <(kubectl completion zsh)

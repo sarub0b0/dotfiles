@@ -158,6 +158,10 @@ esac
 
 [ -d "${HOMEBREW_PREFIX}/opt/asdf" ] && source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey '^T' transpose-chars
+
 # if (which zprof > /dev/null 2>&1); then
 #     zprof
 # fi

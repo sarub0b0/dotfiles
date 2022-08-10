@@ -12,9 +12,12 @@ require('nvim-treesitter.configs').setup {
     "go",
     "gomod",
     "graphql",
+    "graphql",
+    "html",
     "http",
     "javascript",
     "json",
+    "json5",
     "lua",
     "make",
     "perl",
@@ -23,13 +26,15 @@ require('nvim-treesitter.configs').setup {
     "ruby",
     "rust",
     "toml",
+    "typescript",
     "vim",
     "yaml",
   },
   sync_install = false,
 
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = false,
   }
 }
 
@@ -42,7 +47,6 @@ require('modes').setup {
     visual = '#c594c5',
   },
   line_opacity = 0.5,
-  focus_only = true
 }
 
 require('treesitter-context').setup {
