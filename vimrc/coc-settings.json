@@ -84,6 +84,7 @@
   ],
   "rust-analyzer.updates.channel": "stable",
   "sh.enable": true,
+  "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "snippets.userSnippetsDirectory": "~/.vim/snippets/",
   "snippets.snipmate.enable": false,
