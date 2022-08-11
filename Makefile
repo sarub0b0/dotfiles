@@ -1,6 +1,11 @@
 
 all: vim neovim tmux zsh anyenv kubectl-prompt gcloud-prompt docker-completion clang-format markdownlintrc
 
+.PHONY: brew
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	echo -n 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zprofile
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 .PHONY: rust-install
 rust-install:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
