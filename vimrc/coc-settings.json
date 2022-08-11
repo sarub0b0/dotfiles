@@ -60,6 +60,16 @@
       "initializationOptions": {
         "buildDirectory": "build"
       }
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ]
     }
   },
   "prettier.disableLanguages": [
