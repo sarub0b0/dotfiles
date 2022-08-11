@@ -190,6 +190,15 @@ data:
   ${2:key: value}
 endsnippet
 
+snippet secret "Kind: Secret" b
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${1:secret}
+data:
+  ${2:key: value}
+endsnippet
+
 snippet persistentvolumeclaim "Kind: PersistentVolumeClaim" b
 apiVersion: v1
 kind: PersistentVolumeClaim

@@ -93,14 +93,14 @@ if get(g:, 'coc_enabled', 0)
   " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
   let g:coc_snippet_prev = '<c-k>'
 
-  inoremap <silent><expr> <C-j> pumvisible() ? coc#_select_confirm() :
+  inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#confirm() :
       \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB> coc#pum#visible() ? "coc#pum#prev(1) : "\<C-h>"
 
   inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
