@@ -247,9 +247,6 @@ autocmd MyAutoCmd FileType vista,vista_kind nnoremap <buffer><silent> / :<c-u>ca
 '''
 
 [[plugins]]
-repo = 'github/copilot.vim'
-
-[[plugins]]
 repo = 'preservim/nerdcommenter'
 hook_add = '''
     nmap <Space>c <Plug>NERDCommenterToggle
