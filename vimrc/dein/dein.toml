@@ -54,7 +54,7 @@ let g:lightline = {
 \       ],
 \       'right': [
 \           [ 'lineinfo' ], [ 'percent'],
-\           [ 'fileformat', 'fileencoding', 'filetype' ]
+\           [ 'fileencoding', 'filetype' ]
 \       ]
 \   },
 \   'component_function':{
@@ -94,7 +94,18 @@ function! CocCurrentFunction()
 endfunction
 
 function! CocStatus() abort
-    return get(g:, 'coc_status', '')
+  let status = get(g:, 'coc_status', '')
+
+  if winwidth(0) > 120
+    return status
+  else
+    if strdisplaywidth(status) < 15
+      return status
+    else
+      return strcharpart(status, 0, 15) . '..'
+    endif
+  endif
+
 endfunction
 
 function! GitStatusGlobal()
@@ -150,7 +161,26 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineFilename()
-    return ('' != expand('%:p') ? winwidth(0) > 70 ? expand('%:~:.') : expand('%:t') : '[No Name]')
+  let pname = expand('%:p')
+
+  if pname == ''
+   return '[No Name]'
+  endif
+
+  let cname = expand('%:~:.')
+  let tname = expand('%:t')
+
+  if winwidth(0) > 120
+    return pname
+  else
+
+    if strdisplaywidth(cname) < (winwidth(0) * 0.3)
+      return cname
+    else
+      return tname
+    endif
+
+  endif
 endfunction
 
 function! LightLineFiletype()
