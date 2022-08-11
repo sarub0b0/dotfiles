@@ -24,6 +24,14 @@
   "diagnostic.infoSign": ">>",
   "diagnostic.warningSign": "\uf12a",
   "eslint.autoFixOnSave": true,
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue"
+  ],
   "explorer.icon.enableNerdfont": true,
   "explorer.keyMappings.global": {
     "u": "gotoParent"
