@@ -70,6 +70,15 @@
         "terraform",
         "tf"
       ]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ]
     }
   },
   "prettier.disableLanguages": [
@@ -83,7 +92,6 @@
     "inactive-code"
   ],
   "rust-analyzer.updates.channel": "stable",
-  "sh.enable": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "snippets.userSnippetsDirectory": "~/.vim/snippets/",
