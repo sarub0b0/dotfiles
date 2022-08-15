@@ -247,6 +247,11 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+
+
+[[plugins]]
 repo = 'junegunn/fzf.vim'
 hook_add ='''
 set runtimepath+=,$HOMEBREW_PREFIX/opt/fzf
