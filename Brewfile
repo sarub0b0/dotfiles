@@ -1,6 +1,7 @@
 # vim:ft=ruby:
 if OS.mac?
   brew 'lima'
+  brew 'watch'
 elsif OS.linux?
 end
 
@@ -23,8 +24,11 @@ if ENV['WORK']
   brew 'bufbuild/buf/buf'
   cask 'google-cloud-sdk'
   cask 'oracle-jdk'
+brew 'nmap'
 end
 
+brew 'gcc'
+brew 'gcc@5'
 brew 'asdf'
 brew 'bat'
 brew 'bison'
@@ -33,20 +37,31 @@ brew 'fping'
 brew 'fswatch'
 brew 'git-filter-repo'
 brew 'git-lfs'
-brew 'pkg-config'
-brew 'libevent'
 brew 'htop'
 brew 'mold'
 brew 'ncdu'
 brew 'neovim', args: ['HEAD']
-brew 'nmap'
+brew 'vim'
 brew 'scc'
 brew 'tmux'
 brew 'tree'
 brew 'unison'
-brew 'watch'
 brew 'wget'
 brew 'z'
 brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
+brew 'nodejs'
+brew 'ruby'
+brew 'python'
+
+brew 'pkg-config'
+brew 'zlib'
+brew 'readline'
+brew 'libffi'
+brew 'libevent'
+brew 'openssl'
+brew 'bzip2'
+
+
+
 cask 'font-hackgen-nerd'

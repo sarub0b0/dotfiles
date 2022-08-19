@@ -1,10 +1,22 @@
 #!/bin/bash
 
-set -eu
+set -e
+
+sudo=""
+[ "$(whoami)" != "root" ] && sudo="sudo"
+
+if builtin command -v zypper > /dev/null; then
+    eval "$sudo zypper install -y -t pattern devel_basis"
+    eval "$sudo zypper install -y curl procps file git"
+fi
+if builtin command -v apt-get > /dev/null; then
+    eval "$sudo apt-get install -y build-essential curl procps file git"
+fi
+
 
 install_brew () {
 
-    required_package=(curl git)
+    required_package=(curl git ps)
 
     for p in ${required_package[@]}; do
         if ! builtin command -v $p > /dev/null; then
@@ -36,12 +48,29 @@ install_brew () {
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
             ;;
         Darwin)
-
             echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/$(profile)
             eval "$(/opt/homebrew/bin/brew shellenv)"
             ;;
     esac
+}
 
+setup_asdf () {
+    profile () {
+        case $SHELL in
+            *zsh)
+                echo ".zprofile"
+                ;;
+            *bash)
+                echo ".bash_profile"
+                ;;
+            *)
+                echo ".profile"
+                ;;
+        esac
+
+    }
+
+    echo 'source $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh' >> ~/$(profile)
 }
 
 check_asdf_installed () {
@@ -49,6 +78,7 @@ check_asdf_installed () {
         echo "asdf not found"
         exit 1
     fi
+
 }
 
 install_nodejs () {
@@ -63,16 +93,14 @@ install_nodejs () {
 install_python () {
     check_asdf_installed
 
+    export LDFLAGS="-L$HOMEBREW_PREFIX/opt/zlib/lib -L$HOMEBREW_PREFIX/opt/bzip2/lib -L$HOMEBREW_PREFIX/opt/openssl@1.1/lib -L$HOMEBREW_PREFIX/opt/readline/lib"
+    export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/zlib/include -I$HOMEBREW_PREFIX/opt/bzip2/include -I$HOMEBREW_PREFIX/opt/openssl@1.1/include -I$HOMEBREW_PREFIX/opt/readline/include"
+ 
     asdf plugin add python
 
     asdf install python 2.7.18
     asdf global python 2.7.18
-    asdf reshim python 2.7.18
-    pip install -U pip
-
-    asdf install python latest
-    asdf global python latest
-    asdf reshim python latest
+    asdf reshim python 
     pip install -U pip
 }
 
@@ -80,16 +108,20 @@ install_ruby () {
     check_asdf_installed
 
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${HOMEBREW_PREFIX}/opt/openssl"
-
+    export LDFLAGS="-L$HOMEBREW_PREFIX/opt/zlib/lib "
+    export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/zlib/include"
+ 
     asdf plugin add ruby
     asdf install ruby latest
     asdf global ruby latest
     asdf reshim ruby
-
-    unset RUBY_CONFIGURE_OPTS
 }
 
 install_neovim_providers () {
+    #install_nodejs
+    #install_ruby
+    install_python
+
     npm i -g neovim
 
     gem install neovim
@@ -97,13 +129,14 @@ install_neovim_providers () {
     asdf global python 2.7.18
     pip install pynvim
 
-    asdf global python latest
-    pip install pynvim
+    pip3 install -U pynvim
 }
 
 
 install_brew
 
 [ -e Brewfile ] && brew bundle
+
+source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 
 install_neovim_providers
