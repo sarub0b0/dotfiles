@@ -1,15 +1,31 @@
 # vim:ft=ruby:
 if OS.mac?
+  brew 'lima'
 elsif OS.linux?
 end
+
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/core'
 tap 'homebrew/services'
 tap 'romkatv/powerlevel10k'
-brew 'argocd'
+
+if ENV['WORK']
+
+  tap 'bufbuild/buf'
+
+  brew 'argocd'
+  brew 'awscli'
+  brew 'helm'
+  brew 'octant'
+  brew 'terraformer'
+  brew 'subversion'
+  brew 'bufbuild/buf/buf'
+  cask 'google-cloud-sdk'
+  cask 'oracle-jdk'
+end
+
 brew 'asdf'
-brew 'awscli'
 brew 'bat'
 brew 'bison'
 brew 'dive'
@@ -19,17 +35,12 @@ brew 'git-filter-repo'
 brew 'git-lfs'
 brew 'pkg-config'
 brew 'libevent'
-brew 'helm'
 brew 'htop'
-brew 'lima'
 brew 'mold'
 brew 'ncdu'
 brew 'neovim', args: ['HEAD']
 brew 'nmap'
-brew 'octant'
 brew 'scc'
-brew 'subversion'
-brew 'terraformer'
 brew 'tmux'
 brew 'tree'
 brew 'unison'
@@ -39,5 +50,3 @@ brew 'z'
 brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 cask 'font-hackgen-nerd'
-cask 'google-cloud-sdk'
-cask 'oracle-jdk'
