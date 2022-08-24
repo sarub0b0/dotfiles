@@ -95,13 +95,19 @@ install_python () {
 
     export LDFLAGS="-L$HOMEBREW_PREFIX/opt/zlib/lib -L$HOMEBREW_PREFIX/opt/bzip2/lib -L$HOMEBREW_PREFIX/opt/openssl@1.1/lib -L$HOMEBREW_PREFIX/opt/readline/lib"
     export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/zlib/include -I$HOMEBREW_PREFIX/opt/bzip2/include -I$HOMEBREW_PREFIX/opt/openssl@1.1/include -I$HOMEBREW_PREFIX/opt/readline/include"
- 
+
     asdf plugin add python
 
     asdf install python 2.7.18
     asdf global python 2.7.18
-    asdf reshim python 
+    asdf reshim python
     pip install -U pip
+
+    asdf install python 3.10.6
+    asdf global python 3.10.6
+    asdf reshim python
+    pip install -U pip
+
 }
 
 install_ruby () {
@@ -110,7 +116,7 @@ install_ruby () {
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${HOMEBREW_PREFIX}/opt/openssl"
     export LDFLAGS="-L$HOMEBREW_PREFIX/opt/zlib/lib "
     export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/zlib/include"
- 
+
     asdf plugin add ruby
     asdf install ruby latest
     asdf global ruby latest
@@ -129,7 +135,23 @@ install_neovim_providers () {
     asdf global python 2.7.18
     pip install pynvim
 
-    pip3 install -U pynvim
+    asdf global python 3.10.6
+    pip install pynvim
+}
+
+create_symbolic_link () {
+    mkdir -p ~/.config/nvim
+    ln -sf ~/dotfiles/vimrc/init.vim ~/.config/nvim/init.vim
+
+    ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+    ln -sf ~/dotfiles/zshrc ~/.zshrc
+    ln -sf ~/dotfiles/asdfrc ~/.asdfrc
+    ln -sf ~/dotfiles/markdownlintrc ~/.markdownlintrc
+    ln -sf ~/dotfiles/gitconfig ~/.gitconfig
+    ln -sf ~/dotfiles/clang-format ~/.clang-format
+
+    mkdir -p ~/.config/git/
+    ln -sf ~/dotfiles/gitignore ~/.config/git/ignore
 }
 
 
@@ -140,3 +162,5 @@ install_brew
 source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
 
 install_neovim_providers
+
+create_symbolic_link
