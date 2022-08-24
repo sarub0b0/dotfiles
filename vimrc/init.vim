@@ -59,10 +59,9 @@ if !exists('g:vscode')
     let g:dein#install_process_timeout = 240
     let s:dein_dir = ''
 
-    let g:config_dir = expand('$HOME/.vim')
+    let g:config_dir = expand('$HOME/dotfiles/vimrc')
     let g:cache_dir = expand('$HOME/.cache/vim')
     if has('nvim')
-      let g:config_dir = expand('$HOME/.config/nvim')
       let g:cache_dir = expand('$HOME/.cache/nvim')
     endif
 
@@ -113,3 +112,5 @@ if !exists('g:vscode')
     endif
   endif
 endif
+
+set rtp+=~/dotfiles/vimrc/after

@@ -8,7 +8,7 @@ fpath=(
 
 [ -d "${HOMEBREW_PREFIX}/opt/zsh-autosuggestions" ] && source ${HOMEBREW_PREFIX}/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-_cache_hosts=(`fgrep -r --color=never "Host " $HOME/.ssh/conf.d | awk '{print $2}'`)
+[ -d ~/.ssh/conf.d ] && cache_hosts=(`fgrep -r --color=never "Host " $HOME/.ssh/conf.d | awk '{print $2}'`)
 autoload -Uz compinit && compinit -i
 
 # #補完に関するオプション

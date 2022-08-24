@@ -142,14 +142,7 @@ source $HOME/dotfiles/zsh/command.zsh
 # 一番最後
 __zcompile
 
-case "$(uname)" in
-    Darwin)
-        source ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme
-        ;;
-    Linux)
-        source ~/.powerlevel10k/powerlevel10k.zsh-theme
-        ;;
-esac
+[ -f ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme ] && source ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
