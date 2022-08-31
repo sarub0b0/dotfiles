@@ -142,23 +142,7 @@ source $HOME/dotfiles/zsh/command.zsh
 # 一番最後
 __zcompile
 
-case "$(uname)" in
-    Darwin)
-        source ${HOMEBREW_PREFIX}/opt/powerlevel10k/powerlevel10k.zsh-theme
-        ;;
-    Linux)
-        source ~/.powerlevel10k/powerlevel10k.zsh-theme
-        ;;
-esac
-
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
-
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
-[[ ! -f ~/dotfiles/p10k.zsh ]] || source ~/dotfiles/p10k.zsh
-
-[ -d "${HOMEBREW_PREFIX}/opt/asdf" ] && source ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^T' transpose-chars
 

@@ -94,7 +94,7 @@
   "rust-analyzer.updates.channel": "stable",
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
-  "snippets.userSnippetsDirectory": "~/.vim/snippets/",
+  "snippets.userSnippetsDirectory": "~/dotfiles/vimrc/snippets/",
   "snippets.snipmate.enable": false,
   "translator.toLang": "ja",
   "translator.engines": [

@@ -38,9 +38,7 @@ augroup END
 
 if !exists('g:vscode')
 
-  if has('mac') || has('unix') || has('wsl')
-    let g:python_host_prog = expand('$ASDF_DIR/installs/python/2.7.18/bin/python')
-  elseif has('win32') || has('win64')
+  if has('win32') || has('win64')
     let g:ruby_host_prog = expand('$HOME/scoop/apps/ruby/current/bin/ruby.exe')
     let g:python_host_prog = expand('$HOME/scoop/apps/python27/current/python.exe')
     let g:python3_host_prog = expand('$HOME/scoop/apps/python/current/python.exe')
@@ -59,10 +57,9 @@ if !exists('g:vscode')
     let g:dein#install_process_timeout = 240
     let s:dein_dir = ''
 
-    let g:config_dir = expand('$HOME/.vim')
+    let g:config_dir = expand('$HOME/dotfiles/vimrc')
     let g:cache_dir = expand('$HOME/.cache/vim')
     if has('nvim')
-      let g:config_dir = expand('$HOME/.config/nvim')
       let g:cache_dir = expand('$HOME/.cache/nvim')
     endif
 

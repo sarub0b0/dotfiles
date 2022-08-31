@@ -20,27 +20,23 @@ fv () {
 }
 
 __z () {
-    if [ "$(uname)" = "Darwin" ]; then
-        source ${HOMEBREW_PREFIX}/opt/z/etc/profile.d/z.sh
+    if builtin command -v fzf > /dev/null; then
+        unalias z
+        function z () {
+            if [[ -z "$*" ]]; then
+                cd "$(zshz -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+            else
+                _last_z_args="$@"
+                _z "$@"
+            fi
+        }
 
-        if builtin command -v fzf > /dev/null; then
-            unalias z
-            z() {
-                if [[ -z "$*" ]]; then
-                    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
-                else
-                    _last_z_args="$@"
-                    _z "$@"
-                fi
-            }
+        function zz () {
+            cd "$(zshz -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+        }
 
-            zz() {
-                cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
-            }
-
-            alias j=z
-            alias jj=zz
-        fi
+        alias j=z
+        alias jj=zz
     fi
 }
 
