@@ -40,6 +40,12 @@ __alias () {
     alias kt="kubetui"
     alias vim="nvim"
     alias v="nvim"
+    alias dsi='devspace init'
+    alias dse='devspace enter'
+    alias dsd='devspace dev'
+    alias dsds='devspace dev --skip-build'
+    alias dsp='devspace purge'
+    alias dsb='devspace build'
 
 
     if [ "$(uname)" = 'Darwin' ]; then
