@@ -2,6 +2,7 @@
 
 let
   dot_dir = "${config.home.homeDirectory}/dotfiles";
+  neovim_treesitter_parsers = pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -104,6 +105,7 @@ in
       set rtp^=${dot_dir}/vimrc
       set rtp+=${dot_dir}/vimrc/after
       let g:coc_config_home = "${dot_dir}/vimrc"
+      set rtp+=${neovim_treesitter_parsers}
     '';
   };
 
