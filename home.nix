@@ -115,6 +115,8 @@ in
 
   programs.git = {
     enable = true;
+    userEmail = "ekr59uv25@gmail.com";
+    userName = "kosay";
     aliases = {
       co = "checkout";
       st = "status";
