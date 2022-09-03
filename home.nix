@@ -29,6 +29,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    # utils
     ghq
     bat
     dive
@@ -42,15 +43,18 @@ in
     unison
     wget
     fzf
+    ripgrep
 
+    # programming languages
+    asdf-vm
     rustup
     go
 
+    # zsh
     zsh-autosuggestions
     zsh-powerlevel10k
     zsh-z
 
-    asdf-vm
   ];
 
   programs.tmux = {
