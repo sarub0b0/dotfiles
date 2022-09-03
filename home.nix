@@ -65,6 +65,11 @@ in
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
+      if [ -n "''${commands[fzf-share]}" ]; then
+        source "$(fzf-share)/key-bindings.zsh"
+        source "$(fzf-share)/completion.zsh"
+        bindkey '^T' transpose-chars
+      fi
     '';
     plugins = with pkgs; [
       {
