@@ -42,6 +42,9 @@ zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
 zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 
+# 大文字小文字の区別なしで補完する
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+
 bindkey -e
 
 # グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
