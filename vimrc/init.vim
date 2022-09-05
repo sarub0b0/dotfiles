@@ -110,3 +110,5 @@ if !exists('g:vscode')
     endif
   endif
 endif
+
+set rtp+=~/dotfiles/vimrc/after

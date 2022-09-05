@@ -76,10 +76,6 @@ __envs () {
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
-    export LD_LIBRARY_PATH=/usr/local/lib
-    export LIBRARY_PATH=/usr/local/lib
-
-
     if [ "$(uname)" = 'Darwin' ]; then
         path=(
             /usr/local/sbin(N-/)
@@ -149,7 +145,6 @@ source $HOME/dotfiles/zsh/command.zsh
 __zcompile
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
-
 
 # if (which zprof > /dev/null 2>&1); then
 #     zprof

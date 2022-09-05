@@ -2,6 +2,7 @@
 
 let
   dot_dir = "${config.home.homeDirectory}/dotfiles";
+  neovim_treesitter_parsers = pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -29,6 +30,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    # utils
     ghq
     bat
     dive
@@ -42,15 +44,18 @@ in
     unison
     wget
     fzf
+    ripgrep
 
+    # programming languages
+    asdf-vm
     rustup
     go
 
+    # zsh
     zsh-autosuggestions
     zsh-powerlevel10k
     zsh-z
 
-    asdf-vm
   ];
 
   programs.tmux = {
@@ -65,13 +70,11 @@ in
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
-
-      if [ -n "$${commands[fzf-share]}" ]; then
+      if [ -n "''${commands[fzf-share]}" ]; then
         source "$(fzf-share)/key-bindings.zsh"
         source "$(fzf-share)/completion.zsh"
+        bindkey '^T' transpose-chars
       fi
-
-      bindkey '^T' transpose-chars
     '';
     plugins = with pkgs; [
       {
@@ -102,6 +105,7 @@ in
       set rtp^=${dot_dir}/vimrc
       set rtp+=${dot_dir}/vimrc/after
       let g:coc_config_home = "${dot_dir}/vimrc"
+      set rtp+=${neovim_treesitter_parsers}
     '';
   };
 
@@ -117,6 +121,8 @@ in
 
   programs.git = {
     enable = true;
+    userEmail = "ekr59uv25@gmail.com";
+    userName = "kosay";
     aliases = {
       co = "checkout";
       st = "status";

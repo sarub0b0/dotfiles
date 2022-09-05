@@ -6,9 +6,8 @@ fpath=(
     $fpath
 )
 
-[ -d "${HOMEBREW_PREFIX}/opt/zsh-autosuggestions" ] && source ${HOMEBREW_PREFIX}/opt/zsh-autosuggestions/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 [ -d ~/.ssh/conf.d ] && cache_hosts=(`fgrep -r --color=never "Host " $HOME/.ssh/conf.d | awk '{print $2}'`)
+
 autoload -Uz compinit && compinit -i
 
 # #補完に関するオプション
@@ -42,6 +41,9 @@ zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
 zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
 zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
+
+# 大文字小文字の区別なしで補完する
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 bindkey -e
 
