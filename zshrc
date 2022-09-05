@@ -150,7 +150,6 @@ __zcompile
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
-bindkey '^T' transpose-chars
 
 # if (which zprof > /dev/null 2>&1); then
 #     zprof

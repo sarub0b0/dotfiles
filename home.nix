@@ -65,6 +65,13 @@ in
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
+
+      if [ -n "$${commands[fzf-share]}" ]; then
+        source "$(fzf-share)/key-bindings.zsh"
+        source "$(fzf-share)/completion.zsh"
+      fi
+
+      bindkey '^T' transpose-chars
     '';
     plugins = with pkgs; [
       {
@@ -163,6 +170,7 @@ in
   home.file.".clang-format".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/clang-format";
   home.file.".asdfrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/asdfrc";
   home.file.".markdownlintrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/markdownlintrc";
+
 
 }
 
