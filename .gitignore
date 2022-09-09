@@ -2,3 +2,6 @@
 */.DS_Store
 .netrwhist
 .yardoc
+
+nix/**
+!nix/default.nix.example
