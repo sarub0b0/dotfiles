@@ -9,6 +9,7 @@
 	cm = commit
 	mt = mergetool
 	dt = difftool
+	fe = fetch
 [core]
 	editor = nvim
 [ghq]
