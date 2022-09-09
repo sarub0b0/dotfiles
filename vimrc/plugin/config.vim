@@ -71,6 +71,8 @@ set wildignore=*.o,*.obj,GTAGS,GPATH,GRTAGS,core
 
 set grepprg=grep\ -rnHI
 
+set mouse=""
+
 
 set number
 
