@@ -3,6 +3,8 @@
 let
   dot_dir = "${config.home.homeDirectory}/dotfiles";
   neovim_treesitter_parsers = pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
+
+  opts = import "${dot_dir}/nix";
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -121,8 +123,9 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "ekr59uv25@gmail.com";
-    userName = "kosay";
+    lfs.enable = true;
+    userEmail = "${opts.git.userEmail}";
+    userName = "${opts.git.userName}";
     aliases = {
       co = "checkout";
       st = "status";
