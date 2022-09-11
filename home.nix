@@ -2,7 +2,18 @@
 
 let
   dot_dir = "${config.home.homeDirectory}/dotfiles";
-  neovim_treesitter_parsers = pkgs.tree-sitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
+
+  nvim-treesitter-nightly = with pkgs; (
+    vimPlugins.nvim-treesitter.withPlugins (_: tree-sitter.allGrammars)
+  ).overrideAttrs (old: {
+    version = "2022-09-11";
+    src = fetchFromGitHub {
+      owner = "nvim-treesitter";
+      repo = "nvim-treesitter";
+      rev = "f53a5a6471994693e7e550b29627ca73d91e0536";
+      sha256 = "sha256-FebRBPX4lpLw6Tj7wYiVUpzejAkK3tU1JQIc+6icSMo=";
+    };
+  });
 
   opts = import "${dot_dir}/nix";
 in
@@ -24,12 +35,6 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
 
   home.packages = with pkgs; [
     # utils
@@ -97,17 +102,26 @@ in
     ];
   };
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
     withNodeJs = true;
+
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter-nightly
+    ];
 
     extraConfig = ''
       source ${dot_dir}/vimrc/init.vim
       set rtp^=${dot_dir}/vimrc
       set rtp+=${dot_dir}/vimrc/after
       let g:coc_config_home = "${dot_dir}/vimrc"
-      set rtp+=${neovim_treesitter_parsers}
     '';
   };
 
