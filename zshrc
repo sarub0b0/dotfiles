@@ -46,6 +46,7 @@ __alias () {
     alias dsds='devspace dev --skip-build'
     alias dsp='devspace purge'
     alias dsb='devspace build'
+    alias tl='tldr'
 
 
     if [ "$(uname)" = 'Darwin' ]; then

@@ -52,6 +52,11 @@ in
     wget
     fzf
     ripgrep
+    tldr
+    choose
+    cheat
+    bottom
+    delta
 
     # programming languages
     asdf-vm
@@ -170,7 +175,7 @@ in
         tool = "nvimdiff";
       };
       mergetool = {
-          keepBackup = "false";
+        keepBackup = "false";
       };
       mergetool = {
         nvimdiff = {
@@ -180,7 +185,7 @@ in
       pull = {
         ff = "only";
       };
-      credential  = {
+      credential = {
         "https://source.developers.google.com" = {
           helper = "gcloud.sh";
         };
