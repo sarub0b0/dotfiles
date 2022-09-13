@@ -137,6 +137,7 @@ in
     extraConfig = {
       core = {
         editor = "nvim";
+        quotepath = "false";
       };
       ghq = {
         root = "~/work/ghq";
@@ -150,7 +151,7 @@ in
         };
       };
       merge = {
-        ff = "only";
+        ff = "false";
         tool = "nvimdiff";
       };
       mergetool = {
