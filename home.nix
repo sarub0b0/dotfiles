@@ -80,6 +80,10 @@ in
 
   programs.zsh = {
     enable = true;
+    history =
+      {
+        share = false;
+      };
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
