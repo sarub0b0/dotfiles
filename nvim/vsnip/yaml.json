@@ -1,0 +1,307 @@
+{
+  "namespace": {
+    "prefix": "namespace",
+    "description": "kind: Namespace",
+    "body": [
+      "apiVersion: v1",
+      "kind: Namespace",
+      "metadata:",
+      "  name: ${1:namespace}"
+    ]
+  },
+  "serviceaccount": {
+    "prefix": "serviceaccount",
+    "description": "kind: ServiceAccount",
+    "body": [
+      "apiVersion: v1",
+      "kind: ServiceAccount",
+      "metadata:",
+      "  name: ${1:service-account}"
+    ]
+  },
+  "role": {
+    "prefix": "role",
+    "description": "Kind: Role",
+    "body": [
+      "apiVersion: rbac.authorization.k8s.io/v1",
+      "kind: Role",
+      "metadata:",
+      "  name: ${1:role}",
+      "rules:",
+      "  - apiGroups:",
+      "      - ${2:\"\"}",
+      "    resources:",
+      "      - ${3:pods}",
+      "    verbs:",
+      "      - ${4:get",
+      "      - watch",
+      "      - list}"
+    ]
+  },
+  "rolebinding": {
+    "prefix": "rolebinding",
+    "description": "kind: RoleBinding",
+    "body": [
+      "apiVersion: rbac.authorization.k8s.io/v1",
+      "kind: RoleBinding",
+      "metadata:",
+      "  name: ${1:role-binding}",
+      "subjects:",
+      "  - kind: ${2:ServiceAccount|User|Group}",
+      "    name: ${3:name}",
+      "    namespace: ${4:namespace}",
+      "    apiGroup: ${5:\"\"|rbac.authrization.k8s.io}",
+      "roleRef:",
+      "  apiGroup: rbac.authorization.k8s.io",
+      "  kind: ${6:Role|ClusterRole}",
+      "  name: ${7:name}"
+    ]
+  },
+  "deployment": {
+    "prefix": "deployment",
+    "description": "kind: Deployment",
+    "body": [
+      "apiVersion: apps/v1",
+      "kind: Deployment",
+      "metadata:",
+      "  name: ${1:app}",
+      "spec:",
+      "  selector:",
+      "    ${2:matchLabels: # or matchExpressions}:",
+      "      ${3:app: app}",
+      "  template:",
+      "    metadata:",
+      "      labels:",
+      "        ${3:app:app}",
+      "    spec:",
+      "      containers:",
+      "        - name: ${4:app}",
+      "          image: ${5:nginx}"
+    ]
+  },
+  "service": {
+    "prefix": "service",
+    "description": "kind: Service",
+    "body": [
+      "apiVersion: v1",
+      "kind: Service",
+      "metadata:",
+      "  name: ${1:service}",
+      "spec:",
+      "  selector:",
+      "    ${2:app: app}",
+      "  ports:",
+      "    - port: ${3:80}",
+      "      targetPort: ${4:80}"
+    ]
+  },
+  "ingress-v1beta1": {
+    "prefix": "ingress-v1beta1",
+    "description": "Kind: Ingress (v1beta1)",
+    "body": [
+      "apiVersion: networking.k8s.io/v1beta1",
+      "kind: Ingress",
+      "metadata:",
+      "  name: ${1:ingress}",
+      "  ${2:annotations:",
+      "    ${3:kubernetes.io/ingress.allow-http: \"false\"}}",
+      "spec:",
+      "  ${4:tls:",
+      "    - secretName: ${5:secret-name}",
+      "      ${6:hosts:",
+      "        - ${7:example.com}}",
+      "  }rules:",
+      "    - host: ${7:example.com}",
+      "      http:",
+      "        paths:",
+      "          - ${8:path: ${9:/path}}",
+      "            backend:",
+      "              serviceName: ${10:service-name}",
+      "              servicePort: ${11:80}"
+    ]
+  },
+  "ingress": {
+    "prefix": "ingress",
+    "description": "Kind: Ingress (v1)",
+    "body": [
+      "apiVersion: networking.k8s.io/v1",
+      "kind: Ingress",
+      "metadata:",
+      "  name: ${1:ingress}",
+      "  ${2:annotations:",
+      "    ${3:kubernetes.io/ingress.allow-http: \"false\"}}",
+      "spec:",
+      "  ${4:tls:",
+      "    - secretName: ${5:secret-name}",
+      "      ${6:hosts:",
+      "        - ${7:example.com}}",
+      "  }rules:",
+      "    - host: ${7:example.com}",
+      "      http:",
+      "        paths:",
+      "          - ${8:path: ${9:/path}}",
+      "            pathType: ImplementationSpecific # | Exact | Prefix",
+      "            backend:",
+      "              service: # or resource",
+      "                name: ${10:service-name}",
+      "                port:",
+      "                  number: ${11:80}"
+    ]
+  },
+  "job": {
+    "prefix": "job",
+    "description": "Kind: Job",
+    "body": [
+      "apiVersion: batch/v1",
+      "kind: Job",
+      "metadata:",
+      "  name: ${1:job}",
+      "spec:",
+      "  backoffLimit: ${2:6}",
+      "  template:",
+      "    spec:",
+      "      restartPolicy: ${3:Never}",
+      "      containers:",
+      "        - name: ${4:job}",
+      "          image: ${5:busybox}"
+    ]
+  },
+  "cronjob": {
+    "prefix": "cronjob",
+    "description": "Kind: CronJob",
+    "body": [
+      "apiVersion: batch/v1beta1",
+      "kind: CronJob",
+      "metadata:",
+      "  name: ${1:cron-job}",
+      "spec:",
+      "  schedule: ${2:\"0 * * * *\"}",
+      "  jobTemplate:",
+      "    spec:",
+      "      template:",
+      "        spec:",
+      "          restartPolicy: ${3:Never}",
+      "          containers:",
+      "            - name: ${4:cron-job}",
+      "              image: ${5:busybox}"
+    ]
+  },
+  "configmap": {
+    "prefix": "configmap",
+    "description": "Kind: ConfigMap",
+    "body": [
+      "apiVersion: v1",
+      "kind: ConfigMap",
+      "metadata:",
+      "  name: ${1:configmap}",
+      "data:",
+      "  ${2:key: value}"
+    ]
+  },
+  "secret": {
+    "prefix": "secret",
+    "description": "Kind: Secret",
+    "body": [
+      "apiVersion: v1",
+      "kind: Secret",
+      "metadata:",
+      "  name: ${1:secret}",
+      "data:",
+      "  ${2:key: value}"
+    ]
+  },
+  "persistentvolumeclaim": {
+    "prefix": "persistentvolumeclaim",
+    "description": "Kind: PersistentVolumeClaim",
+    "body": [
+      "apiVersion: v1",
+      "kind: PersistentVolumeClaim",
+      "metadata:",
+      "  name: ${1:pvc}",
+      "spec:",
+      "  storageClassName: ${2:\"standard\"}",
+      "  accessModes:",
+      "    - ${3:ReadWriteOnce}",
+      "  resources:",
+      "    requests:",
+      "      storage: ${4:1G}"
+    ]
+  },
+  "persistentvolume": {
+    "prefix": "persistentvolume",
+    "description": "Kind: PersistentVolume",
+    "body": [
+      "apiVersion: v1",
+      "kind: PersistentVolume",
+      "metadata:",
+      "  name: ${1:pv}",
+      "spec:",
+      "  storageClassName: ${2:\"\"}",
+      "  capacity:",
+      "    storage: ${3:\"10G\"}",
+      "  accessModes:",
+      "    - ${4:ReadWriteOnce}",
+      "  ${5:gcePersistentDisk:",
+      "    pdName: mysql-disk-zonal",
+      "    fsType: ext4}"
+    ]
+  },
+  "externalsecret": {
+    "prefix": "externalsecret",
+    "description": "Kind: ExternalSecret",
+    "body": [
+      "apiVersion: kubernetes-client.io/v1",
+      "kind: ExternalSecret",
+      "metadata:",
+      "  name: ${1:secret}",
+      "spec:",
+      "  backendType: ${2:gcpSecretsManager}",
+      "  projectId: ${3:project_id}",
+      "  data:",
+      "    - key: ${5:secret-name-at-secret-manager}",
+      "      name: ${6:KEY_NAME}",
+      "      version: ${7:latest}"
+    ]
+  },
+  "externalsecret-dockerconfigjson": {
+    "prefix": "externalsecret-dockerconfigjson",
+    "description": "Kind: ExternalSecret # For dockerconfigjson",
+    "body": [
+      "apiVersion: kubernetes-client.io/v1",
+      "kind: ExternalSecret",
+      "metadata:",
+      "  name: ${1:secret}",
+      "spec:",
+      "  backendType: ${2:gcpSecretsManager}",
+      "  projectId: ${3:project_id}",
+      "  template:",
+      "    type: kubernetes.io/dockerconfigjson",
+      "  data:",
+      "    - key: ${5:secret-name-at-secret-manager}",
+      "      name: .dockerconfigjson",
+      "      version: ${7:latest}"
+    ]
+  },
+  "argocd-hook": {
+    "prefix": "argocd-hook",
+    "description": "ArgoCD Resource Hooks",
+    "body": [
+      "argocd.argoproj.io/hook: ${1:PreSync|Sync|PostSync|SyncFail|Skip}",
+      "argocd.argoproj.io/hook-delete-policy: ${2:HookSucceeded|HookFailed|BeforeHookCreation}",
+      "argocd.argoproj.io/sync-wave: ${3:\"0\"}"
+    ]
+  },
+  "managedcertificate": {
+    "prefix": "managedcertificate",
+    "description": "GCP ManagedCertificate",
+    "body": [
+      "apiVersion: networking.gke.io/v1",
+      "kind: ManagedCertificate",
+      "metadata:",
+      "  name: ${1:name}",
+      "spec:",
+      "  domains:",
+      "    - ${2:domain}"
+    ]
+  }
+}

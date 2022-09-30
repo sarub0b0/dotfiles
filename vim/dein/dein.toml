@@ -208,30 +208,30 @@ let g:floaterm_height = 0.5
 let g:floaterm_gitcommit = 'split'
 '''
 
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-merged = 0
-hook_add = '''
-let g:coc_status_error_sign = "\uf00d"
-let g:coc_status_warning_sign = "\uf12a"
+# [[plugins]]
+# repo = 'neoclide/coc.nvim'
+# rev = 'release'
+# merged = 0
+# hook_add = '''
+# let g:coc_status_error_sign = "\uf00d"
+# let g:coc_status_warning_sign = "\uf12a"
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+# nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  call CocAction('doHover')
-endfunction
+# function! s:show_documentation()
+#   call CocAction('doHover')
+# endfunction
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+# autocmd CursorHold * silent call CocActionAsync('highlight')
 
-augroup MyCoc
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-'''
+# augroup MyCoc
+#   autocmd!
+#   " Setup formatexpr specified filetype(s).
+#   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+#   " Update signature help on jump placeholder.
+#   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+# augroup end
+# '''
 
 [[plugins]]
 repo = 'kana/vim-submode'
@@ -257,9 +257,9 @@ hook_add ='''
 set runtimepath+=,$HOMEBREW_PREFIX/opt/fzf
 '''
 
-[[plugins]]
-repo = 'antoinemadec/coc-fzf'
-depends = ['fzf', 'fzf.vim', 'coc.nvim']
+# [[plugins]]
+# repo = 'antoinemadec/coc-fzf'
+# depends = ['fzf', 'fzf.vim', 'coc.nvim']
 
 [[plugins]]
 repo = 'honza/vim-snippets'
@@ -348,3 +348,6 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'kwkarlwang/bufresize.nvim'
+
+[[plugins]]
+repo = 'RRethy/vim-illuminate'

@@ -149,14 +149,14 @@ if has('nvim')
         \ }
   endif
   set clipboard&
-  set clipboard+=unnamedplus
+  set clipboard^=unnamedplus
 
   set pumblend=10
   set winblend=10
 else
   set nocursorline
 
-  set clipboard^=unnamedplus,autoselect
+  set clipboard^=unnamedplus
 endif
 
 

@@ -43,7 +43,6 @@ in
     ghq
     bat
     dive
-    fping
     fswatch
     git-filter-repo
     htop
@@ -58,6 +57,7 @@ in
     cheat
     bottom
     delta
+    fzf
 
     # programming languages
     asdf-vm
@@ -69,6 +69,12 @@ in
     zsh-powerlevel10k
     zsh-z
 
+    # vim
+    tree-sitter
+    ripgrep
+    fd
+    hadolint
+    nodePackages.markdownlint-cli
   ];
 
   programs.tmux = {
@@ -123,15 +129,10 @@ in
     vimAlias = true;
     withNodeJs = true;
 
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter-nightly
-    ];
+    plugins = with pkgs; [ ];
 
     extraConfig = ''
-      source ${dot_dir}/vimrc/init.vim
-      set rtp^=${dot_dir}/vimrc
-      set rtp+=${dot_dir}/vimrc/after
-      let g:coc_config_home = "${dot_dir}/vimrc"
+      source ${dot_dir}/nvim/init.lua
     '';
   };
 
@@ -139,9 +140,7 @@ in
     enable = true;
 
     extraConfig = ''
-      set rtp^=${dot_dir}/vimrc
-      set rtp+=${dot_dir}/vimrc/after
-      source ${dot_dir}/vimrc/init.vim
+      source ${dot_dir}/vim/init.vim
     '';
   };
 
@@ -202,6 +201,10 @@ in
   home.file.".clang-format".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/clang-format";
   home.file.".asdfrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/asdfrc";
   home.file.".markdownlintrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/markdownlintrc";
+
+  xdg.configFil."cspell/cspell.json" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/cspell/cspell.json";
+  };
 
 
 }

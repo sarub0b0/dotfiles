@@ -92,6 +92,8 @@
   "rust-analyzer.updates.channel": "stable",
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
+  "solargraph.useBundler": true,
+  "solargraph.bundlerPath": "~/.asdf/shims/bundle",
   "snippets.userSnippetsDirectory": "~/dotfiles/vimrc/snippets/",
   "snippets.snipmate.enable": false,
   "translator.toLang": "ja",
@@ -100,13 +102,12 @@
   ],
   "tsserver.trace.server": "verbose",
   "yaml.schemas": {
-    "kubernetes": [
-      "manifest*/**/*.yaml",
-      "/*.yaml"
-    ],
     "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
       "/**/.gitlab-ci.yml",
       "/**/.gitlab/*.y*ml"
+    ],
+    "kubernetes": [
+      "manifest*/**/*.yaml"
     ]
   },
   "yaml.customTags": [
@@ -141,6 +142,14 @@
     "Termion",
     "Varchar",
     "Zabbix",
+    "actioncable",
+    "actionmailer",
+    "actionpack",
+    "actionview",
+    "activejob",
+    "activemodel",
+    "activerecord",
+    "activestorage",
     "actix",
     "apimachinery",
     "appprojects",
