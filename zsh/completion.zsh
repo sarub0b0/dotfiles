@@ -43,7 +43,7 @@ zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEF
 zstyle ':completion:*:options' description 'yes'
 
 # 大文字小文字の区別なしで補完する
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+# zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 bindkey -e
 
