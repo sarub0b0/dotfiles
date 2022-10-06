@@ -58,50 +58,32 @@ local Diagnostics = {
   end
 }
 
-
-local CSpells = {
-  new = function(list)
+local CSpellMisspelled = {
+  new = function(str)
     local obj = {}
-    obj.list = list
 
-    obj.find_by_diagnostic = function(self, diagnostic)
-      local diag_pos = diagnostic:position()
-
-      for _, item in ipairs(self.list) do
-        if diag_pos.row == item.row and diag_pos.col == item.col then
-          return item
-        end
-      end
-
-      return {}
-    end
+    obj.misspelled = str:match(".*%((.*)%)")
 
     return obj
-  end
+  end,
 }
 
-local CSpell = {
+local CSpellSuggestion = {
   new = function(str)
-    local parsed = { str:match(".*:(%d+):(%d+)%s*-%s*(.*%((.*)%))%s*Suggestions:%s*%[(.*)%]%c?") }
+    local obj = {}
 
-    local cspell = {}
-    local group = { "row", "col", "message", "_quote", "_suggestions" }
-    for i, m in ipairs(parsed) do
-      cspell[group[i]] = m
+    obj.suggestion = str:match("^%s+-%s+(.*)")
+
+    obj.is_empty = function(self)
+      return self.suggestion == '' or self.suggestion == nil
     end
-    cspell.row = tonumber(cspell.row)
-    cspell.col = tonumber(cspell.col)
 
-    local suggestions = {}
-    if cspell['_suggestions'] then
-      for suggestion in cspell['_suggestions']:gmatch("[^, ]+") do
-        table.insert(suggestions, suggestion)
-      end
+    obj.is_matched = function(self)
+      return not self:is_empty()
     end
-    cspell.suggestions = suggestions
-    cspell.misspelled = cspell['_quote']
 
-    return cspell
+
+    return obj
   end
 }
 
@@ -111,13 +93,8 @@ local CommandOutput = {
 
     obj.output = output
 
-    obj.to_cspells = function(self)
-      local list = {}
-      for line in self.output:gmatch('[^\r\n]+') do
-        table.insert(list, CSpell.new(line))
-      end
-
-      return CSpells.new(list)
+    obj.lines = function(self)
+      return self.output:gmatch('[^\r\n]+')
     end
 
     return obj
@@ -132,26 +109,18 @@ local generator_factory = helpers.generator_factory({
     local col = params.col
     local row = params.row
 
-    local should_add_suggestions = Diagnostics.new(bufnr, row):is_under_cursor(col)
+    local diagnostic = Diagnostics.new(bufnr, row):find_by_col(col)
+    local cspell = CSpellMisspelled.new(diagnostic.message)
 
-    local args = {
-      'lint',
+    return {
+      'suggestions',
       '--no-color',
-      '--no-summary',
-      '--no-progress',
       '--language-id',
       ft,
       '--config',
       vim.fn.expand('~/dotfiles/cspell/cspell.yaml'),
-      'stdin',
+      cspell.misspelled,
     }
-
-    if should_add_suggestions then
-      args = vim.list_extend(args, { '--show-suggestions' })
-    end
-
-    return args
-
   end,
   to_stdin = true,
   ignore_stderr = true,
@@ -167,28 +136,23 @@ local generator_factory = helpers.generator_factory({
     local row = params.row
     local output = params.output
 
-    local diagnostics = Diagnostics.new(bufnr, row)
-    if diagnostics:is_empty() then
+    local suggestions = {}
+    for line in CommandOutput.new(output):lines() do
+      local suggestion = CSpellSuggestion.new(line)
+
+      if suggestion:is_matched() then
+        table.insert(suggestions, suggestion.suggestion)
+      end
+    end
+
+    if vim.tbl_isempty(suggestions) then
       return done()
     end
 
-    local diagnostic = diagnostics:find_by_col(col)
-
-    if diagnostic:is_empty() then
-      return done()
-    end
-
-    local cspells = CommandOutput.new(output):to_cspells()
-
-    local cspell = cspells:find_by_diagnostic(diagnostic)
-
-    if vim.tbl_isempty(cspell.suggestions) then
-      return done()
-    end
+    local diagnostic = Diagnostics.new(bufnr, row):find_by_col(col)
 
     local actions = {}
-
-    for _, suggestion in ipairs(cspell.suggestions) do
+    for _, suggestion in ipairs(suggestions) do
       table.insert(actions, {
         title = 'Use "' .. suggestion .. '"',
         action = function()
@@ -205,7 +169,6 @@ local generator_factory = helpers.generator_factory({
     end
 
     return done(actions)
-
   end,
 })
 
