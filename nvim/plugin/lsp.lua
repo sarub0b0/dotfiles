@@ -28,7 +28,18 @@ require('mason-lspconfig').setup_handlers({
   end
 })
 
-vim.keymap.set('n', '<Space>f', function() vim.lsp.buf.format { async = true } end, { noremap = true, silent = true })
+
+
+vim.keymap.set(
+  'n',
+  '<Space>f',
+  function()
+    local view = vim.fn.winsaveview()
+    vim.lsp.buf.format { async = true }
+    vim.fn.winrestview(view)
+  end,
+  { noremap = true, silent = true }
+)
 
 vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>', { silent = true })
 vim.keymap.set('n', 'gl', '<cmd>Lspsaga lsp_finder<CR>', { silent = true })
