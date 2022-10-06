@@ -1,16 +1,128 @@
 local helpers = require('null-ls.helpers')
 local null_ls = require('null-ls')
 
-local has_cspell_diagnostic = function(bufnr, row, col)
-  local diagnostics = vim.diagnostic.get(bufnr, { lnum = row - 1 })
-  for _, diag in pairs(diagnostics) do
-    if (diag.source == 'cspell') and (diag.col <= col and col <= diag.end_col) then
-      return true
-    end
-  end
+local Diagnostic = {
+  new = function(diagnostic)
+    local obj = vim.deepcopy(diagnostic)
 
-  return false
-end
+    obj.is_empty = function(self)
+      return vim.tbl_isempty(self)
+    end
+
+    obj.position = function(self)
+      return {
+        row = tonumber(self.row),
+        col = tonumber(self.col) + 1
+      }
+    end
+
+    return obj
+  end
+}
+
+local Diagnostics = {
+  new = function(bufnr, row)
+    local obj = {}
+
+    obj.diagnostics = vim.diagnostic.get(bufnr, { lnum = row - 1 })
+
+    obj.is_empty = function(self)
+      return vim.tbl_isempty(self.diagnostics)
+    end
+
+    obj.is_under_cursor = function(self, col)
+      for _, diag in ipairs(self.diagnostics) do
+        if (diag.source == 'cspell') then
+          if (diag.col <= col) and (col <= diag.end_col) then
+            return true
+          end
+        end
+      end
+
+      return false
+    end
+
+    obj.find_by_col = function(self, col)
+      for _, diag in ipairs(self.diagnostics) do
+        if (diag.source == 'cspell') then
+          if (diag.col <= col) and (col <= diag.end_col) then
+            return Diagnostic.new(diag)
+          end
+        end
+      end
+
+      return {}
+    end
+
+    return obj
+  end
+}
+
+
+local CSpells = {
+  new = function(list)
+    local obj = {}
+    obj.list = list
+
+    obj.find_by_diagnostic = function(self, diagnostic)
+      local diag_pos = diagnostic:position()
+
+      for _, item in ipairs(self.list) do
+        if diag_pos.row == item.row and diag_pos.col == item.col then
+          return item
+        end
+      end
+
+      return {}
+    end
+
+    return obj
+  end
+}
+
+local CSpell = {
+  new = function(str)
+    local parsed = { str:match(".*:(%d+):(%d+)%s*-%s*(.*%((.*)%))%s*Suggestions:%s*%[(.*)%]%c?") }
+
+    local cspell = {}
+    local group = { "row", "col", "message", "_quote", "_suggestions" }
+    for i, m in ipairs(parsed) do
+      cspell[group[i]] = m
+    end
+    cspell.row = tonumber(cspell.row)
+    cspell.col = tonumber(cspell.col)
+
+    local suggestions = {}
+    if cspell['_suggestions'] then
+      for suggestion in cspell['_suggestions']:gmatch("[^, ]+") do
+        table.insert(suggestions, suggestion)
+      end
+    end
+    cspell.suggestions = suggestions
+    cspell.misspelled = cspell['_quote']
+
+    return cspell
+  end
+}
+
+local CommandOutput = {
+  new = function(output)
+    local obj = {}
+
+    obj.output = output
+
+    obj.to_cspells = function(self)
+      local list = {}
+      for line in self.output:gmatch('[^\r\n]+') do
+        table.insert(list, CSpell.new(line))
+      end
+
+      return CSpells.new(list)
+    end
+
+    return obj
+  end
+}
 
 local generator_factory = helpers.generator_factory({
   command = 'cspell',
@@ -20,7 +132,7 @@ local generator_factory = helpers.generator_factory({
     local col = params.col
     local row = params.row
 
-    local should_add_suggestions = has_cspell_diagnostic(bufnr, row, col)
+    local should_add_suggestions = Diagnostics.new(bufnr, row):is_under_cursor(col)
 
     local args = {
       'lint',
@@ -47,77 +159,36 @@ local generator_factory = helpers.generator_factory({
     return code <= 1
   end,
   runtime_condition = function(params)
-    return has_cspell_diagnostic(params.bufnr, params.row, params.col)
+    return Diagnostics.new(params.bufnr, params.row):is_under_cursor(params.col)
   end,
   on_output = function(params, done)
     local bufnr = params.bufnr
     local col = params.col
     local row = params.row
-    local lnum = row - 1
     local output = params.output
 
-    local diagnostics = vim.diagnostic.get(bufnr, { lnum = lnum })
-    if vim.tbl_isempty(diagnostics) then
+    local diagnostics = Diagnostics.new(bufnr, row)
+    if diagnostics:is_empty() then
       return done()
     end
 
-    local diagnostic = {}
-    for _, diag in pairs(diagnostics) do
-      if (diag.source == 'cspell') and (diag.col <= col and col <= diag.end_col) then
-        diagnostic = diag
-        break
-      end
-    end
+    local diagnostic = diagnostics:find_by_col(col)
 
-    if vim.tbl_isempty(diagnostic) then
+    if diagnostic:is_empty() then
       return done()
     end
 
+    local cspells = CommandOutput.new(output):to_cspells()
 
-    local lines = {}
-    for l in output:gmatch('[^\r\n]+') do
-      table.insert(lines, l)
-    end
+    local cspell = cspells:find_by_diagnostic(diagnostic)
 
-    local diag_pos = { row = tonumber(diagnostic.row), col = tonumber(diagnostic.col) + 1 }
-    local result = {}
-    for _, line in ipairs(lines) do
-
-      local results = { line:match(".*:(%d+):(%d+)%s*-%s*(.*%((.*)%))%s*Suggestions:%s*%[(.*)%]%c?") }
-
-      local group = { "row", "col", "message", "_quote", "_suggestions" }
-      local entry = {}
-      for i, m in ipairs(results) do
-        entry[group[i]] = m
-      end
-      entry.row = tonumber(entry.row)
-      entry.col = tonumber(entry.col)
-
-      local entry_pos = { row = entry.row, col = entry.col }
-      if diag_pos.row == entry_pos.row and diag_pos.col == entry_pos.col then
-
-        local suggestions = {}
-        if entry['_suggestions'] then
-          for sug in entry['_suggestions']:gmatch("[^, ]+") do
-            table.insert(suggestions, sug)
-          end
-        end
-        entry.suggestions = suggestions
-        entry.misspelled = entry['_quote']
-
-        result = entry
-        break
-      end
-    end
-
-
-    if vim.tbl_isempty(result.suggestions) then
+    if vim.tbl_isempty(cspell.suggestions) then
       return done()
     end
 
     local actions = {}
 
-    for _, suggestion in ipairs(result.suggestions) do
+    for _, suggestion in ipairs(cspell.suggestions) do
       table.insert(actions, {
         title = 'Use "' .. suggestion .. '"',
         action = function()
