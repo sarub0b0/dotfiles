@@ -23,6 +23,7 @@ null_ls.setup({
     null_ls.builtins.formatting.buf,
 
     null_ls.builtins.diagnostics.cspell.with(cspell_with),
+    null_ls.builtins.code_actions.cspell.with(cspell_with),
 
     null_ls.builtins.diagnostics.hadolint,
 
@@ -44,11 +45,6 @@ null_ls.setup({
     end
   end,
 })
-
-local ok, _ = pcall(require, 'null-ls/cspell_suggestions')
-if not ok then
-  print('failed to load null-ls/cspell_suggestions.lua')
-end
 
 local ok, _ = pcall(require, 'null-ls/cspell_add_word')
 if not ok then
