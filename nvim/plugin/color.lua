@@ -42,7 +42,18 @@ if vim.fn.index(colorschemes, termcolor) >= 0 then
   vim.cmd.colorscheme(termcolor)
 
   if vim.fn.has('nvim') == 1 then
-    local group_names = { 'Normal', 'NormalFloat', 'NonText', 'LineNr', 'Folded', 'EndOfBuffer', 'SignColumn' }
+    local group_names = { 'Normal',
+      'NormalFloat',
+      'NonText',
+      'LineNr',
+      'Folded',
+      'EndOfBuffer',
+      'SignColumn',
+      'GitGutterAdd',
+      'GitGutterChange',
+      'GitGutterDelete',
+      'GitGutterChangeDelete'
+    }
 
     for _, name in pairs(group_names) do
       modify_highlight_transparent_bg_color(name)
