@@ -51,5 +51,8 @@ vim.g.lightline = {
     S = 'SL',
     ['\\<C-s>'] = 'SB',
     t = 'T',
+  },
+  enable             = {
+    tabline = 0,
   }
 }
