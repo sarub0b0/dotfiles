@@ -41,7 +41,6 @@ in
   home.packages = with pkgs; [
     # utils
     ghq
-    bat
     dive
     fswatch
     git-filter-repo
@@ -57,7 +56,6 @@ in
     cheat
     bottom
     delta
-    fzf
 
     # programming languages
     asdf-vm
@@ -70,11 +68,11 @@ in
     zsh-z
 
     # vim
-    tree-sitter
     ripgrep
     fd
-    hadolint
-    nodePackages.markdownlint-cli
+
+    # library
+    libmysqlclient
   ];
 
   programs.tmux = {
@@ -129,7 +127,12 @@ in
     vimAlias = true;
     withNodeJs = true;
 
-    plugins = with pkgs; [ ];
+    extraPackages = with pkgs; [
+      bat
+      tree-sitter
+      hadolint
+      nodePackages.markdownlint-cli
+    ];
 
     extraConfig = ''
       source ${dot_dir}/nvim/init.lua
