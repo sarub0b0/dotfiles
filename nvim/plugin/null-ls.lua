@@ -29,6 +29,8 @@ null_ls.setup({
 
     null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.formatting.markdownlint,
+
+    null_ls.builtins.formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -38,7 +40,7 @@ null_ls.setup({
         buffer = bufnr,
         callback = function()
           local view = vim.fn.winsaveview()
-          vim.lsp.buf.format({ bufnr = bufnr, async = false })
+          vim.lsp.buf.format({ bufnr = bufnr, async = true })
           vim.fn.winrestview(view)
         end,
       })
