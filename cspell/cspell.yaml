@@ -1,14 +1,10 @@
 allowCompoundWords: true
 dictionaries:
-  - dotfiles
   - user
-  - workspace
 dictionaryDefinitions:
   - name: user
     path: ~/dotfiles/cspell/user.txt
     description: User local dictionary
-    addWords: true
-    scope: user
   # - name: workspace
   #   path: .cspell.txt
   #   description: User local dictionary
@@ -22,4 +18,9 @@ languageSettings:
       - /use.*/
     dictionaries:
       - lua
-
+  - languageId: ruby
+    locale: "*"
+    ignoreRegExpList:
+      - /gem.*/
+    dictionaries:
+      - ruby
