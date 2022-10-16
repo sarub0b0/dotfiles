@@ -59,3 +59,4 @@ vim.keymap.set('n', '<C-n>', '<Cmd>cn<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-p>', '<Cmd>cp<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', ',v', '<Cmd>edit $MYVIMRC<CR>', { silent = true })
+vim.keymap.set('n', '<Space>w', ':wa<CR>', { noremap = true, silent = true })
