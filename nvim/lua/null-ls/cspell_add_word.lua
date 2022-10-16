@@ -1,6 +1,4 @@
-local helpers = require('null-ls.helpers')
 local null_ls = require('null-ls')
-
 
 local cspell_append = function(word)
 
@@ -70,4 +68,11 @@ local cspell_custom_actions = {
   }
 }
 
-null_ls.register(cspell_custom_actions)
+
+local M = {
+  setup = function()
+    null_ls.register(cspell_custom_actions)
+  end
+}
+
+return M

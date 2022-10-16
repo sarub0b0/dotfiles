@@ -48,7 +48,4 @@ null_ls.setup({
   end,
 })
 
-local ok, _ = pcall(require, 'null-ls/cspell_add_word')
-if not ok then
-  print('failed to load null-ls/cspell_add_word.lua')
-end
+require('null-ls/cspell_add_word').setup()
