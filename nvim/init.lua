@@ -93,7 +93,10 @@ require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } },
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ghq.nvim'
+    },
   }
 
   use 'kyazdani42/nvim-web-devicons'
@@ -142,3 +145,8 @@ end)
 
 vim.cmd.filetype('plugin indent on')
 vim.cmd.syntax('on')
+
+local ok, _ = pcall(require, 'gitlab')
+if not ok then
+  print('failed to load gitlab.lua')
+end
