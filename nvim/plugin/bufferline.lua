@@ -37,9 +37,9 @@ require('bufferline').setup({
         toggle_hidden_on_enter = true
       },
       items = {
+        require('bufferline.groups').builtin.ungrouped,
         {
           name = "Tests",
-          priority = 2,
           matcher = function(buf)
             return buf.filename:match('%_test') or buf.filename:match('%_spec')
           end,
