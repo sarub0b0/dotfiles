@@ -205,7 +205,7 @@ in
   home.file.".asdfrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/asdfrc";
   home.file.".markdownlintrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/markdownlintrc";
 
-  xdg.configFil."cspell/cspell.json" = {
+  xdg.configFile."cspell/cspell.json" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/cspell/cspell.json";
   };
 
