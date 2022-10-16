@@ -25,15 +25,22 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end
   },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }, {
-    { name = 'path' },
-    { name = 'buffer' }
-  }, {
-    { name = 'spell' },
-  }),
+  sources = cmp.config.sources(
+    {
+      {
+        name = 'buffer',
+        option = {
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end
+        }
+      },
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'path' },
+      { name = 'spell' },
+    }
+  ),
   mapping = cmp.config.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-1),
     ['<C-f>'] = cmp.mapping.scroll_docs(1),
