@@ -18,8 +18,8 @@ vim.opt.formatoptions:append { m = true, M = true }
 
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
-vim.softtabstop = 2
-vim.shiftwidth = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 2
 
 vim.opt.list = true
 
