@@ -145,8 +145,3 @@ end)
 
 vim.cmd.filetype('plugin indent on')
 vim.cmd.syntax('on')
-
-local ok, _ = pcall(require, 'gitlab')
-if not ok then
-  print('failed to load gitlab.lua')
-end
