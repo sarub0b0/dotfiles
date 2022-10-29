@@ -62,6 +62,10 @@ in
     rustup
     go
 
+    # c
+    clang-tools
+    gcc
+
     # zsh
     zsh-autosuggestions
     zsh-powerlevel10k
