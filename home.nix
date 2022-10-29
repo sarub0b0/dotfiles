@@ -88,6 +88,9 @@ in
       {
         share = false;
       };
+    envExtra = ''
+      export GITSTATUS_NUM_THREADS=4
+    '';
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
