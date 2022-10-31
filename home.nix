@@ -94,19 +94,24 @@ in
     '';
     plugins = with pkgs; [
       {
-        file = "powerlevel10k.zsh-theme";
         name = "powerlevel10k";
+        file = "powerlevel10k.zsh-theme";
         src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
       }
       {
-        file = "p10k.zsh";
         name = "powerlevel10k-config";
         src = "${dot_dir}";
+        file = "p10k.zsh";
       }
       {
-        file = "zsh-z.plugin.zsh";
         name = "z";
         src = "${zsh-z}/share/zsh-z";
+        file = "zsh-z.plugin.zsh";
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = "${zsh-autosuggestions}/share/zsh-autosuggestions";
+        file = "zsh-autosuggestions.zsh";
       }
     ];
   };
