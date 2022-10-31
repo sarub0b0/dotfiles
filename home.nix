@@ -3,18 +3,6 @@
 let
   dot_dir = "${config.home.homeDirectory}/dotfiles";
 
-  nvim-treesitter-nightly = with pkgs; (
-    vimPlugins.nvim-treesitter.withPlugins (_: tree-sitter.allGrammars)
-  ).overrideAttrs (old: {
-    version = "2022-09-11";
-    src = fetchFromGitHub {
-      owner = "nvim-treesitter";
-      repo = "nvim-treesitter";
-      rev = "f53a5a6471994693e7e550b29627ca73d91e0536";
-      sha256 = "sha256-FebRBPX4lpLw6Tj7wYiVUpzejAkK3tU1JQIc+6icSMo=";
-    };
-  });
-
 in
 {
   imports = [
