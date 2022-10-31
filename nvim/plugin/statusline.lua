@@ -28,13 +28,12 @@ vim.g.lightline = {
     left = {
       { 'mode', 'paste' },
       { 'readonly', 'filename', 'modified' },
-      { 'githead', 'gitstatus', 'method', 'hoge' },
+      { 'gitstatus', 'method' },
     }
   },
   component_function = {
     method = 'LightLineNearestMethodOrFunction',
     gitstatus = 'LightLineGitStatus',
-    githead = 'LightLineGitHead',
     readonly = 'LightLineReadonly',
   },
   separator          = { left = '', right = '' },
