@@ -30,6 +30,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.formatting.markdownlint,
 
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
