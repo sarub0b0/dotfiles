@@ -55,9 +55,6 @@ in
     gcc
 
     # zsh
-    zsh-autosuggestions
-    zsh-powerlevel10k
-    zsh-z
 
     # vim
     ripgrep
@@ -76,6 +73,7 @@ in
 
   programs.zsh = {
     enable = true;
+    enableAutosuggestions = true;
     history =
       {
         share = false;
@@ -112,11 +110,6 @@ in
         name = "z";
         src = "${zsh-z}/share/zsh-z";
         file = "zsh-z.plugin.zsh";
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = "${zsh-autosuggestions}/share/zsh-autosuggestions";
-        file = "zsh-autosuggestions.zsh";
       }
     ];
   };
