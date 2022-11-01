@@ -26,6 +26,12 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
   home.packages = with pkgs; [
     # utils
     ghq
@@ -114,11 +120,6 @@ in
     ];
   };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
 
   programs.neovim = {
     enable = true;
