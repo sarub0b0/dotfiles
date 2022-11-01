@@ -83,6 +83,11 @@ in
     envExtra = ''
       export GITSTATUS_NUM_THREADS=4
     '';
+    initExtraFirst = ''
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
+    '';
     initExtra = ''
       source ${dot_dir}/zshrc
       source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
