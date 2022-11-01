@@ -58,16 +58,12 @@ in
 
     # c
     clang-tools
-    gcc
 
     # zsh
 
     # vim
     ripgrep
     fd
-
-    # library
-    libmysqlclient
   ];
 
   programs.tmux = {
