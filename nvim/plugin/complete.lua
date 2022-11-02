@@ -27,6 +27,8 @@ cmp.setup({
   },
   sources = cmp.config.sources(
     {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
       {
         name = 'buffer',
         option = {
@@ -35,8 +37,6 @@ cmp.setup({
           end
         }
       },
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
       { name = 'path' },
       { name = 'spell' },
     }
