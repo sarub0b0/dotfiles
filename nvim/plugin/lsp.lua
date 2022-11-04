@@ -34,7 +34,7 @@ vim.keymap.set(
   '<Space>f',
   function()
     local view = vim.fn.winsaveview()
-    vim.lsp.buf.format { async = true }
+    vim.lsp.buf.format { async = false }
     vim.fn.winrestview(view)
   end,
   { noremap = true, silent = true }

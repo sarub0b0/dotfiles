@@ -41,7 +41,7 @@ null_ls.setup({
         buffer = bufnr,
         callback = function()
           local view = vim.fn.winsaveview()
-          vim.lsp.buf.format({ bufnr = bufnr, async = true })
+          vim.lsp.buf.format({ bufnr = bufnr, async = false })
           vim.fn.winrestview(view)
         end,
       })
