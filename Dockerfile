@@ -67,4 +67,6 @@ EOF
 
 WORKDIR /home/debian
 
+ENV LANG=ja_JP.UTF-8
+
 CMD ["zsh", "-l"]
