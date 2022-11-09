@@ -13,6 +13,8 @@ apt-get install -y \
     zsh \
     build-essential \
     man \
+    python \
+    gettext \
     xz-utils
 EOF
 
