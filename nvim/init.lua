@@ -28,121 +28,152 @@ for _, v in pairs(vim.g.augroup_names) do
   vim.api.nvim_create_augroup(v, {})
 end
 
-vim.cmd [[packadd packer.nvim]]
-vim.opt.runtimepath:prepend { '~/dotfiles/nvim' }
 
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
 
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "neovim/nvim-lspconfig"
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' } },
+local packer_bootstrap = ensure_packer()
+
+if not packer_bootstrap then
+  vim.opt.runtimepath:append { '~/dotfiles/nvim' }
+end
+
+require('packer').startup({
+  function(use)
+    use 'wbthomason/packer.nvim'
+    use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+    use "nvim-lua/plenary.nvim"
+
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+    use "neovim/nvim-lspconfig"
+    use {
+      'jose-elias-alvarez/null-ls.nvim',
+      requires = { { 'nvim-lua/plenary.nvim' } },
+    }
+
+    use 'simrat39/rust-tools.nvim'
+
+    use {
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+    }
+
+    use 'RRethy/nvim-treesitter-endwise'
+
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'dmitmel/cmp-cmdline-history'
+    use 'davidsierradz/cmp-conventionalcommits'
+
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
+    use {
+      'L3MON4D3/LuaSnip',
+      run = 'nix-shell -p luajit --run "make install_jsregexp"',
+    }
+    use 'saadparwaiz1/cmp_luasnip'
+    use "rafamadriz/friendly-snippets"
+
+    use 'f3fora/cmp-spell'
+    use 'onsails/lspkind.nvim'
+    use 'hrsh7th/nvim-cmp'
+
+    use 'windwp/nvim-autopairs'
+
+    use 'mhartington/oceanic-next'
+
+    use 'voldikss/vim-floaterm'
+
+    use 'liuchengxu/vista.vim'
+
+    use { 'nvim-treesitter/nvim-treesitter' }
+
+    use { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' }
+    use 'romgrk/nvim-treesitter-context'
+
+    use 'mvllow/modes.nvim'
+
+
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
+    use 'nvim-telescope/telescope-ghq.nvim'
+    use {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.0',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ghq.nvim'
+      },
+    }
+
+    use 'kyazdani42/nvim-web-devicons'
+    use {
+      'akinsho/bufferline.nvim',
+      tag = "v2.*",
+      requires = 'kyazdani42/nvim-web-devicons',
+    }
+
+    use 'itchyny/lightline.vim'
+
+    use 'mfussenegger/nvim-dap'
+
+    use { 'junegunn/fzf', run = ":call fzf#install()" }
+    use { 'junegunn/fzf.vim' }
+
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons',
+    }
+
+    use 'numToStr/Comment.nvim'
+
+    use 'kana/vim-submode'
+
+    use {
+      'vim-jp/vimdoc-ja',
+      ft = { 'help' },
+      opt = true,
+    }
+
+    -- git
+    use 'tpope/vim-fugitive'
+    use 'lewis6991/gitsigns.nvim'
+
+    -- snippet
+    use "smjonas/snippet-converter.nvim"
+
+    use 'voldikss/vim-translator'
+
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    }
+
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+    if packer_bootstrap then
+      require('packer').sync()
+    end
+  end,
+  config = {
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    }
   }
-
-  use 'simrat39/rust-tools.nvim'
-
-  use {
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-  }
-
-  use 'RRethy/nvim-treesitter-endwise'
-
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'dmitmel/cmp-cmdline-history'
-  use 'davidsierradz/cmp-conventionalcommits'
-
-  use 'SirVer/ultisnips'
-  use 'honza/vim-snippets'
-  use {
-    'L3MON4D3/LuaSnip',
-    run = 'make install_jsregexp',
-  }
-  use 'saadparwaiz1/cmp_luasnip'
-  use "rafamadriz/friendly-snippets"
-
-  use 'f3fora/cmp-spell'
-  use 'onsails/lspkind.nvim'
-  use 'hrsh7th/nvim-cmp'
-
-  use 'windwp/nvim-autopairs'
-
-  use 'mhartington/oceanic-next'
-
-  use 'voldikss/vim-floaterm'
-
-  use 'liuchengxu/vista.vim'
-
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'p00f/nvim-ts-rainbow'
-  use 'romgrk/nvim-treesitter-context'
-
-  use 'mvllow/modes.nvim'
-
-
-  use 'tpope/vim-surround'
-  use 'tpope/vim-repeat'
-  use "nvim-lua/plenary.nvim"
-  use {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.0',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ghq.nvim'
-    },
-  }
-
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v2.*",
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
-
-  use 'itchyny/lightline.vim'
-
-  use 'mfussenegger/nvim-dap'
-
-  use { 'junegunn/fzf', run = ":call fzf#install()" }
-  use { 'junegunn/fzf.vim' }
-
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
-
-  use 'numToStr/Comment.nvim'
-
-  use 'kana/vim-submode'
-
-  use {
-    'vim-jp/vimdoc-ja',
-    ft = { 'help' },
-    opt = true,
-  }
-
-  -- git
-  use 'tpope/vim-fugitive'
-  use 'lewis6991/gitsigns.nvim'
-
-  -- snippet
-  use "smjonas/snippet-converter.nvim"
-
-  use 'voldikss/vim-translator'
-
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-  }
-
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-end)
+})
 
 
 vim.cmd.filetype('plugin indent on')
