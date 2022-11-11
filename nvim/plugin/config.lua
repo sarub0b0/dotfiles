@@ -22,7 +22,7 @@ vim.opt_local.softtabstop = 2
 vim.opt_local.shiftwidth = 2
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '>-', trail = '-', nbsp = '%' }
+vim.opt.listchars = { tab = '  ', trail = '-', nbsp = '%' }
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
