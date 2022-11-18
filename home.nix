@@ -158,9 +158,18 @@ in
       core = {
         editor = "nvim";
         quotepath = "false";
+        pager = "delta";
       };
       ghq = {
         root = "~/work/ghq";
+      };
+      delta = {
+        navigate = "true";
+        light = "false";
+        side-by-side = "true";
+      };
+      interactive = {
+        diffFilter = "delta --color-only";
       };
       diff = {
         tool = "nvimdiff";
