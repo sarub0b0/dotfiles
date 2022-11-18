@@ -105,7 +105,7 @@ in
       }
       {
         name = "powerlevel10k-config";
-        src = "${dot_dir}";
+        src = config.lib.file.mkOutOfStoreSymlink "${dot_dir}";
         file = "p10k.zsh";
       }
       {
