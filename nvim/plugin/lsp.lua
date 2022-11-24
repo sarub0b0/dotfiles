@@ -2,6 +2,7 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.offsetEncoding = 'utf-8'
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach = function(client, bufnr)
