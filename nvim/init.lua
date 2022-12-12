@@ -162,6 +162,8 @@ require('packer').startup({
 
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+    use 'aklt/plantuml-syntax'
+
     if packer_bootstrap then
       require('packer').sync()
     end
