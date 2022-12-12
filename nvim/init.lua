@@ -59,6 +59,7 @@ require('packer').startup({
       'jose-elias-alvarez/null-ls.nvim',
       requires = { { 'nvim-lua/plenary.nvim' } },
     }
+    use "jayp0521/mason-null-ls.nvim"
 
     use 'simrat39/rust-tools.nvim'
 
