@@ -28,7 +28,8 @@ require('mason-lspconfig').setup_handlers({
   end
 })
 
-
+require('lsp/rust')
+require('lsp/yaml')
 
 vim.keymap.set(
   'n',
