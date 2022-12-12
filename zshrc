@@ -65,7 +65,7 @@ __envs () {
         $path
     )
 
-    export TERM=xterm-256color
+    export TERM=screen-256color
 
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
