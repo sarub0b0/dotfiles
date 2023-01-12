@@ -132,9 +132,14 @@ require('packer').startup({
     use { 'junegunn/fzf', run = ":call fzf#install()" }
     use { 'junegunn/fzf.vim' }
 
+    -- ホームディレクトリなどファイル数が多いディレクトリのとき
+    -- 起動が遅いため遅延読み込みにする
     use {
       'kyazdani42/nvim-tree.lua',
       requires = 'kyazdani42/nvim-web-devicons',
+      opt = true,
+      cmd = { 'NvimTreeToggle' },
+      config = require('lazy/nvim-tree').setup
     }
 
     use 'numToStr/Comment.nvim'
