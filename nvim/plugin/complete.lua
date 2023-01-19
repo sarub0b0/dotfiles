@@ -105,8 +105,3 @@ cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
-
-require("lspsaga").init_lsp_saga({
-  -- your configuration
-  move_in_saga = { prev = '<C-p>', next = '<C-n>' },
-})
