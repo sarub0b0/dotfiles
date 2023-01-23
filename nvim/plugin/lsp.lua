@@ -57,6 +57,9 @@ require("lspsaga").setup({
   lightbulb = {
     enable = false,
   },
+  symbol_in_winbar = {
+    separator = ' ▶︎ ',
+  },
   ui = {
     -- currently only round theme
     theme = 'round',
@@ -65,9 +68,9 @@ require("lspsaga").setup({
     -- border type can be single,double,rounded,solid,shadow.
     border = 'single',
     winblend = 0,
-    expand = '',
-    collapse = '',
-    preview = ' ',
+    expand = '▶︎ ',
+    collapse = ' ',
+    preview = ' ',
     code_action = '💡',
     diagnostic = '🐞',
     incoming = ' ',
