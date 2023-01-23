@@ -96,8 +96,8 @@ vim.keymap.set('n', 'gl', '<cmd>Lspsaga lsp_finder<CR>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>ca', '<cmd>Lspsaga code_action<CR>', { silent = true })
 vim.keymap.set('n', '<Space>rn', '<cmd>Lspsaga rename<CR>', { silent = true })
 vim.keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', { silent = true })
-vim.keymap.set("n", "[g", function() require('lspsaga.diagnostic').goto_prev() end, { silent = true })
-vim.keymap.set("n", "]g", function() require('lspsaga.diagnostic').goto_next() end, { silent = true })
+vim.keymap.set("n", "[g", function() require('lspsaga.diagnostic'):goto_prev() end, { silent = true })
+vim.keymap.set("n", "]g", function() require('lspsaga.diagnostic'):goto_next() end, { silent = true })
 
 vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 vim.keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { silent = true })
@@ -106,10 +106,10 @@ vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outcoming_calls<CR>", { silent =
 
 
 vim.keymap.set("n", "[G", function()
-  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
 vim.keymap.set("n", "]G", function()
-  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
 -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help)
 -- vim.keymap.set('n', '<Space>rn', vim.lsp.buf.rename)
