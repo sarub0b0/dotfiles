@@ -49,6 +49,10 @@ vim.keymap.set(
 -- lspsaga
 require("lspsaga").setup({
   -- your configuration
+  scroll_preview = {
+    scroll_down = '<C-f>',
+    scroll_up = '<C-b>',
+  },
   move_in_saga = { prev = '<C-p>', next = '<C-n>' },
   lightbulb = {
     enable = false,
