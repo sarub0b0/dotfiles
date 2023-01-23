@@ -102,7 +102,7 @@ vim.keymap.set("n", "]g", function() require('lspsaga.diagnostic'):goto_next() e
 vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 vim.keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", { silent = true })
-vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outcoming_calls<CR>", { silent = true })
+vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", { silent = true })
 
 
 vim.keymap.set("n", "[G", function()
