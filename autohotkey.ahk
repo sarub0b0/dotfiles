@@ -77,3 +77,5 @@ Alt & Backspace::Send {Del}
 
 ^e::Send {End}
 ^+e::Send +{End}
+
+#IfWinActive
