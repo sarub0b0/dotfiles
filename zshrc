@@ -65,7 +65,14 @@ __envs () {
         $path
     )
 
-    export TERM=screen-256color
+    case "$(uname)" in
+        "Darwin")
+            export TERM=screen-256color
+            ;;
+        *)
+            export TERM=xterm-256color
+            ;;
+    esac
 
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
