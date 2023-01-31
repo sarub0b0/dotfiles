@@ -3,6 +3,7 @@ vim.g.maplocalleader = '\\'
 
 vim.keymap.set('', '<C-s>', '<Nop>', {})
 vim.keymap.set('n', '<ESC><ESC>', '<Cmd>noh<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-]><C-]>', '<Cmd>noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Space>m', '<Cmd>man<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-q>', '<Cmd>cclose<CR>', { noremap = true, silent = true })
 vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true })
