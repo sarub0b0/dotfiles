@@ -1,3 +1,5 @@
+require('nvim-ts-autotag').setup({})
+
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
@@ -19,5 +21,8 @@ require('nvim-treesitter.configs').setup {
   },
   endwise = {
     enable = true
+  },
+  autotag = {
+    enable = true,
   }
 }

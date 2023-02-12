@@ -103,6 +103,8 @@ require('packer').startup({
     use { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' }
     use 'romgrk/nvim-treesitter-context'
 
+    use 'windwp/nvim-ts-autotag'
+
     use 'mvllow/modes.nvim'
 
 
