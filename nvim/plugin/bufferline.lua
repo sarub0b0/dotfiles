@@ -58,4 +58,4 @@ require('bufferline').setup({
 
 
 vim.keymap.set('n', ']b', function() require('bufferline').cycle(1) end, { noremap = true })
-vim.keymap.set('n', '[b', function() require('bufferline').cycle(-1) end, { noremap = true })
+vim.keymap.set('n', '[b', function() require('bufferline').cycle( -1) end, { noremap = true })

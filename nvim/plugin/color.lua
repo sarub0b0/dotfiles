@@ -23,7 +23,6 @@ local function modify_highlight_transparent_bg_color(group_name)
   })
 
   vim.api.nvim_set_hl(0, group_name, hl_value)
-
 end
 
 vim.opt.termguicolors = true
@@ -58,7 +57,6 @@ if vim.fn.index(colorschemes, termcolor) >= 0 then
     for _, name in pairs(group_names) do
       modify_highlight_transparent_bg_color(name)
     end
-
   end
 
   -- 31: let s:base02 = ['#4f5b66', '240']
@@ -68,7 +66,6 @@ if vim.fn.index(colorschemes, termcolor) >= 0 then
   -- あと、clearedになると背景色がついちゃうので適当にfgを設定しておく
   -- vim.api.nvim_set_hl(0, 'Floaterm', { fg = vim.g.terminal_color_foreground, bg = 'NONE' })
   -- vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = vim.g.terminal_color_foreground, bg = 'NONE' })
-
 end
 
 -- vim.api.nvim_create_augroup('TransparentBG', {})

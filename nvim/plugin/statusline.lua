@@ -26,8 +26,8 @@ vim.g.lightline = {
   colorscheme        = 'oceanicnext',
   active             = {
     left = {
-      { 'mode', 'paste' },
-      { 'readonly', 'filename', 'modified' },
+      { 'mode',      'paste' },
+      { 'readonly',  'filename', 'modified' },
       { 'gitstatus', 'method' },
     }
   },

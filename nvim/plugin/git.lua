@@ -90,5 +90,4 @@ local function modify_highlight_transparent_bg_color(group_name)
   })
 
   vim.api.nvim_set_hl(0, group_name, hl_value)
-
 end
