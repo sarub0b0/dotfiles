@@ -153,7 +153,6 @@ local cspell_with = {
     return vim.fn.executable('cspell') > 0
   end,
   extra_args = { '--config', vim.fn.expand('~/dotfiles/cspell/cspell.yaml') }
-
 }
 
 null_ls.setup({
@@ -175,6 +174,8 @@ null_ls.setup({
 
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.rustfmt,
+
+    null_ls.builtins.formatting.terraform_fmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
