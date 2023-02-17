@@ -86,6 +86,9 @@ local opts = {
         checkOnSave = {
           command = 'clippy'
         },
+        check = {
+          command = 'clippy'
+        },
         lens = {
           enable = true,
         }
