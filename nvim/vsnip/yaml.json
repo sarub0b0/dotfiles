@@ -250,17 +250,22 @@
     "prefix": "externalsecret",
     "description": "Kind: ExternalSecret",
     "body": [
-      "apiVersion: kubernetes-client.io/v1",
+      "apiVersion: external-secrets.io/v1beta1",
       "kind: ExternalSecret",
       "metadata:",
       "  name: ${1:secret}",
       "spec:",
-      "  backendType: ${2:gcpSecretsManager}",
-      "  projectId: ${3:project_id}",
+      "  secretStoreRef:",
+      "    kind: ${2:ClusterSecretStore|SecretStore}",
+      "    name: ${3:secret-store}",
+      "  target:",
+      "    name: ${1:secret}",
       "  data:",
-      "    - key: ${5:secret-name-at-secret-manager}",
-      "      name: ${6:KEY_NAME}",
-      "      version: ${7:latest}"
+      "    - remoteRef:",
+      "        key: ${4:key}",
+      "        version: ${5:latest}",
+      "        property: ${6:property}",
+      "      secretKey: ${7:secret-key}"
     ]
   },
   "externalsecret-dockerconfigjson": {
@@ -272,14 +277,19 @@
       "metadata:",
       "  name: ${1:secret}",
       "spec:",
-      "  backendType: ${2:gcpSecretsManager}",
-      "  projectId: ${3:project_id}",
-      "  template:",
-      "    type: kubernetes.io/dockerconfigjson",
+      "  secretStoreRef:",
+      "    kind: ${2:ClusterSecretStore|SecretStore}",
+      "    name: ${3:secret-store}",
+      "  target:",
+      "    name: ${1:secret}",
+      "    template:",
+      "      type: kubernetes.io/dockerconfigjson",
       "  data:",
-      "    - key: ${5:secret-name-at-secret-manager}",
-      "      name: .dockerconfigjson",
-      "      version: ${7:latest}"
+      "    - remoteRef:",
+      "        key: ${4:key}",
+      "        version: ${5:latest}",
+      "        property: ${6:property}",
+      "      secretKey: ${7:secret-key}"
     ]
   },
   "argocd-hook": {
