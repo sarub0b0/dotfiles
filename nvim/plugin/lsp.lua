@@ -175,6 +175,8 @@ null_ls.setup({
     null_ls.builtins.formatting.rustfmt,
 
     null_ls.builtins.formatting.terraform_fmt,
+
+    null_ls.builtins.formatting.shfmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
