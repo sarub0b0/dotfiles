@@ -152,7 +152,6 @@ local cspell_with = {
   condition = function()
     return vim.fn.executable('cspell') > 0
   end,
-  extra_args = { '--config', vim.fn.expand('~/dotfiles/cspell/cspell.yaml') }
 }
 
 null_ls.setup({
@@ -192,8 +191,6 @@ null_ls.setup({
     end
   end,
 })
-
-require('null-ls/cspell_add_word').setup()
 
 require("mason-null-ls").setup({
   ensure_installed = nil,
