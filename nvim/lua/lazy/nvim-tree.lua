@@ -12,6 +12,7 @@ local M = {
         },
       },
       renderer = {
+        group_empty = true,
         icons = {
           glyphs = {
             folder = {
