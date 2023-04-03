@@ -18,7 +18,6 @@ cmp.setup({
         cmdline = '[CmdLine]'
       })
     })
-
   },
   snippet = {
     expand = function(args)
@@ -42,7 +41,7 @@ cmp.setup({
     }
   ),
   mapping = cmp.config.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs( -1),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-1),
     ['<C-f>'] = cmp.mapping.scroll_docs(1),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-j>'] = cmp.mapping(function(fallback)
@@ -62,8 +61,8 @@ cmp.setup({
     end, { 'i', 's' }),
     ['<C-k>'] = cmp.mapping(function(fallback)
       local luasnip = require('luasnip')
-      if luasnip.jumpable( -1) then
-        luasnip.jump( -1)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
