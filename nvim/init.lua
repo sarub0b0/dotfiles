@@ -66,6 +66,13 @@ require('packer').startup({
     use {
       "glepnir/lspsaga.nvim",
       branch = "main",
+      opt = true,
+      event = "LspAttach",
+      requires = {
+        "nvim-tree/nvim-web-devicons",
+        "nvim-treesitter/nvim-treesitter"
+      },
+      config = require('lazy/lspsaga').setup
     }
 
     use 'RRethy/nvim-treesitter-endwise'
