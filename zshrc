@@ -65,14 +65,11 @@ __envs () {
         $path
     )
 
-    case "$(uname)" in
-        "Darwin")
-            export TERM=screen-256color
-            ;;
-        *)
-            export TERM=xterm-256color
-            ;;
-    esac
+    export TERM=xterm-256color
+
+    if [ -n "$TMUX" ]; then
+        export TERM=screen-256color
+    fi
 
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
