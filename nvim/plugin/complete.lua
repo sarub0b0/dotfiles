@@ -93,6 +93,20 @@ cmp.setup.cmdline(':', {
   })
 })
 
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    {
+      name = "buffer",
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    }, {
+    name = "conventionalcommits"
+  } })
+})
+
 require('nvim-autopairs').setup({
   check_ts = true,
   ts_config = {
