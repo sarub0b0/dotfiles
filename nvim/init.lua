@@ -151,6 +151,7 @@ require('packer').startup({
 
     use { 'junegunn/fzf', run = ":call fzf#install()" }
     use { 'junegunn/fzf.vim' }
+    use { 'junegunn/vim-easy-align' }
 
     -- ホームディレクトリなどファイル数が多いディレクトリのとき
     -- 起動が遅いため遅延読み込みにする
