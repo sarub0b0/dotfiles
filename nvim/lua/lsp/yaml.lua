@@ -15,7 +15,7 @@ require('lspconfig').yamlls.setup {
         ["https://json.schemastore.org/kustomization.json"] = {
           "/**/kustomization.yaml"
         },
-        kubernetes = {
+        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json"] = {
           "manifest*/**/*.yaml",
           "/*.k8s.yaml",
           "*.yaml"
