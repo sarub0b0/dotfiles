@@ -118,7 +118,6 @@ require('packer').startup({
 
     use { 'nvim-treesitter/nvim-treesitter' }
 
-    use { 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' }
     use 'romgrk/nvim-treesitter-context'
 
     use 'windwp/nvim-ts-autotag'
