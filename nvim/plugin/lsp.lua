@@ -21,7 +21,7 @@ end
 
 require('mason-lspconfig').setup({
   ensure_installed = {},
-  automatic_installation = true,
+  automatic_installation = false,
 })
 require('mason-lspconfig').setup_handlers({
   function(server_name)
