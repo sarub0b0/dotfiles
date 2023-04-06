@@ -30,7 +30,7 @@ require('bufferline').setup({
     show_buffer_close_icons = false,
     show_close_icon = false,
     show_tab_indicators = true,
-    separator_style = "slant",
+    separator_style = "thin",
     always_show_bufferline = true,
     groups = {
       options = {
@@ -43,7 +43,6 @@ require('bufferline').setup({
           matcher = function(buf)
             return buf.filename:match('%_test') or buf.filename:match('%_spec')
           end,
-
         },
         {
           name = "Docs",
@@ -58,4 +57,4 @@ require('bufferline').setup({
 
 
 vim.keymap.set('n', ']b', function() require('bufferline').cycle(1) end, { noremap = true })
-vim.keymap.set('n', '[b', function() require('bufferline').cycle( -1) end, { noremap = true })
+vim.keymap.set('n', '[b', function() require('bufferline').cycle(-1) end, { noremap = true })
