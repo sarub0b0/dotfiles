@@ -110,8 +110,8 @@ require('packer').startup({
 
     use 'windwp/nvim-autopairs'
 
-    use 'mhartington/oceanic-next'
-
+    -- use 'mhartington/oceanic-next'
+    use 'adrian5/oceanic-next-vim'
     use 'voldikss/vim-floaterm'
 
     use 'liuchengxu/vista.vim'
