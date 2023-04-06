@@ -137,11 +137,11 @@ require('packer').startup({
       },
     }
 
-    use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
     use {
       'akinsho/bufferline.nvim',
-      tag = "v2.*",
-      requires = 'kyazdani42/nvim-web-devicons',
+      tag = "v3.*",
+      requires = 'nvim-tree/nvim-web-devicons',
     }
 
     use 'itchyny/lightline.vim'
@@ -155,8 +155,8 @@ require('packer').startup({
     -- ホームディレクトリなどファイル数が多いディレクトリのとき
     -- 起動が遅いため遅延読み込みにする
     use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-tree.lua',
+      requires = 'nvim-tree/nvim-web-devicons',
       opt = true,
       cmd = { 'NvimTreeToggle' },
       config = require('lazy/nvim-tree').setup
@@ -184,7 +184,7 @@ require('packer').startup({
 
     use {
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
+      requires = "nvim-tree/nvim-web-devicons",
     }
 
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
