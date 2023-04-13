@@ -191,6 +191,8 @@ require('packer').startup({
 
     use 'aklt/plantuml-syntax'
 
+    use "LudoPinelli/comment-box.nvim"
+
     if packer_bootstrap then
       require('packer').sync()
     end
