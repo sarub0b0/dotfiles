@@ -157,9 +157,6 @@ require('packer').startup({
     use {
       'nvim-tree/nvim-tree.lua',
       requires = 'nvim-tree/nvim-web-devicons',
-      opt = true,
-      cmd = { 'NvimTreeToggle' },
-      config = require('lazy/nvim-tree').setup
     }
 
     use 'numToStr/Comment.nvim'
