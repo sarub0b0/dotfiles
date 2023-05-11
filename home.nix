@@ -50,6 +50,8 @@ in
     cheat
     bottom
     delta
+    fd
+    thefuck
 
     # programming languages
     asdf-vm
@@ -62,8 +64,6 @@ in
     # zsh
 
     # vim
-    ripgrep
-    fd
   ];
 
   programs.tmux = {
