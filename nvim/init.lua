@@ -190,6 +190,11 @@ require('packer').startup({
 
     use "LudoPinelli/comment-box.nvim"
 
+    use {
+      'google/executor.nvim',
+      requires = "MunifTanjim/nui.nvim"
+    }
+
     if packer_bootstrap then
       require('packer').sync()
     end
