@@ -106,7 +106,7 @@ require('nvim-tree').setup({
     adaptive_size = true,
   },
   renderer = {
-    group_empty = true,
+    group_empty = false,
     icons = {
       glyphs = {
         folder = {
