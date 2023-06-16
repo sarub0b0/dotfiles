@@ -4,7 +4,7 @@ require('bufferline').setup({
   options = {
     mode = "buffers",
     numbers = 'ordinal',
-    modified_icon = '●',
+    modified_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
     diagnostics = 'nvim_lsp',
