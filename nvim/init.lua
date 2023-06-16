@@ -120,7 +120,7 @@ require('packer').startup({
 
     use 'romgrk/nvim-treesitter-context'
 
-    use 'windwp/nvim-ts-autotag'
+    use { 'windwp/nvim-ts-autotag', requires = { 'nvim-treesitter/nvim-treesitter' } }
 
     use 'mvllow/modes.nvim'
 
