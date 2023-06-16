@@ -1,5 +1,6 @@
 local opts = {
-  tools = { -- rust-tools options
+  tools = {
+    -- rust-tools options
 
     -- how to execute terminal commands
     -- options right now: termopen / quickfix
@@ -51,7 +52,6 @@ local opts = {
 
     -- options same as lsp hover / vim.lsp.util.open_floating_preview()
     hover_actions = {
-
       -- the border that is used for the hover window
       -- see vim.api.nvim_open_win()
       border = {
@@ -80,12 +80,9 @@ local opts = {
   server = {
     -- standalone file support
     -- setting it to false may improve startup time
-    standalone = true,
+    standalone = false,
     settings = {
       ['rust-analyzer'] = {
-        checkOnSave = {
-          command = 'clippy'
-        },
         check = {
           command = 'clippy'
         },
