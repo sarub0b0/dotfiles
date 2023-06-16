@@ -140,7 +140,7 @@ require('packer').startup({
     use 'nvim-tree/nvim-web-devicons'
     use {
       'akinsho/bufferline.nvim',
-      tag = "v3.*",
+      tag = "*",
       requires = 'nvim-tree/nvim-web-devicons',
     }
 
