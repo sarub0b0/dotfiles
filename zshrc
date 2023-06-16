@@ -62,6 +62,7 @@ __envs () {
         /usr/local/kubebuilder/bin(N-/)
         ${HOME}/.cargo/bin(N-/)
         ${KREW_ROOT:-$HOME/.krew}/bin(N-/)
+        /usr/local/bin(N-/)
         $path
     )
 
