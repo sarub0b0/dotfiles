@@ -152,11 +152,18 @@ require('packer').startup({
     use { 'junegunn/fzf.vim' }
     use { 'junegunn/vim-easy-align' }
 
-    -- ホームディレクトリなどファイル数が多いディレクトリのとき
-    -- 起動が遅いため遅延読み込みにする
     use {
-      'nvim-tree/nvim-tree.lua',
-      requires = 'nvim-tree/nvim-web-devicons',
+      'nvim-neo-tree/neo-tree.nvim',
+      branch = "v2.x",
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-tree/nvim-web-devicons',
+        'MunifTanjim/nui.nvim',
+        {
+          's1n7ax/nvim-window-picker',
+          tag = 'v1.*',
+        }
+      }
     }
 
     use 'numToStr/Comment.nvim'

@@ -23,6 +23,11 @@ require('bufferline').setup({
         filetype = "vista_kind",
         text = "Vista",
         separator = true,
+      },
+      {
+        filetype = "neo-tree",
+        text = "NeoTree",
+        separator = true,
       }
     },
     color_icons = true,
