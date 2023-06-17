@@ -44,6 +44,7 @@ local packer_bootstrap = ensure_packer()
 
 if not packer_bootstrap then
   vim.opt.runtimepath:append { '~/dotfiles/nvim' }
+  vim.opt.runtimepath:append { '~/dotfiles/nvim/after' }
 end
 
 require('packer').startup({
