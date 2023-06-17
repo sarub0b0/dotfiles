@@ -3,8 +3,9 @@ require('mason-lspconfig').setup()
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach = function(client, bufnr)
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
   if client.supports_method("textDocument/formatting") then
     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -63,7 +64,6 @@ vim.diagnostic.config({
 
 
 -- null-ls
-local augroup = vim.api.nvim_create_augroup("NullLsFormatting", {})
 local null_ls = require('null-ls')
 
 local cspell_with = {
@@ -98,6 +98,8 @@ null_ls.setup({
     null_ls.builtins.formatting.shfmt,
   },
   on_attach = function(client, bufnr)
+    local augroup = vim.api.nvim_create_augroup("NullLsFormatting", {})
+
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
