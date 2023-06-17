@@ -215,7 +215,9 @@ in
     source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/cspell/cspell.json";
   };
 
-
+  xdg.configFile."kitty/kitty.conf" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/kitty.conf";
+  };
 }
 
 # vim:sw=2:et:sts=2:ts=2:
