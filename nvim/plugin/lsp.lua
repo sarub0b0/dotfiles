@@ -71,16 +71,6 @@ local cspell_with = {
   diagnostics_postprocess = function(diagnostic)
     diagnostic.severity = vim.diagnostic.severity.WARN
   end,
-  condition = function()
-    return vim.fn.executable('cspell') > 0
-  end,
-  extra_args = { '--config', '~/dotfiles/cspell/cspell.json' },
-  config = {
-    create_config_file = false,
-    find_json = function()
-      return vim.fn.expand("~/dotfiles/cspell/cspell.json")
-    end
-  }
 }
 
 null_ls.setup({
