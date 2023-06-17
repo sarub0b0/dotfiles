@@ -52,6 +52,7 @@ in
     delta
     fd
     thefuck
+    jq
 
     # programming languages
     asdf-vm
