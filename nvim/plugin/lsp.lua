@@ -67,7 +67,7 @@ local augroup = vim.api.nvim_create_augroup("NullLsFormatting", {})
 local null_ls = require('null-ls')
 
 local cspell_with = {
-  disabled_filetypes = { 'NvimTree' },
+  disabled_filetypes = { 'NvimTree', 'neo-tree' },
   diagnostics_postprocess = function(diagnostic)
     diagnostic.severity = vim.diagnostic.severity.WARN
   end,
