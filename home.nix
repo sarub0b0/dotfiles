@@ -76,6 +76,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
     history =
       {
         share = false;
