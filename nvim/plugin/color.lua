@@ -12,9 +12,6 @@ vim.cmd.colorscheme('oceanicnext')
 vim.api.nvim_set_hl(0, 'Floaterm', { fg = "#d8dee9", bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = "#d8dee9", bg = 'NONE' })
 
-vim.o.t_8f = "[38;2;%lu;%lu;%lum"
-vim.o.t_8b = "[48;2;%lu;%lu;%lum"
-
 --
 -- if not vim.fn.has('termguicolors') == 1 then
 --   return
