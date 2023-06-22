@@ -93,7 +93,7 @@ require('neo-tree').setup({
     },
     mappings = {
       ["s"] = "noop",
-      ["<cr>"] = "open",
+      ["<cr>"] = "open_with_window_picker",
       ["<esc>"] = "revert_preview",
       ["P"] = { "toggle_preview", config = { use_float = true } },
       --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
@@ -105,7 +105,7 @@ require('neo-tree').setup({
       ["t"] = "open_tabnew",
       -- ["<cr>"] = "open_drop",
       -- ["t"] = "open_tab_drop",
-      ["w"] = "open_with_window_picker",
+      -- ["w"] = "open_with_window_picker",
       ["C"] = "close_node",
       -- ['C'] = 'close_all_subnodes',
       ["z"] = "close_all_nodes",
