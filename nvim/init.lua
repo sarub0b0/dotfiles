@@ -203,6 +203,17 @@ require('packer').startup({
       requires = "MunifTanjim/nui.nvim"
     }
 
+    use { 'uga-rosa/ccc.nvim',
+      config = function()
+        require('ccc').setup({
+          highlighter = {
+            auto_enable = true,
+            lsp = true
+          }
+        })
+      end
+    }
+
     if packer_bootstrap then
       require('packer').sync()
     end
