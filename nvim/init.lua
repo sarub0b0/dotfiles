@@ -185,7 +185,6 @@ require('packer').startup({
     -- snippet
     use "smjonas/snippet-converter.nvim"
 
-    use 'voldikss/vim-translator'
 
     use {
       "folke/trouble.nvim",
@@ -213,6 +212,7 @@ require('packer').startup({
         })
       end
     }
+    use 'voldikss/vim-translator'
 
     if packer_bootstrap then
       require('packer').sync()
