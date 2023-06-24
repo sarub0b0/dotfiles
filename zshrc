@@ -68,10 +68,6 @@ __envs () {
 
     export TERM=xterm-256color
 
-    if [ -n "$TMUX" ]; then
-        export TERM=screen-256color
-    fi
-
     export DOCKER_BUILDKIT=1
     export COMPOSE_DOCKER_CLI_BUILD=1
 
