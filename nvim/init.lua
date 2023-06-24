@@ -212,6 +212,9 @@ require('packer').startup({
         })
       end
     }
+
+    use 'uga-rosa/translate.nvim'
+
     use 'voldikss/vim-translator'
 
     if packer_bootstrap then
