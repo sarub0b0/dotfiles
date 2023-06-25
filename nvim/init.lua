@@ -47,6 +47,20 @@ if not packer_bootstrap then
   vim.opt.runtimepath:append { '~/dotfiles/nvim/after' }
 end
 
+if vim.fn.has('win32') or vim.fn.has('win64') then
+  if vim.fn.executable('pwsh') then
+    vim.o.shell = 'pwsh'
+  else
+    vim.o.shell = 'powershell'
+  end
+  vim.o.shellcmdflag =
+  '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+  vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+  vim.o.shellquote = nil
+  vim.o.shellxquote = nil
+end
+
 require('packer').startup({
   function(use)
     use 'wbthomason/packer.nvim'
