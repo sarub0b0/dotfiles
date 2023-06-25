@@ -1,13 +1,14 @@
-Import-Module PSReadLine
-Set-PSReadlineOption -EditMode Emacs
-Set-PSReadlineOption -BellStyle None
+Import-Module -Name PSReadLine -Force
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -BellStyle None
 
 oh-my-posh prompt init pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/star.omp.json' | Invoke-Expression
 
 Set-Alias vim nvim
 Set-Alias v nvim
 
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
 function script:ghq_list () {
     $env:FZF_DEFAULT_OPTS = '--height 40% --layout=reverse --border'
