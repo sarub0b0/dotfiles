@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'translate')
+if not ok then
+  print 'translate is not installed.'
+  return
+end
+
 require("translate").setup({})
 
 vim.keymap.set('n', '<Leader>t', '<Cmd>Translate ja<CR>', { silent = true })

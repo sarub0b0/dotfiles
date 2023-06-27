@@ -1,5 +1,11 @@
 local M = {
   setup = function()
+    local ok, _ = pcall(require, 'lspsaga')
+    if not ok then
+      print 'lspsaga is not installed.'
+      return
+    end
+
     -- lspsaga
     require("lspsaga").setup({
       -- your configuration

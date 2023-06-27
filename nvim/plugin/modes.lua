@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'modes')
+if not ok then
+  print 'modes is not installed.'
+  return
+end
+
 require('modes').setup {
 
   colors = {

@@ -1,3 +1,11 @@
+for _, value in ipairs({ 'cmp', 'lspkind', 'luasnip', 'nvim-autopairs' }) do
+  local ok, _ = pcall(require, value)
+  if not ok then
+    print(value .. ' is not installed.')
+    return
+  end
+end
+
 local has_words_before = function()
   local cursor_position = vim.api.nvim_win_get_cursor(0)
   local line, col = unpack(cursor_position)

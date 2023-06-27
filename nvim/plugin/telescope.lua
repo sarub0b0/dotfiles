@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'telescope')
+if not ok then
+  print 'telescope is not installed.'
+  return
+end
+
 require('telescope').load_extension('ghq')
 
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)

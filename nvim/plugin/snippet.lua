@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'luasnip')
+if not ok then
+  print 'luasnip is not installed.'
+  return
+end
+
 --
 -- luasnip
 --

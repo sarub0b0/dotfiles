@@ -1,3 +1,11 @@
+for _, value in ipairs({ 'nvim-ts-autotag', 'nvim-treesitter' }) do
+  local ok, _ = pcall(require, value)
+  if not ok then
+    print(value .. ' is not installed.')
+    return
+  end
+end
+
 require('nvim-ts-autotag').setup({})
 
 require('nvim-treesitter.configs').setup {

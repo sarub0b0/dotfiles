@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'executor')
+if not ok then
+  print 'executor is not installed.'
+  return
+end
+
 require('executor').setup({
   use_split = false,
   notifications = {

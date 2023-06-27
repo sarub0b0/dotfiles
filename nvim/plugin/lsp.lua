@@ -1,3 +1,11 @@
+for _, value in ipairs({ 'mason', 'mason-lspconfig', 'null-ls', 'mason-null-ls', 'cmp_nvim_lsp', 'lspconfig' }) do
+  local ok, _ = pcall(require, value)
+  if not ok then
+    print(value .. ' is not installed.')
+    return
+  end
+end
+
 require('mason').setup()
 require('mason-lspconfig').setup()
 

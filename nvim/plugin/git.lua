@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'gitsigns')
+if not ok then
+  print 'gitsigns is not installed.'
+  return
+end
+
 --
 -- gitsigns
 --

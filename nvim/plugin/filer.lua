@@ -1,3 +1,11 @@
+for _, value in ipairs({ 'window-picker', 'neo-tree' }) do
+  local ok, _ = pcall(require, value)
+  if not ok then
+    print(value .. ' is not installed.')
+    return
+  end
+end
+
 require('window-picker').setup({
   autoselect_one = true,
   include_current = false,

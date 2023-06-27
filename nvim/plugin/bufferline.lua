@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'bufferline')
+if not ok then
+  print 'bufferline is not installed.'
+  return
+end
+
 vim.opt.termguicolors = true
 
 require('bufferline').setup({

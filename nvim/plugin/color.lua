@@ -2,6 +2,10 @@ if vim.g.vscode then
   return
 end
 
+if next(vim.fn.getcompletion('oceanicnext', 'color')) == nil then
+  print("oceanicnext is not installed.")
+  return
+end
 vim.g.oceanic_gutter_like_bg = 1
 vim.g.oceanic_transparent_bg = 1
 vim.g.oceanic_bold = 1
