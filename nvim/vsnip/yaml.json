@@ -88,6 +88,7 @@
       "metadata:",
       "  name: ${1:service}",
       "spec:",
+      "  type: ClusterIP",
       "  selector:",
       "    app: ${1:service}",
       "  ports:",
