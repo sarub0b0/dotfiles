@@ -7,5 +7,6 @@ nix/**
 !nix/default.nix.example
 
 cspell/user.txt
+!/cspell/cspell.json
 
 .luarc.json

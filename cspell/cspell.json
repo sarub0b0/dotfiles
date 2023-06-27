@@ -1,0 +1,32 @@
+{
+  "words": [],
+  "flagWords": [],
+  "allowCompoundWords": true,
+  "dictionaryDefinitions": [
+    {
+      "path": "~/dotfiles/cspell/user.txt",
+      "name": "user",
+      "description": "User local dictionary"
+    },
+    {
+      "path": "~/.local/share/cspell/vim.txt.gz",
+      "name": "vim",
+      "description": "Vim Script Language dictionary"
+    }
+  ],
+  "dictionaries": ["user"],
+  "languageSettings": [
+    {
+      "locale": "*",
+      "languageId": "lua",
+      "dictionaries": ["lua", "vim"],
+      "ignoreRegExpList": ["/require.*/", "/use.*/"]
+    },
+    {
+      "locale": "*",
+      "languageId": "ruby",
+      "dictionaries": ["ruby"],
+      "ignoreRegExpList": ["/gem.*/"]
+    }
+  ]
+}
