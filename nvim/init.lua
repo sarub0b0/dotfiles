@@ -40,6 +40,11 @@ local ensure_packer = function()
   return false
 end
 
+if vim.fn.filereadable('~/.local/share/cspell/vim.txt.gz') ~= 1 then
+  local vim_dictionary_url = 'https://github.com/iamcco/coc-spell-checker/raw/master/dicts/vim/vim.txt.gz'
+  io.popen('curl -fsSLo ~/.local/share/cspell/vim.txt.gz --create-dirs ' .. vim_dictionary_url)
+end
+
 local packer_bootstrap = ensure_packer()
 
 if not packer_bootstrap then
