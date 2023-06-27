@@ -47,7 +47,7 @@ if not packer_bootstrap then
   vim.opt.runtimepath:append { '~/dotfiles/nvim/after' }
 end
 
-if vim.fn.has('win32') or vim.fn.has('win64') then
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
   if vim.fn.executable('pwsh') then
     vim.o.shell = 'pwsh'
   else
