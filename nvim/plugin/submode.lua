@@ -12,3 +12,8 @@ vim.fn['submode#map']('bufmove', 'n', '', '>', '<C-w>>')
 vim.fn['submode#map']('bufmove', 'n', '', '<', '<C-w><')
 vim.fn['submode#map']('bufmove', 'n', '', '+', '<C-w>+')
 vim.fn['submode#map']('bufmove', 'n', '', '-', '<C-w>-')
+
+vim.fn['submode#enter_with']('up/down', 'n', '', 'gj', 'gj')
+vim.fn['submode#enter_with']('up/down', 'n', '', 'gk', 'gk')
+vim.fn['submode#map']('up/down', 'n', '', 'j', 'gj')
+vim.fn['submode#map']('up/down', 'n', '', 'k', 'gk')
