@@ -181,6 +181,8 @@ require('packer').startup({
       }
     }
 
+    use "kwkarlwang/bufresize.nvim"
+
     use 'numToStr/Comment.nvim'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
