@@ -177,6 +177,7 @@ in
       };
       diff = {
         tool = "nvimdiff";
+        context = 7;
       };
       difftool = {
         nvimdiff = {
