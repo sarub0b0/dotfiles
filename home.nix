@@ -80,10 +80,9 @@ in
     syntaxHighlighting = {
       enable = true;
     };
-    history =
-      {
-        share = false;
-      };
+    history = {
+      share = false;
+    };
     envExtra = ''
       export GITSTATUS_NUM_THREADS=4
     '';
