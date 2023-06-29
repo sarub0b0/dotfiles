@@ -4,3 +4,5 @@
     userEmail = "ekr59uv25@gmail.com";
   };
 }
+
+# vim:sw=2:et:sts=2:ts=2:ft=nix:
