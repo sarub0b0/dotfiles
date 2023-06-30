@@ -79,6 +79,9 @@ local cspell_with = {
   diagnostics_postprocess = function(diagnostic)
     diagnostic.severity = vim.diagnostic.severity.WARN
   end,
+  config = {
+    create_config_file = true,
+  }
 }
 
 null_ls.setup({
