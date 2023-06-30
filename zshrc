@@ -3,7 +3,6 @@
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
-    alias sudo='sudo -E'
     alias c='clear'
     alias sl='ls'
     alias ll='ls -lh'
