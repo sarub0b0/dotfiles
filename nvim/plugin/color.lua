@@ -12,7 +12,27 @@ vim.g.oceanic_next_terminal_bold = 1
 
 vim.cmd.colorscheme('OceanicNext')
 
---
+vim.api.nvim_set_hl(0, 'Floaterm', { fg = "#d8dee9", bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = "#d8dee9", bg = 'NONE' })
+
+for _, hl in ipairs({
+  'Normal',
+  'LineNr',
+  'SignColumn',
+  'EndOfBuffer',
+  'VertSplit',
+  'Folded',
+  'Floaterm',
+  'FloatermBorder',
+}) do
+  local args = vim.api.nvim_get_hl(0, { name = hl })
+
+  args.bg = 'None'
+  args.ctermbg = 'None'
+
+  vim.api.nvim_set_hl(0, hl, args)
+end
+
 -- if not vim.fn.has('termguicolors') == 1 then
 --   return
 -- end
