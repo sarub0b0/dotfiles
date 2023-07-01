@@ -50,6 +50,8 @@ vim.g.tlist_tex_settings = 'latex;l:labels;c:chapter;s:sections;t:subsections;u:
 
 vim.opt.iskeyword = { '@', '48-57', '_', '-', '192-255' }
 
+vim.opt.fillchars:append { diff = " " }
+
 vim.cmd [[
   set clipboard&
   set clipboard^=unnamedplus,unnamed
