@@ -2,19 +2,15 @@ if vim.g.vscode then
   return
 end
 
-if next(vim.fn.getcompletion('oceanicnext', 'color')) == nil then
+if next(vim.fn.getcompletion('OceanicNext', 'color')) == nil then
   print("oceanicnext is not installed.")
   return
 end
-vim.g.oceanic_gutter_like_bg = 1
-vim.g.oceanic_transparent_bg = 1
-vim.g.oceanic_bold = 1
-vim.g.oceanic_italic_comments = 1
 
-vim.cmd.colorscheme('oceanicnext')
+vim.g.oceanic_next_terminal_italic = 1
+vim.g.oceanic_next_terminal_bold = 1
 
-vim.api.nvim_set_hl(0, 'Floaterm', { fg = "#d8dee9", bg = 'NONE' })
-vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = "#d8dee9", bg = 'NONE' })
+vim.cmd.colorscheme('OceanicNext')
 
 --
 -- if not vim.fn.has('termguicolors') == 1 then
