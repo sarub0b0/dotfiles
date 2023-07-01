@@ -15,6 +15,20 @@ vim.cmd.colorscheme('OceanicNext')
 vim.api.nvim_set_hl(0, 'Floaterm', { fg = "#d8dee9", bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = "#d8dee9", bg = 'NONE' })
 
+-- gitの差分の色を変更
+-- adrian5/oceanic-next-vimから抽出
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#2d4a46" })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = "#29445a" })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#45353e" })
+
+vim.api.nvim_set_hl(0, 'DiffAdded', { fg = "#99c794" })
+vim.api.nvim_set_hl(0, "DiffFile", { fg = "#c594c5", bold = true })
+vim.api.nvim_set_hl(0, "DiffIndexLine", { fg = "#4d616b" })
+vim.api.nvim_set_hl(0, "DiffLine", { fg = "#6699cc" })
+vim.api.nvim_set_hl(0, "DiffRemoved", { fg = "#ec5f67" })
+vim.api.nvim_set_hl(0, "DiffSubname", { fg = "#5fb3b3" })
+-- end
+
 for _, hl in ipairs({
   'Normal',
   'LineNr',
