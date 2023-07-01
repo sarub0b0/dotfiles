@@ -136,7 +136,7 @@ require('packer').startup({
 
     use 'liuchengxu/vista.vim'
 
-    use { 'nvim-treesitter/nvim-treesitter' }
+    use 'nvim-treesitter/nvim-treesitter'
 
     use 'romgrk/nvim-treesitter-context'
 
@@ -212,7 +212,7 @@ require('packer').startup({
       requires = "nvim-tree/nvim-web-devicons",
     }
 
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use 'sindrets/diffview.nvim'
 
     use 'aklt/plantuml-syntax'
 
