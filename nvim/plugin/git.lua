@@ -9,12 +9,14 @@ end
 --
 -- TODO: 透過用のハイライトを設定する
 require('gitsigns').setup({
-  signcolumn = true,
-  numhl = true,
+  signcolumn              = true,
+  numhl                   = true,
+  linehl                  = true,
+  word_diff               = true,
   current_line_blame_opts = {
     delay = 300,
   },
-  on_attach = function(bufnr)
+  on_attach               = function(bufnr)
     local gs = package.loaded.gitsigns
 
     local function map(mode, l, r, opts)
