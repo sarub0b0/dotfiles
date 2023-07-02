@@ -32,6 +32,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "DiffRemoved", { fg = "#ec5f67" })
     vim.api.nvim_set_hl(0, "DiffSubname", { fg = "#5fb3b3" })
     -- end
+
+    vim.api.nvim_set_hl(0, "GitSignsAddInline", { fg = "#99c794", bold = true })
+    vim.api.nvim_set_hl(0, "GitSignsChangeInline", { fg = "#65737e" })
+    vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { fg = "#ec5f67" })
+
     vim.api.nvim_set_hl(0, "NormalFloat", {})
 
     for _, hl in ipairs({
