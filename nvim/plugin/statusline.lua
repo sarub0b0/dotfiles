@@ -1,3 +1,9 @@
+local ok, _ = pcall(require, 'lualine')
+if not ok then
+  print 'lualine is not installed.'
+  return
+end
+
 require('lualine').setup({
   options = {
     theme = 'OceanicNext',
