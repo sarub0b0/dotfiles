@@ -10,7 +10,7 @@ vim.cmd [[
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = { 'utf-8', 'iso2022-jp', 'euc-jp', 'sjis' }
 
-vim.opt.shortmess:append { I = true }
+vim.opt.shortmess:append { I = true, S = true }
 
 vim.opt.helplang = { 'ja', 'en' }
 

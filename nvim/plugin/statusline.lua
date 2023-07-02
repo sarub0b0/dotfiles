@@ -1,57 +1,35 @@
-vim.cmd [[
-  function! LightLineNearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-  endfunction
-
-  function! LightLineGitStatus() abort
-    return get(b:, 'gitsigns_status', '')
-  endfunction
-
-  function! LightLineGitHead() abort
-    return get(b:, 'gitsigns_head', '')
-  endfunction
-
-  function! LightLineReadonly()
-      if &filetype == "help"
-          return ""
-      elseif &readonly
-          return ""
-      else
-          return ""
-      endif
-  endfunction
-]]
-
-vim.g.lightline = {
-  colorscheme        = 'oceanicnext',
-  active             = {
-    left = {
-      { 'mode',      'paste' },
-      { 'readonly',  'filename', 'modified' },
-      { 'gitstatus', 'method' },
-    }
+require('lualine').setup({
+  options = {
+    theme = 'OceanicNext',
   },
-  component_function = {
-    method = 'LightLineNearestMethodOrFunction',
-    gitstatus = 'LightLineGitStatus',
-    readonly = 'LightLineReadonly',
+  extensions = {
+    'fugitive',
+    'fzf',
+    'man',
+    'neo-tree',
+    'quickfix',
+    'trouble',
   },
-  separator          = { left = '', right = '' },
-  subseparator       = { left = '', right = '' },
-  mode_map           = {
-    n = 'N',
-    i = 'I',
-    R = 'R',
-    v = 'V',
-    V = 'VL',
-    ['\\<C-v>'] = 'VB',
-    c = 'C',
-    s = 'S',
-    S = 'SL',
-    ['\\<C-s>'] = 'SB',
-    t = 'T',
+  sections = {
+    lualine_a = {
+      {
+        "mode",
+        fmt = function(str)
+          return str:sub(1, 1)
+        end
+      }
+    },
+    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_c = {
+      {
+        "filename",
+        symbols = {
+          readonly = ''
+        }
+      }
+    },
+    lualine_x = { "encoding", "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location", "searchcount", "selectioncount" }
   },
-  enable             = {
-    tabline = 0,
-  }
-}
+})

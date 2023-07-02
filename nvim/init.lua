@@ -164,7 +164,10 @@ require('packer').startup({
       requires = 'nvim-tree/nvim-web-devicons',
     }
 
-    use 'itchyny/lightline.vim'
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
 
     use 'mfussenegger/nvim-dap'
 
