@@ -102,8 +102,7 @@ null_ls.setup({
     null_ls.builtins.formatting.markdownlint,
 
     null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.rustfmt,
-
+    null_ls.builtins.formatting.rustfmt.with({ extra_args = { "--edition=2021" } }),
     null_ls.builtins.formatting.terraform_fmt,
 
     null_ls.builtins.formatting.shfmt,
