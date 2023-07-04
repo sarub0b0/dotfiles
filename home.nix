@@ -177,6 +177,8 @@ in
       diff = {
         tool = "nvimdiff";
         context = 7;
+        algorithm = "histogram";
+        colorMoved = "true";
       };
       difftool = {
         nvimdiff = {
