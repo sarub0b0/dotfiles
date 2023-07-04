@@ -52,6 +52,8 @@ vim.opt.iskeyword = { '@', '48-57', '_', '-', '192-255' }
 
 vim.opt.fillchars:append { diff = " " }
 
+vim.opt.diffopt:append { "indent-heuristic", "algorithm:histogram" }
+
 vim.cmd [[
   set clipboard&
   set clipboard^=unnamedplus,unnamed
