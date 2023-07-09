@@ -232,9 +232,8 @@ require('packer').startup({
 
     use 'voldikss/vim-translator'
 
-    use { 'folke/noice.nvim',
-      requires = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify', 'nvim-treesitter/nvim-treesitter' }
-    }
+    use { 'j-hui/fidget.nvim', tag = 'legacy' }
+
 
     if packer_bootstrap then
       require('packer').sync()
