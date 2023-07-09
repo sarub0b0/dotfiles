@@ -234,6 +234,7 @@ require('packer').startup({
 
     use { 'j-hui/fidget.nvim', tag = 'legacy' }
 
+    use "lukas-reineke/indent-blankline.nvim"
 
     if packer_bootstrap then
       require('packer').sync()
