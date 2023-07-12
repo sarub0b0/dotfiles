@@ -86,8 +86,7 @@ require('packer').startup({
 
     use {
       "glepnir/lspsaga.nvim",
-      branch = "main",
-      event = "LspAttach",
+      after = "nvim-lspconfig",
       requires = {
         "nvim-tree/nvim-web-devicons",
         "nvim-treesitter/nvim-treesitter"
