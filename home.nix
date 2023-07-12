@@ -89,6 +89,7 @@ in
     };
     envExtra = ''
       export GITSTATUS_NUM_THREADS=4
+      export KUBECTL_EXTERNAL_DIFF=delta
     '';
     initExtraFirst = ''
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
