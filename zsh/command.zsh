@@ -71,27 +71,6 @@ __fzf () {
             -o -type d -print 2> /dev/null | fzf +m) &&
         cd "$dir"
     }
-
-    cd() {
-        if [[ "$#" != 0 ]]; then
-            builtin cd "$@";
-            return
-        fi
-        local lscmd='ls -p --color=always'
-        if [ "$(uname)" = 'Darwin' ]; then
-            lscmd='ls -p -FG'
-        fi
-        local fzf_preview_opt=' __cd_nxt="$(echo {})";
-                __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
-                echo $__cd_path;
-                echo;
-                '"${lscmd} "'"${__cd_nxt}";
-        '
-        local lsd=$(echo $HOME && echo ".." && find . -maxdepth 3 -type d -not -path '*/\.*' -and -not -path '\.')
-        local dir="$(printf '%s\n' "${lsd[@]}" | fzf --reverse --preview $fzf_preview_opt)"
-        [[ ${#dir} != 0 ]] || return 0
-        builtin cd "$dir" &> /dev/null
-    }
 }
 
 __google_cloud_sdk () {
