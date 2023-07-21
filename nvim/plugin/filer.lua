@@ -102,7 +102,7 @@ require('neo-tree').setup({
     mappings = {
       ["s"] = "noop",
       ["<cr>"] = "open_with_window_picker",
-      ["<esc>"] = "revert_preview",
+      ["<esc>"] = "cancel",
       ["P"] = { "toggle_preview", config = { use_float = true } },
       --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
       ["l"] = "focus_preview",
@@ -172,7 +172,11 @@ require('neo-tree').setup({
         --".null-ls_*",
       },
     },
-    follow_current_file = false,            -- This will find and focus the file in the active buffer every
+    follow_current_file = {
+      enabled = true,          -- This will find and focus the file in the active buffer every time
+      --                      -- the current file is changed while the tree is open.
+      leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+    },
     -- time the current file is changed while the tree is open.
     group_empty_dirs = false,               -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -208,9 +212,13 @@ require('neo-tree').setup({
     commands = {} -- Add a custom command or override a global one using the same function name
   },
   buffers = {
-    follow_current_file = true, -- This will find and focus the file in the active buffer every
+    follow_current_file = {
+      enabled = true,          -- This will find and focus the file in the active buffer every time
+      --                       -- the current file is changed while the tree is open.
+      leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+    },
     -- time the current file is changed while the tree is open.
-    group_empty_dirs = true,    -- when true, empty folders will be grouped together
+    group_empty_dirs = true, -- when true, empty folders will be grouped together
     show_unloaded = true,
     window = {
       mappings = {
