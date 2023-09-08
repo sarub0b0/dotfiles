@@ -135,7 +135,10 @@ require('packer').startup({
 
     use 'liuchengxu/vista.vim'
 
-    use 'nvim-treesitter/nvim-treesitter'
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ":TSUpdate"
+    }
 
     use 'romgrk/nvim-treesitter-context'
 
