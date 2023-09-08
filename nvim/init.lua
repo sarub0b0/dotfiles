@@ -231,7 +231,7 @@ require('packer').startup({
 
     use 'voldikss/vim-translator'
 
-    use { 'j-hui/fidget.nvim', tag = 'legacy' }
+    use { 'j-hui/fidget.nvim', tag = 'legacy', lock = true }
 
     use "lukas-reineke/indent-blankline.nvim"
 
