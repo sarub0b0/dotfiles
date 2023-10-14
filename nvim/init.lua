@@ -238,6 +238,8 @@ require('packer').startup({
 
     use "lukas-reineke/indent-blankline.nvim"
 
+    use "HiPhish/rainbow-delimiters.nvim"
+
     if packer_bootstrap then
       require('packer').sync()
     end
