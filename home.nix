@@ -194,6 +194,7 @@ in
         context = 7;
         algorithm = "histogram";
         colorMoved = "true";
+        indentHeuristic = "true";
       };
       difftool = {
         nvimdiff = {
