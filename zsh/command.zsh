@@ -65,6 +65,15 @@ __fzf () {
         fi
     }
 
+    if [ "$(uname)" = "Darwin" ]; then
+        gfb () {
+            local repo=$(__ghq_select_repo)
+            if [ -n "$repo" ]; then
+                open https://$repo
+            fi
+        }
+    fi
+
     fd () {
         local dir
         dir=$(find ${1:-.} -path '*/\.*' -prune \
