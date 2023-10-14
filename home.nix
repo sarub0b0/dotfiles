@@ -27,14 +27,20 @@ in
   programs.home-manager.enable = true;
 
   nixpkgs.overlays =
-    if builtins.match ".*-darwin" builtins.currentSystem == null then
-      [
-        (import (builtins.fetchTarball {
-          url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-        }))
-      ]
-    else
-      [ ];
+    # if builtins.match ".*-darwin" builtins.currentSystem == null then
+    #   [
+    #     (import (builtins.fetchTarball {
+    #       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    #     }))
+    #   ]
+    # else
+    #   [ ];
+    [
+      (import (builtins.fetchTarball {
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+      }))
+    ];
+
 
   home.packages = with pkgs; [
     # utils
