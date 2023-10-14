@@ -20,7 +20,7 @@ fv () {
 }
 
 __z () {
-    if builtin command -v fzf > /dev/null; then
+    if builtin command -v fzf > /dev/null && builtin command -v zshz > /dev/null; then
         unalias z
         function z () {
             if [[ -z "$*" ]]; then
