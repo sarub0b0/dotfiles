@@ -1,14 +1,28 @@
-local ok, _ = pcall(require, 'indent_blankline')
+local ok, _ = pcall(require, 'ibl')
 if not ok then
   print 'indent-blankline is not installed.'
   return
 end
 
-require("indent_blankline").setup({
+require("ibl").setup({
   enabled = true,
-  show_current_context = true,
-  show_current_context_start = true,
-  use_treesitter = true,
-  use_treesitter_scope = true,
-  show_first_indent_level = false,
+  indent = {
+    char = '│',
+    highlight = { 'VertSplit' }
+  },
+  scope = {
+    enabled = true
+  }
 })
+
+local hooks = require("ibl.hooks")
+
+hooks.register(
+  hooks.type.WHITESPACE,
+  hooks.builtin.hide_first_space_indent_level
+)
+
+hooks.register(
+  hooks.type.WHITESPACE,
+  hooks.builtin.hide_first_tab_indent_level
+)
