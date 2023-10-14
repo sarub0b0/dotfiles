@@ -98,7 +98,7 @@ in
       export KUBECTL_EXTERNAL_DIFF=delta
     '';
     initExtraFirst = ''
-      # zmodload zsh/zprof
+      [[ -n "$ZPROF" ]] && zmodload zsh/zprof
       # Keep at the top of this file.
       [[ -f "$HOME/.zsh/pre.zsh" ]] && builtin source "$HOME/.zsh/pre.zsh"
     '';
@@ -114,9 +114,9 @@ in
       # Keep at the bottom of this file.
       [[ -f "$HOME/.zsh/post.zsh" ]] && builtin source "$HOME/.zsh/post.zsh"
 
-      # if (which zprof > /dev/null 2>&1); then
-      #     zprof
-      # fi
+      if [[ -n "$ZPROF" ]] && (which zprof > /dev/null 2>&1); then
+          zprof
+      fi
     '';
     plugins = with pkgs; [
       {
