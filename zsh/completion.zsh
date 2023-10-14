@@ -8,7 +8,8 @@ fpath=(
 
 [ -d ~/.ssh/conf.d ] && cache_hosts=(`fgrep -r --color=never "Host " $HOME/.ssh/conf.d | awk '{print $2}'`)
 
-autoload -Uz compinit && compinit -i
+# home.nixで定義されているためコメントアウト
+# autoload -Uz compinit && compinit -C
 
 # #補完に関するオプション
 #setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える

@@ -86,6 +86,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    completionInit = "autoload -Uz compinit && compinit -C";
     syntaxHighlighting = {
       enable = true;
     };
