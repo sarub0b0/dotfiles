@@ -134,7 +134,7 @@ source $HOME/dotfiles/zsh/completion.zsh
 source $HOME/dotfiles/zsh/command.zsh
 
 # 一番最後
-__zcompile
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
+# __zcompile
