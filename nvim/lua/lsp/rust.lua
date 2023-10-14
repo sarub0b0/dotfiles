@@ -80,7 +80,7 @@ local opts = {
   server = {
     -- standalone file support
     -- setting it to false may improve startup time
-    standalone = false,
+    standalone = true,
     settings = {
       ['rust-analyzer'] = {
         check = {
