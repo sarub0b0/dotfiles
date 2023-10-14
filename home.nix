@@ -61,7 +61,6 @@ in
     bottom
     delta
     fd
-    thefuck
     jq
 
     # programming languages

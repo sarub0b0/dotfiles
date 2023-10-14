@@ -83,13 +83,6 @@ __google_cloud_sdk () {
     fi
 }
 
-__fuck () {
-    if builtin command -v thefuck > /dev/null; then
-        eval $(thefuck --alias)
-    fi
-}
-
 __fzf
 __z
 __google_cloud_sdk
-__fuck
