@@ -101,6 +101,8 @@ in
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
       # zmodload zsh/zprof
+      # Keep at the top of this file.
+      [[ -f "$HOME/.zsh/pre.zsh" ]] && builtin source "$HOME/.zsh/pre.zsh"
     '';
     initExtra = ''
       source ${dot_dir}/zshrc
@@ -110,6 +112,10 @@ in
         source "$(fzf-share)/completion.zsh"
         bindkey '^T' transpose-chars
       fi
+
+      # Keep at the bottom of this file.
+      [[ -f "$HOME/.zsh/post.zsh" ]] && builtin source "$HOME/.zsh/post.zsh"
+
       # if (which zprof > /dev/null 2>&1); then
       #     zprof
       # fi
