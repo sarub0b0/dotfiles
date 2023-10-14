@@ -73,16 +73,5 @@ __fzf () {
     }
 }
 
-__google_cloud_sdk () {
-
-    if [ -d "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]; then
-        # The next line updates PATH for the Google Cloud SDK.
-        . ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-        # The next line enables shell command completion for gcloud.
-        . ${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-    fi
-}
-
 __fzf
 __z
-__google_cloud_sdk
