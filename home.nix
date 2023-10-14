@@ -101,6 +101,7 @@ in
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
+      # zmodload zsh/zprof
     '';
     initExtra = ''
       source ${dot_dir}/zshrc
@@ -110,6 +111,9 @@ in
         source "$(fzf-share)/completion.zsh"
         bindkey '^T' transpose-chars
       fi
+      # if (which zprof > /dev/null 2>&1); then
+      #     zprof
+      # fi
     '';
     plugins = with pkgs; [
       {

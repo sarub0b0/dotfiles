@@ -1,5 +1,3 @@
-# zmodload zsh/zprof && zprof
-
 __alias () {
 
     alias slcvs='cvs -d :ext:kosay@asagao.jaist.ac.jp:/cvsroot'
@@ -140,6 +138,3 @@ __zcompile
 
 [ -f ~/.zshrc.extend ] && source ~/.zshrc.extend
 
-# if (which zprof > /dev/null 2>&1); then
-#     zprof
-# fi
