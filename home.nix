@@ -144,10 +144,7 @@ in
     withNodeJs = true;
 
     extraPackages = with pkgs; [
-      bat
       tree-sitter
-      hadolint
-      nodePackages.markdownlint-cli
     ];
 
     extraConfig = ''
