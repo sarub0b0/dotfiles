@@ -12,7 +12,7 @@ vim.opt.fileencodings = { 'utf-8', 'iso2022-jp', 'euc-jp', 'sjis' }
 
 vim.opt.shortmess:append { I = true, S = true }
 
-vim.opt.helplang = { 'ja', 'en' }
+vim.opt.helplang = { 'ja' }
 
 vim.opt.formatoptions:append { m = true, M = true }
 
