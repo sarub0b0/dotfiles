@@ -14,7 +14,7 @@ vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#99c794", ctermfg = 114 
 vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#c594c5", ctermfg = 176 })
 vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#62b3b2", ctermfg = 73 })
 
-require("rainbow-delimiters.setup")({
+require("rainbow-delimiters.setup").setup({
   strategy = {
     [''] = rainbow_delimiters.strategy['global'],
     vim = rainbow_delimiters.strategy['local'],
