@@ -67,7 +67,17 @@ if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
   vim.o.shellxquote = nil
 end
 
-require('packer').startup({
+local packer = require('packer')
+
+packer.init({
+  git = {
+    subcommands = {
+      update = 'pull --progress --rebase --force'
+    }
+  }
+})
+
+packer.startup({
   function(use)
     use 'wbthomason/packer.nvim'
     use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
