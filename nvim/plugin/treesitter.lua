@@ -9,7 +9,21 @@ end
 require('nvim-ts-autotag').setup({})
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'markdown', 'markdown_inline', 'yaml', 'c', 'lua', 'rust', 'json', 'gitcommit' },
+  ensure_installed = {
+    'markdown',
+    'markdown_inline',
+    'yaml',
+    'c',
+    'lua',
+    'rust',
+    'json',
+    'gitcommit',
+    'gitignore',
+    'gitattributes',
+    'git_rebase',
+    'git_config',
+    'diff'
+  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -37,3 +51,5 @@ require('nvim-treesitter.configs').setup {
     }
   }
 }
+
+
