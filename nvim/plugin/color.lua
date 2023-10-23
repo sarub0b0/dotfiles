@@ -31,6 +31,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "DiffLine", { fg = "#6699cc" })
     vim.api.nvim_set_hl(0, "DiffRemoved", { fg = "#ec5f67" })
     vim.api.nvim_set_hl(0, "DiffSubname", { fg = "#5fb3b3" })
+
+    vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdded" })
+    vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffRemoved" })
     -- end
 
     vim.api.nvim_set_hl(0, "GitSignsAddInline", { fg = "#99c794", bold = true })
