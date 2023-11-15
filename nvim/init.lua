@@ -95,7 +95,7 @@ packer.startup({
     use 'simrat39/rust-tools.nvim'
 
     use {
-      "glepnir/lspsaga.nvim",
+      "nvimdev/lspsaga.nvim",
       after = "nvim-lspconfig",
       requires = {
         "nvim-tree/nvim-web-devicons",

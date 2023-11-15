@@ -20,6 +20,9 @@ local M = {
       symbol_in_winbar = {
         separator = ' ▶︎ ',
       },
+      implement = {
+        enable = true,
+      },
       ui = {
         -- currently only round theme
         theme = 'round',
@@ -54,8 +57,9 @@ local M = {
         kind = {},
       },
     })
+
     vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
-    vim.keymap.set('n', 'gl', '<cmd>Lspsaga lsp_finder<CR>')
+    vim.keymap.set('n', 'gl', '<cmd>Lspsaga finder<CR>')
     vim.keymap.set({ 'n', 'v' }, '<Space>ca', '<cmd>Lspsaga code_action<CR>')
     vim.keymap.set('n', '<Space>rn', '<cmd>Lspsaga rename<CR>')
     vim.keymap.set('n', 'gd', '<cmd>Lspsaga goto_definition<CR>')
@@ -73,13 +77,14 @@ local M = {
     vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
     vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
-
     vim.keymap.set("n", "[G", function()
       require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true })
     vim.keymap.set("n", "]G", function()
       require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { silent = true })
+
+    vim.keymap.set({ 'n', 't' }, "\\\\", '<cmd>Lspsaga term_toggle<CR>')
     -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help)
     -- vim.keymap.set('n', '<Space>rn', vim.lsp.buf.rename)
     -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
