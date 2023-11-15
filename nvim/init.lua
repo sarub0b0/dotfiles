@@ -141,8 +141,6 @@ packer.startup({
 
     use 'mhartington/oceanic-next'
 
-    use 'voldikss/vim-floaterm'
-
     use 'liuchengxu/vista.vim'
 
     use {
