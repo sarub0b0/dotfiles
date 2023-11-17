@@ -62,6 +62,7 @@ in
     delta
     fd
     jq
+    stern
 
     # programming languages
     asdf-vm
