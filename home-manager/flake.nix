@@ -25,6 +25,9 @@
 
             modules = [
               ./home.nix
+              ({
+                nixpkgs.overlays = [ neovim-nightly-overlay.overlay ];
+              })
             ];
           };
       }
