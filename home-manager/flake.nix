@@ -8,25 +8,25 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."kosay" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+  outputs = { flake-utils, neovim-nightly-overlay, nixpkgs, home-manager, ... }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        username = builtins.getEnv "USER";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages.homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration
+          {
+            inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home.nix
-        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
-    };
+            modules = [
+              ./home.nix
+            ];
+          };
+      }
+    );
 }
