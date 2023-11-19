@@ -50,8 +50,6 @@ local packer_bootstrap = ensure_packer()
 if not packer_bootstrap then
 end
 
-vim.opt.runtimepath:append { '~/dotfiles/nvim' }
-vim.opt.runtimepath:append { '~/dotfiles/nvim/after' }
 
 if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
   if vim.fn.executable('pwsh') then

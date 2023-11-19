@@ -134,10 +134,6 @@ in
     extraPackages = with pkgs; [
       tree-sitter
     ];
-
-    extraConfig = ''
-      source ${dot_dir}/nvim/init.lua
-    '';
   };
 
   programs.vim = {
@@ -225,6 +221,10 @@ in
 
   xdg.configFile."kitty/kitty.conf" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/kitty.conf";
+  };
+
+  xdg.configFile."nvim" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/nvim";
   };
 }
 
