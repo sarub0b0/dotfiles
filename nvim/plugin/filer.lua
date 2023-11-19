@@ -7,15 +7,26 @@ for _, value in ipairs({ 'window-picker', 'neo-tree' }) do
 end
 
 require('window-picker').setup({
-  autoselect_one = true,
-  include_current = false,
   filter_rules = {
+    include_current = false,
+    autoselect_one = true,
     bo = {
       filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
       buftype = { 'terminal', 'quickfix' }
     }
   },
-  other_win_hl_color = '#6699cc'
+  highlights = {
+    statusline = {
+      unfocused = {
+        bg = '#6699cc'
+      }
+    },
+    winbar = {
+      unfocused = {
+        bg = '#6699cc'
+      }
+    },
+  },
 })
 
 vim.g.neo_tree_remove_legacy_commands = 1
@@ -249,7 +260,7 @@ require('neo-tree').setup({
     sources = {
       { source = "filesystem", display_name = " 󰉓 Files " },
       { source = "git_status", display_name = " 󰊢 Git " },
-      { source = "buffers",    display_name = "  Buffers " },
+      { source = "buffers", display_name = "  Buffers " },
     },
   },
 })
