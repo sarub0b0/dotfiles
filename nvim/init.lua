@@ -28,28 +28,175 @@ for _, v in pairs(vim.g.augroup_names) do
   vim.api.nvim_create_augroup(v, {})
 end
 
-
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
 if vim.fn.filereadable('~/.local/share/cspell/vim.txt.gz') ~= 1 then
   local vim_dictionary_url = 'https://github.com/iamcco/coc-spell-checker/raw/master/dicts/vim/vim.txt.gz'
   io.popen('curl -fsSLo ~/.local/share/cspell/vim.txt.gz --create-dirs ' .. vim_dictionary_url)
 end
 
-local packer_bootstrap = ensure_packer()
-
-if not packer_bootstrap then
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 
+vim.opt.runtimepath:prepend(lazypath)
+
+require('lazy').setup({
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    {
+      'nvimtools/none-ls.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+    },
+    'simrat39/rust-tools.nvim',
+    {
+      'nvimdev/lspsaga.nvim',
+      config = function()
+        require('lazy/lspsaga').setup()
+      end,
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons'
+      }
+    },
+    {
+      "jay-babu/mason-null-ls.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      dependencies = {
+        "williamboman/mason.nvim",
+        'nvimtools/none-ls.nvim',
+      },
+    },
+    'RRethy/nvim-treesitter-endwise',
+    'SirVer/ultisnips',
+    'honza/vim-snippets',
+    {
+      'L3MON4D3/LuaSnip',
+      version = "V2.*",
+      build = 'nix-shell -p luajit --run "make install_jsregexp"',
+    },
+    "rafamadriz/friendly-snippets",
+    'onsails/lspkind.nvim',
+    {
+      'hrsh7th/nvim-cmp',
+      dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'dmitmel/cmp-cmdline-history',
+        'davidsierradz/cmp-conventionalcommits',
+        'saadparwaiz1/cmp_luasnip',
+        'f3fora/cmp-spell',
+      }
+    },
+    {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter"
+    },
+    'mhartington/oceanic-next',
+    'liuchengxu/vista.vim',
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ":TSUpdate"
+    },
+    'nvim-treesitter/nvim-treesitter-context',
+    {
+      'windwp/nvim-ts-autotag',
+      dependencies = { 'nvim-treesitter/nvim-treesitter' }
+    },
+    'mvllow/modes.nvim',
+    'tpope/vim-surround',
+    'tpope/vim-repeat',
+    'nvim-telescope/telescope-ghq.nvim',
+    {
+      'nvim-telescope/telescope.nvim',
+      branch = '0.1.x',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ghq.nvim'
+      },
+    },
+    'nvim-tree/nvim-web-devicons',
+    {
+      'akinsho/bufferline.nvim',
+      version = "*",
+      dependencies = 'nvim-tree/nvim-web-devicons',
+    },
+    {
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
+    'mfussenegger/nvim-dap',
+    {
+      'junegunn/fzf',
+      build = ":call fzf#install()"
+    },
+    'junegunn/fzf.vim',
+    'junegunn/vim-easy-align',
+    {
+      'nvim-neo-tree/neo-tree.nvim',
+      branch = "v3.x",
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-tree/nvim-web-devicons',
+        'MunifTanjim/nui.nvim',
+        's1n7ax/nvim-window-picker',
+      }
+    },
+    {
+      's1n7ax/nvim-window-picker',
+      name = 'window-picker',
+      event = 'VeryLazy',
+      version = '2.*',
+      config = function()
+        require 'window-picker'.setup()
+      end,
+    },
+    'numToStr/Comment.nvim',
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    'kana/vim-submode',
+    {
+      'vim-jp/vimdoc-ja',
+      ft = { 'help' },
+      lazy = true,
+    },
+    -- git
+    'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim',
+    -- snippet
+    "smjonas/snippet-converter.nvim",
+    {
+      "folke/trouble.nvim",
+      dependencies = "nvim-tree/nvim-web-devicons",
+    },
+    'sindrets/diffview.nvim',
+    'aklt/plantuml-syntax',
+    "LudoPinelli/comment-box.nvim",
+    {
+      'google/executor.nvim',
+      dependencies = "MunifTanjim/nui.nvim"
+    },
+    'uga-rosa/ccc.nvim',
+    'uga-rosa/translate.nvim',
+    'voldikss/vim-translator',
+    'j-hui/fidget.nvim',
+    "lukas-reineke/indent-blankline.nvim",
+    "HiPhish/rainbow-delimiters.nvim",
+  },
+  {
+    ui = {
+      border = "single"
+    }
+  }
+)
 
 if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
   if vim.fn.executable('pwsh') then
@@ -64,201 +211,6 @@ if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
   vim.o.shellquote = nil
   vim.o.shellxquote = nil
 end
-
-local packer = require('packer')
-
-packer.init({
-  git = {
-    subcommands = {
-      update = 'pull --progress --rebase --force'
-    }
-  }
-})
-
-packer.startup({
-  function(use)
-    use 'wbthomason/packer.nvim'
-    use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
-    use "nvim-lua/plenary.nvim"
-
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-    use "neovim/nvim-lspconfig"
-    use {
-      'jose-elias-alvarez/null-ls.nvim',
-      requires = { { 'nvim-lua/plenary.nvim' } },
-    }
-    use "jayp0521/mason-null-ls.nvim"
-
-    use 'simrat39/rust-tools.nvim'
-
-    use {
-      "nvimdev/lspsaga.nvim",
-      after = "nvim-lspconfig",
-      requires = {
-        "nvim-tree/nvim-web-devicons",
-        "nvim-treesitter/nvim-treesitter"
-      },
-      config = require('lazy/lspsaga').setup
-    }
-
-    use 'RRethy/nvim-treesitter-endwise'
-
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'dmitmel/cmp-cmdline-history'
-    use 'davidsierradz/cmp-conventionalcommits'
-
-    use 'SirVer/ultisnips'
-    use 'honza/vim-snippets'
-    use {
-      'L3MON4D3/LuaSnip',
-      run = 'nix-shell -p luajit --run "make install_jsregexp"',
-    }
-    use 'saadparwaiz1/cmp_luasnip'
-    use "rafamadriz/friendly-snippets"
-
-    use 'f3fora/cmp-spell'
-    use 'onsails/lspkind.nvim'
-    use {
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
-        'dmitmel/cmp-cmdline-history',
-        'davidsierradz/cmp-conventionalcommits',
-        'saadparwaiz1/cmp_luasnip',
-      }
-    }
-
-    use 'windwp/nvim-autopairs'
-
-    use 'mhartington/oceanic-next'
-
-    use 'liuchengxu/vista.vim'
-
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ":TSUpdate"
-    }
-
-    use 'romgrk/nvim-treesitter-context'
-
-    use { 'windwp/nvim-ts-autotag', requires = { 'nvim-treesitter/nvim-treesitter' } }
-
-    use 'mvllow/modes.nvim'
-
-
-    use 'tpope/vim-surround'
-    use 'tpope/vim-repeat'
-    use 'nvim-telescope/telescope-ghq.nvim'
-    use {
-      'nvim-telescope/telescope.nvim',
-      tag = '0.1.*',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-ghq.nvim'
-      },
-    }
-
-    use 'nvim-tree/nvim-web-devicons'
-    use {
-      'akinsho/bufferline.nvim',
-      tag = "*",
-      requires = 'nvim-tree/nvim-web-devicons',
-    }
-
-    use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-
-    use 'mfussenegger/nvim-dap'
-
-    use { 'junegunn/fzf', run = ":call fzf#install()" }
-    use { 'junegunn/fzf.vim' }
-    use { 'junegunn/vim-easy-align' }
-
-    use {
-      'nvim-neo-tree/neo-tree.nvim',
-      branch = "v3.x",
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',
-        'MunifTanjim/nui.nvim',
-        {
-          's1n7ax/nvim-window-picker',
-          tag = 'v1.*',
-        }
-      }
-    }
-
-    use "kwkarlwang/bufresize.nvim"
-
-    use 'numToStr/Comment.nvim'
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
-
-    use 'kana/vim-submode'
-
-    use {
-      'vim-jp/vimdoc-ja',
-      ft = { 'help' },
-      opt = true,
-    }
-
-    -- git
-    use 'tpope/vim-fugitive'
-    use 'lewis6991/gitsigns.nvim'
-
-    -- snippet
-    use "smjonas/snippet-converter.nvim"
-
-
-    use {
-      "folke/trouble.nvim",
-      requires = "nvim-tree/nvim-web-devicons",
-    }
-
-    use 'sindrets/diffview.nvim'
-
-    use 'aklt/plantuml-syntax'
-
-    use "LudoPinelli/comment-box.nvim"
-
-    use {
-      'google/executor.nvim',
-      requires = "MunifTanjim/nui.nvim"
-    }
-
-    use 'uga-rosa/ccc.nvim'
-
-    use 'uga-rosa/translate.nvim'
-
-    use 'voldikss/vim-translator'
-
-    use { 'j-hui/fidget.nvim', tag = 'legacy', lock = true }
-
-    use "lukas-reineke/indent-blankline.nvim"
-
-    use "HiPhish/rainbow-delimiters.nvim"
-
-    if packer_bootstrap then
-      require('packer').sync()
-    end
-  end,
-  config = {
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'single' })
-      end
-    }
-  }
-})
-
 
 vim.cmd.filetype('plugin indent on')
 vim.cmd.syntax('on')
