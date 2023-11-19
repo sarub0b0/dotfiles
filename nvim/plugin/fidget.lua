@@ -5,10 +5,14 @@ if not ok then
 end
 
 require('fidget').setup({
-  text = {
-    spinner = "dots", -- animation shown when tasks are ongoing
+  progress = {
+    lsp = {
+      progress_ringbuf_size = 1024,
+    }
   },
-  window = {
-    blend = 0, -- &winblend for the window
+  notification = {
+    window = {
+      winblend = 0, -- &winblend for the window
+    },
   },
 })
