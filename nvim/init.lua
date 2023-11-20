@@ -190,6 +190,7 @@ require('lazy').setup({
     'j-hui/fidget.nvim',
     "lukas-reineke/indent-blankline.nvim",
     "HiPhish/rainbow-delimiters.nvim",
+    "github/copilot.vim",
   },
   {
     ui = {
