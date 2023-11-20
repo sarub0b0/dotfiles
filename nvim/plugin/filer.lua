@@ -11,7 +11,7 @@ require('window-picker').setup({
     include_current = false,
     autoselect_one = true,
     bo = {
-      filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+      filetype = { 'neo-tree', 'neo-tree-popup', 'notify', 'fidget' },
       buftype = { 'terminal', 'quickfix' }
     }
   },
