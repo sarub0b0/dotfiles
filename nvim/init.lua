@@ -190,7 +190,16 @@ require('lazy').setup({
     'j-hui/fidget.nvim',
     "lukas-reineke/indent-blankline.nvim",
     "HiPhish/rainbow-delimiters.nvim",
-    "github/copilot.vim",
+    {
+      "github/copilot.vim",
+      config = function()
+        vim.g.copilot_filetypes = {
+          gitcommit = true,
+          markdown = true,
+          yaml = true,
+        }
+      end
+    },
   },
   {
     ui = {
