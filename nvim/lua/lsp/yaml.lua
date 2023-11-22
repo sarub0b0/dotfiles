@@ -21,6 +21,9 @@ require('lspconfig').yamlls.setup {
           "*.yaml"
         },
       },
+      customTags = {
+        "!reference sequence"
+      }
     },
   }
 }
