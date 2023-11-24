@@ -10,6 +10,7 @@ return {
       notification = {
         window = {
           winblend = 0, -- &winblend for the window
+          border = "single"
         },
       }
     }
