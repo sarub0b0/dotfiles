@@ -1,6 +1,3 @@
-vim.g.mapleader = '\\'
-vim.g.maplocalleader = '\\'
-
 vim.keymap.set('', '<C-s>', '<Nop>', {})
 vim.keymap.set('n', '<ESC><ESC>', '<Cmd>noh<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-]><C-]>', '<Cmd>noh<CR>', { noremap = true, silent = true })

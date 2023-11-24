@@ -18,6 +18,8 @@ vim.g.loaded_getscriptPlugin = 1
 vim.g.loaded_matchparen = 1
 vim.g.loaded_spellfile_plugin = 1
 
+vim.g.mapleader = '\\'
+vim.g.maplocalleader = '\\'
 
 vim.g.augroup_names = {
   my_auto_cmds = 'MyAutoCmds',
@@ -47,159 +49,11 @@ end
 
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup({
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+require("lazy").setup(
+  {
     {
-      'nvimtools/none-ls.nvim',
-      dependencies = { 'nvim-lua/plenary.nvim' },
-    },
-    'simrat39/rust-tools.nvim',
-    {
-      'nvimdev/lspsaga.nvim',
-      config = function()
-        require('lazy/lspsaga').setup()
-      end,
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons'
-      }
-    },
-    {
-      "jay-babu/mason-null-ls.nvim",
-      event = { "BufReadPre", "BufNewFile" },
-      dependencies = {
-        "williamboman/mason.nvim",
-        'nvimtools/none-ls.nvim',
-      },
-    },
-    'RRethy/nvim-treesitter-endwise',
-    'SirVer/ultisnips',
-    'honza/vim-snippets',
-    {
-      'L3MON4D3/LuaSnip',
-      version = "V2.*",
-      build = 'nix-shell -p luajit --run "make install_jsregexp"',
-    },
-    "rafamadriz/friendly-snippets",
-    'onsails/lspkind.nvim',
-    {
-      'hrsh7th/nvim-cmp',
-      dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
-        'dmitmel/cmp-cmdline-history',
-        'davidsierradz/cmp-conventionalcommits',
-        'saadparwaiz1/cmp_luasnip',
-        'f3fora/cmp-spell',
-      }
-    },
-    {
-      'windwp/nvim-autopairs',
-      event = "InsertEnter"
-    },
-    'mhartington/oceanic-next',
-    'liuchengxu/vista.vim',
-    {
-      'nvim-treesitter/nvim-treesitter',
-      build = ":TSUpdate"
-    },
-    'nvim-treesitter/nvim-treesitter-context',
-    {
-      'windwp/nvim-ts-autotag',
-      dependencies = { 'nvim-treesitter/nvim-treesitter' }
-    },
-    'mvllow/modes.nvim',
-    'tpope/vim-surround',
-    'tpope/vim-repeat',
-    'nvim-telescope/telescope-ghq.nvim',
-    {
-      'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-ghq.nvim'
-      },
-    },
-    'nvim-tree/nvim-web-devicons',
-    {
-      'akinsho/bufferline.nvim',
-      version = "*",
-      dependencies = 'nvim-tree/nvim-web-devicons',
-    },
-    {
-      'nvim-lualine/lualine.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
-    'mfussenegger/nvim-dap',
-    {
-      'junegunn/fzf',
-      build = ":call fzf#install()"
-    },
-    'junegunn/fzf.vim',
-    'junegunn/vim-easy-align',
-    {
-      'nvim-neo-tree/neo-tree.nvim',
-      branch = "v3.x",
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',
-        'MunifTanjim/nui.nvim',
-        's1n7ax/nvim-window-picker',
-      }
-    },
-    {
-      's1n7ax/nvim-window-picker',
-      name = 'window-picker',
-      event = 'VeryLazy',
-      version = '2.*',
-      config = function()
-        require 'window-picker'.setup()
-      end,
-    },
-    'numToStr/Comment.nvim',
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    'kana/vim-submode',
-    {
-      'vim-jp/vimdoc-ja',
-      ft = { 'help' },
-      lazy = true,
-    },
-    -- git
-    'tpope/vim-fugitive',
-    'lewis6991/gitsigns.nvim',
-    -- snippet
-    "smjonas/snippet-converter.nvim",
-    {
-      "folke/trouble.nvim",
-      dependencies = "nvim-tree/nvim-web-devicons",
-    },
-    'sindrets/diffview.nvim',
-    'aklt/plantuml-syntax',
-    "LudoPinelli/comment-box.nvim",
-    {
-      'google/executor.nvim',
-      dependencies = "MunifTanjim/nui.nvim"
-    },
-    'uga-rosa/ccc.nvim',
-    'uga-rosa/translate.nvim',
-    'voldikss/vim-translator',
-    'j-hui/fidget.nvim',
-    "lukas-reineke/indent-blankline.nvim",
-    "HiPhish/rainbow-delimiters.nvim",
-    {
-      "github/copilot.vim",
-      config = function()
-        vim.g.copilot_filetypes = {
-          gitcommit = true,
-          markdown = true,
-          yaml = true,
-        }
-      end
-    },
+      import = "plugins"
+    }
   },
   {
     ui = {
