@@ -1,6 +1,7 @@
 return {
   {
     'tpope/vim-fugitive',
+    lazy = false,
     init = function()
       vim.g.fugitive_no_maps = 0
     end,
