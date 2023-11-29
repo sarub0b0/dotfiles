@@ -154,6 +154,7 @@ in
       mt = "mergetool";
       dt = "difftool";
       fe = "fetch";
+      pu = "pull";
     };
     ignores = lib.strings.splitString "\n" (builtins.readFile "${dot_dir}/gitignore");
     extraConfig = {
