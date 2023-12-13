@@ -3,7 +3,8 @@
   "extends": ["config:base"],
   "platformAutomerge": true,
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "schedule": "at any time"
   },
   "nix": {
     "enabled": true
