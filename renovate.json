@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "platformAutomerge": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "enabledManagers": ["nix"]
 }
