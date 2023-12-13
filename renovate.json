@@ -5,5 +5,8 @@
   "lockFileMaintenance": {
     "enabled": true
   },
+  "nix": {
+    "enabled": true
+  },
   "enabledManagers": ["nix"]
 }
