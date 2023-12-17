@@ -39,6 +39,8 @@ return {
 
           vim.api.nvim_set_hl(0, "NormalFloat", {})
 
+          vim.api.nvim_set_hl(0, 'WinSeparator', { link = 'VertSplit' })
+
           for _, hl in ipairs({
             'Normal',
             'LineNr',
