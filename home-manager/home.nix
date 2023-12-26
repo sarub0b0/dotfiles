@@ -79,7 +79,7 @@ in
       share = false;
     };
     envExtra = ''
-      export GITSTATUS_NUM_THREADS=4
+      # export GITSTATUS_NUM_THREADS=4
       export KUBECTL_EXTERNAL_DIFF=delta
     '';
     initExtraFirst = ''
