@@ -41,6 +41,12 @@ return {
 
           vim.api.nvim_set_hl(0, 'WinSeparator', { link = 'VertSplit' })
 
+          local status_line = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
+          vim.api.nvim_set_hl(0, 'WinBar', status_line)
+
+          local status_line_nc = vim.api.nvim_get_hl(0, { name = 'StatusLineNC' })
+          vim.api.nvim_set_hl(0, 'WinBarNC', status_line_nc)
+
           for _, hl in ipairs({
             'Normal',
             'LineNr',
@@ -50,6 +56,8 @@ return {
             'Folded',
             'Floaterm',
             'FloatermBorder',
+            'WinBar',
+            'WinBarNC',
           }) do
             local args = vim.api.nvim_get_hl(0, { name = hl })
 
