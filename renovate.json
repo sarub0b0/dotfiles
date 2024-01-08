@@ -5,7 +5,8 @@
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["at any time"],
-    "automerge": true
+    "automerge": true,
+    "ignoreTests": true
   },
   "nix": {
     "enabled": true
