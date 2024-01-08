@@ -4,7 +4,8 @@
   "platformAutomerge": true,
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["at any time"]
+    "schedule": ["at any time"],
+    "automerge": true
   },
   "nix": {
     "enabled": true
