@@ -9,3 +9,4 @@ cspell/user.txt
 !/cspell/cspell.json
 
 .luarc.json
+lazy-lock.json
