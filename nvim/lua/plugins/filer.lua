@@ -37,6 +37,33 @@ return {
       'MunifTanjim/nui.nvim',
       's1n7ax/nvim-window-picker',
     },
+
+    config = function(_, opts)
+      local sign = {
+        error = { text = " ", texthl = "DiagnosticSignError" },
+        warn = { text = " ", texthl = "DiagnosticSignWarn" },
+        info = { text = " ", texthl = "DiagnosticSignInfo" },
+        hint = { text = "󰌵", texthl = "DiagnosticSignHint" },
+      };
+
+      vim.fn.sign_define("DiagnosticSignError", sign.error)
+      vim.fn.sign_define("DiagnosticSignWarn", sign.warn)
+      vim.fn.sign_define("DiagnosticSignInfo", sign.info)
+      vim.fn.sign_define("DiagnosticSignHint", sign.hint)
+
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = sign.error.text,
+            [vim.diagnostic.severity.WARN] = sign.warn.text,
+            [vim.diagnostic.severity.INFO] = sign.info.text,
+            [vim.diagnostic.severity.HINT] = sign.hint.text,
+          }
+        }
+      })
+
+      require('neo-tree').setup(opts)
+    end,
     opts = {
       close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
       popup_border_style = "rounded",
