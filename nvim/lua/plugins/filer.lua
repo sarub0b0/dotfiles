@@ -131,6 +131,26 @@ return {
             conflict  = "",
           }
         },
+        -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
+        file_size = {
+          enabled = true,
+          required_width = 64, -- min width of window required to show this column
+        },
+        type = {
+          enabled = true,
+          required_width = 122, -- min width of window required to show this column
+        },
+        last_modified = {
+          enabled = true,
+          required_width = 88, -- min width of window required to show this column
+        },
+        created = {
+          enabled = true,
+          required_width = 110, -- min width of window required to show this column
+        },
+        symlink_target = {
+          enabled = true,
+        }
       },
       -- A list of functions, each representing a global custom command
       -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
@@ -243,6 +263,14 @@ return {
             ["<c-x>"] = "clear_filter",
             ["[g"] = "prev_git_modified",
             ["]g"] = "next_git_modified",
+            ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["oc"] = { "order_by_created", nowait = false },
+            ["od"] = { "order_by_diagnostics", nowait = false },
+            ["og"] = { "order_by_git_status", nowait = false },
+            ["om"] = { "order_by_modified", nowait = false },
+            ["on"] = { "order_by_name", nowait = false },
+            ["os"] = { "order_by_size", nowait = false },
+            ["ot"] = { "order_by_type", nowait = false },
           },
           fuzzy_finder_mappings = {
             -- define keymaps for filter popup window in fuzzy_finder_mode
@@ -269,6 +297,13 @@ return {
             ["bd"] = "buffer_delete",
             ["u"] = "navigate_up",
             ["."] = "set_root",
+            ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["oc"] = { "order_by_created", nowait = false },
+            ["od"] = { "order_by_diagnostics", nowait = false },
+            ["om"] = { "order_by_modified", nowait = false },
+            ["on"] = { "order_by_name", nowait = false },
+            ["os"] = { "order_by_size", nowait = false },
+            ["ot"] = { "order_by_type", nowait = false },
           }
         },
       },
@@ -283,6 +318,13 @@ return {
             ["gc"] = "git_commit",
             ["gp"] = "git_push",
             ["gg"] = "git_commit_and_push",
+            ["o"]  = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+            ["oc"] = { "order_by_created", nowait = false },
+            ["od"] = { "order_by_diagnostics", nowait = false },
+            ["om"] = { "order_by_modified", nowait = false },
+            ["on"] = { "order_by_name", nowait = false },
+            ["os"] = { "order_by_size", nowait = false },
+            ["ot"] = { "order_by_type", nowait = false },
           }
         }
       },
