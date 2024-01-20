@@ -4,6 +4,7 @@
 .yardoc
 
 /home-manager/nix/
+!/home-manager/nix/default.nix.example
 
 cspell/user.txt
 !/cspell/cspell.json
