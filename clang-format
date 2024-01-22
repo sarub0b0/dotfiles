@@ -9,7 +9,7 @@ AllowShortFunctionsOnASingleLine: None
 AlwaysBreakAfterDefinitionReturnType: false
 BinPackArguments: false
 BinPackParameters: false
-ColumnLimit: 78
+ColumnLimit: 100
 DerivePointerAlignment: false
 IndentCaseLabels: true
 KeepEmptyLinesAtTheStartOfBlocks: true
