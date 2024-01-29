@@ -62,3 +62,8 @@ vim.cmd [[
 vim.opt.pumblend = 10
 
 vim.opt.termguicolors = true
+
+vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'expr'
