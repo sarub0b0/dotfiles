@@ -30,9 +30,12 @@ for _, v in pairs(vim.g.augroup_names) do
   vim.api.nvim_create_augroup(v, {})
 end
 
-if vim.fn.filereadable('~/.local/share/cspell/vim.txt.gz') ~= 1 then
+if vim.fn.filereadable(vim.fn.expand('~/.local/share/cspell/vim.txt.gz')) == 0 then
   local vim_dictionary_url = 'https://github.com/iamcco/coc-spell-checker/raw/master/dicts/vim/vim.txt.gz'
-  io.popen('curl -fsSLo ~/.local/share/cspell/vim.txt.gz --create-dirs ' .. vim_dictionary_url)
+  local cmd = { 'curl', '-fsSLo', vim.fn.expand('~/.local/share/cspell/vim.txt.gz'), '--create-dirs', vim_dictionary_url }
+  io.popen(table.concat(cmd, ' '))
+
+  print('Downloaded cspell vim dictionary.')
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
