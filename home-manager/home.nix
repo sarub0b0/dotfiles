@@ -155,6 +155,8 @@ in
       dt = "difftool";
       fe = "fetch";
       pu = "pull";
+      sw = "switch";
+      rs = "restore";
     };
     ignores = lib.strings.splitString "\n" (builtins.readFile "${dot_dir}/gitignore");
     extraConfig = {
