@@ -89,8 +89,7 @@ return {
           require("null-ls").builtins.diagnostics.buf,
           require("null-ls").builtins.formatting.buf,
           --
-          require("null-ls").builtins.diagnostics.cspell.with(cspell_with),
-          require("null-ls").builtins.code_actions.cspell.with(cspell_with),
+          require("null-ls").builtins.completion.spell,
 
           require("null-ls").builtins.diagnostics.hadolint,
 
@@ -98,7 +97,6 @@ return {
           require("null-ls").builtins.formatting.markdownlint,
 
           require("null-ls").builtins.formatting.prettier,
-          require("null-ls").builtins.formatting.rustfmt.with({ extra_args = { "--edition=2021" } }),
           require("null-ls").builtins.formatting.terraform_fmt,
 
           require("null-ls").builtins.formatting.shfmt,
