@@ -149,5 +149,20 @@ return {
         yaml = true,
       }
     end
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      "github/copilot.vim",
+      "nvim-lua/plenary.nvim", -- for curl, log wrapper
+    },
+    opts = {
+      debug = false,
+      -- See Configuration section for rest
+      window = {
+        layout = "float",
+      }
+    },
   }
 }
