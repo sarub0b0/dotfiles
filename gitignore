@@ -85,3 +85,5 @@ terraform.rc
 # Auto-generated tag files
 tags
 tags-*
+
+worktree/
