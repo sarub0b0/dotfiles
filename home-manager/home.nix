@@ -70,7 +70,9 @@ in
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
     completionInit = "autoload -Uz compinit && compinit -C";
     syntaxHighlighting = {
       enable = true;
