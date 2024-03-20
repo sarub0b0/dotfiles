@@ -136,6 +136,10 @@ in
     extraPackages = with pkgs; [
       tree-sitter
     ];
+
+    extraLuaPackages = ps: [
+      ps.tiktoken_core
+    ];
   };
 
   programs.vim = {
