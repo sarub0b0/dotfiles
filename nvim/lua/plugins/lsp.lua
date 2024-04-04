@@ -73,16 +73,22 @@ return {
       require('lsp/yaml')
       require('lsp/clangd')
     end,
-    keys = {
-      {
-        '<Space>f',
-        function()
-          local view = vim.fn.winsaveview()
-          vim.lsp.buf.format { async = false }
-          vim.fn.winrestview(view)
-        end,
+    keys = function()
+      local format = function()
+        local view = vim.fn.winsaveview()
+        vim.lsp.buf.format { async = false }
+        vim.fn.winrestview(view)
+      end
+
+      local toggle_inlay_hints = function()
+        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+      end
+
+      return {
+        { '<Space>f', format, },
+        { '<Space>h', toggle_inlay_hints, desc = 'Toggle inlay hints' },
       }
-    }
+    end
   },
   {
     'nvimtools/none-ls.nvim',
@@ -153,10 +159,18 @@ return {
       },
     },
     keys = function()
+      local diagnostic_goto_prev_error = function()
+        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+      end
+
+      local diagnostic_goto_next_error = function()
+        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+      end
+
       return {
         { 'K',          '<cmd>Lspsaga hover_doc<CR>' },
         { 'gl',         '<cmd>Lspsaga finder<CR>' },
-        { '<Space>ca',  '<cmd>Lspsaga code_action<CR>',                                                                       mode = { 'n', 'v' } },
+        { '<Space>ca',  '<cmd>Lspsaga code_action<CR>',               mode = { 'n', 'v' } },
         { '<Space>rn',  '<cmd>Lspsaga rename<CR>' },
         { 'gd',         '<cmd>Lspsaga goto_definition<CR>' },
         { 'gD',         '<cmd>Lspsaga peek_definition<CR>' },
@@ -171,9 +185,9 @@ return {
         { "<leader>o",  "<cmd>Lspsaga outline<CR>", },
         { "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>" },
         { "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>" },
-        { '[G',         function() require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, silent = true },
-        { ']G',         function() require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR }) end, silent = true },
-        { '\\\\',       '<cmd>Lspsaga term_toggle<CR>',                                                                       mode = { 'n', 't' } },
+        { '[G',         diagnostic_goto_prev_error,                   silent = true },
+        { ']G',         diagnostic_goto_next_error,                   silent = true },
+        { '\\\\',       '<cmd>Lspsaga term_toggle<CR>',               mode = { 'n', 't' } },
       }
     end
   },
@@ -186,12 +200,7 @@ return {
         tools = {
           enable_clippy = true,
         },
-        server = {
-          on_attach = function(client, bufnr)
-            vim.lsp.inlay_hint.enable(bufnr, true)
-          end
-        }
       }
-    end,
+    end
   }
 }
