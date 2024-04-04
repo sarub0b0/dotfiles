@@ -139,6 +139,7 @@ in
 
     extraLuaPackages = ps: [
       ps.tiktoken_core
+      ps.rustaceanvim
     ];
   };
 

@@ -22,7 +22,8 @@ return {
             capabilities = require('cmp_nvim_lsp').default_capabilities(),
             on_attach = on_attach,
           })
-        end
+        end,
+        ["rust_analyzer"] = function() end
       })
     end,
     opts = {
@@ -50,7 +51,6 @@ return {
       end
     end,
     config = function()
-      require('lsp/rust')
       require('lsp/yaml')
       require('lsp/clangd')
     end,
@@ -133,7 +133,6 @@ return {
       automatic_setup = true,
     }
   },
-  'simrat39/rust-tools.nvim',
   {
     'nvimdev/lspsaga.nvim',
     dependencies = {
@@ -173,5 +172,22 @@ return {
         { '\\\\',       '<cmd>Lspsaga term_toggle<CR>',                                                                       mode = { 'n', 't' } },
       }
     end
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+    init = function()
+      vim.g.rustaceanvim = {
+        tools = {
+          enable_clippy = true,
+        },
+        server = {
+          on_attach = function(client, bufnr)
+            vim.lsp.inlay_hint.enable(bufnr, true)
+          end
+        }
+      }
+    end,
   }
 }
