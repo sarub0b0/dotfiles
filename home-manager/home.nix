@@ -50,7 +50,6 @@ in
 
     # programming languages
     asdf-vm
-    rustup
     go
 
     # c
@@ -135,6 +134,7 @@ in
 
     extraPackages = with pkgs; [
       tree-sitter
+      yaml-language-server
     ];
 
     extraLuaPackages = ps: [
