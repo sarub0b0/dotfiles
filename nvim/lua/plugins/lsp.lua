@@ -1,3 +1,22 @@
+local on_attach = function(group_name)
+  return function(client, bufnr)
+    local augroup = vim.api.nvim_create_augroup(group_name, {})
+
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          local view = vim.fn.winsaveview()
+          vim.lsp.buf.format({ bufnr = bufnr, async = false })
+          vim.fn.winrestview(view)
+        end,
+      })
+    end
+  end
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -20,7 +39,7 @@ return {
         function(server_name)
           require("lspconfig")[server_name].setup({
             capabilities = require('cmp_nvim_lsp').default_capabilities(),
-            on_attach = on_attach,
+            on_attach = on_attach("MasonLspFormatting"),
           })
         end,
         ["rust_analyzer"] = function() end
@@ -101,22 +120,7 @@ return {
 
           require("null-ls").builtins.formatting.shfmt,
         },
-        on_attach = function(client, bufnr)
-          local augroup = vim.api.nvim_create_augroup("NullLsFormatting", {})
-
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                local view = vim.fn.winsaveview()
-                vim.lsp.buf.format({ bufnr = bufnr, async = false })
-                vim.fn.winrestview(view)
-              end,
-            })
-          end
-        end,
+        on_attach = on_attach("NullLsFormatting"),
       }
     end
   },
