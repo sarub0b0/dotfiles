@@ -33,20 +33,26 @@ in
     fswatch
     git-filter-repo
     htop
-    ncdu
     scc
     unison
     wget
-    fzf
-    ripgrep
-    tldr
-    choose
-    cheat
+
+    # modern unix
     bottom
+    broot
+    cheat
+    choose
     delta
+    duf
+    dust
     fd
+    fzf
     jq
+    ncdu
+    ripgrep
     stern
+    tldr
+
 
     # programming languages
     asdf-vm
