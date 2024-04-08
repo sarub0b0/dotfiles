@@ -138,6 +138,8 @@ in
     vimAlias = true;
     withNodeJs = true;
 
+    defaultEditor = true;
+
     extraPackages = with pkgs; [
       tree-sitter
       yaml-language-server
