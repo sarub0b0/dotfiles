@@ -162,6 +162,8 @@ return {
       -- See Configuration section for rest
       window = {
         layout = "float",
+        width = 0.7,
+        height = 0.7,
       }
     },
   }
