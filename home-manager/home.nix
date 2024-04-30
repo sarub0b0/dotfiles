@@ -36,6 +36,7 @@ in
     scc
     unison
     wget
+    gh
 
     # modern unix
     bottom
