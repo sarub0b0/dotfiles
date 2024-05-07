@@ -81,12 +81,12 @@ return {
       end
 
       local toggle_inlay_hints = function()
-        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end
 
       return {
-        { '<Space>f', format, },
-        { '<Space>h', toggle_inlay_hints, desc = 'Toggle inlay hints' },
+        { '<Space>f',  format, },
+        { '<Space>ih', toggle_inlay_hints, desc = 'Toggle inlay hints' },
       }
     end
   },
