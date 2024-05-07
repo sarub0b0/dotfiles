@@ -102,16 +102,6 @@ return {
     dependencies = 'nvim-lua/plenary.nvim',
     main = "null-ls",
     opts = function()
-      local cspell_with = {
-        disabled_filetypes = { 'NvimTree', 'neo-tree' },
-        diagnostics_postprocess = function(diagnostic)
-          diagnostic.severity = vim.diagnostic.severity.WARN
-        end,
-        config = {
-          create_config_file = true,
-        }
-      }
-
       return {
         sources = {
           -- null_ls.builtins.code_actions.gitsigns,
