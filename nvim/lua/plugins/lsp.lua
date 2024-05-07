@@ -99,11 +99,24 @@ return {
   },
   {
     'nvimtools/none-ls.nvim',
-    dependencies = 'nvim-lua/plenary.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'davidmh/cspell.nvim'
+    },
     main = "null-ls",
     opts = function()
+      local cspell_config = {
+        -- config = {},
+        disabled_filetypes = { 'neo-tree' },
+        diagnostics_postprocess = function(diag)
+          diag.severity = vim.diagnostic.severity.HINT
+        end
+      }
+
       return {
         sources = {
+          require("cspell").diagnostics.with(cspell_config),
+          require("cspell").code_actions.with(cspell_config),
           -- null_ls.builtins.code_actions.gitsigns,
 
           require("null-ls").builtins.formatting.clang_format,
