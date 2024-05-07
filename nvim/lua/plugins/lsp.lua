@@ -37,8 +37,15 @@ return {
 
       require('mason-lspconfig').setup_handlers({
         function(server_name)
+          local capabilities = require('cmp_nvim_lsp').default_capabilities()
+          capabilities.textDocument.foldingRange = {
+            dynamicregistration = false,
+            lineFoldingOnly = true,
+          }
+
+
           require("lspconfig")[server_name].setup({
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+            capabilities = capabilities,
             on_attach = on_attach("MasonLspFormatting"),
           })
         end,
