@@ -17,6 +17,9 @@
       let
         username = builtins.getEnv "USER";
         pkgs = nixpkgs.legacyPackages.${system};
+        overlays = [
+          neovim-nightly-overlay.overlays.default
+        ];
       in
       {
         packages.homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration
@@ -25,9 +28,9 @@
 
             modules = [
               ./home.nix
-              ({
-                nixpkgs.overlays = [ neovim-nightly-overlay.overlay ];
-              })
+              {
+                nixpkgs.overlays = overlays;
+              }
             ];
           };
       }
