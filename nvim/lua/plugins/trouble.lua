@@ -3,15 +3,44 @@ return {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
-      auto_close = true,
+      auto_close = false,
     },
     keys = {
-      { "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end },
-      { "<leader>xd", function() require("trouble").toggle("document_diagnostics") end },
-      { "<leader>xq", function() require("trouble").toggle("quickfix") end },
-      { "<leader>xl", function() require("trouble").toggle("loclist") end },
-      { "gR",         function() require("trouble").toggle("lsp_references") end },
-      { "<Space>t",   function() require("trouble").toggle() end },
+      {
+        "<leader>xx",
+        "<Cmd>Trouble diagnostics toggle<CR>",
+        desc = "Diagnostics (Trouble)"
+      },
+      {
+        "<leader>xX",
+        "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+        desc = "Buffer Diagnostics (Trouble)"
+      },
+
+      {
+        "<leader>cs",
+        "<Cmd>Trouble symbols toggle focus=false<CR>",
+        desc = "Symbols (Trouble)"
+      },
+
+      {
+        "<leader>cl",
+        "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+        desc = "LSP Definitions / references / ... (Trouble)"
+      },
+
+      {
+        "<leader>xL",
+        "<Cmd>Trouble loclist toggle<CR>",
+        desc = "Location List (Trouble)"
+      },
+
+      {
+        "<leader>xQ",
+        "<Cmd>Trouble qflist toggle<CR>",
+        desc = "Quickfix List (Trouble)"
+      },
+
     }
   },
 }
