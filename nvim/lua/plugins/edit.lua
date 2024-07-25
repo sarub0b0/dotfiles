@@ -1,6 +1,5 @@
 return {
   'sindrets/diffview.nvim',
-  'simrat39/rust-tools.nvim',
   'mfussenegger/nvim-dap',
   {
     'junegunn/vim-easy-align',
