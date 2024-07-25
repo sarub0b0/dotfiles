@@ -180,6 +180,18 @@ return {
         require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
       end
 
+      local term_toggle = function()
+        local cmd = vim.o.shell
+
+        if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+          if vim.fn.executable('powershell.exe') == 1 then
+            cmd = 'powershell.exe'
+          end
+        end
+
+        require("lspsaga.floaterm"):open_float_terminal({ cmd })
+      end
+
       return {
         { 'K',          '<cmd>Lspsaga hover_doc<CR>' },
         { 'gl',         '<cmd>Lspsaga finder<CR>' },
@@ -200,7 +212,7 @@ return {
         { "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>" },
         { '[G',         diagnostic_goto_prev_error,                   silent = true },
         { ']G',         diagnostic_goto_next_error,                   silent = true },
-        { '\\\\',       '<cmd>Lspsaga term_toggle<CR>',               mode = { 'n', 't' } },
+        { '\\\\',       term_toggle,                                  mode = { 'n', 't' } },
       }
     end
   },
