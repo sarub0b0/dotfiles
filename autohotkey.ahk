@@ -47,6 +47,8 @@ ESCAPE_AND_IME_OFF(){
     Send {Esc}
 }
 
+LWin::IME_SET(0)
+RWin::IME_SET(1)
 
 #IfWinActive ahk_exe WindowsTerminal.exe
 LWin & v::Send ^+{v}
