@@ -103,20 +103,23 @@ return {
       'nvim-lua/plenary.nvim',
       'davidmh/cspell.nvim'
     },
-    main = "null-ls",
     opts = function()
+      local cspell = require("cspell")
       local cspell_config = {
         -- config = {},
         disabled_filetypes = { 'neo-tree' },
         diagnostics_postprocess = function(diag)
           diag.severity = vim.diagnostic.severity.HINT
-        end
+        end,
+        condition = function()
+          return vim.fn.executable('cspell') == 1
+        end,
       }
 
       return {
         sources = {
-          require("cspell").diagnostics.with(cspell_config),
-          require("cspell").code_actions.with(cspell_config),
+          cspell.diagnostics.with(cspell_config),
+          cspell.code_actions.with(cspell_config),
           -- null_ls.builtins.code_actions.gitsigns,
 
           require("null-ls").builtins.formatting.clang_format,
