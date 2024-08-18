@@ -314,5 +314,12 @@
       "  domains:",
       "    - ${2:domain}"
     ]
+  },
+  "kubernetes-yaml-schema": {
+    "prefix": "kubernetes-yaml-schema",
+    "description": "Kubernetes YAML Schema",
+    "body": [
+      "# yaml-language-server: \\$schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v${1:<version>}-standalone-strict/all.json"
+    ]
   }
 }
