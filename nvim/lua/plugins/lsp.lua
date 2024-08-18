@@ -77,7 +77,6 @@ return {
       end
     end,
     config = function()
-      require('lsp/yaml')
       require('lsp/clangd')
     end,
     keys = function()
@@ -234,5 +233,99 @@ return {
     config = function()
       require('crates').setup()
     end,
+  },
+  {
+    "someone-stole-my-name/yaml-companion.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    ft = { "yaml" },
+    keys = {
+      { "<leader>fy", ":Telescope yaml_schema<CR>", mode = "n", desc = "Choose YAML Schema" },
+    },
+    config = function(_, opts)
+      local cfg = require("yaml-companion").setup(opts)
+      require("lspconfig")["yamlls"].setup(cfg)
+      require("telescope").load_extension("yaml_schema")
+    end,
+    opts = function()
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- capabilities.textDocument.foldingRange = {
+      --   dynamicregistration = false,
+      --   lineFoldingOnly = true,
+      -- }
+
+      return {
+        log_level = "debug",
+        builtin_matchers = {
+          -- Detects Kubernetes files based on content
+          kubernetes = { enabled = true },
+          cloud_init = { enabled = true }
+        },
+        -- Additional schemas available in Telescope picker
+        schemas = {
+          {
+            name = "GitLab CI",
+            uri = "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"
+          },
+          {
+            name = "DevSpace",
+            uri = "https://raw.githubusercontent.com/loft-sh/devspace/main/devspace-schema.json"
+          },
+          {
+            name = "Kustomization",
+            uri = "https://json.schemastore.org/kustomization.json"
+          },
+          {
+            name = "Kubernetes 1.22.4",
+            uri =
+            "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json",
+          },
+          {
+            name = "Kubernetes 1.28.0",
+            uri =
+            "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/all.json",
+          }
+        },
+        lspconfig = {
+          -- capabilities = capabilities,
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true
+              }
+            }
+          },
+          settings = {
+            yaml = {
+              format = {
+                enable = true,
+              },
+              schemas = {
+                -- ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = {
+                --   "/**/.gitlab-ci.yml",
+                --   "/**/.gitlab/*.y*ml"
+                -- },
+                -- ["https://raw.githubusercontent.com/loft-sh/devspace/main/devspace-schema.json"] = {
+                --   "/**/devspace*.yaml"
+                -- },
+                -- ["https://json.schemastore.org/kustomization.json"] = {
+                --   "/**/kustomization.yaml"
+                -- },
+              },
+              customTags = {
+                "!reference sequence"
+              },
+              -- trace = {
+              --   server = "debug"
+              -- },
+            }
+          }
+        }
+      }
+    end
   }
 }
