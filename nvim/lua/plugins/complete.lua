@@ -17,10 +17,19 @@ return {
       local cmp = require('cmp')
       cmp.setup(opts)
 
+      local mapping = cmp.mapping.preset.cmdline({
+        ["<C-n>"] = {
+          c = cmp.mapping.select_next_item(),
+        },
+        ["<C-p>"] = {
+          c = cmp.mapping.select_prev_item(),
+        }
+      })
+
       local search_cmdline = { '@', '/', '?' }
       for _, cmd in pairs(search_cmdline) do
         cmp.setup.cmdline(cmd, {
-          mapping = cmp.mapping.preset.cmdline(),
+          mapping = mapping,
           sources = {
             { name = 'cmdline_history' }
           },
@@ -31,12 +40,11 @@ return {
       end
 
       cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = mapping,
         sources = cmp.config.sources({
           { name = 'path' },
-          { name = 'cmdline' }
         }, {
-          -- { name = 'cmdline_history' },
+          { name = 'cmdline' }
         })
       })
 
@@ -168,7 +176,7 @@ return {
       mappings = {
         complete = {
           detail = 'Use @<Tab> or /<Tab> for options.',
-          insert ='<S-Tab>',
+          insert = '<S-Tab>',
         }
       }
     }
