@@ -165,6 +165,18 @@ return {
       "github/copilot.vim",
       "nvim-lua/plenary.nvim", -- for curl, log wrapper
     },
+    keys = {
+      {
+        "<leader>cct",
+        "<cmd>CopilotChatToggle<CR>",
+        desc = "Copilot Chat Toggle"
+      },
+      {
+        "<leader>cccs",
+        "<cmd>CopilotChatCommitStaged<CR>",
+        desc = "Copilot Chat Commit Staged"
+      }
+    },
     opts = {
       debug = false,
       -- See Configuration section for rest
