@@ -166,6 +166,7 @@ return {
       "github/copilot.vim",
       "nvim-lua/plenary.nvim", -- for curl, log wrapper
     },
+    build = "make tiktoken",
     keys = {
       {
         "<leader>cct",
