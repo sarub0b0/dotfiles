@@ -40,7 +40,16 @@ return {
         "<Cmd>Trouble qflist toggle<CR>",
         desc = "Quickfix List (Trouble)"
       },
-
+      {
+        "<leader>xn",
+        function() require("trouble").next({ jump = true }) end,
+        desc = "Next Trouble"
+      },
+      {
+        "<leader>xp",
+        function() require("trouble").prev({ jump = true }) end,
+        desc = "Previous Trouble"
+      },
     }
   },
 }
