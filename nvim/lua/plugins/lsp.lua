@@ -258,7 +258,7 @@ return {
       -- }
 
       return {
-        log_level = "debug",
+        -- log_level = "debug",
         builtin_matchers = {
           -- Detects Kubernetes files based on content
           kubernetes = { enabled = true },
