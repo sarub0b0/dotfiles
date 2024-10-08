@@ -2,6 +2,9 @@
 -- プロジェクト固有の設定をロードする
 -- ------------------------------------------------
 
+
+vim.api.nvim_create_augroup('LocalVimrc', {})
+
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
   pattern = { '*' },
   callback = function()
@@ -12,5 +15,5 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
       end
     end
   end,
-  group = vim.g.augroup_names.my_filetypes
+  group = 'LocalVimrc'
 })
