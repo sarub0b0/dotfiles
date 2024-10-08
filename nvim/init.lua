@@ -23,7 +23,6 @@ vim.g.maplocalleader = '\\'
 
 vim.g.augroup_names = {
   my_auto_cmds = 'MyAutoCmds',
-  my_filetypes = 'MyFileTypes'
 }
 
 for _, v in pairs(vim.g.augroup_names) do
