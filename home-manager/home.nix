@@ -72,6 +72,7 @@ in
     extraConfig = ''
       source ${dot_dir}/tmux.conf
     '';
+    sensibleOnTop = false;
   };
 
   programs.zsh = {
