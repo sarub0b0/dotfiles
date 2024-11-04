@@ -81,7 +81,12 @@ return {
         formatting = {
           format = require('lspkind').cmp_format({
             mode = 'symbol_text',
+            show_labelDetails = true,
             menu = ({
+              buffer = '[Buffer]',
+              nvim_lsp = '[LSP]',
+              luasnip = '[LuaSnip]',
+              nvim_lua = '[Lua]',
               cmdline = '[CmdLine]'
             })
           })
