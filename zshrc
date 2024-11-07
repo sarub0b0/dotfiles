@@ -76,6 +76,8 @@ __envs () {
             $path
         )
         export CPLUS_INCLUDE_PATH=/usr/local/include:$HOME/work/include/
+
+	export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
     else
     fi
 }
