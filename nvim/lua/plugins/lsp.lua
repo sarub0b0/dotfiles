@@ -1,23 +1,36 @@
-local on_attach = function(group_name)
-  return function(client, bufnr)
-    local augroup = vim.api.nvim_create_augroup(group_name, {})
-
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          local view = vim.fn.winsaveview()
-          vim.lsp.buf.format({ bufnr = bufnr, async = false })
-          vim.fn.winrestview(view)
-        end,
-      })
-    end
-  end
-end
-
 return {
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre",
+    cmd = { "ConformInfo" },
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+    opts = {
+      formatters_by_ft = {
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        ruby = { "rufo", "rubocop", stop_after_first = true },
+      },
+      default_format_opts = {
+        lsp_format = "fallback"
+      },
+      format_on_save = {
+        timeout_ms = 500,
+      },
+      log_level = vim.log.levels.ERROR,
+    },
+    keys = {
+      {
+        "<Space>f",
+        function()
+          require("conform").format({ async = true })
+        end,
+        mode = "",
+        desc = "Format buffer",
+      }
+    }
+  },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -44,10 +57,8 @@ return {
             lineFoldingOnly = true,
           }
 
-
           require("lspconfig")[server_name].setup({
             capabilities = capabilities,
-            on_attach = on_attach("MasonLspFormatting"),
           })
         end
       })
@@ -80,18 +91,11 @@ return {
       require('lsp/clangd')
     end,
     keys = function()
-      local format = function()
-        local view = vim.fn.winsaveview()
-        vim.lsp.buf.format { async = false }
-        vim.fn.winrestview(view)
-      end
-
       local toggle_inlay_hints = function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end
 
       return {
-        { '<Space>f',  format, },
         { '<Space>ih', toggle_inlay_hints, desc = 'Toggle inlay hints' },
       }
     end
@@ -121,24 +125,23 @@ return {
           cspell.code_actions.with(cspell_config),
           -- null_ls.builtins.code_actions.gitsigns,
 
-          require("null-ls").builtins.formatting.clang_format,
+          -- require("null-ls").builtins.formatting.clang_format,
 
           require("null-ls").builtins.diagnostics.buf,
-          require("null-ls").builtins.formatting.buf,
+          -- require("null-ls").builtins.formatting.buf,
           --
-          require("null-ls").builtins.completion.spell,
+          -- require("null-ls").builtins.completion.spell,
 
           require("null-ls").builtins.diagnostics.hadolint,
 
           require("null-ls").builtins.diagnostics.markdownlint,
-          require("null-ls").builtins.formatting.markdownlint,
+          -- require("null-ls").builtins.formatting.markdownlint,
 
-          require("null-ls").builtins.formatting.prettier,
-          require("null-ls").builtins.formatting.terraform_fmt,
+          -- require("null-ls").builtins.formatting.prettier,
+          -- require("null-ls").builtins.formatting.terraform_fmt,
 
-          require("null-ls").builtins.formatting.shfmt,
+          -- require("null-ls").builtins.formatting.shfmt,
         },
-        on_attach = on_attach("NullLsFormatting"),
       }
     end
   },
