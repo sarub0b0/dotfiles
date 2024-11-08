@@ -48,5 +48,15 @@ return {
       }
     end
   },
-
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    cmd = { 'TSJToggle', 'TSJSplit', 'TSJJoin' },
+    keys = {
+      { '<Space>m' },
+      { '<Space>s' },
+      { '<Space>j' },
+    },
+    opts = {}
+  }
 }
