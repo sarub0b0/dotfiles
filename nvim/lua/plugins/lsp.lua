@@ -10,7 +10,7 @@ return {
       formatters_by_ft = {
         typescript = { "prettierd", "prettier", stop_after_first = true },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        ruby = { "rufo", "rubocop", stop_after_first = true },
+        ruby = { "rubocop", "rufo", stop_after_first = true },
       },
       default_format_opts = {
         lsp_format = "fallback"
