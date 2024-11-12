@@ -1,7 +1,7 @@
-if vim.b.my_did_ftplugin then
+if vim.b.did_ftplugin then
   return
 end
-vim.b.my_did_ftplugin = 1
+vim.b.did_ftplugin = 1
 
 -- :help hex-editing
 -- augroup Binary
