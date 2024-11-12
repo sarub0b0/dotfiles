@@ -1,7 +1,8 @@
-if vim.b.my_did_ftplugin then
+vim.b.my_did_ftplugin = 1
+if vim.b.did_after_ftplugin then
   return
 end
-vim.b.my_did_ftplugin = 1
+vim.b.did_after_ftplugin = 1
 
 vim.opt_local.tabstop = 2
 vim.opt_local.softtabstop = 2
