@@ -51,18 +51,14 @@ end
 
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup(
-  {
-    {
-      import = "plugins"
-    }
+require("lazy").setup({
+  spec = {
+    import = "plugins"
   },
-  {
-    ui = {
-      border = "single"
-    }
+  ui = {
+    border = "single"
   }
-)
+})
 
 vim.cmd.filetype('plugin indent on')
 vim.cmd.syntax('on')
