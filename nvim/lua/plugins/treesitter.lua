@@ -5,6 +5,9 @@ return {
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
     end,
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
     opts = {
       ensure_installed = {
         'markdown',
