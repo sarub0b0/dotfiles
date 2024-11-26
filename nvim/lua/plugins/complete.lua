@@ -179,9 +179,9 @@ return {
         desc = "Copilot Chat Toggle"
       },
       {
-        "<leader>cccs",
-        "<cmd>CopilotChatCommitStaged<CR>",
-        desc = "Copilot Chat Commit Staged"
+        "<leader>ccc",
+        "<cmd>CopilotChatCommit<CR>",
+        desc = "Copilot Chat Commit"
       }
     },
     opts = {
