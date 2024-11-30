@@ -8,15 +8,17 @@ return {
     end,
     opts = {
       formatters_by_ft = {
+        javascript = { "biome", "prettierd", "prettierd", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
         ruby = { "rubocop", "rufo", stop_after_first = true },
+        json = { "biome", "jq" }
       },
       default_format_opts = {
         lsp_format = "fallback"
       },
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 5000,
       },
       log_level = vim.log.levels.ERROR,
     },
