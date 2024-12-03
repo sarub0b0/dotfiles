@@ -18,23 +18,24 @@ vim.g.loaded_getscriptPlugin = 1
 vim.g.loaded_matchparen = 1
 vim.g.loaded_spellfile_plugin = 1
 
-vim.g.mapleader = '\\'
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\"
 
 vim.g.augroup_names = {
-  my_auto_cmds = 'MyAutoCmds',
+  my_auto_cmds = "MyAutoCmds",
 }
 
 for _, v in pairs(vim.g.augroup_names) do
   vim.api.nvim_create_augroup(v, {})
 end
 
-if vim.fn.filereadable(vim.fn.expand('~/.local/share/cspell/vim.txt.gz')) == 0 then
-  local vim_dictionary_url = 'https://github.com/iamcco/coc-spell-checker/raw/master/dicts/vim/vim.txt.gz'
-  local cmd = { 'curl', '-fsSLo', vim.fn.expand('~/.local/share/cspell/vim.txt.gz'), '--create-dirs', vim_dictionary_url }
-  io.popen(table.concat(cmd, ' '))
+if vim.fn.filereadable(vim.fn.expand("~/.local/share/cspell/vim.txt.gz")) == 0 then
+  local vim_dictionary_url = "https://github.com/iamcco/coc-spell-checker/raw/master/dicts/vim/vim.txt.gz"
+  local cmd =
+    { "curl", "-fsSLo", vim.fn.expand("~/.local/share/cspell/vim.txt.gz"), "--create-dirs", vim_dictionary_url }
+  io.popen(table.concat(cmd, " "))
 
-  print('Downloaded cspell vim dictionary.')
+  print("Downloaded cspell vim dictionary.")
 end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -53,9 +54,9 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    import = "plugins"
+    import = "plugins",
   },
   ui = {
-    border = "single"
-  }
+    border = "single",
+  },
 })

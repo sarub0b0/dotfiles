@@ -1,5 +1,5 @@
-local helpers = require('null-ls.helpers')
-local null_ls = require('null-ls')
+local helpers = require("null-ls.helpers")
+local null_ls = require("null-ls")
 
 local Diagnostic = {
   new = function(diagnostic)
@@ -12,12 +12,12 @@ local Diagnostic = {
     obj.position = function(self)
       return {
         row = tonumber(self.row),
-        col = tonumber(self.col) + 1
+        col = tonumber(self.col) + 1,
       }
     end
 
     return obj
-  end
+  end,
 }
 
 local Diagnostics = {
@@ -32,7 +32,7 @@ local Diagnostics = {
 
     obj.is_under_cursor = function(self, col)
       for _, diag in ipairs(self.diagnostics) do
-        if (diag.source == 'cspell') then
+        if diag.source == "cspell" then
           if (diag.col <= col) and (col <= diag.end_col) then
             return true
           end
@@ -44,7 +44,7 @@ local Diagnostics = {
 
     obj.find_by_col = function(self, col)
       for _, diag in ipairs(self.diagnostics) do
-        if (diag.source == 'cspell') then
+        if diag.source == "cspell" then
           if (diag.col <= col) and (col <= diag.end_col) then
             return Diagnostic.new(diag)
           end
@@ -55,7 +55,7 @@ local Diagnostics = {
     end
 
     return obj
-  end
+  end,
 }
 
 local CSpellMisspelled = {
@@ -75,16 +75,15 @@ local CSpellSuggestion = {
     obj.suggestion = str:match("^%s+-%s+(.*)")
 
     obj.is_empty = function(self)
-      return self.suggestion == '' or self.suggestion == nil
+      return self.suggestion == "" or self.suggestion == nil
     end
 
     obj.is_matched = function(self)
       return not self:is_empty()
     end
 
-
     return obj
-  end
+  end,
 }
 
 local CommandOutput = {
@@ -94,15 +93,15 @@ local CommandOutput = {
     obj.output = output
 
     obj.lines = function(self)
-      return self.output:gmatch('[^\r\n]+')
+      return self.output:gmatch("[^\r\n]+")
     end
 
     return obj
-  end
+  end,
 }
 
 local generator_factory = helpers.generator_factory({
-  command = 'cspell',
+  command = "cspell",
   args = function(params)
     local bufnr = params.bufnr
     local ft = params.ft
@@ -113,12 +112,12 @@ local generator_factory = helpers.generator_factory({
     local cspell = CSpellMisspelled.new(diagnostic.message)
 
     return {
-      'suggestions',
-      '--no-color',
-      '--language-id',
+      "suggestions",
+      "--no-color",
+      "--language-id",
       ft,
-      '--config',
-      vim.fn.expand('~/dotfiles/cspell/cspell.yaml'),
+      "--config",
+      vim.fn.expand("~/dotfiles/cspell/cspell.yaml"),
       cspell.misspelled,
     }
   end,
@@ -172,11 +171,10 @@ local generator_factory = helpers.generator_factory({
   end,
 })
 
-
 local cspell_suggestions = {
-  name = 'cspell_suggestions',
+  name = "cspell_suggestions",
   filetypes = {},
-  disabled_filetypes = { 'NvimTree' },
+  disabled_filetypes = { "NvimTree" },
   method = null_ls.methods.CODE_ACTION,
   generator = generator_factory,
 }

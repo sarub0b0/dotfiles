@@ -33,7 +33,7 @@ return {
     config = function()
       require("hlchunk").setup({
         chunk = {
-          enable = true
+          enable = true,
         },
         indent = {
           enable = true,
@@ -41,17 +41,16 @@ return {
           filter_list = {
             function(v)
               return v.level ~= 1
-            end
-          }
-
+            end,
+          },
         },
         blank = {
-          enable = false
+          enable = false,
         },
         line_num = {
-          enable = true
-        }
+          enable = true,
+        },
       })
-    end
-  }
+    end,
+  },
 }

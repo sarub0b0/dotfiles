@@ -13,8 +13,8 @@ return {
         pattern = "*",
         group = augroup,
         callback = function()
-          vim.api.nvim_set_hl(0, 'Floaterm', { fg = "#d8dee9", bg = 'NONE' })
-          vim.api.nvim_set_hl(0, 'FloatermBorder', { fg = "#d8dee9", bg = 'NONE' })
+          vim.api.nvim_set_hl(0, "Floaterm", { fg = "#d8dee9", bg = "NONE" })
+          vim.api.nvim_set_hl(0, "FloatermBorder", { fg = "#d8dee9", bg = "NONE" })
 
           -- gitの差分の色を変更
           -- adrian5/oceanic-next-vimから抽出
@@ -22,7 +22,7 @@ return {
           vim.api.nvim_set_hl(0, "DiffChange", { bg = "#29445a" })
           vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#45353e" })
 
-          vim.api.nvim_set_hl(0, 'DiffAdded', { fg = "#99c794" })
+          vim.api.nvim_set_hl(0, "DiffAdded", { fg = "#99c794" })
           vim.api.nvim_set_hl(0, "DiffFile", { fg = "#c594c5", bold = true })
           vim.api.nvim_set_hl(0, "DiffIndexLine", { fg = "#4d616b" })
           vim.api.nvim_set_hl(0, "DiffLine", { fg = "#6699cc" })
@@ -39,50 +39,50 @@ return {
 
           vim.api.nvim_set_hl(0, "NormalFloat", {})
 
-          vim.api.nvim_set_hl(0, 'WinSeparator', { link = 'VertSplit' })
+          vim.api.nvim_set_hl(0, "WinSeparator", { link = "VertSplit" })
 
-          local status_line = vim.api.nvim_get_hl(0, { name = 'StatusLine' })
-          vim.api.nvim_set_hl(0, 'WinBar', status_line)
+          local status_line = vim.api.nvim_get_hl(0, { name = "StatusLine" })
+          vim.api.nvim_set_hl(0, "WinBar", status_line)
 
-          local status_line_nc = vim.api.nvim_get_hl(0, { name = 'StatusLineNC' })
-          vim.api.nvim_set_hl(0, 'WinBarNC', status_line_nc)
+          local status_line_nc = vim.api.nvim_get_hl(0, { name = "StatusLineNC" })
+          vim.api.nvim_set_hl(0, "WinBarNC", status_line_nc)
 
           for _, hl in ipairs({
-            'Normal',
-            'LineNr',
-            'SignColumn',
-            'EndOfBuffer',
-            'VertSplit',
-            'Folded',
-            'Floaterm',
-            'FloatermBorder',
-            'WinBar',
-            'WinBarNC',
+            "Normal",
+            "LineNr",
+            "SignColumn",
+            "EndOfBuffer",
+            "VertSplit",
+            "Folded",
+            "Floaterm",
+            "FloatermBorder",
+            "WinBar",
+            "WinBarNC",
           }) do
             local args = vim.api.nvim_get_hl(0, { name = hl })
 
-            args.bg = 'None'
-            args.ctermbg = 'None'
+            args.bg = "None"
+            args.ctermbg = "None"
 
             vim.api.nvim_set_hl(0, hl, args)
           end
         end,
       })
 
-      vim.cmd.colorscheme('OceanicNext')
+      vim.cmd.colorscheme("OceanicNext")
     end,
   },
   {
-    'mvllow/modes.nvim',
+    "mvllow/modes.nvim",
     opts = {
       colors = {
-        copy = '#fac863',
-        delete = '#ec5f67',
-        insert = '#99c794',
-        visual = '#c594c5',
+        copy = "#fac863",
+        delete = "#ec5f67",
+        insert = "#99c794",
+        visual = "#c594c5",
       },
       line_opacity = 0.5,
-    }
+    },
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
@@ -99,29 +99,29 @@ return {
     opts = function()
       return {
         strategy = {
-          [''] = require('rainbow-delimiters').strategy['global'],
-          vim = require('rainbow-delimiters').strategy['local'],
+          [""] = require("rainbow-delimiters").strategy["global"],
+          vim = require("rainbow-delimiters").strategy["local"],
         },
         query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
         },
         highlight = {
-          'RainbowDelimiterRed',
-          'RainbowDelimiterYellow',
-          'RainbowDelimiterBlue',
-          'RainbowDelimiterOrange',
-          'RainbowDelimiterGreen',
-          'RainbowDelimiterViolet',
-          'RainbowDelimiterCyan',
-        }
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
       }
-    end
+    end,
   },
   {
-    'uga-rosa/ccc.nvim',
+    "uga-rosa/ccc.nvim",
     opts = function()
-      local picker = require('ccc').picker
+      local picker = require("ccc").picker
 
       local picker_ansi_escape = picker.ansi_escape({
         foreground = "#c0c5ce",
@@ -161,11 +161,10 @@ return {
           lsp = true,
           excludes = {
             "packer",
-          }
-        }
-
+          },
+        },
       }
-    end
+    end,
   },
-  'aklt/plantuml-syntax'
+  "aklt/plantuml-syntax",
 }
