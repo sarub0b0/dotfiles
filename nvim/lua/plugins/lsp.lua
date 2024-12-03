@@ -16,6 +16,7 @@ return {
           typescriptreact = { "prettierd", "prettier", stop_after_first = true },
           ruby = { "bundle_rubocop", "rubocop", "rufo", stop_after_first = true },
           json = { "biome", "jq" },
+          lua = { "stylua", stop_after_first = true },
         },
         default_format_opts = {
           lsp_format = "fallback"
