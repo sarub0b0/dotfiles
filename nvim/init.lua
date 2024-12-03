@@ -59,6 +59,3 @@ require("lazy").setup({
     border = "single"
   }
 })
-
-vim.cmd.filetype('plugin indent on')
-vim.cmd.syntax('on')

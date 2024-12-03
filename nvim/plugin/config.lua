@@ -2,11 +2,6 @@ local function has(feature)
   return vim.fn.has(feature) == 1
 end
 
-vim.cmd [[
-  filetype plugin indent on
-  syntax on
-]]
-
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = { 'utf-8', 'iso2022-jp', 'euc-jp', 'sjis' }
 
