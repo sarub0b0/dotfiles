@@ -6,22 +6,34 @@ return {
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
-    opts = {
-      formatters_by_ft = {
-        javascript = { "biome", "prettierd", "prettierd", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        ruby = { "rubocop", "rufo", stop_after_first = true },
-        json = { "biome", "jq" }
-      },
-      default_format_opts = {
-        lsp_format = "fallback"
-      },
-      format_on_save = {
-        timeout_ms = 5000,
-      },
-      log_level = vim.log.levels.ERROR,
-    },
+    opts = function()
+      local rubocop_config = require("conform").get_formatter_config("rubocop")
+
+      return {
+        formatters_by_ft = {
+          javascript = { "biome", "prettierd", "prettierd", stop_after_first = true },
+          typescript = { "prettierd", "prettier", stop_after_first = true },
+          typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+          ruby = { "bundle_rubocop", "rubocop", "rufo", stop_after_first = true },
+          json = { "biome", "jq" },
+        },
+        default_format_opts = {
+          lsp_format = "fallback"
+        },
+        format_on_save = {
+          timeout_ms = 5000,
+        },
+        log_level = vim.log.levels.ERROR,
+        formatters = {
+          bundle_rubocop = {
+            cwd = require("conform.util").root_file({ "Gemfile" }),
+            command = "bundle",
+            args = vim.list_extend({ "exec", "rubocop" }, rubocop_config.args),
+            exit_codes = { 0, 1 },
+          },
+        }
+      }
+    end,
     keys = {
       {
         "<Space>f",
