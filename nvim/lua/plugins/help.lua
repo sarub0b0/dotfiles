@@ -1,7 +1,7 @@
 return {
   {
-    'vim-jp/vimdoc-ja',
-    ft = { 'help' },
+    "vim-jp/vimdoc-ja",
+    ft = { "help" },
     lazy = true,
-  }
+  },
 }

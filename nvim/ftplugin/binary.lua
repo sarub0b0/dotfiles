@@ -15,44 +15,44 @@ vim.b.did_ftplugin = 1
 --   au BufWritePost *.bin set nomod | endif
 -- augroup END
 
-local pattern = '*'
-local group = 'Binary'
+local pattern = "*"
+local group = "Binary"
 vim.api.nvim_create_augroup(group, {})
-vim.api.nvim_create_autocmd({ 'Filetype' }, {
+vim.api.nvim_create_autocmd({ "Filetype" }, {
   group = group,
-  pattern = 'binary',
+  pattern = "binary",
   callback = function()
     vim.b.bin = 1
-  end
+  end,
 })
-vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   group = group,
   pattern = pattern,
   callback = function()
     if vim.b.bin == 1 then
-      vim.cmd [[%!xxd]]
-      vim.opt_local.filetype = 'xxd'
+      vim.cmd([[%!xxd]])
+      vim.opt_local.filetype = "xxd"
     end
-  end
+  end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = group,
   pattern = pattern,
   callback = function()
     if vim.b.bin == 1 then
-      vim.cmd [[%!xxd -r]]
+      vim.cmd([[%!xxd -r]])
     end
-  end
+  end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = group,
   pattern = pattern,
   callback = function()
     if vim.b.bin == 1 then
-      vim.cmd [[%!xxd]]
+      vim.cmd([[%!xxd]])
       vim.opt_local.modified = false
     end
-  end
+  end,
 })

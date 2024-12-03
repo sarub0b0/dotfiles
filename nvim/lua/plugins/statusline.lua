@@ -1,21 +1,21 @@
 return {
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      "nvim-tree/nvim-web-devicons",
       "someone-stole-my-name/yaml-companion.nvim",
     },
     opts = {
       options = {
-        theme = 'OceanicNext',
+        theme = "OceanicNext",
       },
       extensions = {
-        'fugitive',
-        'fzf',
-        'man',
-        'neo-tree',
-        'quickfix',
-        'trouble',
+        "fugitive",
+        "fzf",
+        "man",
+        "neo-tree",
+        "quickfix",
+        "trouble",
       },
       sections = {
         lualine_a = {
@@ -23,16 +23,16 @@ return {
             "mode",
             fmt = function(str)
               return str:sub(1, 1)
-            end
-          }
+            end,
+          },
         },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = {
           {
             "filename",
             symbols = {
-              readonly = ''
-            }
+              readonly = "",
+            },
           },
           {
             "yaml schema",
@@ -44,13 +44,13 @@ return {
               end
 
               return schema.result[1].name
-            end
-          }
+            end,
+          },
         },
         lualine_x = { "encoding", "filetype" },
         lualine_y = { "progress" },
-        lualine_z = { "location", "searchcount", "selectioncount" }
-      }
-    }
-  }
+        lualine_z = { "location", "searchcount", "selectioncount" },
+      },
+    },
+  },
 }
