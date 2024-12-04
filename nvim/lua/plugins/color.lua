@@ -167,4 +167,11 @@ return {
     end,
   },
   "aklt/plantuml-syntax",
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    event = { "WinLeave" },
+    opts = {
+      smooth = false,
+    }
+  },
 }
