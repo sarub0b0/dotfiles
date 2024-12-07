@@ -32,8 +32,6 @@ return {
           mapping = mapping,
           sources = {
             { name = "cmdline_history" },
-          },
-          {
             { name = "buffer" },
           },
         })
