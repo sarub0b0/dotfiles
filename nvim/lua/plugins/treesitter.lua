@@ -24,6 +24,7 @@ return {
         "git_config",
         "diff",
       },
+      sync_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
