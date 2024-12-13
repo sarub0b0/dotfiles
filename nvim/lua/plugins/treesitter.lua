@@ -32,9 +32,6 @@ return {
       endwise = {
         enable = true,
       },
-      autotag = {
-        enable = true,
-      },
     },
   },
   "nvim-treesitter/nvim-treesitter-context",
@@ -43,6 +40,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    opts = {}
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
