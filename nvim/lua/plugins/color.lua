@@ -174,4 +174,27 @@ return {
       smooth = false,
     }
   },
+  {
+    'RRethy/vim-illuminate',
+    config = function()
+      require('illuminate').configure({})
+    end,
+    event = { 'BufReadPost', 'BufNewFile', "BufWritePre" },
+    keys = {
+      {
+        "<Space>]",
+        function()
+          require("illuminate").goto_next_reference()
+        end,
+        desc = "Move to next reference",
+      },
+      {
+        "<Space>[",
+        function()
+          require("illuminate").goto_prev_reference()
+        end,
+        desc = "Move to prev reference",
+      },
+    }
+  }
 }
