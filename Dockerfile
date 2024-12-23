@@ -51,7 +51,7 @@ mkdir ~/.asdf
 home-manager switch --impure
 EOF
 
-RUN nvim --headless -c "+Lazy! sync" -c "MasonUpdate" +qa
+RUN nvim --headless -c "Lazy! sync" -c "MasonUpdate" +qa
 
 WORKDIR /home/debian
 
