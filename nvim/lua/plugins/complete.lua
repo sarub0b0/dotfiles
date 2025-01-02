@@ -148,15 +148,27 @@ return {
       },
     },
   },
+  -- {
+  --   "github/copilot.vim",
+  --   config = function()
+  --     vim.g.copilot_filetypes = {
+  --       gitcommit = true,
+  --       markdown = true,
+  --       yaml = true,
+  --     }
+  --   end,
+  -- },
   {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_filetypes = {
-        gitcommit = true,
-        markdown = true,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      filetypes = {
         yaml = true,
+        markdown = true,
+        gitcommit = true,
       }
-    end,
+    }
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
