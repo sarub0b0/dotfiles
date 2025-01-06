@@ -7,6 +7,7 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
+      "zbirenbaum/copilot-cmp",
       "davidsierradz/cmp-conventionalcommits",
       "saadparwaiz1/cmp_luasnip",
       "f3fora/cmp-spell",
@@ -79,6 +80,9 @@ return {
           format = require("lspkind").cmp_format({
             mode = "symbol_text",
             show_labelDetails = true,
+            symbol_map = {
+              Copilot = "",
+            },
             menu = {
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
@@ -94,6 +98,7 @@ return {
           end,
         },
         sources = cmp.config.sources({
+          { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           {
@@ -167,7 +172,9 @@ return {
         yaml = true,
         markdown = true,
         gitcommit = true,
-      }
+      },
+      suggestion = { enabled = false },
+      panel = { enabled = false },
     }
   },
   {
@@ -193,6 +200,7 @@ return {
     opts = {
       debug = false,
       -- See Configuration section for rest
+      chat_autocomplete = false,
       window = {
         layout = "float",
         width = 0.7,
@@ -206,4 +214,8 @@ return {
       },
     },
   },
+  {
+    "zbirenbaum/copilot-cmp",
+    opts = {}
+  }
 }
