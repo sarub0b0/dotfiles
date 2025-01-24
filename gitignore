@@ -27,7 +27,6 @@ ehthumbs.db
 Thumbs.db
 .vimrc.local
 
-tmp*
 *.o
 a.out
 .bash_history
