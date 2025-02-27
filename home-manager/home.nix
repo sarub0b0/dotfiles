@@ -1,17 +1,18 @@
 { config, pkgs, lib, ... }:
 
 let
-  dot_dir = "${config.home.homeDirectory}/dotfiles";
+  home_dir = "${builtins.getEnv "HOME"}";
+  dot_dir = "${home_dir}/dotfiles";
 
 in
 {
   imports = [
-    ./nix
+    "${dot_dir}/home-manager/nix/"
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  home.homeDirectory = home_dir;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
