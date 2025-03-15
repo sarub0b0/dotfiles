@@ -199,6 +199,7 @@ return {
     },
     opts = {
       debug = false,
+      model = "claude-3.7-sonnet",
       -- See Configuration section for rest
       chat_autocomplete = false,
       window = {
