@@ -96,6 +96,7 @@ return {
       vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#62b3b2", ctermfg = 73 })
     end,
     main = "rainbow-delimiters.setup",
+    submodules = false,
     opts = function()
       return {
         strategy = {
