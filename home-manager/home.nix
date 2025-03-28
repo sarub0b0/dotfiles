@@ -175,6 +175,7 @@ in
       pu = "pull";
       sw = "switch";
       rs = "restore";
+      wt = "worktree";
     };
     ignores = lib.strings.splitString "\n" (builtins.readFile "${dot_dir}/gitignore");
     extraConfig = {
