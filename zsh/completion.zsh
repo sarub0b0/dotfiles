@@ -57,6 +57,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:ssh:*' hosts on
 zstyle ':completion:ssh:*' config on
 
+zstyle ':completion:*' accept-exact '*(N)'
+
 if builtin command -v kubectl > /dev/null; then
     source <(kubectl completion zsh)
 fi
