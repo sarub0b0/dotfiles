@@ -58,12 +58,3 @@ zstyle ':completion:ssh:*' hosts on
 zstyle ':completion:ssh:*' config on
 
 zstyle ':completion:*' accept-exact '*(N)'
-
-if builtin command -v kubectl > /dev/null; then
-    source <(kubectl completion zsh)
-fi
-
-
-if builtin command -v kubetui > /dev/null; then
-    source <(kubetui completion zsh)
-fi
