@@ -58,3 +58,5 @@ zstyle ':completion:ssh:*' hosts on
 zstyle ':completion:ssh:*' config on
 
 zstyle ':completion:*' accept-exact '*(N)'
+
+export ZLE_REMOVE_SUFFIX_CHARS=$','
