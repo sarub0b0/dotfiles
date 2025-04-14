@@ -40,7 +40,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    opts = {}
+    opts = {},
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",

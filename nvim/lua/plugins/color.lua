@@ -173,14 +173,14 @@ return {
     event = { "WinLeave" },
     opts = {
       smooth = false,
-    }
+    },
   },
   {
-    'RRethy/vim-illuminate',
+    "RRethy/vim-illuminate",
     config = function()
-      require('illuminate').configure({})
+      require("illuminate").configure({})
     end,
-    event = { 'BufReadPost', 'BufNewFile', "BufWritePre" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     keys = {
       {
         "<Space>]",
@@ -196,6 +196,6 @@ return {
         end,
         desc = "Move to prev reference",
       },
-    }
-  }
+    },
+  },
 }

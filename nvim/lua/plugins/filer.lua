@@ -5,7 +5,7 @@ return {
     event = "VeryLazy",
     version = "2.*",
     opts = {
-      hint = 'floating-big-letter',
+      hint = "floating-big-letter",
       filter_rules = {
         include_current = false,
         autoselect_one = true,

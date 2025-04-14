@@ -175,7 +175,7 @@ return {
       },
       suggestion = { enabled = false },
       panel = { enabled = false },
-    }
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -198,19 +198,20 @@ return {
       },
     },
     opts = function(_, opts)
-      local prompts = require('CopilotChat.config.prompts')
+      local prompts = require("CopilotChat.config.prompts")
 
       prompts.Commit.prompt =
-      "変更のコミットメッセージを commitizen の規約に従って英語と日本語でそれぞれ作成してください。タイトルは50文字以内、メッセージは72文字で折り返してください。gitcommit コードブロックとしてフォーマットしてください。説明は日本語で書いてください。"
+        "変更のコミットメッセージを commitizen の規約に従って英語と日本語でそれぞれ作成してください。タイトルは50文字以内、メッセージは72文字で折り返してください。gitcommit コードブロックとしてフォーマットしてください。説明は日本語で書いてください。"
       prompts.Docs.prompt = "選択したコードにドキュメントコメントを追加してください。"
       prompts.Explain.prompt = "選択したコードの説明を文章の段落として作成してください。"
-      prompts.Fix.prompt = "このコードには問題があります。問題を特定し、修正したコードを書き直してください。何が問題だったのか、どのように修正したのかを説明してください。"
-      prompts.Optimize.prompt = "選択したコードを最適化し、パフォーマンスと可読性を向上させてください。最適化の戦略と変更の利点を説明してください。"
+      prompts.Fix.prompt =
+        "このコードには問題があります。問題を特定し、修正したコードを書き直してください。何が問題だったのか、どのように修正したのかを説明してください。"
+      prompts.Optimize.prompt =
+        "選択したコードを最適化し、パフォーマンスと可読性を向上させてください。最適化の戦略と変更の利点を説明してください。"
       prompts.Review.prompt = "選択したコードをレビューしてください。"
       prompts.Tests.prompt = "コードのテストを生成してください。"
 
-      return
-      {
+      return {
         debug = false,
         model = "claude-3.7-sonnet",
         -- See Configuration section for rest
@@ -232,6 +233,6 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
-    opts = {}
-  }
+    opts = {},
+  },
 }
