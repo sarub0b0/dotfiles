@@ -92,30 +92,37 @@ in
       # export GITSTATUS_NUM_THREADS=4
       export KUBECTL_EXTERNAL_DIFF=delta
     '';
-    initExtraFirst = ''
-      [[ -n "$ZPROF" ]] && zmodload zsh/zprof
-      # Keep at the top of this file.
-      [[ -f "$HOME/.zsh/pre.zsh" ]] && builtin source "$HOME/.zsh/pre.zsh"
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
-    initExtra = ''
-      source ${dot_dir}/zshrc
-      source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
-      if [ -n "''${commands[fzf-share]}" ]; then
-        source "$(fzf-share)/key-bindings.zsh"
-        source "$(fzf-share)/completion.zsh"
-        bindkey '^T' transpose-chars
-      fi
+    initContent = lib.mkMerge [
+      ( # 500 initExtraFirst
+        lib.mkOrder 500 ''
+          [[ -n "$ZPROF" ]] && zmodload zsh/zprof
+          # Keep at the top of this file.
+          [[ -f "$HOME/.zsh/pre.zsh" ]] && builtin source "$HOME/.zsh/pre.zsh"
+          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+            source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          fi
+        '')
+      # 550 initExtraBeforeCompinit
 
-      # Keep at the bottom of this file.
-      [[ -f "$HOME/.zsh/post.zsh" ]] && builtin source "$HOME/.zsh/post.zsh"
+      ( # 1000 InitExtra
+        lib.mkOrder 1000 ''
+          source ${dot_dir}/zshrc
+          source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
+          if [ -n "''${commands[fzf-share]}" ]; then
+            source "$(fzf-share)/key-bindings.zsh"
+            source "$(fzf-share)/completion.zsh"
+            bindkey '^T' transpose-chars
+          fi
 
-      if [[ -n "$ZPROF" ]] && (which zprof > /dev/null 2>&1); then
-          zprof
-      fi
-    '';
+          # Keep at the bottom of this file.
+          [[ -f "$HOME/.zsh/post.zsh" ]] && builtin source "$HOME/.zsh/post.zsh"
+
+          if [[ -n "$ZPROF" ]] && (which zprof > /dev/null 2>&1); then
+              zprof
+          fi
+        '')
+    ];
+
     plugins = with pkgs; [
       {
         name = "powerlevel10k";
