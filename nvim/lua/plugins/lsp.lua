@@ -104,9 +104,6 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
     end,
-    config = function()
-      require("lsp/clangd")
-    end,
     keys = function()
       local toggle_inlay_hints = function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
