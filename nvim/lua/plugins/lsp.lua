@@ -62,27 +62,8 @@ return {
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
     },
-    config = function(_, opts)
-      require("mason-lspconfig").setup(opts)
-
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-          capabilities.textDocument.foldingRange = {
-            dynamicregistration = false,
-            lineFoldingOnly = true,
-          }
-
-          require("lspconfig")[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-      })
-    end,
     opts = {
       ensure_installed = {},
-      automatic_installation = false,
     },
   },
   {
