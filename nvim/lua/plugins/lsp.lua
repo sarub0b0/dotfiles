@@ -228,9 +228,7 @@ return {
   {
     "saecki/crates.nvim",
     tag = "stable",
-    config = function()
-      require("crates").setup()
-    end,
+    config = true,
   },
   {
     "someone-stole-my-name/yaml-companion.nvim",
