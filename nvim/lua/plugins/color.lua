@@ -171,9 +171,7 @@ return {
   {
     "nvim-zh/colorful-winsep.nvim",
     event = { "WinLeave" },
-    opts = {
-      smooth = false,
-    },
+    config = true,
   },
   {
     "RRethy/vim-illuminate",
