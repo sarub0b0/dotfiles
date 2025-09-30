@@ -13,29 +13,37 @@
     serena.url = "github:oraios/serena";
   };
 
-  outputs = { flake-utils, neovim-nightly-overlay, nixpkgs, home-manager, serena, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      flake-utils,
+      neovim-nightly-overlay,
+      nixpkgs,
+      home-manager,
+      serena,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         username = builtins.getEnv "USER";
         overlays = [
           neovim-nightly-overlay.overlays.default
-					(final: prev: {
-					  serena = serena.packages.${system}.default;
-					})
+          (final: prev: {
+            serena = serena.packages.${system}.default;
+          })
         ];
-				pkgs = import nixpkgs {
-					inherit system overlays;
-				};
+        pkgs = import nixpkgs {
+          inherit system overlays;
+        };
       in
       {
-        packages.homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration
-          {
-            inherit pkgs;
+        packages.homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-            modules = [
-              ./home.nix
-            ];
-          };
+          modules = [
+            ./home.nix
+          ];
+        };
       }
     );
 }
