@@ -17,13 +17,15 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         username = builtins.getEnv "USER";
-        pkgs = nixpkgs.legacyPackages.${system};
         overlays = [
           neovim-nightly-overlay.overlays.default
 					(final: prev: {
 					  serena = serena.packages.${system}.default;
 					})
         ];
+				pkgs = import nixpkgs {
+					inherit system overlays;
+				};
       in
       {
         packages.homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration
@@ -32,9 +34,6 @@
 
             modules = [
               ./home.nix
-              {
-                nixpkgs.overlays = overlays;
-              }
             ];
           };
       }
