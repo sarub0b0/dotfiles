@@ -10,15 +10,19 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    serena.url = "github:oraios/serena";
   };
 
-  outputs = { flake-utils, neovim-nightly-overlay, nixpkgs, home-manager, ... }:
+  outputs = { flake-utils, neovim-nightly-overlay, nixpkgs, home-manager, serena, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         username = builtins.getEnv "USER";
         pkgs = nixpkgs.legacyPackages.${system};
         overlays = [
           neovim-nightly-overlay.overlays.default
+					(final: prev: {
+					  serena = serena.packages.${system}.default;
+					})
         ];
       in
       {
