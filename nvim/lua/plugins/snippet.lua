@@ -32,21 +32,4 @@ return {
     end,
   },
   "rafamadriz/friendly-snippets",
-  {
-    "smjonas/snippet-converter.nvim",
-    opts = {
-      templates = {
-        sources = {
-          ultisnips = {
-            "~/dotfiles/vim/snippets",
-          },
-        },
-        output = {
-          vscode_luasnip = {
-            "~/dotfiles/nvim/vsnip",
-          },
-        },
-      },
-    },
-  },
 }
