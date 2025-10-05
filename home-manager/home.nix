@@ -55,8 +55,6 @@ in
     stern
     tldr
 
-    serena
-
     # programming languages
     asdf-vm
     go
