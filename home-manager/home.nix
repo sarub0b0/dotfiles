@@ -22,7 +22,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -170,21 +170,20 @@ in
 
   programs.git = {
     enable = true;
-    aliases = {
-      co = "checkout";
-      st = "status";
-      br = "branch";
-      cm = "commit";
-      mt = "mergetool";
-      dt = "difftool";
-      fe = "fetch";
-      pu = "pull";
-      sw = "switch";
-      rs = "restore";
-      wt = "worktree";
-    };
-    ignores = lib.strings.splitString "\n" (builtins.readFile "${dot_dir}/gitignore");
-    extraConfig = {
+    settings = {
+      alias = {
+        co = "checkout";
+        st = "status";
+        br = "branch";
+        cm = "commit";
+        mt = "mergetool";
+        dt = "difftool";
+        fe = "fetch";
+        pu = "pull";
+        sw = "switch";
+        rs = "restore";
+        wt = "worktree";
+      };
       core = {
         editor = "nvim";
         quotepath = "false";
@@ -237,6 +236,7 @@ in
         defaultBranch = "main";
       };
     };
+    ignores = lib.strings.splitString "\n" (builtins.readFile "${dot_dir}/gitignore");
   };
 
   programs.direnv = {
