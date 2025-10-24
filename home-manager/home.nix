@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   home_dir = "${builtins.getEnv "HOME"}";
@@ -92,7 +97,8 @@ in
       export KUBECTL_EXTERNAL_DIFF=delta
     '';
     initContent = lib.mkMerge [
-      ( # 500 initExtraFirst
+      (
+        # 500 initExtraFirst
         lib.mkOrder 500 ''
           [[ -n "$ZPROF" ]] && zmodload zsh/zprof
           # Keep at the top of this file.
@@ -100,10 +106,12 @@ in
           if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
           fi
-        '')
+        ''
+      )
       # 550 initExtraBeforeCompinit
 
-      ( # 1000 InitExtra
+      (
+        # 1000 InitExtra
         lib.mkOrder 1000 ''
           source ${dot_dir}/zshrc
           source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
@@ -119,7 +127,8 @@ in
           if [[ -n "$ZPROF" ]] && (which zprof > /dev/null 2>&1); then
               zprof
           fi
-        '')
+        ''
+      )
     ];
 
     plugins = with pkgs; [
@@ -140,7 +149,6 @@ in
       }
     ];
   };
-
 
   programs.neovim = {
     enable = true;
@@ -245,7 +253,8 @@ in
 
   home.file.".clang-format".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/clang-format";
   home.file.".asdfrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/asdfrc";
-  home.file.".markdownlintrc".source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/markdownlintrc";
+  home.file.".markdownlintrc".source =
+    config.lib.file.mkOutOfStoreSymlink "${dot_dir}/markdownlintrc";
 
   xdg.configFile."cspell/cspell.json" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/cspell/cspell.json";
