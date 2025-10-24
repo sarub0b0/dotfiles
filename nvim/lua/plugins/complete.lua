@@ -201,7 +201,7 @@ return {
       local prompts = require("CopilotChat.config.prompts")
 
       prompts.Commit.prompt =
-        "変更のコミットメッセージを commitizen の規約に従って英語と日本語でそれぞれ作成してください。タイトルは50文字以内、メッセージは72文字で折り返してください。gitcommit コードブロックとしてフォーマットしてください。説明は日本語で書いてください。"
+        "変更のコミットメッセージを commitizen の規約に従って英語と日本語でそれぞれ作成してください。タイトルは50文字以内、メッセージは72文字で折り返してください。gitcommit コードブロックとしてフォーマットしてください。返答は日本語で書いてください。"
       prompts.Docs.prompt = "選択したコードにドキュメントコメントを追加してください。"
       prompts.Explain.prompt = "選択したコードの説明を文章の段落として作成してください。"
       prompts.Fix.prompt =
