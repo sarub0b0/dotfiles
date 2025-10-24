@@ -58,6 +58,10 @@ return {
           __default = "// %s",
           __multiline = "/* %s */",
         },
+        eruby = { __default = "<%= begin %> %s <%= end %>", __multiline = "<%= begin %> %s <%= end %>" },
+      },
+      not_nested_languages = {
+        eruby = true,
       },
     },
   },
