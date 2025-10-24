@@ -3,7 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "someone-stole-my-name/yaml-companion.nvim",
+      "cenk1cenk2/schema-companion.nvim",
     },
     opts = {
       options = {
@@ -37,13 +37,12 @@ return {
           {
             "yaml schema",
             fmt = function()
-              local schema = require("yaml-companion").get_buf_schema(0)
-
-              if schema.result[1].name == "none" then
-                return ""
-              end
-
-              return schema.result[1].name
+              return ("%s %s")
+                :format(nvim.ui.icons.ui.Table, require("schema-companion").get_current_schemas() or "none")
+                :sub(0, 128)
+            end,
+            cond = function()
+              return package.loaded["schema-companion"]
             end,
           },
         },
