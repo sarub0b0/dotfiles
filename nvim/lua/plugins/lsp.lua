@@ -13,8 +13,8 @@ return {
         formatters_by_ft = {
           javascript = { "biome", "prettierd", "prettierd", stop_after_first = true },
           javascriptreact = { "biome", "prettierd", "prettierd", stop_after_first = true },
-          typescript = { "prettierd", "prettier", stop_after_first = true },
-          typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+          typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
+          typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
           ruby = { "bundle_rubocop", "rubocop", "rufo", stop_after_first = true },
           json = { "biome", "jq" },
           lua = { "stylua", stop_after_first = true },
