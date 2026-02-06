@@ -3,7 +3,7 @@ return {
   "honza/vim-snippets",
   {
     "L3MON4D3/LuaSnip",
-    version = "V2.*",
+    version = "v2.*",
     build = 'nix-shell -p luajit --run "make install_jsregexp"',
     config = function()
       require("luasnip.loaders.from_snipmate").lazy_load()
