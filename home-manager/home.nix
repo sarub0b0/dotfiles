@@ -43,6 +43,7 @@ in
     unison
     wget
     gh
+    gron
 
     # modern unix
     bottom
