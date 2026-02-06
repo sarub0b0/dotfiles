@@ -61,6 +61,8 @@ return {
     dependencies = {
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
+      "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
     },
     opts = {
       ensure_installed = {},
@@ -77,13 +79,15 @@ return {
         float = {
           source = "always", -- Or "if_many"
         },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = "󰌵 ",
+            [vim.diagnostic.severity.INFO] = " ",
+          },
+        },
       })
-
-      local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
     end,
     keys = function()
       local toggle_inlay_hints = function()
