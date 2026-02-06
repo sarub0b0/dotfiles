@@ -27,7 +27,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -263,6 +263,12 @@ in
 
   xdg.configFile."kitty/kitty.conf" = {
     source = config.lib.file.mkOutOfStoreSymlink "${dot_dir}/kitty.conf";
+  };
+
+  # 下記エラーを避けるために無効化
+  # > Error installing file '.config/nvim/init.lua' outside $HOME
+  xdg.configFile."nvim/init.lua" = {
+    enable = false;
   };
 
   xdg.configFile."nvim" = {
