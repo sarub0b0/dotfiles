@@ -1,5 +1,5 @@
 return {
-  "SirVer/ultisnips",
+  -- "SirVer/ultisnips",
   "honza/vim-snippets",
   {
     "L3MON4D3/LuaSnip",
