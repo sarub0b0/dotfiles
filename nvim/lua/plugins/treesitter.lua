@@ -4,12 +4,14 @@ return {
     build = ":TSUpdate",
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
-    end,
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-    opts = {
-      ensure_installed = {
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+
+      local ensureInstalled = {
         "markdown",
         "markdown_inline",
         "yaml",
@@ -22,13 +24,18 @@ return {
         "gitattributes",
         "git_rebase",
         "git_config",
-        "diff",
-      },
+        "diff"
+      }
+      local alreadyInstalled = require('nvim-treesitter').get_installed({})
+      local parsersToInstall = vim.iter(ensureInstalled)
+          :filter(function(parser)
+            return not vim.tbl_contains(alreadyInstalled, parser)
+          end)
+          :totable()
+      require('nvim-treesitter').install(parsersToInstall)
+    end,
+    opts = {
       sync_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
       endwise = {
         enable = true,
       },
