@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    version = "*",
     dependencies = "nvim-lua/plenary.nvim",
     keys = function()
       return {
@@ -11,13 +11,6 @@ return {
         { "<leader>fh", require("telescope.builtin").help_tags },
         { "<leader>fd", require("telescope.builtin").diagnostics },
       }
-    end,
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    dependencies = "nvim-telescope/telescope.nvim",
-    config = function()
-      require("telescope").load_extension("ui-select")
     end,
   },
 }
