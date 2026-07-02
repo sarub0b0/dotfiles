@@ -96,6 +96,37 @@ return {
 
       return {
         { "<Space>ih", toggle_inlay_hints, desc = "Toggle inlay hints" },
+        {
+          "K",
+          function()
+            return vim.lsp.buf.hover()
+          end,
+          desc = "Hover",
+        },
+        { "gd", vim.lsp.buf.definition, desc = "Goto Definition" },
+        { "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+        { "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+        { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+        { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+        {
+          "gK",
+          function()
+            return vim.lsp.buf.signature_help()
+          end,
+          desc = "Signature Help",
+        },
+        {
+          "<c-k>",
+          function()
+            return vim.lsp.buf.signature_help()
+          end,
+          mode = "i",
+          desc = "Signature Help",
+        },
+        { "<Space>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
+        { "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
+        { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "x" } },
+        { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens", mode = { "n" } },
       }
     end,
   },
@@ -156,66 +187,6 @@ return {
       automatic_installation = false,
       automatic_setup = true,
     },
-  },
-  {
-    "nvimdev/lspsaga.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    event = { "LspAttach" },
-    opts = {
-      lightbulb = {
-        enable = false,
-      },
-      implement = {
-        enable = true,
-      },
-    },
-    keys = function()
-      local diagnostic_goto_prev_error = function()
-        require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-      end
-
-      local diagnostic_goto_next_error = function()
-        require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-      end
-
-      local term_toggle = function()
-        local cmd = vim.o.shell
-
-        if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-          if vim.fn.executable("powershell.exe") == 1 then
-            cmd = "powershell.exe"
-          end
-        end
-
-        require("lspsaga.floaterm"):open_float_terminal({ cmd })
-      end
-
-      return {
-        { "K", "<cmd>Lspsaga hover_doc<CR>" },
-        { "gl", "<cmd>Lspsaga finder<CR>" },
-        { "<Space>ca", "<cmd>Lspsaga code_action<CR>", mode = { "n", "v" } },
-        { "<Space>rn", "<cmd>Lspsaga rename<CR>" },
-        { "gd", "<cmd>Lspsaga goto_definition<CR>" },
-        { "gD", "<cmd>Lspsaga peek_definition<CR>" },
-        { "<leader>gt", "<cmd>Lspsaga goto_type_definition<CR>" },
-        { "<leader>gT", "<cmd>Lspsaga peek_type_definition<CR>" },
-        { "[g", "<cmd>Lspsaga diagnostic_jump_prev<CR>" },
-        { "]g", "<cmd>Lspsaga diagnostic_jump_next<CR>" },
-        { "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>" },
-        { "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>" },
-        { "<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>" },
-        { "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>" },
-        { "<leader>o", "<cmd>Lspsaga outline<CR>" },
-        { "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>" },
-        { "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>" },
-        { "[G", diagnostic_goto_prev_error, silent = true },
-        { "]G", diagnostic_goto_next_error, silent = true },
-        { "\\\\", term_toggle, mode = { "n", "t" } },
-      }
-    end,
   },
   {
     "mrcjkb/rustaceanvim",
