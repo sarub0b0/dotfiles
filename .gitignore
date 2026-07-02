@@ -11,3 +11,5 @@ cspell/user.txt
 
 .luarc.json
 lazy-lock.json
+
+.serena/
