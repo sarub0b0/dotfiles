@@ -84,11 +84,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784764969,
-        "narHash": "sha256-45gcNga+PZrBi+8tUPEpKuAFeRISfmPByTCvVtNPV9A=",
+        "lastModified": 1784851387,
+        "narHash": "sha256-Ai3xkqq/2SoWrP8VnKyKFu2NQdWc/+P9F2zNKX6IxuY=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "7a28482555fa1deaaa70674308038aad2130b025",
+        "rev": "a82bcd88f4b4ed8251287540a2af7b685e3648c2",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1784762885,
-        "narHash": "sha256-zbMJygqXyogX1GgvaBY0YszNDe/WQXrlcnvBwtvy8Qw=",
+        "lastModified": 1784842034,
+        "narHash": "sha256-zWBB4azI2GZ8/4svrEzpp664ffrDCWngNyUMog0LyVo=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "6ecf226e44c3976e6a2c473eef1ee938215e1ed4",
+        "rev": "f95bd7393584e96152e1a2f68736c634ed8de614",
         "type": "github"
       },
       "original": {
@@ -229,11 +229,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1784845656,
-        "narHash": "sha256-a5RUy53+7c/syp0UUbFr7DDJQt13TQJX2S6UmwAN6fs=",
+        "lastModified": 1784852543,
+        "narHash": "sha256-NWRiyzRfwBeOqPmJHd9Q+Vb0DsWhiDq3/bz7YezFVSo=",
         "owner": "oraios",
         "repo": "serena",
-        "rev": "61ca9ba5decf41cdc620020c5f811c4e7ee308f7",
+        "rev": "d86fd6c0c8f0c18be8f9d4ba5b3dd45a376cfaf1",
         "type": "github"
       },
       "original": {
